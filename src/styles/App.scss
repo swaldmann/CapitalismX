@@ -1,0 +1,379 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    -webkit-touch-callout:none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust:none;             /* prevent webkit from resizing text to fit */
+    -webkit-tap-highlight-color:rgba(0,0,0,0); /* prevent tap highlight color / shadow */
+    -webkit-user-select:none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+body {
+    font: 16px/1.5em -apple-system, Helvetica, Tahoma, sans-serif;
+    background: green;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+button, a {
+    cursor: pointer;
+}
+
+button:hover, a:hover {
+    opacity: 0.85;
+}
+
+button {
+    background: #4681dd;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+/* Start Menu */
+.menu {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    background: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    padding: 80px;
+    box-sizing: border-box;
+    max-height: 602px;
+    max-width: 800px;
+    overflow: auto;
+}
+
+.menu > h1 {
+    font-size: 50px;
+}
+
+.menu ul {
+    margin-top: 40px;
+}
+
+.menu ul > li {
+    list-style: none;
+    color: #999;
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+.menu ul > li:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+button.bordered {
+    //border: 1px solid #417cdb;
+    color: #222;
+    background: #eee;
+    transition: background 0.3s;
+}
+
+button.bordered:hover {
+    background: #417cdb;
+    color: white;
+}
+
+button.large {
+    font-weight: normal;
+    width: 80%;
+    font-size: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+/* Dialogs */
+
+.modal {
+    padding: 20px;
+    width: 90%;
+    background: white;
+    position: fixed;
+    height: 80%;
+    top: 10%;
+    left: 5%;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    cursor: default;
+}
+
+a.dialogClose {
+    color: gray;
+    float: right;
+    transition: all 0.2s;
+    border-radius: 5px;
+    padding: 5px 10px 3px 10px;
+}
+
+a.dialogClose:hover {
+    background: #ddd;
+}
+
+.dialogDetail {
+    margin: 20px 0px;
+    overflow: auto;
+    height: calc(100% - 100px);
+    border-top: 1px solid #ddd;
+    padding: 30px 0px;
+}
+
+.dialogDetail > * > h2 {
+    margin-bottom: 10px;
+}
+
+.dialogDetail > * > h2 > i.fas {
+    color: #666;
+    font-size: 22px;
+    margin-right: 8px;
+}
+
+.dialogContent {
+    padding: 10px;
+}
+
+.dialogContent > h1 > i.fas {
+    margin-right: 12px;
+}
+
+.dialogDetail td {
+    color: #666;
+}
+
+.dialogDetail > * > button {
+    /*background: #a4bfdb;
+    color: #24303d;*/
+}
+
+.modal button+button {
+    margin-right: 10px;
+}
+
+.modal button {
+    margin-top: 30px;
+    float: right;
+}
+
+.overlay {
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ReactModalPortal > div {
+    opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    transition: opacity 200ms;
+    background: rgba(0, 0, 0, 0.5);
+    &--after-open {
+        opacity: 1;
+    }
+    &--before-close {
+        opacity: 0;
+    }
+}
+
+/* Information Bar */
+
+.informationBar {
+    position: fixed;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    top: 0;
+}
+
+.informationBar > ul {
+    display: inline-block;
+}
+
+.informationBar > ul > li {
+    display: inline-block;
+    margin-right: 5px;
+    line-height: 1.5em;
+}
+
+.informationBar > ul > li > a, .time {
+    background: #111;
+    color: white;
+    padding: 8px 18px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.informationBar > ul > li > a:hover {
+    background: #333;
+}
+
+.informationBar .fas {
+    margin-right: 8px;
+}
+
+.graphicsSettings p {
+    margin-bottom: 10px;
+}
+
+.graphicsSettings {
+    margin-top: 50px;
+}
+
+.graphicsSettings > button:not(:last-child) {
+    margin-right: 10px;
+}
+
+.time {
+    display: inline-block;
+    float: right;
+    min-width: 160px;
+}
+
+.time > button {
+    line-height: inherit;
+    cursor: pointer;
+    background: none;
+    font-size: inherit;
+    color: inherit;
+    padding: 0;
+}
+
+/* Map */
+#App {
+    height: 100%;
+    width: 100%;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
+}
+
+/* Grid */
+
+.pull-right {
+    float: right;
+}
+
+.two-thirds {
+    float: left;
+    width: 66%;
+    box-sizing: border-box;
+}
+
+.third {
+    float: left;
+    box-sizing: border-box;
+    width: 34%;
+}
+
+section.half > *, .half {
+    width: calc(50% - 30px);
+    float: left;
+    box-sizing: border-box;
+}
+
+section.half > *:nth-child(2n-1), .half:nth-child(2n - 1) {
+    margin-right: 60px;
+}
+
+/* Table */
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+    font-variant-numeric: tabular-nums;
+}
+
+th, td {
+    width: 120px;
+}
+
+td+td, th+th {
+    width: auto;
+}
+
+th, td {
+    text-align: right;
+}
+
+.table-border-top {
+    border-top: 1px solid #ddd;
+}
+
+/*tr > td+tr.table-border-top > td {
+    padding-bottom: 10px;
+}*/
+
+.table-border-top > td {
+    padding-top: 10px;
+}
+
+hr {
+    margin: 10px 0px;
+    border-bottom: 1px solid #eee;
+}
+
+.panel {
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+#company hr {
+    border-bottom: 1px solid #ddd;
+}
+
+#expenses td {
+    color: #a31d0e;
+}
+
+#earnings td {
+    color: green;
+}
+
+
+/* fontawesome */
+
+.fa-users {
+    color: #84aded;
+}
+
+.fa-chart-line {
+    color: #c745cc;
+}
+
+.fa-coins {
+    color: #efc700;
+}
+
+.fa-wrench {
+    color: #8b96a0;
+}
