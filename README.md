@@ -4,8 +4,7 @@ Here’s how to start the game locally on your computer:
 1. Pull the latest changes in GitHub Desktop
 2. Install Node.js via https://nodejs.org/
 3. Open Terminal (macOS) or cmd (Windows)
-4. Navigate into the CapitalismX directory (default is ~/Documents/GitHub/CapitalismX)
-```cd ~/Documents/GitHub/CapitalismX```
+4. Navigate into the CapitalismX directory (default is ~/Documents/GitHub/CapitalismX), so in your case probably<br> ```cd Documents/GitHub/CapitalismX```
 5. Type ```npm install``` and hit return. The project dependencies (third-party Node.js libraries and modules this app uses) will now be installed. This may take a few minutes if you do it for the first time.
 6.  Type ```npm start``` and hit return. A window of your default browser should open and run the app on http://localhost:3000.
 
