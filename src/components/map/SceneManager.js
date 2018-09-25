@@ -76,6 +76,7 @@ export default canvas => {
             mesh.receiveShadow = true
             mesh.position.x = 126
             mesh.position.z = -10
+            mesh.position.y = 1
             mesh.rotation.y = Math.PI/2
             mesh.scale.multiplyScalar(0.3)
             cabMesh = mesh
