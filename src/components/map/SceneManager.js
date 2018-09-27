@@ -68,7 +68,7 @@ export default canvas => {
                     mesh.rotation.y = - Math.PI/2
                     scene.add(mesh)
                 })
-                parser.parse(require("../../static/map/city-blocks/exports/city-block-" + (i + j + 1) + "-1.vox")).then(function(voxelData) {
+                parser.parse(require("../../static/map/city-blocks/exports/city-block-" + (2 * i + j + 1) + "-1.vox")).then(function(voxelData) {
                     const builder = new vox.MeshBuilder(voxelData)
                     const mesh = builder.createMesh()
                     mesh.castShadow = mesh.receiveShadow = true
