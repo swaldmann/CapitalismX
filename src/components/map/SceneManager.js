@@ -4,7 +4,7 @@ window.$ = window.THREE = require("three-full")
 
 export default canvas => {
     var sunLight, hemiLight
-    var cabMesh, cabLightLeft, cabLightRight
+    //var cabMesh, cabLightLeft, cabLightRight
     var water
 
     const graphicsQuality = sessionStorage.getItem("graphicsQuality")
@@ -65,7 +65,6 @@ export default canvas => {
                     mesh.castShadow = mesh.receiveShadow = true
                     mesh.position.x = i * 100 * 2 - 100
                     mesh.position.z = j * 100
-                    mesh.rotation.y = - Math.PI/2
                     scene.add(mesh)
                 })
                 parser.parse(require("../../static/map/city-blocks/exports/city-block-" + (2 * i + j + 1) + "-1.vox")).then(function(voxelData) {
@@ -74,7 +73,6 @@ export default canvas => {
                     mesh.castShadow = mesh.receiveShadow = true
                     mesh.position.x = i * 100 * 2
                     mesh.position.z = j * 100
-                    mesh.rotation.y = Math.PI
                     scene.add(mesh)
                 })
             }
@@ -178,7 +176,14 @@ export default canvas => {
     }
 
     function animateTraffic() {
-        if (cabMesh !== undefined && cabLightLeft !== undefined && cabLightRight !== undefined) {
+        if (flamingo !== undefined) {
+            flamingo.position.x = flamingo.position.x < -500 ? 500 : flamingo.position.x - 1
+        }
+        /*for (var i = 0; i < morphs.length; i++) {
+            morph = morphs[i]
+            morph.updateAnimation(1000 * delta)
+        }*/
+        /*if (cabMesh !== undefined && cabLightLeft !== undefined && cabLightRight !== undefined) {
             if (cabMesh.position.x < 63) {
                 cabMesh.position.x += 0.7
             }
@@ -203,6 +208,7 @@ export default canvas => {
             cabLightRight.target.position.z = cabMesh.position.z + 2
             cabLightLeft.target.position.x = cabLightRight.target.position.x = cabMesh.position.x + 30
         }
+        }*/
     }
 
     window.addEventListener('resize', onWindowResize, false)
