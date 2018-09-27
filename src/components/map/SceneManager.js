@@ -59,7 +59,7 @@ export default canvas => {
         const parser = new vox.Parser()
         for (let i = 0; i < 2; i++) {
             for (let j = 0; j < 2; j++) {
-                parser.parse(require("../../static/map/city-blocks/exports/city-block-" + (i + j + 1) + "-0.vox")).then(function(voxelData) {
+                parser.parse(require("../../static/map/city-blocks/exports/city-block-" + (2 * i + j + 1) + "-0.vox")).then(function(voxelData) {
                     const builder = new vox.MeshBuilder(voxelData)
                     const mesh = builder.createMesh()
                     mesh.castShadow = mesh.receiveShadow = true
