@@ -13,8 +13,7 @@ export default canvas => {
     renderer.setSize(window.innerWidth, window.innerHeight)
     const pixelRatio = graphicsQuality === "high" ? window.devicePixelRatio : graphicsQuality === "medium" ? 1 : 0.5
     renderer.setPixelRatio(pixelRatio)
-    renderer.gammaInput = true
-    renderer.gammaOutput = true
+    renderer.gammaInput = renderer.gammaOutput = true
     renderer.shadowMap.enabled = graphicsQuality === "high"
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
@@ -57,19 +56,31 @@ export default canvas => {
     animate()
 
     function init() {
-        var parser = new vox.Parser()
-        parser.parse(require("../../static/map/city.vox")).then(function(voxelData) {
-            var builder = new vox.MeshBuilder(voxelData)
-            const mesh = builder.createMesh()
-            mesh.castShadow = true
-            mesh.receiveShadow = true
-            mesh.position.x = 0//i * 126
-            mesh.position.z = -10
-            mesh.rotation.y = -Math.PI/2
-            scene.add(mesh)
-        })
+        const parser = new vox.Parser()
+        for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 2; j++) {
+                parser.parse(require("../../static/map/city-blocks/exports/city-block-" + (i + j + 1) + "-0.vox")).then(function(voxelData) {
+                    const builder = new vox.MeshBuilder(voxelData)
+                    const mesh = builder.createMesh()
+                    mesh.castShadow = mesh.receiveShadow = true
+                    mesh.position.x = i * 100 * 2 - 100
+                    mesh.position.z = j * 100
+                    mesh.rotation.y = - Math.PI/2
+                    scene.add(mesh)
+                })
+                parser.parse(require("../../static/map/city-blocks/exports/city-block-" + (i + j + 1) + "-1.vox")).then(function(voxelData) {
+                    const builder = new vox.MeshBuilder(voxelData)
+                    const mesh = builder.createMesh()
+                    mesh.castShadow = mesh.receiveShadow = true
+                    mesh.position.x = i * 100 * 2
+                    mesh.position.z = j * 100
+                    mesh.rotation.y = Math.PI
+                    scene.add(mesh)
+                })
+            }
+        }
 
-        parser.parse(require("../../static/map/cab.vox")).then(function(voxelData) {
+        /*parser.parse(require("../../static/map/cab.vox")).then(function(voxelData) {
             var builder = new vox.MeshBuilder(voxelData)
             const mesh = builder.createMesh()
             mesh.castShadow = true
@@ -91,7 +102,7 @@ export default canvas => {
             cabLightLeft.penumbra = cabLightRight.penumbra = 1
             scene.add(cabLightLeft)
             scene.add(cabLightRight)
-        })
+        })*/
 
         // LIGHTS
         hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.2)
@@ -144,8 +155,8 @@ export default canvas => {
 
     function animate() {
         requestAnimationFrame(animate)
-        water.material.uniforms.time.value += 1.0 / 60.0;
         render()
+        water.material.uniforms.time.value += 1.0 / 60.0;
     }
 
     function render() {
