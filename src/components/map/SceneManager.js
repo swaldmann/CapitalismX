@@ -176,9 +176,6 @@ export default canvas => {
     }
 
     function animateTraffic() {
-        if (flamingo !== undefined) {
-            flamingo.position.x = flamingo.position.x < -500 ? 500 : flamingo.position.x - 1
-        }
         /*for (var i = 0; i < morphs.length; i++) {
             morph = morphs[i]
             morph.updateAnimation(1000 * delta)
