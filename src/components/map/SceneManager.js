@@ -7,15 +7,20 @@ export default canvas => {
     //var cabMesh, cabLightLeft, cabLightRight
     var water
 
-    const graphicsQuality = sessionStorage.getItem("graphicsQuality")
-    const enableAntialiasing = graphicsQuality === "high"
-    const renderer = new THREE.WebGLRenderer({ antialias: enableAntialiasing })
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    const pixelRatio = graphicsQuality === "high" ? window.devicePixelRatio : graphicsQuality === "medium" ? 1 : 0.5
-    renderer.setPixelRatio(pixelRatio)
-    renderer.gammaInput = renderer.gammaOutput = true
-    renderer.shadowMap.enabled = graphicsQuality === "high"
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    const renderer = buildRenderer()
+
+    function buildRenderer() {
+        const graphicsQuality = sessionStorage.getItem("graphicsQuality")
+        const enableAntialiasing = graphicsQuality === "high"
+        const renderer = new THREE.WebGLRenderer({ antialias: enableAntialiasing })
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        const pixelRatio = graphicsQuality === "high" ? window.devicePixelRatio : graphicsQuality === "medium" ? 1 : 0.5
+        renderer.setPixelRatio(pixelRatio)
+        renderer.gammaInput = renderer.gammaOutput = true
+        renderer.shadowMap.enabled = graphicsQuality === "high"
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap
+        return renderer
+    }
 
     const aspect = window.innerWidth/window.innerHeight
     const camera = new THREE.PerspectiveCamera(45, aspect, 1, 2000)
@@ -57,8 +62,8 @@ export default canvas => {
 
     function init() {
         const parser = new vox.Parser()
-        for (let i = 0; i < 2; i++) {
-            for (let j = 0; j < 2; j++) {
+        for (let i = 0; i < 0; i++) {
+            for (let j = 0; j < 0; j++) {
                 parser.parse(require("../../static/map/city-blocks/exports/city-block-" + (2 * i + j + 1) + "-0.vox")).then(function(voxelData) {
                     const builder = new vox.MeshBuilder(voxelData)
                     const mesh = builder.createMesh()
@@ -132,7 +137,7 @@ export default canvas => {
 
         // Water
         water = new THREE.Water(
-            new THREE.PlaneBufferGeometry(1000, 1000),
+            new THREE.PlaneBufferGeometry(3000, 3000),
             {
                 textureWidth: 512,
                 textureHeight: 512,

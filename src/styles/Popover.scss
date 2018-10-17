@@ -1,0 +1,42 @@
+.tooltip-container {
+    background-color: rgb(49, 53, 60);
+    color: white;
+    border-radius: 3px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    margin: 0.4rem;
+    padding: 0.4rem;
+    transition: opacity 0.3s;
+    z-index: 999;
+    max-height: 400px;
+}
+
+.tooltip-arrow {
+    height: 1rem;
+    position: absolute;
+    width: 1rem;
+}
+
+.tooltip-arrow::before {
+    border-style: solid;
+    content: '';
+    display: block;
+    height: 0;
+    margin: auto;
+    width: 0;
+}
+
+.tooltip-arrow[data-placement*='top'] {
+    bottom: 0;
+    height: 1rem;
+    left: 0;
+    margin-bottom: -1rem;
+    width: 1rem;
+}
+
+.tooltip-arrow[data-placement*='top']::before {
+    border-color: rgb(49, 53, 60) transparent transparent transparent;
+    border-width: 0.4rem 0.5rem 0 0.5rem;
+    position: absolute;
+}

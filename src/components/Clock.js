@@ -9,7 +9,13 @@ class Clock extends React.Component {
     }
 
     render() {
-        return <label id="timeLabel" className="pull-right">{ this.formattedDate() }</label>
+        return (
+            <div className="time">
+                { this.props.isPlaying && <button id="pauseButton" onClick={this.props.pause}><i className="fa fa-fw fa-pause"></i></button> }
+                { !this.props.isPlaying && <button id="playButton" onClick={this.props.play}><i className="fa fa-fw fa-play"></i></button> }
+                <label id="timeLabel" className="pull-right">{this.formattedDate()}</label>
+            </div>
+        )
     }
 }
 

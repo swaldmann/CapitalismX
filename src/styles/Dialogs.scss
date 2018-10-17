@@ -1,0 +1,197 @@
+@import "Constants.scss";
+
+.modal h1 {
+    margin: 0;
+    flex: 1 1 auto;
+}
+
+.dialogHeader {
+    display: flex;
+    flex-flow: row;
+    flex: 0 1 auto;
+}
+
+
+a.dialogClose {
+    flex: 0 1 22px;
+    color: gray;
+    float: right;
+    transition: all 0.2s;
+    border-radius: 5px;
+    padding: 5px 10px 3px 10px;
+}
+
+a.dialogClose:hover {
+    background: #ddd;
+}
+
+.column-flexbox {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.remaining-height {
+    flex: 1 1 auto;
+}
+
+.content-height {
+    flex: 0 1 auto;
+}
+
+.dialogDetail {
+    flex: 1 1 auto;
+    margin-top: 20px;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
+}
+
+.dialogDetail > * > h2 {
+    margin-bottom: 10px;
+}
+
+.dialogDetail > * > h2 > i.fas {
+    color: #666;
+    font-size: 22px;
+    margin-right: 8px;
+}
+
+.dialogDetail td {
+    color: #666;
+}
+
+.overlay {
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ReactModalPortal > div {
+    opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    transition: opacity 200ms;
+    background: rgba(0, 0, 0, 0.5);
+    &--after-open {
+        opacity: 1;
+    }
+    &--before-close {
+        opacity: 0;
+    }
+}
+
+
+.modal {
+    padding: 20px;
+    width: 90%;
+    height: 80%;
+    top: 10%;
+    left: 5%;
+    position: fixed;
+    background: white;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    display: flex;
+    flex-flow: column;
+    cursor: default;
+}
+
+.modal h1 > i.fas {
+    margin-right: 12px;
+}
+
+.modal button {
+    margin-top: 10px;
+    width: 200px;
+    float: right;
+    flex: 0 1 auto;
+}
+
+.modal button+button {
+    margin-right: 10px;
+}
+
+h3, h4 {
+    margin-bottom: 10px;
+}
+
+input[type="radio"] {
+     margin-right: 5px;
+}
+
+legend {
+    font-weight: bold;
+    padding-top: 20px;
+    margin-bottom: 5px;
+}
+
+.dialogDetail {
+    height: 100%;
+    overflow: hidden;
+}
+
+.dialogDetail .half {
+    overflow: hidden;
+    height: 100%;
+}
+
+.dialogDetail .full-height {
+    height: calc(100% - 140px);
+}
+
+.borderedList {
+    height: 100%;
+    overflow: auto;
+}
+
+.borderedList > ul {
+    height: 100%;
+}
+
+.borderedList ul > li {
+    padding: 6px;
+    list-style: none;
+}
+
+.dialogDetail h3+h4 {
+    margin-top: 20px;
+}
+
+:not(.tooltip-container) > div > .borderedList {
+    border: 1px solid #ddd;
+}
+
+:not(.tooltip-container) > div > .borderedList ul > li:nth-child(2n) {
+    background: #fafafa !important;
+}
+
+.tooltip-container {
+    height: 600px;
+    min-width: 250px;
+}
+
+.star-ratings {
+    display: block;
+}
+
+.pull-right > a {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    margin-left: 5px;
+    border-radius: 5px;
+    color: white;
+    background: green;
+}
+
+.margin-bottom {
+    margin-bottom: 2px;
+}
+
+a.fire {
+    background: rgb(168, 33, 33);
+}

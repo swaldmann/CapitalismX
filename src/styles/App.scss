@@ -1,3 +1,7 @@
+@import "Constants.scss";
+@import "Dialogs.scss";
+@import "Popover.scss";
+
 * {
     margin: 0;
     padding: 0;
@@ -37,7 +41,7 @@ button:hover, a:hover {
 }
 
 button {
-    background: #4681dd;
+    background: $button-blue;
     color: white;
     font-weight: bold;
     font-size: 16px;
@@ -104,101 +108,6 @@ button.large {
     padding: 10px;
     box-sizing: border-box;
     margin-top: 20px;
-}
-
-/* Dialogs */
-
-.modal {
-    padding: 20px;
-    width: 90%;
-    background: white;
-    position: fixed;
-    height: 80%;
-    top: 10%;
-    left: 5%;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-    cursor: default;
-}
-
-a.dialogClose {
-    color: gray;
-    float: right;
-    transition: all 0.2s;
-    border-radius: 5px;
-    padding: 5px 10px 3px 10px;
-}
-
-a.dialogClose:hover {
-    background: #ddd;
-}
-
-.dialogDetail {
-    margin: 20px 0px;
-    overflow: auto;
-    height: calc(100% - 100px);
-    border-top: 1px solid #ddd;
-    padding: 30px 0px;
-}
-
-.dialogDetail > * > h2 {
-    margin-bottom: 10px;
-}
-
-.dialogDetail > * > h2 > i.fas {
-    color: #666;
-    font-size: 22px;
-    margin-right: 8px;
-}
-
-.dialogContent {
-    padding: 10px;
-}
-
-.dialogContent > h1 > i.fas {
-    margin-right: 12px;
-}
-
-.dialogDetail td {
-    color: #666;
-}
-
-.dialogDetail > * > button {
-    /*background: #a4bfdb;
-    color: #24303d;*/
-}
-
-.modal button+button {
-    margin-right: 10px;
-}
-
-.modal button {
-    margin-top: 30px;
-    float: right;
-}
-
-.overlay {
-    cursor: pointer;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.ReactModalPortal > div {
-    opacity: 0;
-}
-
-.ReactModalPortal .ReactModal__Overlay {
-    transition: opacity 200ms;
-    background: rgba(0, 0, 0, 0.5);
-    &--after-open {
-        opacity: 1;
-    }
-    &--before-close {
-        opacity: 0;
-    }
 }
 
 /* Information Bar */
@@ -294,14 +203,27 @@ canvas {
     width: 34%;
 }
 
-section.half > *, .half {
-    width: calc(50% - 30px);
+section.half > *, .half,
+section.quarter > *, .quarter {
     float: left;
     box-sizing: border-box;
+    height: 100%;
+}
+
+section.half > *, .half {
+    width: calc(50% - 30px);
+}
+
+section.quarter > *, .quarter {
+    width: calc(25% - 30px);
 }
 
 section.half > *:nth-child(2n-1), .half:nth-child(2n - 1) {
     margin-right: 60px;
+}
+
+section.quarter > *, .quarter:not(:last-child) {
+    margin-right: 40px;
 }
 
 /* Table */
@@ -343,7 +265,7 @@ hr {
 
 .panel {
     padding: 20px;
-    background: #f0f0f0;
+    background: #f8f8f8;
     border-radius: 10px;
 }
 

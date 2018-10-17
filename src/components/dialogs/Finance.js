@@ -20,7 +20,7 @@ class Finance extends React.Component {
                 <div className="dialogContent">
                     <h1><i className="fas fa-coins"></i>Finance</h1>
                     <div className="dialogDetail">
-                        <div className="half panel">
+                        <div className="half panel height250">
                             <h2><i className="fas fa-building"></i>Company</h2>
                             <table id="company">
                                 <tbody>

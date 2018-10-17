@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import threeEntryPoint from './map/threeEntryPoint';
+import React, { Component } from 'react'
+import threeEntryPoint from './map/threeEntryPoint'
 
 export default class ThreeContainer extends Component {
   componentDidMount() {
-    threeEntryPoint(this.threeRootElement);
+    threeEntryPoint(this.threeRootElement)
   }
   render() {
       return (

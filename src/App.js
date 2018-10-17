@@ -9,19 +9,23 @@ import HR from './components/dialogs/HR.js'
 import Production from './components/dialogs/Production.js'
 import Marketing from './components/dialogs/Marketing.js'
 
+import SimulationGraph from './models/SimulationGraph.js'
+
 import './styles/App.css'
 
 class App extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             showMenu: true,
             isPlaying: false,
             elapsedDays: 0,
-            clockIntervalID: undefined
+            clockIntervalID: undefined,
+            graph: new SimulationGraph()
         }
     }
 
+    /* Menu Actions */
     newGame = () => {
         this.hideMenu()
     }
@@ -38,6 +42,7 @@ class App extends Component {
         this.setState({showMenu: false})
     }
 
+    /* Time Actions */
     pause = () => {
         clearInterval(this.state.clockIntervalID)
         this.setState({isPlaying: false})
@@ -49,8 +54,19 @@ class App extends Component {
     }
 
     updateClock = () => {
+        this.state.graph.adjacencyList.forEach(function(edgeList) {
+            if (edgeList.edges === undefined) {
+                return
+            }
+            edgeList.edges.forEach(function(edge) {
+                edge.toNode.value += edge.fromNode.value/5 * edge.weight
+            })
+        })
         this.setState({elapsedDays: this.state.elapsedDays + 1})
     }
+
+    /* Consider improved state management (redux.js) */
+
 
     componentDidMount() {
         this.play()
@@ -60,28 +76,24 @@ class App extends Component {
         return (
             <Router>
                 <div id="App">
-                    <Map />
+                    { <Map /> }
                     { this.state.showMenu && <Menu newGame={this.newGame} loadGame={this.loadGame} /> }
                     { !this.state.showMenu &&
-                        (<nav className="informationBar">
+                        <nav className="informationBar">
                             <ul>
                                 <li><a onClick={this.showMenu}><i className="fas fa-ellipsis-h"></i>Menu</a></li>
-                                <li><Link to="/finance"><i className="fas fa-coins"></i>$91,319</Link></li>
-                                <li><Link to="/hr"><i className="fas fa-users"></i>214</Link></li>
-                                <li><Link to="/production"><i className="fas fa-wrench"></i>503/week</Link></li>
+                                <li><Link to="/finance"><i className="fas fa-coins"></i>${this.state.graph.netWorth.value.toLocaleString(navigator.language, { maximumFractionDigits: 0 })}</Link></li>
+                                <li><Link to="/hr"><i className="fas fa-users"></i>{(this.state.graph.engineers.value[0].length + this.state.graph.salespeople.value[0].length).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}</Link></li>
+                                <li><Link to="/production"><i className="fas fa-wrench"></i>{this.state.graph.productionRate.value.toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/week</Link></li>
                                 <li><Link to="/marketing"><i className="fas fa-chart-line"></i>92%</Link></li>
                             </ul>
-                            <div className="time">
-                                { this.state.isPlaying && <button id="pauseButton" onClick={this.pause}><i className="fa fa-fw fa-pause"></i></button> }
-                                { !this.state.isPlaying && <button id="playButton" onClick={this.play}><i className="fa fa-fw fa-play"></i></button> }
-                                <Clock elapsedDays={this.state.elapsedDays} />
-                            </div>
-                        </nav>)
+                            <Clock play={this.play} pause={this.pause} isPlaying={this.state.isPlaying} elapsedDays={this.state.elapsedDays} />
+                        </nav>
                     }
-                    <Route path="/finance" component={Finance} />
-                    <Route path="/hr" component={HR} />
-                    <Route path="/production" component={Production} />
-                    <Route path="/marketing" component={Marketing} />
+                    <Route path="/finance" render={ () => <Finance /> }/>
+                    <Route path="/hr" render={ () => <HR graph={this.state.graph} /> }/>
+                    <Route path="/production" render={ () => <Production /> }/>
+                    <Route path="/marketing" render={ () => <Marketing /> }/>
                 </div>
             </Router>
         )
