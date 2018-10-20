@@ -1,6 +1,6 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
-import EmployeeTable from './EmployeeTable'
+import VisibleEmployeeList from '../../../containers/VisibleEmployeeList'
 
 class EmployeeHirePopover extends React.Component {
     render() {
@@ -28,7 +28,7 @@ class EmployeeHirePopover extends React.Component {
                         className: 'tooltip-arrow'
                       })}
                     />
-                    <EmployeeTable employeeType={"Available " + this.props.employeeType} employees={this.props.hireableEmployees} />
+                    <VisibleEmployeeList employeeType={"Available " + this.props.employeeType} />
                   </div>
                 )}
               >

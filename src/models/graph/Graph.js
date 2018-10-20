@@ -25,7 +25,7 @@ class Graph {
     }
 
     createVertex(value) {
-        const matchingVertices = this.vertices.filter(vertex => vertex.value === value)
+        const matchingVertices = this.vertices.filter(v => v.value === value)
         if (matchingVertices.length > 0) {
             return matchingVertices[matchingVertices.length - 1]
         }

@@ -1,9 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import StarRatings from 'react-star-ratings'
 
 const happinessIcons = ["😊", "😐", "☹️"]
 
 class EmployeeCell extends React.Component {
+    static propTypes = {
+        hireEmployee: PropTypes.func.isRequired,
+        fireEmployee: PropTypes.func.isRequired
+    }
 
     hireEmployee = () => {
         this.props.employee.isEmployed = true
@@ -14,25 +20,27 @@ class EmployeeCell extends React.Component {
     }
 
     render() {
+        const { employee, hireEmployee, fireEmployee } = this.props
+
         return (
             <li>
                 <div className="margin-bottom">
-                    {this.props.employee.name}
+                    {employee.name}
                     <span className="pull-right">
-                        {this.props.employee.salary.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}
-                        {this.props.employee.isEmployed && <a>Raise</a>}
+                        {employee.salary.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}
+                        {employee.isEmployed && <a>Raise</a>}
                     </span>
                 </div>
                 <StarRatings
-                  rating={this.props.employee.skill}
+                  rating={employee.skill}
                   starRatedColor="orange"
                   starDimension="10px"
                   starSpacing="3px"
                 />
-                <span className="pull-right" role="img" aria-label="Happiness">
-                    {this.props.employee.isEmployed && happinessIcons[this.props.employee.happiness]}
-                    {this.props.employee.isEmployed && <a className="fire" onClick={this.fireEmployee}>Fire</a>}
-                    {!this.props.employee.isEmployed && <a className="hire" onClick={this.hireEmployee}>Hire</a>}
+                <span className="pull-right" role="img">
+                    {employee.isEmployed && happinessIcons[employee.happiness]}
+                    {employee.isEmployed && <a className="fire" onClick={() => fireEmployee(employee.index)}>Fire</a>}
+                    {!employee.isEmployed && <a className="hire" onClick={() => hireEmployee(employee.index)}>Hire</a>}
                 </span>
             </li>
         )

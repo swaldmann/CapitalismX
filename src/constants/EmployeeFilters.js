@@ -1,0 +1,3 @@
+
+export const SHOW_HIRED = 'SHOW_HIRED'
+export const SHOW_AVAILABLE = 'SHOW_AVAILABLE'

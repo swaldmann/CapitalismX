@@ -1,15 +1,13 @@
 import React from "react"
 import Modal from "react-modal"
 import { RadioGroup, RadioButton } from 'react-radio-buttons'
-import * as Constants from '../../models/constants/Employees.js'
-import EmployeeTable from './tables/EmployeeTable'
+import VisibleEmployeeList from '../../containers/VisibleEmployeeList'
 import EmployeeHirePopover from './tables/EmployeeHirePopover'
 
 class HR extends React.Component {
 
     constructor(props) {
         super(props)
-        console.log("fs")
         this.state = ({
             hiredEngineers: this.props.graph.engineers.value[0].filter(e => e.isEmployed),
             availableEngineers: this.props.graph.engineers.value[0].filter(e => !e.isEmployed),
@@ -27,8 +25,6 @@ class HR extends React.Component {
     }
 
     render() {
-        console.log("Now")
-        console.log(this.state)
         return (
             <Modal
                 isOpen={true}
@@ -44,12 +40,12 @@ class HR extends React.Component {
                 </div>
                 <div className="dialogDetail">
                     <div className="quarter column-flexbox">
-                        <EmployeeTable employeeType="Engineers" employees={this.props.graph.engineers.value[0].filter(e => e.isEmployed)} />
-                        <EmployeeHirePopover className="content-height" employeeType="Engineers" hireableEmployees={this.props.graph.engineers.value[0].filter(e => !e.isEmployed)} />
+                        <VisibleEmployeeList employeeType="Engineers" />
+                        <EmployeeHirePopover className="content-height" employeeType="Engineers" />
                     </div>
                     <div className="quarter column-flexbox">
-                        <EmployeeTable employeeType="Salespeople" employees={this.props.graph.salespeople.value[0].filter(s => s.isEmployed)} />
-                        <EmployeeHirePopover className="content-height" employeeType="Salespeople" hireableEmployees={this.props.graph.salespeople.value[0].filter(s => !s.isEmployed)} />
+                        <VisibleEmployeeList employeeType="Salespeople" />
+                        <EmployeeHirePopover className="content-height" employeeType="Salespeople" />
                     </div>
                     <div className="quarter">
                         <h3>Work Conditions</h3>
