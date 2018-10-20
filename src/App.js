@@ -83,7 +83,7 @@ class App extends Component {
                             <ul>
                                 <li><a onClick={this.showMenu}><i className="fas fa-ellipsis-h"></i>Menu</a></li>
                                 <li><Link to="/finance"><i className="fas fa-coins"></i>${this.state.graph.netWorth.value.toLocaleString(navigator.language, { maximumFractionDigits: 0 })}</Link></li>
-                                <li><Link to="/hr"><i className="fas fa-users"></i>{(this.state.graph.engineers.value[0].length + this.state.graph.salespeople.value[0].length).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}</Link></li>
+                                <li><Link to="/hr"><i className="fas fa-users"></i>{(this.state.graph.engineers.value[0].filter(e => e.isEmployed).length + this.state.graph.salespeople.value[0].filter(e => e.isEmployed).length).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}</Link></li>
                                 <li><Link to="/production"><i className="fas fa-wrench"></i>{this.state.graph.productionRate.value.toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/week</Link></li>
                                 <li><Link to="/marketing"><i className="fas fa-chart-line"></i>92%</Link></li>
                             </ul>

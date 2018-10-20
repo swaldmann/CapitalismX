@@ -17,11 +17,11 @@ class Marketing extends React.Component {
                 className="modal"
                 overlayClassName="overlay"
             >
-                <a onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></a>
-                <div className="dialogContent">
+                <div className="dialogHeader">
                     <h1><i className="fas fa-chart-line"></i>Marketing</h1>
-                    <div className="dialogDetail">
-                    </div>
+                    <a onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></a>
+                </div>
+                <div className="dialogDetail">
                 </div>
             </Modal>
         )

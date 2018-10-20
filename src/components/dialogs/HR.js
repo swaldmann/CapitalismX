@@ -54,11 +54,11 @@ class HR extends React.Component {
                     <div className="quarter">
                         <h3>Work Conditions</h3>
                         <h4>Working Time Model</h4>
-                        <RadioGroup value={this.state.selectedValue} onChange={this.onWorkModelChange} horizontal>
-                            <RadioButton value="fixedHours">Fixed</RadioButton>
-                            <RadioButton value="flextime">Flex</RadioButton>
-                            <RadioButton value="trust-based">Trust</RadioButton>
-                        </RadioGroup>
+                        {/*<RadioGroup value={this.state.selectedValue} onChange={this.onWorkModelChange}>
+                            <RadioButton value="fixedHours">Fixed Time</RadioButton>
+                            <RadioButton value="flextime">Flextime</RadioButton>
+                            <RadioButton value="trust-based">Trust-based</RadioButton>
+                        </RadioGroup>*/}
                     </div>
                     <div className="quarter panel">
                         <h4>Employee Satisfaction</h4>
