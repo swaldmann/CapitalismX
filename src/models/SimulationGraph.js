@@ -12,11 +12,11 @@ class SimulationGraph extends Graph {
         this.salespeople = this.createVertex([Constants.SALESPEOPLE])
         this.worktimeModel = this.createVertex(0)
         this.employeeSatisfaction = this.createVertex(0.5)
-        this.productionRate = this.createVertex(1)
+        this.productionRate = this.createVertex(10)
         this.netWorth = this.createVertex(0)
 
         /* Edges */
-        this.addDirectedEdge(this.productionRate, this.netWorth, 5)
+        this.addDirectedEdge(this.productionRate, this.netWorth, 12)
     }
 }
 
