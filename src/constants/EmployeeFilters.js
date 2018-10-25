@@ -33,6 +33,6 @@ export const SHOW_HIRED = 'Hired'
 export const SHOW_AVAILABLE = 'Available'
 
 export const EMPLOYEES = {
-    "Engineers": ENGINEERS,
-    "Salespeople": SALESPEOPLE
+    [ENGINEER_TYPE]: ENGINEERS,
+    [SALESPEOPLE_TYPE]: SALESPEOPLE
 }

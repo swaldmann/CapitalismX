@@ -2,9 +2,11 @@ import { createSelector } from 'reselect'
 import { SHOW_HIRED, SHOW_AVAILABLE } from '../constants/EmployeeFilters'
 
 const getVisibilityFilter = (state, props) => props.visibilityFilter || SHOW_HIRED
-const getEmployees = (state, props) => {
-    return Array.isArray(state.employees) ?  state.employees : state.employees[props.employeeType]
-}
+
+const getAllEmployees = state => Object.values(state.employees).flatMap(n => n)
+
+const getEmployees = (state, props) => Array.isArray(state.employees) ?  state.employees : state.employees[props.employeeType]
+
 const getEmployeeType = (state, props) => props.employeeType
 
 export const makeGetVisibleEmployees = () => {
@@ -24,7 +26,7 @@ export const makeGetVisibleEmployees = () => {
 }
 
 export const getHiredEmployeeCount = createSelector(
-    [getEmployees],
+    [getAllEmployees],
     employees => (
         employees.reduce((count, employee) =>
             employee.isEmployed ? count + 1 : count,
