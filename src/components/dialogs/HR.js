@@ -1,34 +1,21 @@
 import React from "react"
 import Modal from "react-modal"
 import { RadioGroup, RadioButton } from 'react-radio-buttons'
-import * as Constants from '../../models/constants/Employees.js'
-import EmployeeTable from './tables/EmployeeTable'
-import EmployeeHirePopover from './tables/EmployeeHirePopover'
+import VisibleEmployeeList from '../../containers/VisibleEmployeeList'
+import VisibleEmployeeHirePopover from '../../containers/VisibleEmployeeHirePopover'
+import { SHOW_AVAILABLE, SALESPEOPLE_TYPE, ENGINEER_TYPE } from './../../constants/EmployeeFilters'
 
 class HR extends React.Component {
-
-    constructor(props) {
-        super(props)
-        console.log("fs")
-        this.state = ({
-            hiredEngineers: this.props.graph.engineers.value[0].filter(e => e.isEmployed),
-            availableEngineers: this.props.graph.engineers.value[0].filter(e => !e.isEmployed),
-            hiredSalespeople: this.props.graph.salespeople.value[0].filter(s => s.isEmployed),
-            availableSalespeople: this.props.graph.salespeople.value[0].filter(s => !s.isEmployed)
-        })
-    }
 
     closeModal = () => {
         window.history.back()
     }
 
-    onWorkModelChange = (value) => {
+    /*onWorkModelChange = (value) => {
         this.setState({selectedValue: value})
-    }
+    }*/
 
     render() {
-        console.log("Now")
-        console.log(this.state)
         return (
             <Modal
                 isOpen={true}
@@ -44,20 +31,20 @@ class HR extends React.Component {
                 </div>
                 <div className="dialogDetail">
                     <div className="quarter column-flexbox">
-                        <EmployeeTable employeeType="Engineers" employees={this.props.graph.engineers.value[0].filter(e => e.isEmployed)} />
-                        <EmployeeHirePopover className="content-height" employeeType="Engineers" hireableEmployees={this.props.graph.engineers.value[0].filter(e => !e.isEmployed)} />
+                        <VisibleEmployeeList employeeType={ENGINEER_TYPE} />
+                        <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={ENGINEER_TYPE} />
                     </div>
                     <div className="quarter column-flexbox">
-                        <EmployeeTable employeeType="Salespeople" employees={this.props.graph.salespeople.value[0].filter(s => s.isEmployed)} />
-                        <EmployeeHirePopover className="content-height" employeeType="Salespeople" hireableEmployees={this.props.graph.salespeople.value[0].filter(s => !s.isEmployed)} />
+                        <VisibleEmployeeList employeeType={SALESPEOPLE_TYPE} />
+                        <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={SALESPEOPLE_TYPE} />
                     </div>
                     <div className="quarter">
                         <h3>Work Conditions</h3>
                         <h4>Working Time Model</h4>
-                        {/*<RadioGroup value={this.state.selectedValue} onChange={this.onWorkModelChange}>
-                            <RadioButton value="fixedHours">Fixed Time</RadioButton>
-                            <RadioButton value="flextime">Flextime</RadioButton>
-                            <RadioButton value="trust-based">Trust-based</RadioButton>
+                        {/*<RadioGroup value={this.state.selectedValue} onChange={this.onWorkModelChange} horizontal>
+                            <RadioButton value="fixedHours">Fixed</RadioButton>
+                            <RadioButton value="flextime">Flex</RadioButton>
+                            <RadioButton value="trust-based">Trust</RadioButton>
                         </RadioGroup>*/}
                     </div>
                     <div className="quarter panel">

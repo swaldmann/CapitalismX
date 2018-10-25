@@ -65,9 +65,6 @@ class App extends Component {
         this.setState({elapsedDays: this.state.elapsedDays + 1})
     }
 
-    /* Consider improved state management (redux.js) */
-
-
     componentDidMount() {
         this.play()
     }
