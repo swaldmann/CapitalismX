@@ -2,27 +2,18 @@ import React from "react"
 import Modal from "react-modal"
 import { RadioGroup, RadioButton } from 'react-radio-buttons'
 import VisibleEmployeeList from '../../containers/VisibleEmployeeList'
-import EmployeeHirePopover from './tables/EmployeeHirePopover'
+import VisibleEmployeeHirePopover from '../../containers/VisibleEmployeeHirePopover'
+import { SHOW_AVAILABLE, SALESPEOPLE_TYPE, ENGINEER_TYPE } from './../../constants/EmployeeFilters'
 
 class HR extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = ({
-            hiredEngineers: this.props.graph.engineers.value[0].filter(e => e.isEmployed),
-            availableEngineers: this.props.graph.engineers.value[0].filter(e => !e.isEmployed),
-            hiredSalespeople: this.props.graph.salespeople.value[0].filter(s => s.isEmployed),
-            availableSalespeople: this.props.graph.salespeople.value[0].filter(s => !s.isEmployed)
-        })
-    }
 
     closeModal = () => {
         window.history.back()
     }
 
-    onWorkModelChange = (value) => {
+    /*onWorkModelChange = (value) => {
         this.setState({selectedValue: value})
-    }
+    }*/
 
     render() {
         return (
@@ -40,21 +31,21 @@ class HR extends React.Component {
                 </div>
                 <div className="dialogDetail">
                     <div className="quarter column-flexbox">
-                        <VisibleEmployeeList employeeType="Engineers" />
-                        <EmployeeHirePopover className="content-height" employeeType="Engineers" />
+                        <VisibleEmployeeList employeeType={ENGINEER_TYPE} />
+                        <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={ENGINEER_TYPE} />
                     </div>
                     <div className="quarter column-flexbox">
-                        <VisibleEmployeeList employeeType="Salespeople" />
-                        <EmployeeHirePopover className="content-height" employeeType="Salespeople" />
+                        <VisibleEmployeeList employeeType={SALESPEOPLE_TYPE} />
+                        <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={SALESPEOPLE_TYPE} />
                     </div>
                     <div className="quarter">
                         <h3>Work Conditions</h3>
                         <h4>Working Time Model</h4>
-                        <RadioGroup value={this.state.selectedValue} onChange={this.onWorkModelChange} horizontal>
+                        {/*<RadioGroup value={this.state.selectedValue} onChange={this.onWorkModelChange} horizontal>
                             <RadioButton value="fixedHours">Fixed</RadioButton>
                             <RadioButton value="flextime">Flex</RadioButton>
                             <RadioButton value="trust-based">Trust</RadioButton>
-                        </RadioGroup>
+                        </RadioGroup>*/}
                     </div>
                     <div className="quarter panel">
                         <h4>Employee Satisfaction</h4>
