@@ -21,7 +21,7 @@ class Finance extends React.Component {
                     <a onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></a>
                 </div>
                 <div className="dialogDetail">
-                    <div className="half panel height250">
+                    <div className="quarter panel height250">
                         <h2><i className="fas fa-building"></i>Company</h2>
                         <table id="company">
                             <tbody>
@@ -115,6 +115,9 @@ class Finance extends React.Component {
                             </tbody>
                         </table>
                         <button>Take out loan</button>
+                    </div>
+                    <div className="quarter panel">
+                        djfsk
                     </div>
                 </div>
             </Modal>

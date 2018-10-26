@@ -1,0 +1,23 @@
+.grid {
+    width: 100%;
+}
+.grid-column {
+    display: flex;
+    flex: 1 0 auto;
+}
+.grid-column > div {
+    flex: 1 1 0px;
+    padding: 5px;
+    margin: 3px;
+}
+
+.grid-column > div:first-child {
+    flex: 0 0 100px;
+    font-weight: bold;
+}
+
+.grid-column > div:not(:first-child) {
+    border-radius: 5px;
+    background: #eee;
+    text-align: center;
+}
