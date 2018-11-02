@@ -1,4 +1,4 @@
-export const ENGINEERS = [
+const ENGINEERS = [
     {"index": 0, "name":"Elon Musk", "skill":5, "salary":150000, "happiness": 0, isEmployed: false},
     {"index": 1, "name":"Henry Ford", "skill":5, "salary":130000, "happiness": 2, isEmployed: false},
     {"index": 2, "name":"Steve Wozniak", "skill":5, "salary":120000, "happiness": 1, isEmployed: false},
@@ -12,7 +12,7 @@ export const ENGINEERS = [
     {"index": 10, "name":"Nina Screwup", "skill":1, "salary":38000, "happiness": 1, isEmployed: true}
 ]
 
-export const SALESPEOPLE = [
+const SALESPEOPLE = [
     {"index": 11, "name":"Steve Jobs", "skill":5, "salary":150000, "happiness": 2, isEmployed: false},
     {"index": 12, "name":"Dale Carnegie", "skill":5, "salary":140000, "happiness": 2, isEmployed: false},
     {"index": 13, "name":"Warren Buffett", "skill":5, "salary":110000, "happiness": 2, isEmployed: false},

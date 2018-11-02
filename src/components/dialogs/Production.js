@@ -1,6 +1,6 @@
 import React from "react"
 import Modal from "react-modal"
-import ComponentGrid from "./production/ComponentGrid"
+import VisibleComponentGrid from "../../containers/VisibleComponentGrid"
 
 class Production extends React.Component {
     closeModal = () => {
@@ -26,7 +26,7 @@ class Production extends React.Component {
                         </div>
                         <h3>Smartphone</h3>
                         <div className="half">
-                            <ComponentGrid />
+                            <VisibleComponentGrid />
                         </div>
                         <div className="quarter panel">
                         </div>

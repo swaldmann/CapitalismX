@@ -1,53 +1,25 @@
 import React from 'react'
+import {uniqueIDFromIntegers} from "../../../util/Misc"
+import * as classNames from "classnames"
 
-const ComponentGrid = ({}) => (
+const ComponentGrid = ({products, actions}) => (
     <div className="grid">
-        <div className="grid-column">
-            <div>CPU</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-        </div>
-        <div className="grid-column">
-            <div>Camera</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-        </div>
-        <div className="grid-column">
-            <div>Display</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-        </div>
-        <div className="grid-column">
-            <div>Design</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-        </div>
-        <div className="grid-column">
-            <div>Storage</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-            <div>7</div>
-            <div>8</div>
-        </div>
+        {
+            products[0].map((componentType, i) =>
+                <div className="grid-column" key={i}>
+                    <div>{componentType.typeDescription}</div>
+                    {componentType.allComponents.map((component, j) =>
+                        <button key={uniqueIDFromIntegers(i, j)}
+                          className={classNames({ 'componentActive': componentType.currentIndex === j,
+                                               'componentAvailable': j <= componentType.availableIndex })}
+                            onClick={() => j <= componentType.availableIndex ? actions.switchCurrentComponent(i, j) : null}
+                        >
+                            {component.name}
+                        </button>
+                    )}
+                </div>
+            )
+        }
     </div>
 )
 

@@ -1,3 +1,5 @@
+@import "Constants.scss";
+
 .grid {
     width: 100%;
 }
@@ -5,19 +7,32 @@
     display: flex;
     flex: 1 0 auto;
 }
-.grid-column > div {
+.grid-column > button, .grid-column > div {
     flex: 1 1 0px;
     padding: 5px;
-    margin: 3px;
+    margin: 3px !important;
 }
 
-.grid-column > div:first-child {
+.grid-column > button:first-child, .grid-column > div:first-child {
     flex: 0 0 100px;
     font-weight: bold;
 }
 
-.grid-column > div:not(:first-child) {
+.grid-column > button {
     border-radius: 5px;
     background: #eee;
+    font-size: 14px;
+    font-weight: normal;
+    color: #777;
     text-align: center;
+}
+
+.componentAvailable {
+    background: $button-blue-light !important;
+    color: white !important;
+}
+
+.componentActive {
+    background: $button-blue !important;
+    color: white !important;
 }
