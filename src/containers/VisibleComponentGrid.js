@@ -2,13 +2,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as ProductActions from '../actions'
 import ComponentGrid from '../components/dialogs/production/ComponentGrid'
-import { makeGetVisibleProducts } from '../selectors/products'
+import { makeGetVisibleProducts, getProductUtilities } from '../selectors/products'
 
 const makeMapStateToProps = () => {
     const getVisibleProducts = makeGetVisibleProducts()
     const mapStateToProps = (state, props) => {
         return {
             products: getVisibleProducts(state, props),
+            productUtilities: getProductUtilities(state)
         }
     }
     return mapStateToProps

@@ -1,6 +1,7 @@
 import React from "react"
 import Modal from "react-modal"
 import VisibleComponentGrid from "../../containers/VisibleComponentGrid"
+import VisibleProductsInfoColumn from "../../containers/VisibleProductsInfoColumn"
 
 class Production extends React.Component {
     closeModal = () => {
@@ -22,12 +23,8 @@ class Production extends React.Component {
                         <a onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></a>
                     </div>
                     <div className="dialogDetail">
-                        <div className="quarter panel">
-                        </div>
-                        <h3>Smartphone</h3>
-                        <div className="half">
-                            <VisibleComponentGrid />
-                        </div>
+                        <VisibleProductsInfoColumn />
+                        <VisibleComponentGrid />
                         <div className="quarter panel">
                         </div>
                     </div>
