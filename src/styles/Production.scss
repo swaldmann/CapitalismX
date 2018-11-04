@@ -1,9 +1,13 @@
 @import "Constants.scss";
 
-.half {
-    width: 100%;
+.three-quarter {
     overflow: auto !important;
 }
+
+.grid {
+    margin-bottom: 40px;
+}
+
 .grid-column {
     display: flex;
     flex: 1 0 auto;
@@ -28,11 +32,11 @@
     text-align: center;
 }
 
-.grid > .dashedButton {
+.dashedButton {
     margin-top: 40px;
     border: 2px dashed #777;
     color: #555;
-    float: left;
+    float: left !important;
     background: white;
 
     .buttonSubtitle {

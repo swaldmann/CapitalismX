@@ -3,10 +3,11 @@ import {uniqueIDFromIntegers} from "../../../util/Misc"
 import * as classNames from "classnames"
 
 const ComponentGrid = ({products, productUtilities, actions}) => (
-    <div className="half">
+    <div className="three-quarter">
     {
         products.map((product, k) =>
         <div className="grid" key={k}>
+        <h3>Product {k+1}</h3>
         {
             product.map((componentType, i) =>
             <div className="grid-column" key={i}>

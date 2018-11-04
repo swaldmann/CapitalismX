@@ -25,8 +25,6 @@ class Production extends React.Component {
                     <div className="dialogDetail">
                         <VisibleProductsInfoColumn />
                         <VisibleComponentGrid />
-                        <div className="quarter panel">
-                        </div>
                     </div>
                 </Modal>
             )
