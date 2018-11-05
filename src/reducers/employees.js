@@ -3,7 +3,7 @@ import {
     FIRE_EMPLOYEE
 } from '../constants/ActionTypes'
 
-import { EMPLOYEES } from '../constants/EmployeeFilters'
+import { EMPLOYEES } from '../constants/HRConstants'
 
 const initialState = EMPLOYEES
 

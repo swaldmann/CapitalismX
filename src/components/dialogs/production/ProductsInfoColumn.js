@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProductsInfoColumn = ({totalUtilities}) => (
     <div className="quarter panel">
-        {totalUtilities.map(utility => <p>Total utility{utility}</p>)}
+        {totalUtilities.map((utility, i) => <p key={i}>Total utility{utility}</p>)}
     </div>
 )
 

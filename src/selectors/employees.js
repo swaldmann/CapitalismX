@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { SHOW_HIRED, SHOW_AVAILABLE } from '../constants/EmployeeFilters'
+import { SHOW_HIRED, SHOW_AVAILABLE } from '../constants/HRConstants'
 
 const getVisibilityFilter = (state, props) => props.visibilityFilter || SHOW_HIRED
 

@@ -1,5 +1,5 @@
 import { SET_VISIBILITY_FILTER } from '../constants/ActionTypes'
-import { SHOW_HIRED } from '../constants/EmployeeFilters'
+import { SHOW_HIRED } from '../constants/HRConstants'
 
 const visibilityFilter = (state = SHOW_HIRED, action) => {
     switch (action.type) {

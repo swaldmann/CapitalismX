@@ -1,7 +1,7 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 import VisibleEmployeeList from '../../../containers/VisibleEmployeeList'
-import { SHOW_AVAILABLE } from '../../../constants/EmployeeFilters'
+import { SHOW_AVAILABLE } from '../../../constants/HRConstants'
 
 const EmployeeHirePopover = ({ employeeType }) => (
     <TooltipTrigger

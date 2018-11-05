@@ -24,7 +24,7 @@ const ComponentGrid = ({products, productUtilities, actions}) => (
             </div>
             )
         }
-        {productUtilities[k]}
+        <span className="debug-box">Total utility: {productUtilities[k]}</span>
         </div>
     )}
     <button className="dashedButton">New Product<div className="buttonSubtitle">$500,000</div></button>

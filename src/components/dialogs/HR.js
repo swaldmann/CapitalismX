@@ -3,7 +3,7 @@ import Modal from "react-modal"
 import { RadioGroup, RadioButton } from 'react-radio-buttons'
 import VisibleEmployeeList from '../../containers/VisibleEmployeeList'
 import VisibleEmployeeHirePopover from '../../containers/VisibleEmployeeHirePopover'
-import { SHOW_AVAILABLE, SALESPEOPLE_TYPE, ENGINEER_TYPE } from './../../constants/EmployeeFilters'
+import { SHOW_AVAILABLE, SALESPEOPLE_TYPE, ENGINEER_TYPE } from './../../constants/HRConstants'
 
 class HR extends React.Component {
 
