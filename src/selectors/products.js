@@ -13,10 +13,17 @@ export const makeGetVisibleProducts = () => {
 
 export const getProductUtilities = createSelector(
     [getProducts],
-    products => products.map(
-        product => product.reduce((totalUtility, component) =>
+    /*products => products.map(
+        product => product.components.reduce((totalUtility, component) =>
             totalUtility + component.allComponents[component.currentIndex].baseUtility,
             0
         )
-    )
+    )*/
+    products => products.map(function(product) {
+        console.log(product);
+        return product.components.reduce((totalUtility, component) =>
+            totalUtility + component.allComponents[component.currentIndex].baseUtility,
+            0
+        )
+    })
 )

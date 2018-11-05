@@ -2,6 +2,7 @@
 
 .three-quarter {
     overflow: auto !important;
+    height: 100%;
 }
 
 .grid {
@@ -32,6 +33,17 @@
     text-align: center;
 }
 
+
+.debug-box {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #444;
+    border-radius: 5px;
+    float: left !important;
+    background: #ddd;
+}
+
 .dashedButton {
     margin-top: 40px;
     border: 2px dashed #777;
@@ -53,10 +65,4 @@
 .componentActive {
     background: $button-blue !important;
     color: white !important;
-}
-
-.grid > span.debug-box {
-    background: #ddd;
-    border-radius: 5px;
-    color: #222;
 }

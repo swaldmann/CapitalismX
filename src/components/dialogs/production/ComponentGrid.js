@@ -7,9 +7,9 @@ const ComponentGrid = ({products, productUtilities, actions}) => (
     {
         products.map((product, k) =>
         <div className="grid" key={k}>
-        <h3>Product {k+1}</h3>
+        <h3>{product.productCategoryName}</h3>
         {
-            product.map((componentType, i) =>
+            product.components.map((componentType, i) =>
             <div className="grid-column" key={i}>
                 <div>{componentType.typeDescription}</div>
                 {componentType.allComponents.map((component, j) =>
@@ -24,8 +24,10 @@ const ComponentGrid = ({products, productUtilities, actions}) => (
             </div>
             )
         }
-        <span className="debug-box">Total utility: {productUtilities[k]}</span>
+        <div className="debug-box">
+        <b>Debug</b> Total utility: {productUtilities[k]}
         </div>
+    </div>
     )}
     <button className="dashedButton">New Product<div className="buttonSubtitle">$500,000</div></button>
     </div>

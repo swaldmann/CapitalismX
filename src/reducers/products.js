@@ -10,9 +10,9 @@ export default function products(state = initialState, action) {
     switch (action.type) {
         case SWITCH_CURRENT_COMPONENT:
             return state.map(product =>
-                product.map(function(componentType) {
-                    return componentType.index === action.componentTypeIndex ? { ...componentType, currentIndex: action.componentIndex} : componentType
-                })
+                ({ ...product, components: product.components.map(componentType =>
+                    componentType.index === action.componentTypeIndex ? { ...componentType, currentIndex: action.componentIndex} : componentType
+                )})
             )
         default:
         return state
