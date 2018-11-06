@@ -16,7 +16,8 @@ const ComponentGrid = ({products, productUtilities, actions}) => (
                     <button key={uniqueIDFromIntegers(i, j)}
                       className={classNames({ 'componentActive': componentType.currentIndex === j,
                                            'componentAvailable': j <= componentType.availableIndex })}
-                        onClick={() => j <= componentType.availableIndex ? actions.switchCurrentComponent(i, j) : null}
+                        onClick={() => actions.switchCurrentComponent(k, i, j)}
+                       disabled={j > componentType.availableIndex}
                     >
                     {component.name}
                     </button>

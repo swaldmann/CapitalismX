@@ -1,3 +1,7 @@
+function copy(obj) {
+    return JSON.parse(JSON.stringify(obj))
+}
+
 const CPUS = [
     {index: 0, name: "1 GHz", baseUtility: 20, availabilityOffset: 0},
     {index: 1, name: "1.5 GHz", baseUtility: 40, availabilityOffset: 5},
@@ -36,7 +40,7 @@ const CPU_COMPONENT = {
     typeDescription: "CPU",
     availableIndex: 1,
     currentIndex: 0,
-    allComponents: CPUS
+    allComponents: copy(CPUS)
 }
 
 const STORAGE_COMPONENT = {
@@ -44,7 +48,7 @@ const STORAGE_COMPONENT = {
     typeDescription: "Storage",
     availableIndex: 1,
     currentIndex: 1,
-    allComponents: STORAGES
+    allComponents: copy(STORAGES)
 }
 
 const DISPLAY_COMPONENT = {
@@ -52,7 +56,7 @@ const DISPLAY_COMPONENT = {
     typeDescription: "Screen",
     availableIndex: 2,
     currentIndex: 2,
-    allComponents: DISPLAYS
+    allComponents: copy(DISPLAYS)
 }
 
 const CAMERA_COMPONENT = {
@@ -60,12 +64,12 @@ const CAMERA_COMPONENT = {
     typeDescription: "Camera",
     availableIndex: 2,
     currentIndex: 2,
-    allComponents: CAMERAS
+    allComponents: copy(CAMERAS)
 }
 
-const SMARTPHONE = {productCategoryName: "Smartphone", components: [CPU_COMPONENT, STORAGE_COMPONENT, DISPLAY_COMPONENT, CAMERA_COMPONENT]}
-const TV         = {productCategoryName: "TV", components: [CPU_COMPONENT, DISPLAY_COMPONENT]}
-const NOTEBOOK   = {productCategoryName: "Notebook", components: [CPU_COMPONENT, DISPLAY_COMPONENT, STORAGE_COMPONENT]}
-const SERVER     = {productCategoryName: "Server", components: [CPU_COMPONENT, STORAGE_COMPONENT]}
+const SMARTPHONE = {index: 0, productCategoryName: "Smartphone", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}]}
+const TV         = {index: 1, productCategoryName: "TV", components: [{...CPU_COMPONENT}, {...DISPLAY_COMPONENT}]}
+const NOTEBOOK   = {index: 2, productCategoryName: "Notebook", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, ]}
+const SERVER     = {index: 3, productCategoryName: "Server", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}]}
 
 export const PRODUCTS = [SMARTPHONE, TV, NOTEBOOK, SERVER]

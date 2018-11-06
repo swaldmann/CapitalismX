@@ -1,4 +1,5 @@
 import Graph from './graph/Graph.js'
+import { PRODUCTS } from '../constants/ProductionConstants'
 //import * as Constants from './constants/Employees.js'
 
 class SimulationGraph extends Graph {
@@ -10,6 +11,7 @@ class SimulationGraph extends Graph {
         /* Employee Simulation */
         //this.engineers = this.createVertex([Constants.ENGINEERS])
         //this.salespeople = this.createVertex([Constants.SALESPEOPLE])
+        this.products = this.createVertex(PRODUCTS)
         this.worktimeModel = this.createVertex(0)
         this.employeeSatisfaction = this.createVertex(0.5)
         this.productionRate = this.createVertex(10)
