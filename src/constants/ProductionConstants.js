@@ -72,4 +72,4 @@ const TV         = {index: 1, productCategoryName: "TV", components: [{...CPU_CO
 const NOTEBOOK   = {index: 2, productCategoryName: "Notebook", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, ]}
 const SERVER     = {index: 3, productCategoryName: "Server", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}]}
 
-export const PRODUCTS = [SMARTPHONE, TV, NOTEBOOK, SERVER]
+export const PRODUCTS = [SMARTPHONE]//, TV, NOTEBOOK, SERVER]

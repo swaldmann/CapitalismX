@@ -1,3 +1,10 @@
+// Time
+export const START_SIMULATION = 'START_SIMULATION'
+export const PAUSE_SIMULATION = 'PAUSE_SIMULATION'
+
+// Finance
+export const MAKE_REVENUE = 'MAKE_REVENUE'
+export const PAY_COSTS = 'PAY_COSTS'
 
 // HR
 export const HIRE_EMPLOYEE = 'HIRE_EMPLOYEE'

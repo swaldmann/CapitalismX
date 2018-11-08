@@ -1,5 +1,16 @@
 import * as types from '../constants/ActionTypes'
 
+export const updateClock = () => {
+    this.state.graph.recalculate()
+}
+
+export const startSimulation = () => ({ type: types.START_SIMULATION })
+export const pauseSimulation = () => ({ type: types.PAUSE_SIMULATION })
+
+// Finance
+export const makeRevenue = revenue => ({ type: types.MAKE_REVENUE })
+export const payCosts = costs => ({ type: types.PAY_COSTS })
+
 // HR
 export const hireEmployee = index => ({ type: types.HIRE_EMPLOYEE, index })
 export const fireEmployee = index => ({ type: types.FIRE_EMPLOYEE, index })
