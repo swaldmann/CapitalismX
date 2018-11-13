@@ -13,7 +13,7 @@ const mapStateToProps = (state, props) => {
     console.log(state);
     return {
         showMenu: false,
-        netWorth: state.financials.netWorth,// + getProductUtilities(state).reduce((totalUtility, utility) => totalUtility += utility, 0),
+        cash: state.financials.cash,
         simulationState: state.simulationState,
         numberOfEmployees: getHiredEmployeeCount(state),
         productUtilities: getProductUtilities(state)
