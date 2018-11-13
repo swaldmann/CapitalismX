@@ -41,9 +41,13 @@ a.dialogClose:hover {
 
 .dialogDetail {
     flex: 1 1 auto;
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
     padding-top: 30px;
     border-top: 1px solid #ddd;
+    height: 100%;
+    overflow: hidden;
 }
 
 .dialogDetail > * > h2 {
@@ -127,16 +131,6 @@ legend {
     font-weight: bold;
     padding-top: 20px;
     margin-bottom: 5px;
-}
-
-.dialogDetail {
-    height: 100%;
-    overflow: hidden;
-}
-
-.dialogDetail .half {
-    overflow: hidden;
-    height: 100%;
 }
 
 .dialogDetail .full-height {
