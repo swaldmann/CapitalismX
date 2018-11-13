@@ -7,76 +7,74 @@ import VisibleEmployeeHirePopover from '../../containers/VisibleEmployeeHirePopo
 import { SHOW_AVAILABLE, SALESPEOPLE_TYPE, ENGINEER_TYPE } from './../../constants/HRConstants'
 
 const data = {
-  labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-  datasets: [{
-    label: 'unhappy',
-    lineTension: 0,
-    backgroundColor: "red",
-    data: [{
-      y: 65
-    },{
-      y: 50
-    },{
-      y: 30
-    },{
-      y: 60
+    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+    datasets: [{
+        label: '☹️',
+        lineTension: 0,
+        backgroundColor: "red",
+        data: [{
+            y: 65
+        },{
+            y: 50
+        },{
+            y: 30
+        },{
+            y: 60
+        }]
+    }, {
+        label: '😐',
+        lineTension: 0,
+        backgroundColor: "yellow",
+        data: [{
+            x: 0,
+            y: 10
+        },{
+            x: 0,
+            y: 30
+        },{
+            x: 0,
+            y: 30
+        },{
+            x: 0,
+            y: 10
+        }]
+    }, {
+        label: '😊',
+        lineTension: 0,
+        backgroundColor: "green",
+        data: [{
+            x: 0,
+            y: 25
+        },{
+            x: 0,
+            y: 20
+        },{
+            x: 0,
+            y: 40
+        },{
+            x: 0,
+            y: 30
+        }]
     }]
-}, {
-  label: 'unsure',
-  lineTension: 0,
-  backgroundColor: "yellow",
-  data: [{
-    x: 0,
-    y: 10
-  },{
-    x: 0,
-    y: 30
-  },{
-    x: 0,
-    y: 30
-  },{
-    x: 0,
-    y: 10
-  }]
-}, {
-  label: 'happy',
-  lineTension: 0,
-  backgroundColor: "green",
-  data: [{
-    x: 0,
-    y: 25
-  },{
-    x: 0,
-    y: 20
-  },{
-    x: 0,
-    y: 40
-  },{
-    x: 0,
-    y: 30
-  }]
-}]
 };
 
 const options = {
-
-  title: {
-    display: true,
-    text: 'Customer Satisfaction'
-  },
-  tooltips: {
-    mode: 'index',
-    intersect: false
-  },
-  responsive: true,
-  scales: {
-    xAxes: [{
-      stacked: true,
-    }],
-    yAxes: [{
-      stacked: true
-    }]
-  }
+    legend: {
+        reverse: true
+    },
+    tooltips: {
+        mode: 'index',
+        intersect: false
+    },
+    responsive: true,
+    scales: {
+        xAxes: [{
+            stacked: true,
+        }],
+        yAxes: [{
+            stacked: true
+        }]
+    }
 }
 
 
@@ -124,7 +122,7 @@ class HR extends React.Component {
                     </div>
                     <div className="quarter panel">
                         <h4>Employee Satisfaction</h4>
-                        <Line data={data} options={options} />
+                        <Line height={200} data={data} options={options} />
                     </div>
                 </div>
             </Modal>
