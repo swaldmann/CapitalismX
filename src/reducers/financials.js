@@ -3,14 +3,9 @@ import {
     PAY_COSTS
 } from '../constants/ActionTypes'
 
-const initialState = {
-    assets: 0,
-    cash: 0,
-    history: {
-        elapsedDaysSinceFirstDayOfMonth: 0,
-        salaries: []
-    }
-}
+import { FINANCIALS } from '../constants/FinanceConstants'
+
+const initialState = FINANCIALS
 
 export default function financials(state = initialState, action) {
     switch (action.type) {
