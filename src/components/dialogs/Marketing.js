@@ -19,7 +19,7 @@ class Marketing extends React.Component {
             >
                 <div className="dialogHeader">
                     <h1><i className="fas fa-chart-line"></i>Marketing</h1>
-                    <a onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></a>
+                    <button onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></button>
                 </div>
                 <div className="dialogDetail">
                 </div>

@@ -1,27 +1,28 @@
 @import "Constants.scss";
 
 .modal h1 {
-    margin: 0;
     flex: 1 1 auto;
+    line-height: 42px;
 }
 
 .dialogHeader {
     display: flex;
     flex-flow: row;
-    flex: 0 1 auto;
+    flex: 0 0 38px;
 }
 
-
-a.dialogClose {
+.modal button.dialogClose {
     flex: 0 1 22px;
+    background: white;
     color: gray;
-    float: right;
+    height: 42px;
+    margin-top: 0px;
     transition: all 0.2s;
     border-radius: 5px;
     padding: 5px 10px 3px 10px;
 }
 
-a.dialogClose:hover {
+.modal button.dialogClose:hover {
     background: #ddd;
 }
 

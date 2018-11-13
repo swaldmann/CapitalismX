@@ -20,7 +20,7 @@ class Production extends React.Component {
                 >
                     <div className="dialogHeader">
                         <h1><i className="fas fa-wrench"></i>Production</h1>
-                        <a onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></a>
+                        <button onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></button>
                     </div>
                     <div className="dialogDetail">
                         <VisibleProductsInfoColumn />
