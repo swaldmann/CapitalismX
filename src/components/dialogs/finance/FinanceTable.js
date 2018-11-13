@@ -15,54 +15,37 @@ const FinanceTable = ({ financialHistory }) => (
             </thead>
         </table>
         <hr />
-        <table id="expenses">
-            <tbody>
-                <tr>
-                    <td><b>Material</b></td>
-                    <td>$3,500</td>
-                    <td>$4,000</td>
-                    <td>$5,000</td>
-                    <td>$5,000</td>
-                </tr>
-                <tr>
-                    <td><b>Salaries</b></td>
-                    <td>${financialHistory.salaries[3] || 0}</td>
-                    <td>${financialHistory.salaries[2] || 0}</td>
-                    <td>${financialHistory.salaries[1] || 0}</td>
-                    <td>${financialHistory.salaries[0] || 0}</td>
-                </tr>
-                <tr>
-                    <td><b>Loan interest</b></td>
-                    <td>$3,000</td>
-                    <td>$5,000</td>
-                    <td>$5,000</td>
-                    <td>$5,000</td>
-                </tr>
-            </tbody>
-        </table>
-        <hr />
+
         <table id="earnings">
             <tbody>
                 <tr>
                     <td><b>Sales</b></td>
-                    <td>$350,000</td>
-                    <td>$400,000</td>
-                    <td>$500,000</td>
-                    <td>$500,000</td>
+                    {financialHistory.sales.map(salesEntry => <td>${salesEntry}</td>)}
                 </tr>
                 <tr>
                     <td><b>Investments</b></td>
-                    <td>$150,000</td>
-                    <td>$100,000</td>
-                    <td>$130,000</td>
-                    <td>$130,000</td>
+                    {financialHistory.investments.map(investmentEntry => <td>${investmentEntry}</td>)}
                 </tr>
                 <tr>
                     <td><b>Loans</b></td>
-                    <td>$100,000</td>
-                    <td>$0</td>
-                    <td>$0</td>
-                    <td>$0</td>
+                    {financialHistory.loans.map(loanEntry => <td>${loanEntry}</td>)}
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <table id="expenses">
+            <tbody>
+                <tr>
+                    <td><b>Material</b></td>
+                    {financialHistory.materialCosts.map(materialCostEntry => <td>${materialCostEntry}</td>)}
+                </tr>
+                <tr>
+                    <td><b>Salaries</b></td>
+                    {financialHistory.salaries.map(salaryEntry => <td>${salaryEntry}</td>)}
+                </tr>
+                <tr>
+                    <td><b>Loan interest</b></td>
+                    {financialHistory.loanInterests.map(loanInterestEntry => <td>${loanInterestEntry}</td>)}
                 </tr>
             </tbody>
         </table>
