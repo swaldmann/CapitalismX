@@ -13,10 +13,10 @@ class SimulationGraph extends Graph {
         /* Employee Simulation */
         this.productionUtility = this.createVertex(1)
         this.productionRate = this.createVertex(5)
-        this.netWorth = this.createVertex(0)
+        this.cash = this.createVertex(0)
 
         /* Edges */
-        this.addDirectedEdge(this.productionRate, this.netWorth, 12)
+        this.addDirectedEdge(this.productionRate, this.cash, 12)
     }
 
     recalculate = () => {
