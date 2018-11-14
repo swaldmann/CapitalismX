@@ -8,8 +8,7 @@ export const startSimulation = () => ({ type: types.START_SIMULATION })
 export const pauseSimulation = () => ({ type: types.PAUSE_SIMULATION })
 
 // Finance
-export const makeRevenue = revenue => ({ type: types.MAKE_REVENUE })
-export const payCosts = costs => ({ type: types.PAY_COSTS })
+export const dailyFinancialUpdate = historyEntry => ({ type: types.DAILY_FINANCIAL_UPDATE, historyEntry: historyEntry})
 
 // HR
 export const hireEmployee = index => ({ type: types.HIRE_EMPLOYEE, index })

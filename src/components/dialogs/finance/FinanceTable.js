@@ -20,15 +20,15 @@ const FinanceTable = ({ financialHistory }) => (
             <tbody>
                 <tr>
                     <td><b>Sales</b></td>
-                    {financialHistory.sales.map(salesEntry => <td>${salesEntry}</td>)}
+                    {financialHistory.map(entry => <td>${entry.sales}</td>)}
                 </tr>
                 <tr>
                     <td><b>Investments</b></td>
-                    {financialHistory.investments.map(investmentEntry => <td>${investmentEntry}</td>)}
+                    {financialHistory.map(entry => <td>${entry.investments}</td>)}
                 </tr>
                 <tr>
                     <td><b>Loans</b></td>
-                    {financialHistory.loans.map(loanEntry => <td>${loanEntry}</td>)}
+                    {financialHistory.map(entry => <td>${entry.loans}</td>)}
                 </tr>
             </tbody>
         </table>
@@ -37,15 +37,15 @@ const FinanceTable = ({ financialHistory }) => (
             <tbody>
                 <tr>
                     <td><b>Material</b></td>
-                    {financialHistory.materialCosts.map(materialCostEntry => <td>${materialCostEntry}</td>)}
+                    {financialHistory.map(entry => <td>${entry.materialCosts}</td>)}
                 </tr>
                 <tr>
                     <td><b>Salaries</b></td>
-                    {financialHistory.salaries.map(salaryEntry => <td>${salaryEntry}</td>)}
+                    {financialHistory.map(entry => <td>${entry.salaries}</td>)}
                 </tr>
                 <tr>
                     <td><b>Loan interest</b></td>
-                    {financialHistory.loanInterests.map(loanInterestEntry => <td>${loanInterestEntry}</td>)}
+                    {financialHistory.map(entry => <td>${entry.loanInterests}</td>)}
                 </tr>
             </tbody>
         </table>
@@ -53,11 +53,8 @@ const FinanceTable = ({ financialHistory }) => (
         <table>
             <tbody>
                 <tr>
-                    <td><b>Total</b></td>
-                    <td>$350,000</td>
-                    <td>$400,000</td>
-                    <td>$500,000</td>
-                    <td>$500,000</td>
+                    <td><b>Profit</b></td>
+                    {financialHistory.map(entry => <td>${entry.sales + entry.investments + entry.loans - entry.materialCosts - entry.salaries - entry.loanInterests}</td>)}
                 </tr>
             </tbody>
         </table>
