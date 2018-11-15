@@ -37,6 +37,7 @@ const CAMERAS = [
 
 const CPU_COMPONENT = {
     index: 0,
+    imageName: "icons8-smartphone_cpu",
     typeDescription: "CPU",
     availableIndex: 1,
     currentIndex: 0,
@@ -45,6 +46,7 @@ const CPU_COMPONENT = {
 
 const STORAGE_COMPONENT = {
     index: 1,
+    imageName: "icons8-ssd",
     typeDescription: "Storage",
     availableIndex: 1,
     currentIndex: 1,
@@ -53,6 +55,7 @@ const STORAGE_COMPONENT = {
 
 const DISPLAY_COMPONENT = {
     index: 2,
+    imageName: "icons8-color_wheel_2",
     typeDescription: "Screen",
     availableIndex: 2,
     currentIndex: 2,
@@ -61,6 +64,7 @@ const DISPLAY_COMPONENT = {
 
 const CAMERA_COMPONENT = {
     index: 3,
+    imageName: "icons8-integrated_webcam",
     typeDescription: "Camera",
     availableIndex: 2,
     currentIndex: 2,

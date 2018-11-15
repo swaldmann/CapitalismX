@@ -11,7 +11,7 @@ const ComponentGrid = ({products, productUtilities, actions}) => (
         {
             product.components.map((componentType, i) =>
             <div className="grid-column" key={i}>
-                <div>{componentType.typeDescription}</div>
+                <div><img src={require('../../../static/icons/' + componentType.imageName + '.png')} alt="" />{componentType.typeDescription}</div>
                 {componentType.allComponents.map((component, j) =>
                     <button key={uniqueIDFromIntegers(i, j)}
                       className={classNames({ 'componentActive': componentType.currentIndex === j,
@@ -30,7 +30,7 @@ const ComponentGrid = ({products, productUtilities, actions}) => (
         </div>
     </div>
     )}
-    <button className="dashedButton">New Product<div className="buttonSubtitle">$500,000</div></button>
+    {/*<button className="dashedButton">New Product<div className="buttonSubtitle">$500,000</div></button>*/}
     </div>
 )
 

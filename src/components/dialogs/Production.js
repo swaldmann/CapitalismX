@@ -23,8 +23,8 @@ class Production extends React.Component {
                         <button onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></button>
                     </div>
                     <div className="dialogDetail">
-                        <VisibleProductsInfoColumn />
                         <VisibleComponentGrid />
+                        <VisibleProductsInfoColumn />
                     </div>
                 </Modal>
             )
