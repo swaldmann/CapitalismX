@@ -191,10 +191,6 @@ canvas {
     float: right;
 }
 
-.three-quarter, .two-thirds, .half, .third, .quarter {
-    height: 100%;
-}
-
 .three-quarter {
     flex-basis: 73%;
 }
@@ -250,12 +246,6 @@ th, td {
 hr {
     margin: 10px 0px;
     border-bottom: 1px solid #eee;
-}
-
-.panel {
-    padding: 20px;
-    background: #f8f8f8;
-    border-radius: 10px;
 }
 
 #company hr {
