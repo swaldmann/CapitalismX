@@ -179,19 +179,6 @@ legend {
     margin-top: 20px;
 }
 
-:not(.tooltip-container) > div > .borderedList {
-    border: 1px solid #ddd;
-}
-
-:not(.tooltip-container) > div > .borderedList ul > li:nth-child(2n) {
-    background: #fafafa !important;
-}
-
-.tooltip-container {
-    height: 600px;
-    min-width: 250px;
-}
-
 .star-ratings {
     display: block;
 }
