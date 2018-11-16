@@ -1,6 +1,8 @@
 import React from "react"
 import Modal from "react-modal"
 
+import VisibleCampaignPopover from '../../containers/VisibleCampaignPopover'
+
 Modal.setAppElement("body")
 
 class Marketing extends React.Component {
@@ -31,18 +33,26 @@ class Marketing extends React.Component {
                             <h3>Campaigns</h3>
                             <div className="borderedList remaining-height">
                                 <ul>
-                                    <li><img className="icon" src={require('../../static/icons/icons8-news.png')} />Green Company<div className="detailTitle">30 days ago</div></li>
-                                    <li><img className="icon" src={require('../../static/icons/icons8-tv.png')} />Diversity<div className="detailTitle">50 days ago</div></li>
+                                    <li>
+                                        <img className="icon" alt="" src={require('../../static/icons/icons8-news.png')} />Green Company
+                                        <div className="detailTitle">30 days ago</div>
+                                    </li>
+                                    <li>
+                                        <img className="icon" alt="" src={require('../../static/icons/icons8-tv.png')} />Diversity
+                                        <div className="detailTitle">50 days ago</div>
+                                    </li>
                                 </ul>
                             </div>
-                            <button className="centered">Start Campaign</button>
+                            <VisibleCampaignPopover />
                         </div>
                         <div className="third column-flexbox">
                             <h3>Press Releases</h3>
                             <div className="borderedList remaining-height">
                                 <ul>
-                                    <li>TV: Green Company</li>
-                                    <li>Newspaper: Green Company</li>
+                                    <li>Privacy and Security Efforts</li>
+                                    <li>Stable Prices</li>
+                                    <li>Fast Delivery Times</li>
+                                    <li>Apology</li>
                                 </ul>
                             </div>
                             <button className="centered">Public Statement</button>
@@ -51,8 +61,11 @@ class Marketing extends React.Component {
                             <h3>Market Research</h3>
                             <div className="borderedList remaining-height">
                                 <ul>
-                                    <li>TV: Green Company</li>
-                                    <li>Newspaper: Green Company</li>
+                                    <li>Price Sensitivity</li>
+                                    <li>Company Summary</li>
+                                    <li>Customer Satisfaction</li>
+                                    <li>Market Statistics</li>
+                                    <li>Benchmarking Statistics</li>
                                 </ul>
                             </div>
                             <button className="centered">Conduct Research</button>
