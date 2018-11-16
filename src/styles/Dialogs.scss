@@ -26,10 +26,14 @@
     background: #ddd;
 }
 
-.column-flexbox {
+.flexbox, .column-flexbox {
     display: flex;
-    flex-flow: column;
+    justify-content: space-between;
+}
+
+.column-flexbox {
     height: 100%;
+    flex-flow: column;
 }
 
 .remaining-height {
@@ -41,13 +45,12 @@
 }
 
 .dialogDetail {
-    flex: 1 1 auto;
+    flex: 1 1 100%;
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
     padding-top: 30px;
     border-top: 1px solid #ddd;
-    height: 100%;
     overflow: hidden;
 }
 
@@ -111,13 +114,17 @@
 
 .modal button {
     margin-top: 10px;
-    width: 200px;
-    float: right;
+    width: 180px;
     flex: 0 1 auto;
 }
 
 .modal button+button {
     margin-right: 10px;
+}
+
+.modal .centered {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .panel {
@@ -128,7 +135,7 @@
 }
 
 h3 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 h4 {
@@ -161,6 +168,11 @@ legend {
 .borderedList ul > li {
     padding: 6px;
     list-style: none;
+}
+
+.detailTitle {
+    margin-left: 28px;
+    color: gray;
 }
 
 .dialogDetail h3+h4 {
