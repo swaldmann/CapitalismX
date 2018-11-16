@@ -11,7 +11,10 @@ const data = {
     datasets: [{
         label: '☹️',
         lineTension: 0,
-        backgroundColor: "red",
+        backgroundColor: "#DB3832",
+        borderColor: "#DB3832",
+        pointRadius: 4,
+        pointBorderColor: "#eee",
         data: [{
             y: 65
         },{
@@ -24,7 +27,10 @@ const data = {
     }, {
         label: '😐',
         lineTension: 0,
-        backgroundColor: "yellow",
+        backgroundColor: "#FDF050",
+        borderColor: "#FDF050",
+        pointRadius: 4,
+        pointBorderColor: "#aaa",
         data: [{
             x: 0,
             y: 10
@@ -41,7 +47,10 @@ const data = {
     }, {
         label: '😊',
         lineTension: 0,
-        backgroundColor: "green",
+        backgroundColor: "#6fbd4f",
+        borderColor: "#6fbd4f",
+        pointRadius: 4,
+        pointBorderColor: "#eee",
         data: [{
             x: 0,
             y: 25
@@ -60,11 +69,15 @@ const data = {
 
 const options = {
     legend: {
-        reverse: true
+        reverse: true,
+        display: false
     },
     tooltips: {
         mode: 'index',
-        intersect: false
+        intersect: false,
+        itemSort: function(a, b) {
+            return b.datasetIndex - a.datasetIndex
+        },
     },
     responsive: true,
     scales: {
@@ -72,9 +85,15 @@ const options = {
             stacked: true,
         }],
         yAxes: [{
-            stacked: true
+            stacked: true,
+            ticks: {
+                    callback: function(value, index, values) {
+                        return value + '%';
+                    }
+                }
         }]
-    }
+    },
+    segmentShowStroke: false
 }
 
 
@@ -108,7 +127,7 @@ class HR extends React.Component {
                         <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={ENGINEER_TYPE} />
                     </div>
                     <div className="quarter column-flexbox">
-                        <VisibleEmployeeList employeeType={SALESPEOPLE_TYPE} />
+                        <VisibleEmployeeList employeeType={SALESPEOPLE_TYPE} className="remaining-height" />
                         <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={SALESPEOPLE_TYPE} />
                     </div>
                     <div className="quarter">
@@ -122,7 +141,7 @@ class HR extends React.Component {
                     </div>
                     <div className="quarter panel">
                         <h4>Employee Satisfaction</h4>
-                        <Line height={200} data={data} options={options} />
+                        <Line height={180} data={data} options={options} />
                     </div>
                 </div>
             </Modal>
