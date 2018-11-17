@@ -1,7 +1,9 @@
 import React from "react"
 import Modal from "react-modal"
 
-import VisibleCampaignPopover from '../../containers/VisibleCampaignPopover'
+import VisibleCampaignList from '../../containers/VisibleCampaignList'
+import VisiblePRPopover from '../../containers/VisiblePRPopover'
+import VisibleResearchPopover from '../../containers/VisibleResearchPopover'
 
 Modal.setAppElement("body")
 
@@ -24,27 +26,12 @@ class Marketing extends React.Component {
                     <button onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></button>
                 </div>
                 <div className="dialogDetail">
-                    <div className="quarter panel">
+                    <div className="panel">
                         <h3>Internal</h3>
                         <h4>Online courses</h4>
                     </div>
                     <div className="half flexbox">
-                        <div className="third column-flexbox">
-                            <h3>Campaigns</h3>
-                            <div className="borderedList remaining-height">
-                                <ul>
-                                    <li>
-                                        <img className="icon" alt="" src={require('../../static/icons/icons8-news.png')} />Green Company
-                                        <div className="detailTitle">30 days ago</div>
-                                    </li>
-                                    <li>
-                                        <img className="icon" alt="" src={require('../../static/icons/icons8-tv.png')} />Diversity
-                                        <div className="detailTitle">50 days ago</div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <VisibleCampaignPopover />
-                        </div>
+                        <VisibleCampaignList />
                         <div className="third column-flexbox">
                             <h3>Press Releases</h3>
                             <div className="borderedList remaining-height">
@@ -55,7 +42,7 @@ class Marketing extends React.Component {
                                     <li>Apology</li>
                                 </ul>
                             </div>
-                            <button className="centered">Public Statement</button>
+                            <VisiblePRPopover />
                         </div>
                         <div className="third column-flexbox">
                             <h3>Market Research</h3>
@@ -68,7 +55,7 @@ class Marketing extends React.Component {
                                     <li>Benchmarking Statistics</li>
                                 </ul>
                             </div>
-                            <button className="centered">Conduct Research</button>
+                            <VisibleResearchPopover />
                         </div>
                     </div>
                     <div className="quarter panel">

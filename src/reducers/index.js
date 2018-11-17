@@ -3,13 +3,13 @@ import financials from './financials'
 import employees from './employees'
 import products from './products'
 import simulationState from './simulationState'
-import campaignMediaTypes from './marketing'
+import {campaigns} from './marketing'
 
 const rootReducer = combineReducers({
     financials,
     employees,
     products,
-    campaignMediaTypes,
+    campaigns,
     simulationState
 })
 

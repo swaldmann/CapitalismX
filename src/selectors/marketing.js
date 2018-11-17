@@ -1,12 +1,10 @@
 import { createSelector } from 'reselect'
 
-const getCampaignMediaTypes = state => state.campaignMediaTypes
+const getCampaigns = state => state.campaigns
 
-export const makeGetCampaignMediaTypes = () => {
-    return createSelector(
-        [getCampaignMediaTypes],
-        (campaignMediaTypes) => {
-            return campaignMediaTypes
-        }
-    )
-}
+export const getVisibleCampaigns = createSelector(
+    [getCampaigns],
+    (campaigns) => {
+        return campaigns
+    }
+)

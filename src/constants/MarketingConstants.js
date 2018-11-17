@@ -1,37 +1,92 @@
 
-
-export const CAMPAIGN_MEDIA_TYPES = [
+export const CAMPAIGN_MEDIA_TEMPLATES = [
     {
+        index: 0,
         name: "Newspaper",
         subtitle: "1000 Persons",
-        detailTitle: "$5000"
+        detailTitle: "$5000",
+        iconPath: "icons8-news.png",
+        startDate: Date()
     },
     {
+        index: 1,
         name: "TV",
         subtitle: "10000 Persons",
-        detailTitle: "$50000"
+        detailTitle: "$50000",
+        iconPath: "icons8-tv.png",
+        startDate: Date()
     },
     {
+        index: 2,
         name: "Online",
         subtitle: "5000000 Persons",
-        detailTitle: "$100000"
+        detailTitle: "$100000",
+        iconPath: "icons8-domain.png",
+        startDate: Date()
     }
 ]
 
-export const CAMPAIGN_TYPES = [
+export const CAMPAIGN_TEMPLATES = [
     {
-        name: "Promoting Products"
+        name: "Promoting Products",
+        index: 0
     },
     {
-        name: "Promoting Company"
+        name: "Promoting Company",
+        index: 1
     },
     {
-        name: "Green Company"
+        name: "Green Company",
+        index: 2
     },
     {
-        name: "Diversity"
+        name: "Diversity",
+        index: 3
     },
     {
-        name: "Refugee Program"
+        name: "Refugee Program",
+        index: 4
     }
 ]
+
+export const PRESS_RELEASE_TEMPLATES = [
+    {
+        name: "Privacy and Security Efforts"
+    },
+    {
+        name: "Affordable Prices"
+    },
+    {
+        name: "Guaranteed Delivery Times"
+    },
+    {
+        name: "Apology"
+    }
+]
+
+export const MARKET_RESEARCH_TEMPLATES = [
+    {
+        name: "Price Sensitivity"
+    },
+    {
+        name: "Company Summary"
+    },
+    {
+        name: "Customer Satisfaction"
+    },
+    {
+        name: "Benchmarking Statistics"
+    }
+]
+
+export const CAMPAIGNS = []
+
+export const PRESS_RELEASES = []
+
+export const MARKET_RESEARCH = []
+
+export const MARKETING = {
+    campaigns: CAMPAIGNS,
+    pressReleases: PRESS_RELEASES,
+    marketResearch: MARKET_RESEARCH
+}

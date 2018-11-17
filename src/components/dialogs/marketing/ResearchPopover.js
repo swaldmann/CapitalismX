@@ -1,9 +1,8 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
-import {CAMPAIGN_TEMPLATES} from '../../../constants/MarketingConstants'
-import VisibleCampaignMediaTooltip from '../../../containers/VisibleCampaignMediaTooltip'
+import {MARKET_RESEARCH_TEMPLATES} from '../../../constants/MarketingConstants'
 
-const CampaignPopover = () => (
+const ResearchPopover = () => (
     <TooltipTrigger
         placement="top"
         trigger="click"
@@ -27,20 +26,20 @@ const CampaignPopover = () => (
                 className: 'tooltip-arrow'
               })}
             />
-                <div className="column-flexbox">
-                    <h3>Campaigns</h3>
-                    <div className="borderedList">
-                        <ul>
-                            {CAMPAIGN_TEMPLATES.map(campaignTemplate =>
-                                <li key={campaignTemplate.index}>
-                                    <div className="margin-bottom">
-                                        <VisibleCampaignMediaTooltip campaignTemplate={campaignTemplate} />
-                                    </div>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
+            <div className="column-flexbox">
+                <h3>Market Research</h3>
+                <div className="borderedList">
+                    <ul>
+                        {MARKET_RESEARCH_TEMPLATES.map(research =>
+                            <li>
+                                <div className="margin-bottom">
+                                    <button>{research.name}</button>
+                                </div>
+                            </li>
+                        )}
+                    </ul>
                 </div>
+            </div>
             </div>
         )}
       >
@@ -52,10 +51,10 @@ const CampaignPopover = () => (
               /* your props here */
             })}
           >
-            Start Campaign
+            Conduct Research
             </button>
         )}
      </TooltipTrigger>
 )
 
-export default CampaignPopover
+export default ResearchPopover

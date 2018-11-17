@@ -16,3 +16,6 @@ export const fireEmployee = index => ({ type: types.FIRE_EMPLOYEE, index })
 
 // Production
 export const switchCurrentComponent = (productIndex, componentTypeIndex, componentIndex) => ({ type: types.SWITCH_CURRENT_COMPONENT, productIndex, componentTypeIndex, componentIndex })
+
+// Marketing
+export const startCampaign = (campaignTemplate, campaignMediaTemplate) => ({ type: types.START_CAMPAIGN, campaignTemplate, campaignMediaTemplate })
