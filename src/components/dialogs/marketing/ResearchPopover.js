@@ -1,6 +1,6 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
-import {MARKET_RESEARCH_TEMPLATES} from '../../../constants/MarketingConstants'
+import {MARKET_RESEARCHES_TEMPLATES} from '../../../constants/MarketingConstants'
 
 const ResearchPopover = () => (
     <TooltipTrigger
@@ -30,7 +30,7 @@ const ResearchPopover = () => (
                 <h3>Market Research</h3>
                 <div className="borderedList">
                     <ul>
-                        {MARKET_RESEARCH_TEMPLATES.map(research =>
+                        {MARKET_RESEARCHES_TEMPLATES.map(research =>
                             <li>
                                 <div className="margin-bottom">
                                     <button>{research.name}</button>

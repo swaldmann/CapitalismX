@@ -3,7 +3,7 @@ import ResearchPopover from '../components/dialogs/marketing/ResearchPopover'
 
 const mapStateToProps = state => {
     return {
-        research: state.marketResearch
+        marketResearches: state.marketResearches
     }
 }
 

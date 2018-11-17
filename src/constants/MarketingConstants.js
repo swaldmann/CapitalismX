@@ -64,7 +64,7 @@ export const PRESS_RELEASE_TEMPLATES = [
     }
 ]
 
-export const MARKET_RESEARCH_TEMPLATES = [
+export const MARKET_RESEARCHES_TEMPLATES = [
     {
         name: "Price Sensitivity"
     },
@@ -83,10 +83,10 @@ export const CAMPAIGNS = []
 
 export const PRESS_RELEASES = []
 
-export const MARKET_RESEARCH = []
+export const MARKET_RESEARCHES = []
 
 export const MARKETING = {
     campaigns: CAMPAIGNS,
     pressReleases: PRESS_RELEASES,
-    marketResearch: MARKET_RESEARCH
+    marketResearch: MARKET_RESEARCHES
 }
