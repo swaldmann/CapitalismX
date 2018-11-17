@@ -10,7 +10,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = (state, props) => {
-    console.log(state);
     return {
         showMenu: false,
         cash: state.financials.cash,

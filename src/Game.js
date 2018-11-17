@@ -25,7 +25,6 @@ const Game = ({ actions, showMenu, numberOfEmployees, cash, productUtilities, si
                         <li><Link to="/production"><i className="fas fa-wrench"></i>{0}/week</Link></li>
                         <li><Link to="/marketing"><i className="fas fa-chart-line"></i>92%</Link></li>
                     </ul>
-                    {console.log(actions)}
                     <Clock play={actions.startSimulation} pause={actions.pauseSimulation} isPlaying={simulationState.isPlaying} elapsedDays={simulationState.elapsedDays} />
                 </nav>
             }
