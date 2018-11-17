@@ -128,10 +128,12 @@
 }
 
 .panel {
+    flex: 0 1 200px;
     padding: 20px;
     background: #f8f8f8;
     border-radius: 10px;
     overflow: scroll;
+    border-right: 10px solid white;
 }
 
 h3 {
