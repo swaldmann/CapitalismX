@@ -35,7 +35,7 @@ const EmployeeHirePopover = ({ employeeType }) => (
           <button
             {...getTriggerProps({
               ref: triggerRef,
-              className: 'trigger'
+              className: 'trigger centered'
               /* your props here */
             })}
           >

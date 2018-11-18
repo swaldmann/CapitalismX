@@ -186,6 +186,11 @@ canvas {
 }
 
 .pull-right {
+    display: block;
+    margin-left: auto;
+}
+
+.pull-right-inline {
     float: right;
 }
 

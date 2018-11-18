@@ -115,7 +115,7 @@
 .modal button {
     margin-top: 10px;
     width: 180px;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
 }
 
 .modal button+button {
@@ -125,10 +125,11 @@
 .modal .centered {
     margin-left: auto;
     margin-right: auto;
+    display: block;
 }
 
 .panel {
-    flex: 0 1 200px;
+    flex: 0 1 250px;
     padding: 20px;
     background: #f8f8f8;
     border-radius: 10px;
@@ -136,11 +137,11 @@
 }
 
 .panel:not(:last-child) {
-    border-right: 10px solid white;
+    border-right: 20px solid white;
 }
 
 .panel:last-child {
-    border-left: 10px solid white;
+    border-left: 20px solid white;
 }
 
 h3 {
@@ -192,7 +193,7 @@ legend {
     display: block;
 }
 
-.pull-right > a {
+.pull-right-inline > a {
     display: inline-block;
     width: 50px;
     text-align: center;

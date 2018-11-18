@@ -12,7 +12,7 @@ class EmployeeCell extends React.Component {
             <li>
                 <div className="margin-bottom">
                     {employee.name}
-                    <span className="pull-right">
+                    <span className="pull-right-inline">
                         {employee.salary.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}
                         {employee.isEmployed && <a>Raise</a>}
                     </span>
@@ -23,7 +23,7 @@ class EmployeeCell extends React.Component {
                   starDimension="10px"
                   starSpacing="3px"
                 />
-                <span className="pull-right" role="img">
+                <span className="pull-right-inline" role="img">
                     {employee.isEmployed && happinessIcons[employee.happiness]}
                     {employee.isEmployed && <a className="fire" onClick={() => fireEmployee(employee.index)}>Fire</a>}
                     {!employee.isEmployed && <a className="hire" onClick={() => hireEmployee(employee.index)}>Hire</a>}
