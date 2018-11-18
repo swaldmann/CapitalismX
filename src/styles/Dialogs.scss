@@ -152,6 +152,10 @@ h4 {
     margin-bottom: 15px;
 }
 
+p:not(:last-child) {
+    margin-bottom: 30px;
+}
+
 input[type="radio"], input[type="checkbox"] {
      margin-right: 5px;
      //vertical-align: middle;
@@ -183,6 +187,11 @@ legend {
 .detailTitle {
     margin-left: 28px;
     color: gray;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
 }
 
 .dialogDetail h3+h4 {

@@ -38,7 +38,15 @@ class Marketing extends React.Component {
                     <div className="panel">
                         <h3>Public Relations</h3>
                         <h4>Lobbying</h4>
+                        <p className="description">
+                            A lobbyist can assert its influence over the government, thereby mitigating its impact on the company or achieving benefits.<br />
+                            <button className="centered">Hire Lobbyist</button>
+                        </p>
                         <h4>Management Consultancy</h4>
+                        <p className="description">
+                            A management consulting firm can help you make important decisions and uncover mistakes that happen in your company.<br />
+                            <button className="centered">Hire Consultant</button>
+                        </p>
                     </div>
                 </div>
             </Modal>
