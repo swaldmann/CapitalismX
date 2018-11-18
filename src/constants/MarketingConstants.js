@@ -88,5 +88,5 @@ export const MARKET_RESEARCHES = []
 export const MARKETING = {
     campaigns: CAMPAIGNS,
     pressReleases: PRESS_RELEASES,
-    marketResearch: MARKET_RESEARCHES
+    marketResearches: MARKET_RESEARCHES
 }

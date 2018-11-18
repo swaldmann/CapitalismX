@@ -19,3 +19,5 @@ export const switchCurrentComponent = (productIndex, componentTypeIndex, compone
 
 // Marketing
 export const startCampaign = (campaignTemplate, campaignMediaTemplate) => ({ type: types.START_CAMPAIGN, campaignTemplate, campaignMediaTemplate })
+export const makePressRelease = pressReleaseTemplate => ({ type: types.MAKE_PRESS_RELEASE, pressReleaseTemplate })
+export const doMarketResearch = marketResearchTemplate => ({ type: types.DO_MARKET_RESEARCHES, marketResearchTemplate })

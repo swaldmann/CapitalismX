@@ -2,8 +2,8 @@ import React from "react"
 import Modal from "react-modal"
 
 import VisibleCampaignList from '../../containers/VisibleCampaignList'
-import VisiblePRPopover from '../../containers/VisiblePRPopover'
-import VisibleResearchPopover from '../../containers/VisibleResearchPopover'
+import VisiblePressReleasesList from '../../containers/VisiblePressReleasesList'
+import VisibleMarketResearchesList from '../../containers/VisibleMarketResearchesList'
 
 Modal.setAppElement("body")
 
@@ -32,31 +32,8 @@ class Marketing extends React.Component {
                     </div>
                     <div className="half flexbox">
                         <VisibleCampaignList />
-                        <div className="third column-flexbox">
-                            <h3>Press Releases</h3>
-                            <div className="borderedList remaining-height">
-                                <ul>
-                                    <li>Privacy and Security Efforts</li>
-                                    <li>Stable Prices</li>
-                                    <li>Fast Delivery Times</li>
-                                    <li>Apology</li>
-                                </ul>
-                            </div>
-                            <VisiblePRPopover />
-                        </div>
-                        <div className="third column-flexbox">
-                            <h3>Market Research</h3>
-                            <div className="borderedList remaining-height">
-                                <ul>
-                                    <li>Price Sensitivity</li>
-                                    <li>Company Summary</li>
-                                    <li>Customer Satisfaction</li>
-                                    <li>Market Statistics</li>
-                                    <li>Benchmarking Statistics</li>
-                                </ul>
-                            </div>
-                            <VisibleResearchPopover />
-                        </div>
+                        <VisiblePressReleasesList />
+                        <VisibleMarketResearchesList />
                     </div>
                     <div className="quarter panel">
                         <h3>Public Relations</h3>

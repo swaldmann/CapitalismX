@@ -2,7 +2,7 @@ import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 import {MARKET_RESEARCHES_TEMPLATES} from '../../../constants/MarketingConstants'
 
-const ResearchPopover = () => (
+const MarketResearchesPopover = ({actions}) => (
     <TooltipTrigger
         placement="top"
         trigger="click"
@@ -30,10 +30,10 @@ const ResearchPopover = () => (
                 <h3>Market Research</h3>
                 <div className="borderedList">
                     <ul>
-                        {MARKET_RESEARCHES_TEMPLATES.map(research =>
+                        {MARKET_RESEARCHES_TEMPLATES.map(marketResearchTemplate =>
                             <li>
                                 <div className="margin-bottom">
-                                    <button>{research.name}</button>
+                                    <button onClick={() => actions.doMarketResearch(marketResearchTemplate)}>{marketResearchTemplate.name}</button>
                                 </div>
                             </li>
                         )}
@@ -57,4 +57,4 @@ const ResearchPopover = () => (
      </TooltipTrigger>
 )
 
-export default ResearchPopover
+export default MarketResearchesPopover
