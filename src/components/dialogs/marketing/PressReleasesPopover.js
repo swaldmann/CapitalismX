@@ -33,7 +33,9 @@ const PressReleasesPopover = ({actions}) => (
                         {PRESS_RELEASE_TEMPLATES.map(pressReleaseTemplate =>
                             <li>
                                 <div className="margin-bottom">
-                                    <button onClick={() => actions.makePressRelease(pressReleaseTemplate)}>{pressReleaseTemplate.name}</button>
+                                    <button onClick={() => actions.makePressRelease(pressReleaseTemplate)}>
+                                        {pressReleaseTemplate.name}
+                                    </button>
                                 </div>
                             </li>
                         )}

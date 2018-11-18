@@ -9,7 +9,7 @@ const MarketResearchesList = ({ marketResearches }) => (
                 {
                     marketResearches.map(marketResearch =>
                         <li>
-                            {marketResearch.marketResearchTemplate.name}
+                            <img className="icon" alt="" src={require('../../../static/icons/icons8-microscope.png')} />{marketResearch.marketResearchTemplate.name}
                             <div className="detailTitle">30 days ago</div>
                         </li>
                     )

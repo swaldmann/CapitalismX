@@ -33,7 +33,9 @@ const MarketResearchesPopover = ({actions}) => (
                         {MARKET_RESEARCHES_TEMPLATES.map(marketResearchTemplate =>
                             <li>
                                 <div className="margin-bottom">
-                                    <button onClick={() => actions.doMarketResearch(marketResearchTemplate)}>{marketResearchTemplate.name}</button>
+                                    <button onClick={() => actions.doMarketResearch(marketResearchTemplate)}>
+                                        {marketResearchTemplate.name}
+                                    </button>
                                 </div>
                             </li>
                         )}

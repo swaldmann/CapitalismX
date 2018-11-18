@@ -21,7 +21,7 @@ export const CAMPAIGN_MEDIA_TEMPLATES = [
         name: "Online",
         subtitle: "5000000 Persons",
         detailTitle: "$100000",
-        iconPath: "icons8-domain.png",
+        iconPath: "icons8-globe.png",
         startDate: Date()
     }
 ]
