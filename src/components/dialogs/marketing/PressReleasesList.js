@@ -4,7 +4,7 @@ import VisiblePressReleasesPopover from '../../../containers/VisiblePressRelease
 const PressReleasesList = ({ pressReleases }) => (
     <div className="third column-flexbox">
         <h3>Press Releases</h3>
-        <div className="borderedList remaining-height">
+        <div className="borderedList remaining-size">
             <ul>
                 {
                     pressReleases.map(pressRelease =>

@@ -4,7 +4,7 @@ import VisibleCampaignPopover from '../../../containers/VisibleCampaignPopover'
 const CampaignList = ({ campaigns }) => (
     <div className="third column-flexbox">
         <h3>Campaigns</h3>
-        <div className="borderedList remaining-height">
+        <div className="borderedList remaining-size">
             <ul>
                 {
                     campaigns.map(campaign =>

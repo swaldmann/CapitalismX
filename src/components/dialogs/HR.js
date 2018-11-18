@@ -127,7 +127,7 @@ class HR extends React.Component {
                         <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={ENGINEER_TYPE} />
                     </div>
                     <div className="quarter column-flexbox">
-                        <VisibleEmployeeList employeeType={SALESPEOPLE_TYPE} className="remaining-height" />
+                        <VisibleEmployeeList employeeType={SALESPEOPLE_TYPE} className="remaining-size" />
                         <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={SALESPEOPLE_TYPE} />
                     </div>
                     <div className="quarter">

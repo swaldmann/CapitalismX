@@ -30,12 +30,12 @@ class Marketing extends React.Component {
                         <h3>Internal</h3>
                         <h4>Online courses</h4>
                     </div>
-                    <div className="half flexbox">
+                    <div className="remaining-size flexbox">
                         <VisibleCampaignList />
                         <VisiblePressReleasesList />
                         <VisibleMarketResearchesList />
                     </div>
-                    <div className="quarter panel">
+                    <div className="panel">
                         <h3>Public Relations</h3>
                         <h4>Lobbying</h4>
                         <h4>Management Consultancy</h4>

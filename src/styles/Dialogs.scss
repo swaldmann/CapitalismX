@@ -36,7 +36,7 @@
     flex-flow: column;
 }
 
-.remaining-height {
+.remaining-size {
     flex: 1 1 auto;
 }
 
@@ -133,7 +133,14 @@
     background: #f8f8f8;
     border-radius: 10px;
     overflow: scroll;
+}
+
+.panel:not(:last-child) {
     border-right: 10px solid white;
+}
+
+.panel:last-child {
+    border-left: 10px solid white;
 }
 
 h3 {

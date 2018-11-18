@@ -4,7 +4,7 @@ import VisibleMarketResearchesPopover from '../../../containers/VisibleMarketRes
 const MarketResearchesList = ({ marketResearches }) => (
     <div className="third column-flexbox">
         <h3>Market Researches</h3>
-        <div className="borderedList remaining-height">
+        <div className="borderedList remaining-size">
             <ul>
                 {
                     marketResearches.map(marketResearch =>
