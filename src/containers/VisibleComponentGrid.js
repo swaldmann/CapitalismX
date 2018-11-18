@@ -9,7 +9,8 @@ const makeMapStateToProps = () => {
     const mapStateToProps = (state, props) => {
         return {
             products: getVisibleProducts(state, props),
-            productUtilities: getProductUtilities(state)
+            productUtilities: getProductUtilities(state),
+            elapsedDays: state.simulationState.elapsedDays
         }
     }
     return mapStateToProps

@@ -2,7 +2,7 @@ import React from 'react'
 import {uniqueIDFromIntegers} from "../../../util/Misc"
 import * as classNames from "classnames"
 
-const ComponentGrid = ({products, productUtilities, actions}) => (
+const ComponentGrid = ({products, productUtilities, elapsedDays, actions}) => (
     <div className="three-quarter">
     {
         products.map((product, k) =>
@@ -15,9 +15,9 @@ const ComponentGrid = ({products, productUtilities, actions}) => (
                 {componentType.allComponents.map((component, j) =>
                     <button key={uniqueIDFromIntegers(i, j)}
                       className={classNames({ 'componentActive': componentType.currentIndex === j,
-                                           'componentAvailable': j <= componentType.availableIndex })}
+                                           'componentAvailable': component.availabilityOffset <= elapsedDays })}
                         onClick={() => actions.switchCurrentComponent(k, i, j)}
-                       disabled={j > componentType.availableIndex}
+                       disabled={component.availabilityOffset > elapsedDays}
                     >
                     {component.name}
                     </button>
