@@ -1,9 +1,9 @@
 import React from "react"
 import Modal from "react-modal"
 import {Line} from 'react-chartjs-2'
-//import { RadioGroup, RadioButton } from 'react-radio-buttons'
 import VisibleEmployeeList from '../../containers/VisibleEmployeeList'
 import VisibleEmployeeHirePopover from '../../containers/VisibleEmployeeHirePopover'
+import VisibleWorkConditions from '../../containers/VisibleWorkConditions'
 import { SHOW_AVAILABLE, SALESPEOPLE_TYPE, ENGINEER_TYPE } from './../../constants/HRConstants'
 
 const data = {
@@ -130,15 +130,7 @@ class HR extends React.Component {
                         <VisibleEmployeeList employeeType={SALESPEOPLE_TYPE} className="remaining-size" />
                         <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={SALESPEOPLE_TYPE} />
                     </div>
-                    <div className="quarter">
-                        <h3>Work Conditions</h3>
-                        <h4>Working Time Model</h4>
-                        {/*<RadioGroup value={this.state.selectedValue} onChange={this.onWorkModelChange} horizontal>
-                            <RadioButton value="fixedHours">Fixed</RadioButton>
-                            <RadioButton value="flextime">Flex</RadioButton>
-                            <RadioButton value="trust-based">Trust</RadioButton>
-                        </RadioGroup>*/}
-                    </div>
+                    <VisibleWorkConditions />
                     <div className="quarter panel">
                         <h4>Employee Satisfaction</h4>
                         <Line height={180} data={data} options={options} />

@@ -156,12 +156,17 @@ p:not(:last-child) {
     margin-bottom: 30px;
 }
 
-input[type="radio"], input[type="checkbox"] {
-     margin-right: 5px;
+input[type="checkbox"] {
+     //margin-right: 5px;
      //vertical-align: middle;
      width: 14px;
      height: 12.5px;
      zoom: 1.3;
+}
+
+input[type="radio"] {
+    margin-right: 3px;
+    vertical-align: 1px;
 }
 
 legend {
