@@ -87,3 +87,22 @@ export const MARKETING = {
     pressReleases: PRESS_RELEASES,
     marketResearches: MARKET_RESEARCHES
 }
+
+export const LOBBYIST_TEMPLATES = [
+    {
+        title: "Senator",
+        iconPath: "icons8-man_face.png"
+    },
+    {
+        title: "Congressman",
+        iconPath: "icons8-valet.png"
+    },
+    {
+        title: "Mayor",
+        iconPath: "icons8-old_man.png"
+    },
+    {
+        title: "Worker's Union Leader",
+        iconPath: "icons8-gardener.png"
+    }
+]

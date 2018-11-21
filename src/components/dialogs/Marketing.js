@@ -4,6 +4,7 @@ import Modal from "react-modal"
 import VisibleCampaignList from '../../containers/VisibleCampaignList'
 import VisiblePressReleasesList from '../../containers/VisiblePressReleasesList'
 import VisibleMarketResearchesList from '../../containers/VisibleMarketResearchesList'
+import VisibleLobbyistPopover from '../../containers/VisibleLobbyistPopover'
 
 Modal.setAppElement("body")
 
@@ -40,7 +41,7 @@ class Marketing extends React.Component {
                         <h4>Lobbying</h4>
                         <p className="description">
                             A lobbyist can assert its influence over the government, thereby mitigating its impact on the company or achieving benefits.<br />
-                            <button className="centered">Hire Lobbyist</button>
+                            <VisibleLobbyistPopover />
                         </p>
                         <h4>Management Consultancy</h4>
                         <p className="description">
