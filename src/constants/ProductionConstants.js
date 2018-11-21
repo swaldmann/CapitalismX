@@ -4,19 +4,19 @@ function copy(obj) {
 
 const CPUS = [
     {index: 0, name: "1 GHz", baseUtility: 20, availabilityOffset: 0},
-    {index: 1, name: "1.5 GHz", baseUtility: 40, availabilityOffset: 5},
-    {index: 2, name: "3 GHz", baseUtility: 70, availabilityOffset: 10},
-    {index: 3, name: "2x 3 GHz", baseUtility: 90, availabilityOffset: 15},
-    {index: 4, name: "4x 3 GHz", baseUtility: 120, availabilityOffset: 20}
+    {index: 1, name: "1.5 GHz", baseUtility: 40, availabilityOffset: 3},
+    {index: 2, name: "3 GHz", baseUtility: 70, availabilityOffset: 7},
+    {index: 3, name: "2x 3 GHz", baseUtility: 90, availabilityOffset: 14},
+    {index: 4, name: "4x 3 GHz", baseUtility: 120, availabilityOffset: 19}
 ]
 
 const STORAGES = [
     {index: 5, name: "2 GB", baseUtility: 30, availabilityOffset: 0},
-    {index: 6, name: "10 GB", baseUtility: 60, availabilityOffset: 5},
-    {index: 7, name: "50 GB", baseUtility: 90, availabilityOffset: 10},
+    {index: 6, name: "10 GB", baseUtility: 60, availabilityOffset: 3},
+    {index: 7, name: "50 GB", baseUtility: 90, availabilityOffset: 11},
     {index: 8, name: "200 GB", baseUtility: 120, availabilityOffset: 15},
-    {index: 9, name: "200 GB SSD", baseUtility: 130, availabilityOffset: 20},
-    {index: 10, name: "1 TB SSD", baseUtility: 150, availabilityOffset: 20}
+    {index: 9, name: "200 GB SSD", baseUtility: 130, availabilityOffset: 24},
+    {index: 10, name: "1 TB SSD", baseUtility: 150, availabilityOffset: 30}
 ]
 
 const DISPLAYS = [
@@ -29,10 +29,10 @@ const DISPLAYS = [
 
 const CAMERAS = [
     {index: 16, name: "1.2 MP", baseUtility: 20, availabilityOffset: 0},
-    {index: 17, name: "2 MP", baseUtility: 30, availabilityOffset: 5},
-    {index: 18, name: "5 MP", baseUtility: 100, availabilityOffset: 10},
-    {index: 19, name: "8 MP", baseUtility: 130, availabilityOffset: 15},
-    {index: 20, name: "12 MP", baseUtility: 150, availabilityOffset: 20},
+    {index: 17, name: "2 MP", baseUtility: 30, availabilityOffset: 2},
+    {index: 18, name: "5 MP", baseUtility: 100, availabilityOffset: 14},
+    {index: 19, name: "8 MP", baseUtility: 130, availabilityOffset: 19},
+    {index: 20, name: "12 MP", baseUtility: 150, availabilityOffset: 23},
 ]
 
 const CPU_COMPONENT = {
