@@ -6,7 +6,8 @@ import { getVisiblePressReleases } from '../selectors/marketing.js'
 
 const mapStateToProps = state => {
     return {
-        pressReleases: getVisiblePressReleases(state)
+        pressReleases: getVisiblePressReleases(state),
+        elapsedDays: state.simulationState.elapsedDays
     }
 }
 

@@ -11,6 +11,7 @@ export function campaigns(state = CAMPAIGNS, action) {
         case START_CAMPAIGN:
             const addedCampaign = {
                 index: 0,
+                startElapsedDays: action.startElapsedDays,
                 campaignTemplate: action.campaignTemplate,
                 campaignMediaTemplate: action.campaignMediaTemplate
             }
@@ -25,6 +26,7 @@ export function pressReleases(state = PRESS_RELEASES, action) {
         case MAKE_PRESS_RELEASE:
             const addedPressRelease = {
                 index: 0,
+                startElapsedDays: action.startElapsedDays,
                 pressReleaseTemplate: action.pressReleaseTemplate
             }
             return [addedPressRelease, ...state]
@@ -38,6 +40,7 @@ export function marketResearches(state = MARKET_RESEARCHES, action) {
         case DO_MARKET_RESEARCHES:
             const addedMarketResearch = {
                 index: 0,
+                startElapsedDays: action.startElapsedDays,
                 marketResearchTemplate: action.marketResearchTemplate
             }
             return [addedMarketResearch, ...state]

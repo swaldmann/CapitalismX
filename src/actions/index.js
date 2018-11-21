@@ -18,6 +18,6 @@ export const fireEmployee = index => ({ type: types.FIRE_EMPLOYEE, index })
 export const switchCurrentComponent = (productIndex, componentTypeIndex, componentIndex) => ({ type: types.SWITCH_CURRENT_COMPONENT, productIndex, componentTypeIndex, componentIndex })
 
 // Marketing
-export const startCampaign = (campaignTemplate, campaignMediaTemplate) => ({ type: types.START_CAMPAIGN, campaignTemplate, campaignMediaTemplate })
-export const makePressRelease = pressReleaseTemplate => ({ type: types.MAKE_PRESS_RELEASE, pressReleaseTemplate })
-export const doMarketResearch = marketResearchTemplate => ({ type: types.DO_MARKET_RESEARCHES, marketResearchTemplate })
+export const startCampaign = (campaignTemplate, campaignMediaTemplate, startElapsedDays) => ({ type: types.START_CAMPAIGN, campaignTemplate, campaignMediaTemplate, startElapsedDays })
+export const makePressRelease = (pressReleaseTemplate, startElapsedDays) => ({ type: types.MAKE_PRESS_RELEASE, pressReleaseTemplate, startElapsedDays })
+export const doMarketResearch = (marketResearchTemplate, startElapsedDays) => ({ type: types.DO_MARKET_RESEARCHES, marketResearchTemplate, startElapsedDays })

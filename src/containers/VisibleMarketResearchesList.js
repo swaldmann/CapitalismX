@@ -6,7 +6,8 @@ import { getVisibleMarketResearches } from '../selectors/marketing.js'
 
 const mapStateToProps = state => {
     return {
-        marketResearches: getVisibleMarketResearches(state)
+        marketResearches: getVisibleMarketResearches(state),
+        elapsedDays: state.simulationState.elapsedDays
     }
 }
 

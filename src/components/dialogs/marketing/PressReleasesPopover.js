@@ -2,7 +2,7 @@ import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 import {PRESS_RELEASE_TEMPLATES} from '../../../constants/MarketingConstants'
 
-const PressReleasesPopover = ({actions}) => (
+const PressReleasesPopover = ({actions, elapsedDays}) => (
     <TooltipTrigger
         placement="top"
         trigger="click"
@@ -33,7 +33,7 @@ const PressReleasesPopover = ({actions}) => (
                         {PRESS_RELEASE_TEMPLATES.map(pressReleaseTemplate =>
                             <li>
                                 <div className="margin-bottom">
-                                    <button onClick={() => actions.makePressRelease(pressReleaseTemplate)}>
+                                    <button onClick={() => actions.makePressRelease(pressReleaseTemplate, elapsedDays)}>
                                         {pressReleaseTemplate.name}
                                     </button>
                                 </div>

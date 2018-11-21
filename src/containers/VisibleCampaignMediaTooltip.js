@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux'
 
 const mapStateToProps = (state, props) => {
     return {
-        campaignTemplate: props.campaignTemplate
+        campaignTemplate: props.campaignTemplate,
+        elapsedDays: state.simulationState.elapsedDays
     }
 }
 

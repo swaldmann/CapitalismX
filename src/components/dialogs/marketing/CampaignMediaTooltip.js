@@ -3,7 +3,7 @@ import TooltipTrigger from 'react-popper-tooltip'
 import * as classNames from "classnames"
 import {CAMPAIGN_MEDIA_TEMPLATES} from '../../../constants/MarketingConstants'
 
-const CampaignMediaTooltip = ({campaignTemplate, campaignMediaActions}) => (
+const CampaignMediaTooltip = ({campaignTemplate, campaignMediaActions, elapsedDays}) => (
     <TooltipTrigger
         placement="right"
         trigger="click"
@@ -31,7 +31,7 @@ const CampaignMediaTooltip = ({campaignTemplate, campaignMediaActions}) => (
                     {CAMPAIGN_MEDIA_TEMPLATES.map(campaignMediaTemplate =>
                         <li>
                             <div className="margin-bottom">
-                                <button onClick={() => campaignMediaActions.startCampaign(campaignTemplate, campaignMediaTemplate)}>
+                                <button onClick={() => campaignMediaActions.startCampaign(campaignTemplate, campaignMediaTemplate, elapsedDays)}>
                                     {campaignMediaTemplate.iconPath && <img src={require("../../../static/icons/" + campaignMediaTemplate.iconPath)} className="icon" alt="" />}
                                     {campaignMediaTemplate.name}
                                     <div className="subtitle">{campaignMediaTemplate.subtitle}</div>

@@ -5,24 +5,21 @@ export const CAMPAIGN_MEDIA_TEMPLATES = [
         name: "Newspaper",
         subtitle: "1000 Persons",
         detailTitle: "$5000",
-        iconPath: "icons8-news.png",
-        startDate: Date()
+        iconPath: "icons8-news.png"
     },
     {
         index: 1,
         name: "TV",
         subtitle: "10000 Persons",
         detailTitle: "$50000",
-        iconPath: "icons8-tv.png",
-        startDate: Date()
+        iconPath: "icons8-tv.png"
     },
     {
         index: 2,
         name: "Online",
         subtitle: "5000000 Persons",
         detailTitle: "$100000",
-        iconPath: "icons8-globe.png",
-        startDate: Date()
+        iconPath: "icons8-globe.png"
     }
 ]
 
