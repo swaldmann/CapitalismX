@@ -53,7 +53,7 @@ const options = {
 const FinanceCharts = ({ financialHistory }) => (
     <div className="quarter panel">
         <h4>Salaries</h4>
-        <Line height={100} options={options} data={{...data, datasets: [{...data.datasets[0], data: financialHistory.salaries}]}} />
+        <Line height={100} options={options} data={{...data, datasets: [{...data.datasets[0], data: financialHistory.map(history => history.salaries)}]}} />
     </div>
 )
 
