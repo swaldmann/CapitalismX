@@ -106,3 +106,21 @@ export const LOBBYIST_TEMPLATES = [
         iconPath: "icons8-gardener.png"
     }
 ]
+
+export const CONSULTANCY_TEMPLATES = [
+    {
+        title: "O'Reilly & Company",
+        description: "World-famous firm",
+        iconPath: "icons8-identity_disc.png"
+    },
+    {
+        title: "Sinoido Consulting",
+        description: "Local consultancy",
+        iconPath: "icons8-less_than2.png"
+    },
+    {
+        title: "Floata Consultants",
+        description: "Student consultancy",
+        iconPath: "icons8-multi_edit.png"
+    }
+]

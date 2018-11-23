@@ -1,16 +1,19 @@
 import React from "react"
 import Modal from "react-modal"
+import {history} from "history"
 
 import VisibleCampaignList from '../../containers/VisibleCampaignList'
 import VisiblePressReleasesList from '../../containers/VisiblePressReleasesList'
 import VisibleMarketResearchesList from '../../containers/VisibleMarketResearchesList'
 import VisibleLobbyistPopover from '../../containers/VisibleLobbyistPopover'
+import VisibleConsultancyPopover from '../../containers/VisibleConsultancyPopover'
 
 Modal.setAppElement("body")
 
 class Marketing extends React.Component {
     closeModal = () => {
-        window.history.back()
+        //window.history.back()
+        history.push("/")
     }
 
     render() {
@@ -29,7 +32,7 @@ class Marketing extends React.Component {
                 <div className="dialogDetail">
                     <div className="panel">
                         <h3>Competitors</h3>
-
+                        <p>Market Share: 92%</p>
                     </div>
                     <div className="remaining-size flexbox">
                         <VisibleCampaignList />
@@ -46,7 +49,7 @@ class Marketing extends React.Component {
                         <h4>Management Consultancy</h4>
                         <p className="description">
                             A management consulting firm can help you make important decisions and uncover mistakes that happen in your company.<br />
-                            <button className="centered">Hire Consultant</button>
+                            <VisibleConsultancyPopover />
                         </p>
                     </div>
                 </div>
