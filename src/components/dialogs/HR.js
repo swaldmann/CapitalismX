@@ -1,6 +1,8 @@
 import React from "react"
 import Modal from "react-modal"
+import {withRouter} from 'react-router-dom'
 import {Line} from 'react-chartjs-2'
+
 import VisibleEmployeeList from '../../containers/VisibleEmployeeList'
 import VisibleEmployeeHirePopover from '../../containers/VisibleEmployeeHirePopover'
 import VisibleWorkConditions from '../../containers/VisibleWorkConditions'
@@ -100,7 +102,7 @@ const options = {
 class HR extends React.Component {
 
     closeModal = () => {
-        window.history.back()
+        this.props.history.push("/")
     }
 
     /*onWorkModelChange = (value) => {
@@ -141,4 +143,4 @@ class HR extends React.Component {
     }
 }
 
-export default HR
+export default withRouter(HR)

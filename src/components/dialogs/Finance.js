@@ -1,12 +1,14 @@
 import React from "react"
 import Modal from "react-modal"
+import {withRouter} from 'react-router-dom'
+
 import VisibleFinanceTable from "../../containers/VisibleFinanceTable"
 import VisibleFinanceCharts from "../../containers/VisibleFinanceCharts"
 import VisibleFinanceCompanySheet from "../../containers/VisibleFinanceCompanySheet"
 
 class Finance extends React.Component {
     closeModal = () => {
-        window.history.back()
+        this.props.history.push('/')
     }
 
     render() {
@@ -33,4 +35,4 @@ class Finance extends React.Component {
     }
 }
 
-export default Finance
+export default withRouter(Finance)

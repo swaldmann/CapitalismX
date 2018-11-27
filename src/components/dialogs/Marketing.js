@@ -1,6 +1,6 @@
 import React from "react"
 import Modal from "react-modal"
-import {history} from "history"
+import {withRouter} from 'react-router-dom'
 
 import VisibleCampaignList from '../../containers/VisibleCampaignList'
 import VisiblePressReleasesList from '../../containers/VisiblePressReleasesList'
@@ -12,8 +12,7 @@ Modal.setAppElement("body")
 
 class Marketing extends React.Component {
     closeModal = () => {
-        //window.history.back()
-        history.push("/")
+        this.props.history.push("/")
     }
 
     render() {
@@ -58,4 +57,4 @@ class Marketing extends React.Component {
     }
 }
 
-export default Marketing
+export default withRouter(Marketing)

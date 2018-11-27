@@ -1,11 +1,13 @@
 import React from "react"
 import Modal from "react-modal"
+import {withRouter} from 'react-router-dom'
+
 import VisibleComponentGrid from "../../containers/VisibleComponentGrid"
 import VisibleProductsInfoColumn from "../../containers/VisibleProductsInfoColumn"
 
 class Production extends React.Component {
     closeModal = () => {
-        window.history.back()
+        this.props.history.push("/")
     }
 
     render() {
@@ -26,9 +28,9 @@ class Production extends React.Component {
                         <VisibleComponentGrid />
                         <VisibleProductsInfoColumn />
                     </div>
-                </Modal>
-            )
-        }
+            </Modal>
+        )
     }
+}
 
-    export default Production
+export default withRouter(Production)
