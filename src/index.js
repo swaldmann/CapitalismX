@@ -23,22 +23,34 @@ const store = createStore(
 function startSimulation() {
     return (dispatch) => {
         setInterval(function() {
-            const state = store.getState()
-            const totalCosts = getAllEmployees(state).reduce((totalSalaries, employee) => employee.isEmployed ? totalSalaries + employee.salary : totalSalaries, 0).toFixed(0)
-            const totalSales = getAllEngineers(state).reduce((totalEngineerPoints, engineer) => engineer.isEmployed ? totalEngineerPoints + engineer.skill : totalEngineerPoints, 0) * getProductUtilities(state).reduce((totalUtility, utility) => totalUtility += utility, 0).toFixed(0)
-            if (state.simulationState.isPlaying) {
-                dispatch({ type: 'START_SIMULATION' })
-                const history = {
-                    sales: totalSales,
-                    investments: 0,
-                    loans: 0,
-                    salaries: (totalCosts/365).toFixed(0),
-                    materialCosts: 0,
-                    loanInterests: 0
-                }
-                dispatch(dailyFinancialUpdate(history))
-            }
-        }, 3000);
+            simulate(dispatch)
+        }, 3000)
+    }
+}
+
+function simulate(dispatch) {
+    const state = store.getState()
+    const employees = getAllEmployees(state)
+    const engineers = getAllEngineers(state)
+    const salespeople = getAllSalespeople(state)
+    const productUtilities = getProductUtilities(state)
+
+    const totalSalaries = employees.reduce((totalSalaries, employee) => employee.isEmployed ? totalSalaries + employee.salary : totalSalaries, 0)
+    const totalEngineerSkills = engineers.reduce((totalEngineerSkills, engineer) => engineer.isEmployed ? totalEngineerSkills + engineer.skill : totalEngineerSkills, 0)
+    const totalSalespeopleSkills = salespeople.reduce((totalSalespeopleSkills, salesperson) => salesperson.isEmployed ? totalSalespeopleSkills + salesperson.skill : totalSalespeopleSkills, 0)
+    const totalProductUtilities = productUtilities.reduce((totalUtility, utility) => totalUtility += utility, 0)
+    const totalSales = (totalEngineerSkills * totalProductUtilities * (1 + totalSalespeopleSkills/10))
+    if (state.simulationState.isPlaying) {
+        dispatch({ type: 'START_SIMULATION' })
+        const history = {
+            sales: totalSales,
+            investments: 0,
+            loans: 0,
+            salaries: (totalSalaries/365),
+            materialCosts: 0,
+            loanInterests: 0
+        }
+        dispatch(dailyFinancialUpdate(history))
     }
 }
 

@@ -20,15 +20,15 @@ const FinanceTable = ({ financialHistory }) => (
             <tbody>
                 <tr>
                     <td><b>Sales</b></td>
-                    {financialHistory.map(entry => <td>${entry.sales}</td>)}
+                    {financialHistory.map(entry => <td>${entry.sales.toFixed(0)}</td>)}
                 </tr>
                 <tr>
                     <td><b>Investments</b></td>
-                    {financialHistory.map(entry => <td>${entry.investments}</td>)}
+                    {financialHistory.map(entry => <td>${entry.investments.toFixed(0)}</td>)}
                 </tr>
                 <tr>
                     <td><b>Loans</b></td>
-                    {financialHistory.map(entry => <td>${entry.loans}</td>)}
+                    {financialHistory.map(entry => <td>${entry.loans.toFixed(0)}</td>)}
                 </tr>
             </tbody>
         </table>
@@ -37,15 +37,15 @@ const FinanceTable = ({ financialHistory }) => (
             <tbody>
                 <tr>
                     <td><b>Material</b></td>
-                    {financialHistory.map(entry => <td>${entry.materialCosts}</td>)}
+                    {financialHistory.map(entry => <td>${entry.materialCosts.toFixed(0)}</td>)}
                 </tr>
                 <tr>
                     <td><b>Salaries</b></td>
-                    {financialHistory.map(entry => <td>${entry.salaries}</td>)}
+                    {financialHistory.map(entry => <td>${entry.salaries.toFixed(0)}</td>)}
                 </tr>
                 <tr>
                     <td><b>Loan interest</b></td>
-                    {financialHistory.map(entry => <td>${entry.loanInterests}</td>)}
+                    {financialHistory.map(entry => <td>${entry.loanInterests.toFixed(0)}</td>)}
                 </tr>
             </tbody>
         </table>
@@ -54,7 +54,7 @@ const FinanceTable = ({ financialHistory }) => (
             <tbody>
                 <tr>
                     <td><b>Profit</b></td>
-                    {financialHistory.map(entry => <td>${entry.sales + entry.investments + entry.loans - entry.materialCosts - entry.salaries - entry.loanInterests}</td>)}
+                    {financialHistory.map(entry => <td>${(entry.sales + entry.investments + entry.loans - entry.materialCosts - entry.salaries - entry.loanInterests).toFixed(0)}</td>)}
                 </tr>
             </tbody>
         </table>

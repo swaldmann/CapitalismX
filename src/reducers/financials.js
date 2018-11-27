@@ -9,6 +9,7 @@ const initialState = FINANCIALS
 export default function financials(state = initialState, action) {
     switch (action.type) {
         case DAILY_FINANCIAL_UPDATE:
+            const cash = state.cash + action.historyEntry.sales - action.historyEntry.salaries
             return { ...state, cash: state.cash + action.historyEntry.sales - action.historyEntry.salaries,
                                history: state.history.concat({
                                         sales:                           action.historyEntry.sales,

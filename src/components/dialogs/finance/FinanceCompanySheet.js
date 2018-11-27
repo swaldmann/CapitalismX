@@ -7,11 +7,11 @@ const FinanceCompanySheet = ({ financials }) => (
             <tbody>
                 <tr>
                     <td><b>Cash</b></td>
-                    <td>${financials.cash}</td>
+                    <td>${financials.cash.toFixed(0)}</td>
                 </tr>
                 <tr>
                     <td><b>Assets</b></td>
-                    <td>${financials.assets}</td>
+                    <td>${financials.assets.toFixed(0)}</td>
                 </tr>
                 <tr>
                     <td><b>Liabilities</b></td>
@@ -19,7 +19,7 @@ const FinanceCompanySheet = ({ financials }) => (
                 </tr>
                 <tr className="table-border-top">
                     <td><b>Net Worth</b></td>
-                    <td>${financials.cash + financials.assets}</td>
+                    <td>${(financials.cash + financials.assets).toFixed(0)}</td>
                 </tr>
             </tbody>
         </table>
