@@ -130,16 +130,18 @@ button.large {
     line-height: 1.5em;
 }
 
-.informationBar > ul > li > a, .time {
+.informationBar > ul > li > a, .informationBar > ul > li > button, .time {
     background: #111;
     color: white;
     padding: 8px 18px;
     box-sizing: border-box;
     border-radius: 20px;
     transition: all 0.2s;
+    font-weight: normal;
+    line-height: 24px;
 }
 
-.informationBar > ul > li > a:hover {
+.informationBar > ul > li > a:hover, .informationBar > ul > li > button:hover  {
     background: #333;
 }
 

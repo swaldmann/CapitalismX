@@ -1,5 +1,7 @@
 import * as types from '../constants/ActionTypes'
 
+export const toggleMenuVisibility = () => ({ type: types.TOGGLE_MENU_VISIBILITY })
+
 export const updateClock = () => {
     this.state.graph.recalculate()
 }

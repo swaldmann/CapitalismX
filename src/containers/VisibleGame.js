@@ -11,7 +11,6 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = (state, props) => {
     return {
-        showMenu: false,
         cash: state.financials.cash,
         simulationState: state.simulationState,
         numberOfEmployees: getHiredEmployeeCount(state),

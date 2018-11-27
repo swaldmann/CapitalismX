@@ -10,16 +10,15 @@ import Production from './components/dialogs/Production.js'
 import Marketing from './components/dialogs/Marketing.js'
 import VisibleMenuField from './containers/VisibleMenuField.js'
 
-const Game = ({ actions, showMenu, numberOfEmployees, cash, productUtilities, simulationState }) => (
+const Game = ({ actions, numberOfEmployees, cash, productUtilities, simulationState }) => (
     <Router>
         <div id="App">
             { <Map /> }
-            { showMenu && <Menu newGame={actions.newGame} loadGame={actions.loadGame} /> }
-            { !showMenu &&
+            { simulationState.showMenu && <Menu newGame={actions.toggleMenuVisibility} loadGame={actions.toggleMenuVisibility} /> }
+            { !simulationState.showMenu &&
                 <nav className="informationBar">
                     <ul>
-                        <li><a onClick={actions.showMenu}><i className="fas fa-ellipsis-h"></i>Menu</a></li>
-                        {}
+                        <li><button onClick={actions.toggleMenuVisibility}><i className="fas fa-ellipsis-h"></i>Menu</button></li>
                         <li><Link to="/finance"><i className="fas fa-coins"></i>${cash.toLocaleString(navigator.language, { maximumFractionDigits: 0 })}</Link></li>
                         <li><Link to="/hr"><i className="fas fa-users"></i>{<VisibleMenuField />}</Link></li>
                         <li><Link to="/production"><i className="fas fa-wrench"></i>{0}/week</Link></li>
