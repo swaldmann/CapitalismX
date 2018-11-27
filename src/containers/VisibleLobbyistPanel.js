@@ -1,12 +1,13 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import LobbyistPopover from '../components/dialogs/marketing/LobbyistPopover'
+import LobbyistPanel from '../components/dialogs/marketing/LobbyistPanel'
+import {LOBBYIST_TEMPLATES} from '../constants/MarketingConstants'
 import * as Actions from '../actions'
 
 const mapStateToProps = state => {
     return {
-        hiredLobbyistIndex: state.marketing.hiredLobbyistIndex
+        hiredLobbyist: LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex]
     }
 }
 
@@ -14,10 +15,9 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Actions, dispatch)
 })
 
-
-const VisibleLobbyistPopover = connect(
+const VisibleLobbyistPanel = connect(
     mapStateToProps,
     mapDispatchToProps
-)(LobbyistPopover)
+)(LobbyistPanel)
 
-export default VisibleLobbyistPopover
+export default VisibleLobbyistPanel

@@ -1,10 +1,23 @@
 import {
     START_CAMPAIGN,
     MAKE_PRESS_RELEASE,
-    DO_MARKET_RESEARCHES
+    DO_MARKET_RESEARCHES,
+    HIRE_CONSULTANCY,
+    HIRE_LOBBYIST
 } from '../constants/ActionTypes'
 
-import { CAMPAIGNS, PRESS_RELEASES, MARKET_RESEARCHES } from '../constants/MarketingConstants'
+import { MARKETING, CAMPAIGNS, PRESS_RELEASES, MARKET_RESEARCHES } from '../constants/MarketingConstants'
+
+export function marketing(state = MARKETING, action) {
+    switch (action.type) {
+        case HIRE_CONSULTANCY:
+            return { ...state, consultancyIndex: action.consultancyIndex }
+        case HIRE_LOBBYIST:
+            return { ...state, lobbyistIndex: action.lobbyistIndex }
+        default:
+            return state
+    }
+}
 
 export function campaigns(state = CAMPAIGNS, action) {
     switch (action.type) {

@@ -3,21 +3,21 @@ export const CAMPAIGN_MEDIA_TEMPLATES = [
     {
         index: 0,
         name: "Newspaper",
-        subtitle: "1000 Persons",
+        reach: 1000,
         detailTitle: "$5000",
         iconPath: "icons8-news.png"
     },
     {
         index: 1,
         name: "TV",
-        subtitle: "10000 Persons",
+        reach: 10000,
         detailTitle: "$50000",
         iconPath: "icons8-tv.png"
     },
     {
         index: 2,
         name: "Online",
-        subtitle: "5000000 Persons",
+        reach: 5000000,
         detailTitle: "$100000",
         iconPath: "icons8-globe.png"
     }
@@ -83,9 +83,8 @@ export const PRESS_RELEASES = []
 export const MARKET_RESEARCHES = []
 
 export const MARKETING = {
-    campaigns: CAMPAIGNS,
-    pressReleases: PRESS_RELEASES,
-    marketResearches: MARKET_RESEARCHES
+    consultancyIndex: null,
+    lobbyistIndex: null
 }
 
 export const LOBBYIST_TEMPLATES = [
@@ -119,7 +118,7 @@ export const CONSULTANCY_TEMPLATES = [
         iconPath: "icons8-less_than2.png"
     },
     {
-        title: "Floata Consultants",
+        title: "Wannabe Consultants",
         description: "Student consultancy",
         iconPath: "icons8-multi_edit.png"
     }

@@ -129,7 +129,7 @@
 }
 
 .panel {
-    flex: 0 1 250px;
+    flex: 0 1 280px;
     padding: 20px;
     background: #f8f8f8;
     border-radius: 10px;
@@ -142,6 +142,10 @@
 
 .panel:last-child {
     border-left: 20px solid white;
+}
+
+.panelItem:not(:last-child) {
+    margin-bottom: 30px;
 }
 
 h3 {
@@ -228,4 +232,11 @@ legend {
 
 a.fire {
     background: rgb(168, 33, 33);
+}
+
+.choosableItem {
+    margin: 15px 0px;
+    background: #e5e5e5;
+    padding: 8px;
+    border-radius: 5px;
 }

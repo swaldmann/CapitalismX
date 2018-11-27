@@ -34,7 +34,7 @@ const CampaignMediaTooltip = ({campaignTemplate, campaignMediaActions, elapsedDa
                                 <button onClick={() => campaignMediaActions.startCampaign(campaignTemplate, campaignMediaTemplate, elapsedDays)}>
                                     {campaignMediaTemplate.iconPath && <img src={require("../../../static/icons/" + campaignMediaTemplate.iconPath)} className="icon" alt="" />}
                                     {campaignMediaTemplate.name}
-                                    <div className="subtitle">{campaignMediaTemplate.subtitle}</div>
+                                    <div className="subtitle"><i class="fas fa-fw fa-xs fa-user-friends"></i>{campaignMediaTemplate.reach}</div>
                                 </button>
                             </div>
                         </li>

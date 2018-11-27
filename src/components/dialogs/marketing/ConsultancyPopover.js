@@ -1,8 +1,9 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
+
 import {CONSULTANCY_TEMPLATES} from '../../../constants/MarketingConstants'
 
-const ConsultancyPopover = () => (
+const ConsultancyPopover = ({hiredConsultancyIndex, actions}) => (
     <TooltipTrigger
         placement="top"
         trigger="click"
@@ -30,10 +31,10 @@ const ConsultancyPopover = () => (
                     <h3>Consultancies</h3>
                     <div className="borderedList">
                         <ul>
-                            {CONSULTANCY_TEMPLATES.map(consultancyTemplate =>
+                            {CONSULTANCY_TEMPLATES.map((consultancyTemplate, consultancyIndex) =>
                                 <li>
                                     <div className="margin-bottom">
-                                        <button>
+                                        <button onClick={() => actions.hireConsultancy(consultancyIndex)}>
                                             <img className="icon" alt="" src={require('../../../static/icons/' + consultancyTemplate.iconPath)} />{consultancyTemplate.title}
                                             <div className="subtitle withImage">{consultancyTemplate.description}</div>
                                         </button>
@@ -54,7 +55,7 @@ const ConsultancyPopover = () => (
               /* your props here */
             })}
           >
-            Hire Consultant
+            Choose Consultancy
             </button>
         )}
      </TooltipTrigger>

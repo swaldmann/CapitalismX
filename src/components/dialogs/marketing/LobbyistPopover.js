@@ -1,8 +1,9 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
+
 import {LOBBYIST_TEMPLATES} from '../../../constants/MarketingConstants'
 
-const LobbyistPopover = () => (
+const LobbyistPopover = ({lobbyistIndex, actions}) => (
     <TooltipTrigger
         placement="top"
         trigger="click"
@@ -30,10 +31,10 @@ const LobbyistPopover = () => (
                     <h3>Lobbyists</h3>
                     <div className="borderedList">
                         <ul>
-                            {LOBBYIST_TEMPLATES.map(lobbyistTemplate =>
+                            {LOBBYIST_TEMPLATES.map((lobbyistTemplate, lobbyistIndex) =>
                                 <li>
                                     <div className="margin-bottom">
-                                        <button>
+                                        <button onClick={() => actions.hireLobbyist(lobbyistIndex)}>
                                             <img className="icon" alt="" src={require('../../../static/icons/' + lobbyistTemplate.iconPath)} />{lobbyistTemplate.title}
                                         </button>
                                     </div>
@@ -53,7 +54,7 @@ const LobbyistPopover = () => (
               /* your props here */
             })}
           >
-            Hire Lobbyist
+            Choose Lobbyist
             </button>
         )}
      </TooltipTrigger>
