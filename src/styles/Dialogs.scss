@@ -114,7 +114,6 @@
 
 .modal button {
     margin-top: 10px;
-    width: 180px;
     flex: 0 0 auto;
 }
 
@@ -192,6 +191,28 @@ legend {
     list-style: none;
 }
 
+.borderedList ul > li > div.flexbox > button {
+    flex-basis: 50px;
+    display: inline-block;
+    margin: 0px 0px 0px 5px;
+    padding: 5px;
+}
+
+.borderedList > ul > li > div:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.cell-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cell-detailTitle {
+    text-align: right;
+    padding-left: 5px;
+}
+
 .detailTitle {
     margin-left: 28px;
     color: gray;
@@ -210,16 +231,6 @@ legend {
     display: block;
 }
 
-.pull-right-inline > a {
-    display: inline-block;
-    width: 50px;
-    text-align: center;
-    margin-left: 5px;
-    border-radius: 5px;
-    color: white;
-    background: green;
-}
-
 .checkbox-subtitle {
     margin-left: 24px;
     margin-bottom: 10px;
@@ -230,8 +241,16 @@ legend {
     margin-bottom: 2px;
 }
 
-a.fire {
+.destructive {
     background: rgb(168, 33, 33);
+}
+
+.tooltip-container .flexbox button {
+    text-align: center;
+}
+
+.tooltip-container button.constructive, .tooltip-container button.constructive:hover {
+    background: green;
 }
 
 .choosableItem {
