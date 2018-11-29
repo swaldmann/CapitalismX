@@ -1,16 +1,13 @@
 import React from 'react'
 
-const FinanceTable = ({ financialHistory }) => (
+const FinanceTable = ({ financialHistory, simulationState }) => (
     <div className="half">
         <h2><i className="fas fa-exchange-alt"></i>Cashflow</h2>
         <table>
             <thead>
                 <tr>
                     <th></th>
-                    <th>Q1</th>
-                    <th>Q2</th>
-                    <th>Q3</th>
-                    <th>Q4</th>
+                    {[...Array(4).keys()].map(i => <th>Q{((simulationState.elapsedDays - 4 + i)%4 + 4)%4 + 1}/{parseInt((simulationState.elapsedDays - 4 + i)/4 + 90)%100}</th>)}
                 </tr>
             </thead>
         </table>
