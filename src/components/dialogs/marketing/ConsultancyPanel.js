@@ -5,7 +5,7 @@ import VisibleConsultancyPopover from '../../../containers/VisibleConsultancyPop
 const ConsultancyPanel = ({hiredConsultancy, actions}) => (
     <div className="panelItem">
         <h4>Management Consultancy</h4>
-        <p className="description">
+        <div className="description">
             A management consulting firm can help you make important decisions and uncover mistakes that happen in your company.<br />
             <div className="choosableItem">
                 <div><b>Currently employing</b></div>
@@ -13,7 +13,7 @@ const ConsultancyPanel = ({hiredConsultancy, actions}) => (
                 {hiredConsultancy ? hiredConsultancy.title : "No Consultancy"}
             </div>
             <VisibleConsultancyPopover />
-        </p>
+        </div>
     </div>
 )
 

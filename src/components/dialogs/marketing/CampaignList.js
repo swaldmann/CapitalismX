@@ -10,7 +10,7 @@ const CampaignList = ({ campaigns, elapsedDays }) => (
             <ul>
                 {
                     campaigns.map(campaign =>
-                        <li>
+                        <li key={campaign.uuid}>
                             <img className="icon" alt="" src={require('../../../static/icons/' + campaign.campaignMediaTemplate.iconPath)} />{campaign.campaignTemplate.name}
                             <div className="detailTitle">{elapsedDays >= campaign.startElapsedDays + 5 ? (elapsedDays - campaign.startElapsedDays) + " days ago" : "Underway"}</div>
                         </li>

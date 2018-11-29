@@ -1,3 +1,5 @@
+import * as uuid from 'uuid/v4'
+
 import {
     START_CAMPAIGN,
     MAKE_PRESS_RELEASE,
@@ -24,6 +26,7 @@ export function campaigns(state = CAMPAIGNS, action) {
         case START_CAMPAIGN:
             const addedCampaign = {
                 index: 0,
+                uuid: uuid(),
                 startElapsedDays: action.startElapsedDays,
                 campaignTemplate: action.campaignTemplate,
                 campaignMediaTemplate: action.campaignMediaTemplate

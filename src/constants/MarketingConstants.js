@@ -1,3 +1,4 @@
+import * as uuid from 'uuid/v4'
 
 export const CAMPAIGN_MEDIA_TEMPLATES = [
     {
@@ -21,7 +22,7 @@ export const CAMPAIGN_MEDIA_TEMPLATES = [
         detailTitle: "$100000",
         iconPath: "icons8-globe.png"
     }
-]
+].map(template => true ? { ...template, uuid: uuid() } : template)
 
 export const CAMPAIGN_TEMPLATES = [
     {
