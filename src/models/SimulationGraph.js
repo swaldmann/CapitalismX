@@ -1,35 +1,45 @@
 import Graph from './graph/Graph.js'
-import { PRODUCTS } from '../constants/ProductionConstants'
-import { getProductUtilities } from '../selectors/products'
-//import * as Constants from './constants/Employees.js'
 
 class SimulationGraph extends Graph {
-    constructor() {
+    constructor(elapsedDays = 0) {
         super()
+        this.elapsedDays = elapsedDays
 
-        /* This is the starting point of our game simulation. All vertices are initialized here. */
-        this.elapsedDays = this.createVertex(0)
+        /* Set up the Graph here */
 
-        /* Employee Simulation */
-        this.productionUtility = this.createVertex(1)
-        this.productionRate = this.createVertex(5)
-        this.cash = this.createVertex(0)
+        // Input vertices, usually changeable by the user in the UI
+        this.createVertex("price", 100)
+        this.createVertex("workingTimeModel", 0)
+        this.createVertex("totalExpenses", 10)
 
-        /* Edges */
-        this.addDirectedEdge(this.productionRate, this.cash, 12)
+        // Aggregate functions, reduced from an array (list of objects)
+        this.createVertex("totalSalaries", 0)
+        this.createVertex("averageEmployeeSatisfaction", 0.5)
+        this.createVertex("totalEngineerSkills", 0)
+        this.createVertex("totalSalespeopleSkills", 0)
+        this.createVertex("totalProductUtilities", 0)
+
+        // Relationships between variables, i.e. edges in the graph
+        this.createCalculatedVertex("totalSales", 0, function(elapsedDays, totalProductUtilities, price, oldValue) {
+            return totalProductUtilities/price * 100
+        }, ["totalProductUtilities", "price"])
+
+        this.createCalculatedVertex("revenue", 0, function(elapsedDays, totalSales, price, oldValue) {
+            return totalSales * price
+        }, ["totalSales", "price"])
+
+        this.createCalculatedVertex("profit", 0, function(elapsedDays, revenue, totalExpenses, oldValue) {
+            return revenue - totalExpenses
+        }, ["revenue", "totalExpenses"])
+
+        this.createCalculatedVertex("netWorth", 0, function(elapsedDays, profit, oldValue) {
+            return oldValue + profit
+        }, ["profit"])
     }
 
-    recalculate = () => {
-        this.elapsedDays.value += 1
-
-        this.adjacencyList.forEach(function(edgeList) {
-            if (edgeList.edges === undefined) {
-                return
-            }
-            edgeList.edges.forEach(function(edge) {
-                edge.toNode.value += edge.fromNode.value/5 * edge.weight
-            })
-        })
+    forwardTime = () => {
+        this.elapsedDays += 1
+        this.recalculate()
     }
 }
 

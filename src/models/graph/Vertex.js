@@ -1,6 +1,6 @@
 class Vertex {
-    constructor(index, value) {
-        this.index = index
+    constructor(key, value) {
+        this.key = key
         this.value = value
         this.oldValue = value
     }

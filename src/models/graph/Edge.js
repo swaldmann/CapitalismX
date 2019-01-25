@@ -1,8 +1,12 @@
 class Edge {
-    constructor(fromNode, toNode, weight) {
+    constructor(weightFunction, fromNode, toNode) {
         this.fromNode = fromNode
         this.toNode = toNode
-        this.weight = weight
+        this.weightFunction = weightFunction
+    }
+
+    applyWeightFunction() {
+        this.weightFunction(this.fromNode, this.toNode)
     }
 }
 

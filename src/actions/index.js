@@ -2,10 +2,6 @@ import * as types from '../constants/ActionTypes'
 
 export const toggleMenuVisibility = () => ({ type: types.TOGGLE_MENU_VISIBILITY })
 
-export const updateClock = () => {
-    this.state.graph.recalculate()
-}
-
 export const startSimulation = () => ({ type: types.START_SIMULATION })
 export const pauseSimulation = () => ({ type: types.PAUSE_SIMULATION })
 
