@@ -1,4 +1,5 @@
 import React from 'react'
+import InputNumber from 'rc-input-number'
 
 const FinanceCompanySheet = ({ financials }) => (
     <div className="quarter panel">
@@ -23,7 +24,22 @@ const FinanceCompanySheet = ({ financials }) => (
                 </tr>
             </tbody>
         </table>
-        <button>Go public</button>
+        <h3>Investments</h3>
+        <div className="flexbox">
+            <label>Amount</label>
+            <InputNumber
+              defaultValue={1000}
+              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            />
+        </div>
+        <h3>Products</h3>
+        <div className="flexbox">
+            <label>Price</label>
+            <InputNumber
+              defaultValue={1000}
+              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            />
+        </div>
     </div>
 )
 

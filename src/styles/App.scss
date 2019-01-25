@@ -110,6 +110,17 @@ button.large {
     margin-top: 20px;
 }
 
+div.rc-input-number~label {
+    line-height: 70px;
+}
+
+input.rc-input-number-input {
+    padding: 10px;
+    background: #eaeaea;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
 /* Information Bar */
 
 .informationBar {
@@ -261,6 +272,10 @@ th, td {
 hr {
     margin: 10px 0px;
     border-bottom: 1px solid #eee;
+}
+
+#company {
+    margin-bottom: 40px;
 }
 
 #company hr {

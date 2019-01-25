@@ -29,7 +29,7 @@ function startSimulation() {
     return (dispatch) => {
         setInterval(function() {
             simulate(dispatch)
-        }, 3000)
+        }, 10000)
     }
 }
 
@@ -45,9 +45,11 @@ function simulate(dispatch) {
     // Reducers
     const reducedValues = {
         totalSalaries: employees.reduce((totalSalaries, employee) => employee.isEmployed ? totalSalaries + employee.salary : totalSalaries, 0),
-        //averageEmployeeSatisfaction: employees.reduce((totalEmployeeSatisfaction, employee) => employee.isEmployed ? totalEmployeeSatisfaction + employee.happiness : totalEmployeeSatisfaction, 0)/employees.length,
+        averageEmployeeSatisfaction: employees.reduce((totalEmployeeSatisfaction, employee) => employee.isEmployed ? totalEmployeeSatisfaction + employee.happiness : totalEmployeeSatisfaction, 0)/employees.length,
         totalEngineerSkills: engineers.reduce((totalEngineerSkills, engineer) => engineer.isEmployed ? totalEngineerSkills + engineer.skill : totalEngineerSkills, 0),
+        averageEngineerSatisfaction: engineers.reduce((totalEngineerSatisfaction, engineer) => engineer.isEmployed ? totalEngineerSatisfaction + engineer.happiness : totalEngineerSatisfaction, 0)/engineers.length,
         totalSalespeopleSkills: salespeople.reduce((totalSalespeopleSkills, salesperson) => salesperson.isEmployed ? totalSalespeopleSkills + salesperson.skill : totalSalespeopleSkills, 0),
+        averageSalespeopleSatisfaction: salespeople.reduce((totalSalespeopleSatisfaction, salesperson) => salesperson.isEmployed ? totalSalespeopleSatisfaction + salesperson.happiness : totalSalespeopleSatisfaction, 0)/salespeople.length,
         totalProductUtilities: productUtilities.reduce((totalUtility, utility) => totalUtility += utility, 0)
     }
     simulationGraph.updateVertices(reducedValues)

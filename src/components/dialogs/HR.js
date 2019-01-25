@@ -124,6 +124,7 @@ class HR extends React.Component {
                     <button onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></button>
                 </div>
                 <div className="dialogDetail">
+                    <VisibleWorkConditions />
                     <div className="quarter column-flexbox">
                         <VisibleEmployeeList employeeType={ENGINEER_TYPE} />
                         <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={ENGINEER_TYPE} />
@@ -132,7 +133,6 @@ class HR extends React.Component {
                         <VisibleEmployeeList employeeType={SALESPEOPLE_TYPE} className="remaining-size" />
                         <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={SALESPEOPLE_TYPE} />
                     </div>
-                    <VisibleWorkConditions />
                     <div className="quarter panel">
                         <h4>Employee Satisfaction</h4>
                         <Line height={180} data={data} options={options} />

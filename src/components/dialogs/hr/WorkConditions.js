@@ -3,7 +3,7 @@ import { RadioGroup, Radio } from 'react-radio-group'
 import { WORKING_TIME_MODEL_FIXED, WORKING_TIME_MODEL_FLEX, WORKING_TIME_MODEL_TRUST } from '../../../constants/HRConstants'
 
 const WorkConditions = ({ workingTimeModel, actions }) => (
-    <div className="quarter">
+    <div className="quarter panel">
         <h3>Work Conditions</h3>
         <h4>Working Time Model</h4>
         <RadioGroup selectedValue={workingTimeModel} onChange={value => actions.setWorkingTimeModel(value)}>

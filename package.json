@@ -39,6 +39,8 @@
   },
   "devDependencies": {
     "dat.gui": "^0.7.3",
+    "lib-r-math.js": "^1.0.85",
+    "rc-input-number": "^4.3.8",
     "redux-devtools": "^3.4.1"
   },
   "browserslist": [

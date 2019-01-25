@@ -53,7 +53,10 @@ const options = {
 const FinanceCharts = ({ financialHistory, simulationState }) => (
     <div className="quarter panel">
         <h4>Salaries</h4>
-        <Line height={100} options={options} data={{...data, labels: [...Array(4).keys()].map(i => "Q" + (((simulationState.elapsedDays - 4 + i)%4 + 4)%4 + 1) + "/" + parseInt((simulationState.elapsedDays - 4 + i)/4 + 90)%100), datasets: [{...data.datasets[0], data: financialHistory.map(history => history.salaries)}]}} />
+        <Line height={100} options={options} data={{...data, labels: [...Array(4).keys()].map(i => "Q" + (((simulationState.elapsedDays - 4 + i)%4 + 4)%4 + 1) + "/" + parseInt((simulationState.elapsedDays - 4 + i)/4 + 90)%100), datasets: [{...data.datasets[0], data: financialHistory.map(history => history.salaries.toFixed(0))}]}} />
+        <h4>Sales</h4>
+        <Line height={100} options={options} data={{...data, labels: [...Array(4).keys()].map(i => "Q" + (((simulationState.elapsedDays - 4 + i)%4 + 4)%4 + 1) + "/" + parseInt((simulationState.elapsedDays - 4 + i)/4 + 90)%100), datasets: [{...data.datasets[0], data: financialHistory.map(history => history.sales.toFixed(0))}]}} />
+
     </div>
 )
 
