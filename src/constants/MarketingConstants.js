@@ -18,7 +18,7 @@ export const CAMPAIGN_MEDIA_TEMPLATES = [
     {
         index: 2,
         name: "Online",
-        reach: 5000000,
+        reach: 50000,
         detailTitle: "$100000",
         iconPath: "icons8-globe.png"
     }
@@ -91,19 +91,27 @@ export const MARKETING = {
 export const LOBBYIST_TEMPLATES = [
     {
         title: "Senator",
-        iconPath: "icons8-man_face.png"
+        iconPath: "icons8-man_face.png",
+        cost: 10000,
+        taxRate: 0.1
     },
     {
         title: "Congressman",
-        iconPath: "icons8-valet.png"
+        iconPath: "icons8-valet.png",
+        cost: 5000,
+        taxRate: 0.15
     },
     {
         title: "Mayor",
-        iconPath: "icons8-old_man.png"
+        iconPath: "icons8-old_man.png",
+        cost: 2000,
+        taxRate: 0.2
     },
     {
         title: "Worker's Union Leader",
-        iconPath: "icons8-gardener.png"
+        iconPath: "icons8-gardener.png",
+        cost: 1000,
+        taxRate: 0.25
     }
 ]
 

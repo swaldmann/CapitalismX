@@ -28,6 +28,7 @@ class SimulationGraph extends Graph {
         this.createVertex("averageSalespeopleSatisfaction", 0.5)
         this.createVertex("totalProductUtilities", 0)
         this.createVertex("totalProductComponentCost", 0)
+        this.createVertex("taxRate", 0.15)
 
         // All calculated vertices store dictionary keys to their input
         // vertices. Here we can define relationships between variables,
@@ -44,17 +45,18 @@ class SimulationGraph extends Graph {
             return totalSales * price
         }, ["totalSales", "price"])
 
-        this.createCalculatedVertex("profit", 0, function(elapsedDays, revenue, totalExpenses, oldValue) {
-            return revenue - totalExpenses
-        }, ["revenue", "totalExpenses"])
+        this.createCalculatedVertex("profit", 0, function(elapsedDays, revenue, totalExpenses, taxRate, oldValue) {
+            const profit = revenue - totalExpenses
+            return profit > 0 ? profit - (profit * taxRate) : profit
+        }, ["revenue", "totalExpenses", "taxRate"])
 
         this.createCalculatedVertex("investmentEarnings", 0, function(elapsedDays, investmentExpectedReturn, investmentAmount, investmentRisk) {
             const ret = investmentAmount * gauss(investmentExpectedReturn, investmentRisk)
-            console.log(ret)
+            /*console.log(ret)
             console.log(gauss(investmentExpectedReturn, investmentRisk));
             console.log(investmentAmount)
             console.log(investmentExpectedReturn)
-            console.log(investmentRisk)
+            console.log(investmentRisk)*/
             return ret
         }, ["investmentExpectedReturn", "investmentAmount", "investmentRisk"])
 
