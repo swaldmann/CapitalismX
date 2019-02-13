@@ -37,6 +37,11 @@ export const EMPLOYEES = {
     [SALESPEOPLE_TYPE]: SALESPEOPLE
 }
 
+export const TRAINING_TEMPLATES = [
+    { name: "Workshop", cost: 3000, payIncreasePercentage: 0.15, skillIncrease: 1 },
+    { name: "Course", cost: 5500, payIncreasePercentage: 0.3, skillIncrease: 2 }
+]
+
 export const WORKING_TIME_MODEL_FIXED = 'WORKING_TIME_MODEL_FIXED'
 export const WORKING_TIME_MODEL_FLEX = 'WORKING_TIME_MODEL_FLEX'
 export const WORKING_TIME_MODEL_TRUST = 'WORKING_TIME_MODEL_TRUST'

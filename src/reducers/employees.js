@@ -1,6 +1,7 @@
 import {
     HIRE_EMPLOYEE,
-    FIRE_EMPLOYEE
+    FIRE_EMPLOYEE/*,
+    TRAIN_EMPLOYEE*/
 } from '../constants/ActionTypes'
 
 import { EMPLOYEES } from '../constants/HRConstants'
@@ -17,6 +18,10 @@ export default function employees(state = initialState, action) {
             return Object.assign({}, ...Object.keys(state).map(k => ({[k]: state[k].map(employee =>
                 employee.index === action.index ? { ...employee, isEmployed: false } : employee
             )})))
+        /*case TRAIN_EMPLOYEE:
+            return Object.assign({}, ...Object.keys(state).map(k => ({[k]: state[k].map(employee =>
+                employee.index === action.index ? { ...employee, skill: action. } : employee
+            )})))*/
         default:
         return state
     }
