@@ -5,7 +5,11 @@ import * as Actions from '../actions'
 
 const mapStateToProps = state => {
     return {
-        workingTimeModel: state.workingTimeModel
+        workingTimeModel: state.workingTimeModel,
+        workingHours: state.workingHours,
+        companyCarPolicy: state.companyCarPolicy,
+        foodBenefits: state.foodBenefits,
+        gymMembership: state.gymMembership
     }
 }
 
