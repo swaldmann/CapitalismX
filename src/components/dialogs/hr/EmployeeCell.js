@@ -1,5 +1,6 @@
 import React from 'react'
 import StarRatings from 'react-star-ratings'
+import VisibleTrainingPopover from '../../../containers/VisibleTrainingPopover'
 
 const happinessIcons = ["😊", "😐", "☹️"]
 
@@ -13,7 +14,7 @@ class EmployeeCell extends React.Component {
                 <div className="flexbox">
                     <span className="cell-title content-size">{employee.name}</span>
                     <span className="cell-detailTitle remaining-size">{employee.salary.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
-                    {employee.isEmployed && <button>Train</button>}
+                    {employee.isEmployed && <VisibleTrainingPopover employee={employee} />}
                 </div>
                 <div className="flexbox">
                     <StarRatings

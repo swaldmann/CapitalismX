@@ -50,11 +50,33 @@ export const EMPLOYEES = {
     [SALESPEOPLE_TYPE]: SALESPEOPLE
 }
 
+// Trainings
 export const TRAINING_TEMPLATES = [
-    { name: "Workshop", cost: 3000, payIncreasePercentage: 0.15, skillIncrease: 1 },
-    { name: "Course", cost: 5500, payIncreasePercentage: 0.3, skillIncrease: 2 }
+    { name: "Workshop", cost: 3000, salaryIncreasePercentage: 0.15, skillIncrease: 1 },
+    { name: "Course", cost: 5500, salaryIncreasePercentage: 0.3, skillIncrease: 2 }
 ]
 
+// Working Time Model
 export const WORKING_TIME_MODEL_FIXED = 'WORKING_TIME_MODEL_FIXED'
 export const WORKING_TIME_MODEL_FLEX = 'WORKING_TIME_MODEL_FLEX'
 export const WORKING_TIME_MODEL_TRUST = 'WORKING_TIME_MODEL_TRUST'
+
+// Working Hours
+export const WORKING_HOURS_10 = 'WORKING_HOURS_10'
+export const WORKING_HOURS_8 = 'WORKING_HOURS_8'
+export const WORKING_HOURS_6 = 'WORKING_HOURS_6'
+
+// Company Car
+export const COMPANY_CAR_SEDAN = 'COMPANY_CAR_SEDAN'
+export const COMPANY_CAR_SUBCOMPACT = 'COMPANY_CAR_SUBCOMPACT'
+export const COMPANY_CAR_NONE = 'COMPANY_CAR_NONE'
+
+// Food/Coffee
+export const FOOD_BENEFITS_NONE = 'FOOD_BENEFITS_NONE'
+export const FOOD_BENEFITS_PAID = 'FOOD_BENEFITS_PAID'
+export const FOOD_BENEFITS_FREE = 'FOOD_BENEFITS_FREE'
+
+// Company Car
+export const GYM_MEMBERSHIP_FREE = 'GYM_MEMBERSHIP_FREE'
+export const GYM_MEMBERSHIP_SUBSIDIZED = 'GYM_MEMBERSHIP_SUBSIDIZED'
+export const GYM_MEMBERSHIP_NONE = 'GYM_MEMBERSHIP_NONE'

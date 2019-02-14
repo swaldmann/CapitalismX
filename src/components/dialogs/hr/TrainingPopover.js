@@ -3,7 +3,7 @@ import TooltipTrigger from 'react-popper-tooltip'
 
 import {TRAINING_TEMPLATES} from '../../../constants/HRConstants'
 
-const TrainingPopover = ({lobbyistIndex, actions}) => (
+const TrainingPopover = ({employee, trainingIndex, actions}) => (
     <TooltipTrigger
         placement="top"
         trigger="click"
@@ -31,15 +31,20 @@ const TrainingPopover = ({lobbyistIndex, actions}) => (
                     <h3>Trainings</h3>
                     <div className="borderedList">
                         <ul>
-                            {/*TRAINING_TEMPLATES.map((trainingTemplate, trainingIndex) =>
+                            {TRAINING_TEMPLATES.map((trainingTemplate, trainingIndex) =>
                                 <li>
                                     <div className="margin-bottom">
-                                        <button onClick={() => actions.hireLobbyist(lobbyistIndex)}>
-                                            {trainingTemplate.title}
+                                        <button disabled={employee.skill + trainingTemplate.skillIncrease > 5} onClick={() => actions.trainEmployee(employee.index, trainingTemplate.skillIncrease, trainingTemplate.salaryIncreasePercentage)}>
+
+                                            <div className="flexbox">
+                                                <span className="cell-title content-size">{trainingTemplate.name}</span>
+                                                <span className="cell-detailTitle remaining-size">{trainingTemplate.cost.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
+                                            </div>
+                                            <div className="subtitle">{"Skill +" + trainingTemplate.skillIncrease + ", Salary +" + (trainingTemplate.salaryIncreasePercentage * 100) + "%"}</div>
                                         </button>
                                     </div>
                                 </li>
-                            )*/}
+                            )}
                         </ul>
                     </div>
                 </div>
