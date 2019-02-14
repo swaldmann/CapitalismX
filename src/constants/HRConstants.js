@@ -38,8 +38,8 @@ export const EMPLOYEES = {
 }
 
 export const TRAINING_TEMPLATES = [
-    { name: "Workshop", cost: 3000, payIncreasePercentage: 0.15, skillIncrease: 1 },
-    { name: "Course", cost: 5500, payIncreasePercentage: 0.3, skillIncrease: 2 }
+    { name: "Workshop", cost: 3000, salaryIncreasePercentage: 0.15, skillIncrease: 1 },
+    { name: "Course", cost: 5500, salaryIncreasePercentage: 0.3, skillIncrease: 2 }
 ]
 
 export const WORKING_TIME_MODEL_FIXED = 'WORKING_TIME_MODEL_FIXED'

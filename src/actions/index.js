@@ -12,7 +12,7 @@ export const dailyFinancialUpdate = historyEntry => ({ type: types.DAILY_FINANCI
 export const hireEmployee = index => ({ type: types.HIRE_EMPLOYEE, index })
 export const fireEmployee = index => ({ type: types.FIRE_EMPLOYEE, index })
 export const setWorkingTimeModel = newModel => ({ type: types.SET_WORKING_TIME_MODEL, newModel })
-//export const trainEmployee = (employeeIndex, trainingIndex) => ({ type: types.TRAIN_EMPLOYEE, employeeIndex, trainingIndex })
+export const trainEmployee = (index, skillIncrease, salaryIncreasePercentage) => ({ type: types.TRAIN_EMPLOYEE, index, skillIncrease, salaryIncreasePercentage })
 
 // Production
 export const switchCurrentComponent = (productIndex, componentTypeIndex, componentIndex) => ({ type: types.SWITCH_CURRENT_COMPONENT, productIndex, componentTypeIndex, componentIndex })

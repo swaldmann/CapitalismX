@@ -122,6 +122,10 @@ input.rc-input-number-input {
     text-align: right;
 }
 
+button[disabled] {
+    opacity: 0.4
+}
+
 /* Information Bar */
 
 .informationBar {
