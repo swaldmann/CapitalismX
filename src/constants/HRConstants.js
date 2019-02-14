@@ -24,6 +24,19 @@ const SALESPEOPLE = [
     {index: 19, name: "Joe Gill", skill: 1, salary: 35000, happiness: 1, isEmployed: true}
 ]
 
+const TRAININGS = [
+    {index: 20, name: "Hot topics in manufacturing", cost: , utility:10 , effectiveness:365 , department: "Production" }
+    {index: 20, name: "Lean production methods", cost: , utility:30 , effectiveness:200 , department: ["Production","Logistics"] }
+    {index: 20, name: "Psychology of work", cost: , utility:20 , effectiveness:200 , department: ["Sales", "Marketing"] }
+    {index: 20, name: "Best practice in employer branding", cost: , utility:30 , effectiveness:365 , department: ["Marketing", "Sales"] }
+    {index: 20, name: "AIDA principle", cost: , utility:10 , effectiveness:150 , department: ["Marketing", "Sales"] }
+    {index: 20, name: "Environmental friendly processes", cost: , utility:20 , effectiveness:200 , department: ["Production","Logistics"] }
+    {index: 20, name: "Sustainability in transport", cost: , utility:20 , effectiveness:250 , department: ["Logistics"] }
+    {index: 20, name: "Persuasion techniques", cost: , utility:30 , effectiveness:200 , department: ["Sales"] }
+    {index: 20, name: "Personality matters", cost: , utility:10 , effectiveness:100 , department: ["Sales"] }
+  ]
+
+
 // Types
 export const ENGINEER_TYPE = "Engineers"
 export const SALESPEOPLE_TYPE = "Salespeople"
