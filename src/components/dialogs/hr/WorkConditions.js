@@ -13,9 +13,9 @@ const WorkConditions = ({ workingTimeModel, workingHours, companyCarPolicy, food
         <h3>Work Conditions</h3>
         <h4>Working Time Model</h4>
         <RadioGroup selectedValue={workingTimeModel} onChange={value => actions.setWorkingTimeModel(value)}>
-            <Radio value={WORKING_TIME_MODEL_FIXED} />Fixed<div className="subtitle">No additional costs</div>
-            <Radio value={WORKING_TIME_MODEL_FLEX} />Flex<div className="subtitle">-$30 per employee/month</div>
-            <Radio value={WORKING_TIME_MODEL_TRUST} />Trust-based<div className="subtitle">-$50 per employee/month</div>
+            <Radio value={WORKING_TIME_MODEL_FIXED} />Fixed<div className="subtitle">No changes</div>
+            <Radio value={WORKING_TIME_MODEL_FLEX} />Flex<div className="subtitle">-$30 per employee/month, +15% JS</div>
+            <Radio value={WORKING_TIME_MODEL_TRUST} />Trust-based<div className="subtitle">-$50 per employee/month, +30% JS</div>
         </RadioGroup>
         <h4>Working Hours</h4>
         <RadioGroup selectedValue={workingHours} onChange={value => actions.setWorkingHours(value)}>

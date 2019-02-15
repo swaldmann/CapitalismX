@@ -34,7 +34,7 @@ class SimulationGraph extends Graph {
         // vertices. Here we can define relationships between variables,
         // i.e. edges in the graph.
         this.createCalculatedVertex("totalSales", 0, function(elapsedDays, totalProductUtilities, price, totalSalespeopleSkills, oldValue) {
-            return (totalProductUtilities/price) * 1000 * (1 + totalSalespeopleSkills/20)
+            return (totalProductUtilities/price) * 10 * (1 + totalSalespeopleSkills/20) * (1 + Math.random()/10 * 5)
         }, ["totalProductUtilities", "price", "totalSalespeopleSkills"])
 
         this.createCalculatedVertex("totalExpenses", 0, function(elapsedDays, totalProductComponentCost, totalSalaries, totalSales, oldValue) {

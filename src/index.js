@@ -61,7 +61,7 @@ function simulate(dispatch) {
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
         const history = {
-            sales: simulationGraph.getVertexValue("totalSales"),
+            sales: simulationGraph.getVertexValue("revenue"),
             investments: simulationGraph.getVertexValue("investmentEarnings"),
             loans: 0,
             salaries: simulationGraph.getVertexValue("totalSalaries"),

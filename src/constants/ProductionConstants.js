@@ -72,4 +72,10 @@ const SMARTPHONE = {index: 0, productCategoryName: "Smartphone", components: [{.
 //const NOTEBOOK   = {index: 2, productCategoryName: "Notebook", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, ]}
 //const SERVER     = {index: 3, productCategoryName: "Server", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}]}
 
+export const SUPPLIER_TEMPLATES = [
+    { name: "Intel", costMultiplicator: 1.3, qualityMultiplicator: 1.4 },
+    { name: "AMD", costMultiplicator: 1.2, qualityMultiplicator: 1.1 },
+    { name: "Micron", costMultiplicator: 1, qualityMultiplicator: 1 }
+]
+
 export const PRODUCTS = [SMARTPHONE]//, TV, NOTEBOOK, SERVER]
