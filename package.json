@@ -2,6 +2,7 @@
   "name": "capitalism-x",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://swaldmann.github.io/CapitalismX",
   "dependencies": {
     "ajv": "^6.5.5",
     "chart.js": "^2.7.3",
@@ -35,10 +36,13 @@
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "dat.gui": "^0.7.3",
+    "gh-pages": "^2.0.1",
     "lib-r-math.js": "^1.0.85",
     "rc-input-number": "^4.3.8",
     "redux-devtools": "^3.4.1"
