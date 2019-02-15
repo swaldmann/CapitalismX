@@ -2,6 +2,8 @@ import React from 'react'
 import {uniqueIDFromIntegers} from "../../../util/Misc"
 import * as classNames from "classnames"
 
+import VisibleSupplierPopover from "../../../containers/VisibleSupplierPopover"
+
 const ComponentGrid = ({products, productUtilities, elapsedDays, actions}) => (
     <div className="three-quarter">
     {
@@ -13,14 +15,12 @@ const ComponentGrid = ({products, productUtilities, elapsedDays, actions}) => (
             <div className="grid-column" key={i}>
                 <div><img src={require('../../../static/icons/' + componentType.imageName + '.png')} alt="" />{componentType.typeDescription}</div>
                 {componentType.allComponents.map((component, j) =>
-                    <button key={uniqueIDFromIntegers(i, j)}
+                    <VisibleSupplierPopover component={component}
+                            key={uniqueIDFromIntegers(i, j)}
                       className={classNames({ 'componentActive': componentType.currentIndex === j,
                                            'componentAvailable': component.availabilityOffset <= elapsedDays })}
                         onClick={() => actions.switchCurrentComponent(k, i, j)}
-                       disabled={component.availabilityOffset > elapsedDays}
-                    >
-                    {component.name}
-                    </button>
+                    />
                 )}
             </div>
             )

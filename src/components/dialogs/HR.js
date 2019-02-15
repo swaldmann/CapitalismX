@@ -134,6 +134,7 @@ class HR extends React.Component {
                         <VisibleEmployeeHirePopover visibilityFilter={SHOW_AVAILABLE} className="content-height" employeeType={SALESPEOPLE_TYPE} />
                     </div>
                     <div className="quarter panel">
+                        <h3>Statistics</h3>
                         <h4>Employee Satisfaction</h4>
                         <Line height={180} data={data} options={options} />
                     </div>
