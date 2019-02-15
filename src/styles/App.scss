@@ -1,6 +1,7 @@
 @import "Constants.scss";
 @import "Dialogs.scss";
 @import "Popover.scss";
+@import "Production.scss";
 
 * {
     margin: 0;
@@ -14,8 +15,8 @@
 }
 
 body {
-    font: 16px/1.5em -apple-system, Helvetica, Tahoma, sans-serif;
-    background: green;
+    font: 16px/1.5em -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background: black;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -48,7 +49,6 @@ button {
     padding: 10px;
     border-radius: 5px;
     transition: all 0.2s;
-    cursor: pointer;
 }
 
 /* Start Menu */
@@ -110,6 +110,22 @@ button.large {
     margin-top: 20px;
 }
 
+div.rc-input-number~label {
+    line-height: 70px;
+}
+
+input.rc-input-number-input {
+    padding: 10px;
+    background: #eaeaea;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: right;
+}
+
+button[disabled] {
+    opacity: 0.4
+}
+
 /* Information Bar */
 
 .informationBar {
@@ -130,16 +146,18 @@ button.large {
     line-height: 1.5em;
 }
 
-.informationBar > ul > li > a, .time {
+.informationBar > ul > li > a, .informationBar > ul > li > button, .time {
     background: #111;
     color: white;
     padding: 8px 18px;
     box-sizing: border-box;
     border-radius: 20px;
     transition: all 0.2s;
+    font-weight: normal;
+    line-height: 24px;
 }
 
-.informationBar > ul > li > a:hover {
+.informationBar > ul > li > a:hover, .informationBar > ul > li > button:hover  {
     background: #333;
 }
 
@@ -185,45 +203,43 @@ canvas {
     width: 100%;
 }
 
-/* Grid */
-
 .pull-right {
+    display: block;
+    margin-left: auto;
+}
+
+.pull-right-inline {
     float: right;
 }
 
+/* Grid */
+
+.quarter:not(:last-child) {
+    border-right: 15px solid white;
+}
+
+.third:not(:last-child) {
+    border-right: 10px solid transparent;
+}
+
+.three-quarter {
+    flex-basis: 75%;
+}
+
 .two-thirds {
-    float: left;
-    width: 66%;
-    box-sizing: border-box;
+    flex-basis: 66.666666666%;
+}
+
+.half {
+    flex-basis: 50%;
 }
 
 .third {
-    float: left;
-    box-sizing: border-box;
-    width: 34%;
+    flex-basis: 33.333333333%;
 }
 
-section.half > *, .half,
-section.quarter > *, .quarter {
-    float: left;
-    box-sizing: border-box;
-    height: 100%;
-}
-
-section.half > *, .half {
-    width: calc(50% - 30px);
-}
-
-section.quarter > *, .quarter {
-    width: calc(25% - 30px);
-}
-
-section.half > *:nth-child(2n-1), .half:nth-child(2n - 1) {
-    margin-right: 60px;
-}
-
-section.quarter > *, .quarter:not(:last-child) {
-    margin-right: 40px;
+.quarter {
+    flex-basis: 25%;
 }
 
 /* Table */
@@ -263,10 +279,8 @@ hr {
     border-bottom: 1px solid #eee;
 }
 
-.panel {
-    padding: 20px;
-    background: #f8f8f8;
-    border-radius: 10px;
+#company {
+    margin-bottom: 40px;
 }
 
 #company hr {
@@ -283,6 +297,11 @@ hr {
 
 
 /* fontawesome */
+
+.fa-fw.fa-xs {
+    margin-right: 5px;
+    vertical-align: 1px;
+}
 
 .fa-users {
     color: #84aded;

@@ -1,11 +1,18 @@
 import React from "react"
 import Modal from "react-modal"
+import {withRouter} from 'react-router-dom'
+
+import VisibleCampaignList from '../../containers/VisibleCampaignList'
+import VisiblePressReleasesList from '../../containers/VisiblePressReleasesList'
+import VisibleMarketResearchesList from '../../containers/VisibleMarketResearchesList'
+import VisibleLobbyistPanel from '../../containers/VisibleLobbyistPanel'
+import VisibleConsultancyPanel from '../../containers/VisibleConsultancyPanel'
 
 Modal.setAppElement("body")
 
 class Marketing extends React.Component {
     closeModal = () => {
-        window.history.back()
+        this.props.history.push("/")
     }
 
     render() {
@@ -19,13 +26,27 @@ class Marketing extends React.Component {
             >
                 <div className="dialogHeader">
                     <h1><i className="fas fa-chart-line"></i>Marketing</h1>
-                    <a onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></a>
+                    <button onClick={this.closeModal} className="dialogClose"><i className="fas fa-times fa-2x"></i></button>
                 </div>
                 <div className="dialogDetail">
+                    <div className="panel">
+                        <h3>Competitors</h3>
+                        <p>Market Share: 92%</p>
+                    </div>
+                    <div className="remaining-size flexbox">
+                        <VisibleCampaignList />
+                        <VisiblePressReleasesList />
+                        <VisibleMarketResearchesList />
+                    </div>
+                    <div className="panel">
+                        <h3>Public Relations</h3>
+                        <VisibleLobbyistPanel />
+                        <VisibleConsultancyPanel />
+                    </div>
                 </div>
             </Modal>
         )
     }
 }
 
-export default Marketing
+export default withRouter(Marketing)

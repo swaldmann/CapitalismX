@@ -1,0 +1,76 @@
+@import "Constants.scss";
+
+.three-quarter {
+    overflow: auto !important;
+    height: 100%;
+}
+
+.grid {
+    margin-bottom: 40px;
+}
+
+.grid-column {
+    display: flex;
+    flex: 1 0 auto;
+}
+.grid-column > button, .grid-column > div {
+    flex: 1 1 0px;
+    padding: 5px;
+    margin: 3px !important;
+}
+
+.grid-column > button:first-child, .grid-column > div:first-child {
+    flex: 0 0 100px;
+    font-weight: bold;
+}
+
+.grid-column > button {
+    border-radius: 5px;
+    background: #eee;
+    font-size: 14px;
+    font-weight: normal;
+    color: #777;
+    text-align: center;
+}
+
+.grid-column img, .icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 4px;
+    vertical-align: -6px;
+}
+
+.debug-box {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    color: white;
+    border: 4px dashed yellow;
+    border-radius: 5px;
+    float: left !important;
+    background: #222;
+}
+
+.dashedButton {
+    margin-top: 40px;
+    border: 2px dashed #777;
+    color: #555;
+    float: left !important;
+    background: white;
+
+    .buttonSubtitle {
+        font-weight: normal;
+        font-size: 14px;
+    }
+}
+
+.componentAvailable {
+    background: $button-blue-light !important;
+    color: white !important;
+}
+
+.componentActive {
+    background: $button-blue !important;
+    color: white !important;
+}

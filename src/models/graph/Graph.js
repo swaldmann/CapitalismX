@@ -1,48 +1,49 @@
-import Edge from './Edge'
 import Vertex from './Vertex'
-import EdgeList from './EdgeList'
 
 class Graph {
     constructor() {
-        this.adjacencyList = []
-        this.vertices = []
+        this.vertices = {}
+        this.adjacencyList = {}
     }
 
-    getVertices() {
-        const vertices = []
-        this.adjacencyList.forEach(function(edgeList) {
-            vertices.push(edgeList.vertex)
+    getVertex(key) {
+        return this.vertices[key]
+    }
+
+    getVertexValue(key) {
+        return this.vertices[key].value
+    }
+
+    createCalculatedVertex(key, value, weightFunction, fromKeys) {
+        this.vertices[key] = new Vertex(key, value)
+        this.adjacencyList[key] = { weightFunction: weightFunction, fromKeys: fromKeys, toKey: key}
+    }
+
+    createVertex(key, value = 0) {
+        this.vertices[key] = new Vertex(key, value)
+    }
+
+    setVertex(key, value) {
+        this.vertices[key].value = value
+    }
+
+    updateVertices(vertices) {
+        const self = this
+        Object.keys(vertices).forEach(function(key) {
+            self.setVertex(key, vertices[key])
         })
-        return vertices
     }
 
-    getEdges() {
-        const edges = []
-        this.adjacencyList.forEach(function(edgeList) {
-            edges.concat(edgeList.edges)
+    recalculate() {
+        const self = this
+        Object.keys(this.adjacencyList).forEach(function(adjacencyObjectKey) {
+            const adjacencyObject = self.adjacencyList[adjacencyObjectKey]
+            const fromNodes = adjacencyObject.fromKeys.map(fromKey => self.getVertex(fromKey).value)
+            const toNode = self.getVertex(adjacencyObject.toKey).value
+            fromNodes.push(toNode)
+            fromNodes.unshift(self.elapsedDays)
+            self.setVertex(adjacencyObject.toKey, adjacencyObject.weightFunction.apply(this, fromNodes))
         })
-        return edges
-    }
-
-    createVertex(value) {
-        const matchingVertices = this.vertices.filter(v => v.value === value)
-        if (matchingVertices.length > 0) {
-            return matchingVertices[matchingVertices.length - 1]
-        }
-        let vertex = new Vertex(this.adjacencyList.length, value)
-        let edgeList = new EdgeList(vertex)
-        this.adjacencyList.push(edgeList)
-        return vertex
-    }
-
-    addDirectedEdge(fromNode, toNode, weight) {
-        const edge = new Edge(fromNode, toNode, weight)
-        const edgeList = this.adjacencyList[fromNode.index]
-        if (edgeList.edges !== undefined) {
-            edgeList.addEdge(edge)
-        } else {
-            edgeList.edges = [edge]
-        }
     }
 }
 

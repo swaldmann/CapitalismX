@@ -1,37 +1,42 @@
 @import "Constants.scss";
 
 .modal h1 {
-    margin: 0;
     flex: 1 1 auto;
+    line-height: 42px;
 }
 
 .dialogHeader {
     display: flex;
     flex-flow: row;
-    flex: 0 1 auto;
+    flex: 0 0 38px;
 }
 
-
-a.dialogClose {
+.modal button.dialogClose {
     flex: 0 1 22px;
+    background: white;
     color: gray;
-    float: right;
+    height: 42px;
+    margin-top: 0px;
     transition: all 0.2s;
     border-radius: 5px;
     padding: 5px 10px 3px 10px;
 }
 
-a.dialogClose:hover {
+.modal button.dialogClose:hover {
     background: #ddd;
 }
 
-.column-flexbox {
+.flexbox, .column-flexbox {
     display: flex;
-    flex-flow: column;
-    height: 100%;
+    justify-content: space-between;
 }
 
-.remaining-height {
+.column-flexbox {
+    height: 100%;
+    flex-flow: column;
+}
+
+.remaining-size {
     flex: 1 1 auto;
 }
 
@@ -40,17 +45,20 @@ a.dialogClose:hover {
 }
 
 .dialogDetail {
-    flex: 1 1 auto;
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
     padding-top: 30px;
     border-top: 1px solid #ddd;
+    overflow: hidden;
 }
 
-.dialogDetail > * > h2 {
+.dialogDetail h2 {
     margin-bottom: 10px;
 }
 
-.dialogDetail > * > h2 > i.fas {
+.dialogDetail h2 > i.fas {
     color: #666;
     font-size: 22px;
     margin-right: 8px;
@@ -106,21 +114,61 @@ a.dialogClose:hover {
 
 .modal button {
     margin-top: 10px;
-    width: 200px;
-    float: right;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
 }
 
 .modal button+button {
     margin-right: 10px;
 }
 
-h3, h4 {
-    margin-bottom: 10px;
+.modal .centered {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.panel {
+    flex: 0 1 280px;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    overflow: scroll;
+}
+
+.panel:not(:last-child) {
+    border-right: 20px solid white;
+}
+
+.panel:last-child {
+    border-left: 20px solid white;
+}
+
+.panelItem:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+h3 {
+    margin-bottom: 15px;
+}
+
+h4 {
+    margin-bottom: 15px;
+}
+
+p:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+input[type="checkbox"] {
+     margin-right: 5px;
+     width: 14px;
+     height: 12.5px;
+     zoom: 1.3;
 }
 
 input[type="radio"] {
-     margin-right: 5px;
+    margin-right: 5px;
+    vertical-align: 1px;
 }
 
 legend {
@@ -129,27 +177,13 @@ legend {
     margin-bottom: 5px;
 }
 
-.dialogDetail {
-    height: 100%;
-    overflow: hidden;
-}
-
-.dialogDetail .half {
-    overflow: hidden;
-    height: 100%;
-}
-
 .dialogDetail .full-height {
     height: calc(100% - 140px);
 }
 
 .borderedList {
-    height: 100%;
+    flex: 1 1 auto;
     overflow: auto;
-}
-
-.borderedList > ul {
-    height: 100%;
 }
 
 .borderedList ul > li {
@@ -157,41 +191,72 @@ legend {
     list-style: none;
 }
 
+.borderedList ul > li > div.flexbox > button {
+    flex-basis: 50px;
+    display: inline-block;
+    margin: 0px 0px 0px 5px;
+    padding: 5px;
+    font-weight: normal;
+}
+
+.borderedList > ul > li > div:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.cell-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cell-detailTitle {
+    text-align: right;
+    padding-left: 5px;
+}
+
+.detailTitle {
+    margin-left: 28px;
+    color: gray;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+}
+
 .dialogDetail h3+h4 {
     margin-top: 20px;
-}
-
-:not(.tooltip-container) > div > .borderedList {
-    border: 1px solid #ddd;
-}
-
-:not(.tooltip-container) > div > .borderedList ul > li:nth-child(2n) {
-    background: #fafafa !important;
-}
-
-.tooltip-container {
-    height: 600px;
-    min-width: 250px;
 }
 
 .star-ratings {
     display: block;
 }
 
-.pull-right > a {
-    display: inline-block;
-    width: 50px;
-    text-align: center;
-    margin-left: 5px;
-    border-radius: 5px;
-    color: white;
-    background: green;
+.checkbox-subtitle {
+    margin-left: 24px;
+    margin-bottom: 10px;
+    color: gray;
 }
 
 .margin-bottom {
     margin-bottom: 2px;
 }
 
-a.fire {
+.destructive {
     background: rgb(168, 33, 33);
+}
+
+.tooltip-container .flexbox button {
+    text-align: center;
+}
+
+.tooltip-container button.constructive, .tooltip-container button.constructive:hover {
+    background: green;
+}
+
+.choosableItem {
+    margin: 15px 0px;
+    background: #e5e5e5;
+    padding: 8px;
+    border-radius: 5px;
 }

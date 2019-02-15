@@ -2,7 +2,7 @@ import React from 'react'
 import EmployeeCell from './EmployeeCell'
 
 const EmployeeList = ({ filteredEmployees, actions, employeeType, visibilityFilter }) => (
-    <div className="remaining-height column-flexbox">
+    <div className="column-flexbox">
         <h3>{visibilityFilter} { employeeType }</h3>
         <div className="borderedList">
             <ul>

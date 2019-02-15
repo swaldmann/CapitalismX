@@ -20,7 +20,7 @@ class Menu extends React.Component {
 
     render() {
         return (
-            <div className="menu">
+            <div className="menu flexbox">
                 <div className="two-thirds">
                     <h1>Capitalism X</h1>
                     <button className="large" onClick={this.props.newGame}>New Game</button>

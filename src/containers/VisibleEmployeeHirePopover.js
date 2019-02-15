@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import EmployeeHirePopover from '../components/dialogs/tables/EmployeeHirePopover'
+import EmployeeHirePopover from '../components/dialogs/hr/EmployeeHirePopover'
 
 const makeMapStateToProps = () => {
     const mapStateToProps = (state, props) => {

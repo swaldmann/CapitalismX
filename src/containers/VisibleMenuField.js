@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import MenuField from '../components/MenuField'
-import { getHiredEmployeeCount } from '../selectors'
+import { getHiredEmployeeCount } from '../selectors/employees'
 
 const mapStateToProps = (state, props) => {
     return {

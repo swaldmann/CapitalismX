@@ -12,6 +12,10 @@
     max-height: 400px;
 }
 
+.tooltip-container li {
+    list-style: none;
+}
+
 .tooltip-arrow {
     height: 1rem;
     position: absolute;
@@ -39,4 +43,60 @@
     border-color: rgb(49, 53, 60) transparent transparent transparent;
     border-width: 0.4rem 0.5rem 0 0.5rem;
     position: absolute;
+}
+
+
+:not(.tooltip-container) > div > .borderedList {
+    border: 1px solid #ddd;
+}
+
+:not(.tooltip-container) > div > .borderedList ul > li:nth-child(2n) {
+    background: #fafafa !important;
+}
+
+.tooltip-container {
+    max-height: 600px;
+    min-width: 250px;
+}
+
+.tooltip-container.tooltip-secondary {
+    background-color: rgb(59, 64, 73);
+}
+
+.tooltip-container button {
+    background: inherit;
+    width: 100%;
+    text-align: left;
+    font-weight: normal;
+}
+
+.tooltip-container button:hover {
+    background: rgb(64, 69, 79);
+}
+
+.tooltip-container.tooltip-secondary button:hover {
+    background: rgb(74, 81, 93);
+}
+
+:not(h3)~h4 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    margin-top: 5px;
+    color: #999;
+}
+
+.subtitle.withImage {
+    margin-left: 28px;
+}
+
+input[type="radio"]+.subtitle {
+    margin-bottom: 10px;
+}
+
+input[type="radio"]~.subtitle {
+    margin-bottom: 10px;
+    margin-left: 18px;
 }
