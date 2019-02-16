@@ -11,7 +11,7 @@ import Marketing from './components/dialogs/Marketing.js'
 import VisibleMenuField from './containers/VisibleMenuField.js'
 
 const Game = ({ actions, numberOfEmployees, cash, productUtilities, simulationState }) => (
-    <Router>
+    <Router basename="/CapitalismX">
         <div id="App">
             { <Map /> }
             { simulationState.showMenu && <Menu newGame={actions.toggleMenuVisibility} loadGame={actions.toggleMenuVisibility} /> }
