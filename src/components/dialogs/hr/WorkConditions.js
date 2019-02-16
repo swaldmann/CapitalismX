@@ -13,33 +13,33 @@ const WorkConditions = ({ workingTimeModel, workingHours, companyCarPolicy, food
         <h3>Work Conditions</h3>
         <h4>Working Time Model</h4>
         <RadioGroup selectedValue={workingTimeModel} onChange={value => actions.setWorkingTimeModel(value)}>
-            <Radio value={WORKING_TIME_MODEL_FIXED} />Fixed<div className="subtitle">No changes</div>
-            <Radio value={WORKING_TIME_MODEL_FLEX} />Flex<div className="subtitle">-$30 per employee/month, +15% JS</div>
-            <Radio value={WORKING_TIME_MODEL_TRUST} />Trust-based<div className="subtitle">-$50 per employee/month, +30% JS</div>
+            <Radio value={WORKING_TIME_MODEL_FIXED} />Fixed Hours<div className="subtitle">No changes</div>
+            <Radio value={WORKING_TIME_MODEL_FLEX} />Flexible Hours<div className="subtitle">-$30 per employee/month</div>
+            <Radio value={WORKING_TIME_MODEL_TRUST} />Trust-based<div className="subtitle">-$50 per employee/month</div>
         </RadioGroup>
         <h4>Working Hours</h4>
         <RadioGroup selectedValue={workingHours} onChange={value => actions.setWorkingHours(value)}>
-            <Radio value={WORKING_HOURS_6} />10 hours<div className="subtitle">+$50 per employee/month, -20% JS</div>
+            <Radio value={WORKING_HOURS_6} />10 hours<div className="subtitle">+$50 per employee/month</div>
             <Radio value={WORKING_HOURS_8} />8 hours<div className="subtitle">No changes</div>
-            <Radio value={WORKING_HOURS_10} />6 hours<div className="subtitle">-$100 per employee/month, +20% JS</div>
+            <Radio value={WORKING_HOURS_10} />6 hours<div className="subtitle">-$100 per employee/month</div>
         </RadioGroup>
         <h4>Company Car</h4>
         <RadioGroup selectedValue={companyCarPolicy} onChange={value => actions.setCompanyCarPolicy(value)}>
             <Radio value={COMPANY_CAR_NONE} />None<div className="subtitle">No changes</div>
-            <Radio value={COMPANY_CAR_SUBCOMPACT} />Subcompact<div className="subtitle">-$120 per employee/month, +20% JS</div>
-            <Radio value={COMPANY_CAR_SEDAN} />Sedan<div className="subtitle">-$200 per employee/month, +40% JS</div>
+            <Radio value={COMPANY_CAR_SUBCOMPACT} />Subcompact<div className="subtitle">-$120 per employee/month</div>
+            <Radio value={COMPANY_CAR_SEDAN} />Sedan<div className="subtitle">-$200 per employee/month</div>
         </RadioGroup>
         <h4>Food/Coffee</h4>
         <RadioGroup selectedValue={foodBenefits} onChange={value => actions.setFoodBenefits(value)}>
             <Radio value={FOOD_BENEFITS_NONE} />None<div className="subtitle">No changes</div>
-            <Radio value={FOOD_BENEFITS_FREE} />Free<div className="subtitle">-$100 per employee/month, +20% JS</div>
-            <Radio value={FOOD_BENEFITS_PAID} />Paid<div className="subtitle">+$80 per employee/month, -10% JS</div>
+            <Radio value={FOOD_BENEFITS_FREE} />Free<div className="subtitle">-$100 per employee/month</div>
+            <Radio value={FOOD_BENEFITS_PAID} />Paid<div className="subtitle">+$80 per employee/month</div>
         </RadioGroup>
         <h4>Gym</h4>
         <RadioGroup selectedValue={gymMembership} onChange={value => actions.setGymMembership(value)}>
             <Radio value={GYM_MEMBERSHIP_NONE} />None<div className="subtitle">No changes</div>
-            <Radio value={GYM_MEMBERSHIP_SUBSIDIZED} />Subsidized<div className="subtitle">-$20 per employee/month, +10% JS</div>
-            <Radio value={GYM_MEMBERSHIP_FREE} />Free<div className="subtitle">-$50 per employee/month, +20% JS</div>
+            <Radio value={GYM_MEMBERSHIP_SUBSIDIZED} />Subsidized<div className="subtitle">-$20 per employee/month</div>
+            <Radio value={GYM_MEMBERSHIP_FREE} />Free<div className="subtitle">-$50 per employee/month</div>
         </RadioGroup>
     </div>
 )
