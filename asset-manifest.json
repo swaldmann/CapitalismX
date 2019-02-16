@@ -1,9 +1,9 @@
 {
   "main.css": "/CapitalismX/static/css/main.ced73117.chunk.css",
-  "main.js": "/CapitalismX/static/js/main.ee21c36e.chunk.js",
-  "main.js.map": "/CapitalismX/static/js/main.ee21c36e.chunk.js.map",
-  "static/js/1.e89a30da.chunk.js": "/CapitalismX/static/js/1.e89a30da.chunk.js",
-  "static/js/1.e89a30da.chunk.js.map": "/CapitalismX/static/js/1.e89a30da.chunk.js.map",
+  "main.js": "/CapitalismX/static/js/main.43fbb9b2.chunk.js",
+  "main.js.map": "/CapitalismX/static/js/main.43fbb9b2.chunk.js.map",
+  "static/js/1.c7be16c3.chunk.js": "/CapitalismX/static/js/1.c7be16c3.chunk.js",
+  "static/js/1.c7be16c3.chunk.js.map": "/CapitalismX/static/js/1.c7be16c3.chunk.js.map",
   "runtime~main.js": "/CapitalismX/static/js/runtime~main.d6c794e4.js",
   "runtime~main.js.map": "/CapitalismX/static/js/runtime~main.d6c794e4.js.map",
   "static/media/starfield.png": "/CapitalismX/static/media/starfield.1c46fa10.png",
@@ -18,6 +18,6 @@
   "static/media/city-block-1-0.vox": "/CapitalismX/static/media/city-block-1-0.fb4e7ef9.vox",
   "static/css/main.ced73117.chunk.css.map": "/CapitalismX/static/css/main.ced73117.chunk.css.map",
   "index.html": "/CapitalismX/index.html",
-  "precache-manifest.f94888a61777bd879412d8d31ea2f037.js": "/CapitalismX/precache-manifest.f94888a61777bd879412d8d31ea2f037.js",
+  "precache-manifest.9300b36aaf3a2b9bf1d9cae2a0fafa83.js": "/CapitalismX/precache-manifest.9300b36aaf3a2b9bf1d9cae2a0fafa83.js",
   "service-worker.js": "/CapitalismX/service-worker.js"
 }
