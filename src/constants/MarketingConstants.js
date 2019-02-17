@@ -5,21 +5,21 @@ export const CAMPAIGN_MEDIA_TEMPLATES = [
         index: 0,
         name: "Newspaper",
         reach: 1000,
-        detailTitle: "$5000",
+        cost: 5000,
         iconPath: "icons8-news.png"
     },
     {
         index: 1,
         name: "TV",
         reach: 10000,
-        detailTitle: "$50000",
+        cost: 10000,
         iconPath: "icons8-tv.png"
     },
     {
         index: 2,
         name: "Online",
         reach: 50000,
-        detailTitle: "$100000",
+        cost: 100000,
         iconPath: "icons8-globe.png"
     }
 ].map(template => true ? { ...template, uuid: uuid() } : template)

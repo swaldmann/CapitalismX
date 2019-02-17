@@ -32,8 +32,10 @@ const CampaignMediaTooltip = ({campaignTemplate, campaignMediaActions, elapsedDa
                         <li key={campaignMediaTemplate.uuid}>
                             <div className="margin-bottom">
                                 <button onClick={() => campaignMediaActions.startCampaign(campaignTemplate, campaignMediaTemplate, elapsedDays)}>
-                                    {campaignMediaTemplate.iconPath && <img src={require("../../../static/icons/" + campaignMediaTemplate.iconPath)} className="icon" alt="" />}
-                                    {campaignMediaTemplate.name}
+                                    <div className="flexbox">
+                                        <span className="cell-title content-size">{campaignMediaTemplate.iconPath && <img src={require("../../../static/icons/" + campaignMediaTemplate.iconPath)} className="icon" alt="" />}{campaignMediaTemplate.name}</span>
+                                        <span className="cell-detailTitle remaining-size">{campaignMediaTemplate.cost.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
+                                    </div>
                                     <div className="subtitle"><i className="fas fa-fw fa-xs fa-user-friends"></i>{campaignMediaTemplate.reach}</div>
                                 </button>
                             </div>
