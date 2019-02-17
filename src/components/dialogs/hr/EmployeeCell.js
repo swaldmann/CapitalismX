@@ -2,7 +2,7 @@ import React from 'react'
 import StarRatings from 'react-star-ratings'
 import VisibleTrainingPopover from '../../../containers/VisibleTrainingPopover'
 
-const happinessIcons = ["😊", "😐", "☹️"]
+const happinessIcons = ["☹️", "😐", "😊"]
 
 class EmployeeCell extends React.Component {
 

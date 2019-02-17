@@ -6,9 +6,11 @@ export const startSimulation = () => ({ type: types.START_SIMULATION })
 export const pauseSimulation = () => ({ type: types.PAUSE_SIMULATION })
 
 // Finance
-export const dailyFinancialUpdate = historyEntry => ({ type: types.DAILY_FINANCIAL_UPDATE, historyEntry: historyEntry})
+export const quarterlyFinancialHistoryEntry = historyEntry => ({ type: types.DAILY_FINANCIAL_UPDATE, historyEntry: historyEntry})
 
 // HR
+export const monthlyHRHistoryEntry = (historyEntry, jobSatisfactionPoints) => ({ type: types.MONTHLY_HR_HISTORY_UPDATE, historyEntry, jobSatisfactionPoints })
+
 export const hireEmployee = index => ({ type: types.HIRE_EMPLOYEE, index })
 export const fireEmployee = index => ({ type: types.FIRE_EMPLOYEE, index })
 export const setWorkingTimeModel = model => ({ type: types.SET_WORKING_TIME_MODEL, model })

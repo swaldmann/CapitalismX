@@ -8,20 +8,20 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import rootReducer from './reducers'
 import { getProductUtilities } from './selectors/products'
-import { getAllEngineers, getAllSalespeople, getAllEmployees } from './selectors/employees'
-import { dailyFinancialUpdate } from './actions'
+import { getAllEngineers, getAllSalespeople, getAllEmployees, getAllHiredEmployees } from './selectors/employees'
+import { quarterlyFinancialHistoryEntry, monthlyHRHistoryEntry } from './actions'
 import SimulationGraph from './models/SimulationGraph'
 import { LOBBYIST_TEMPLATES } from './constants/MarketingConstants'
 
 var simulationGraph
 
-const store = createStore(
+export const store = createStore(
     rootReducer,
-    applyMiddleware(thunk)
-    /*compose(
+    //applyMiddleware(thunk),
+    compose(
         applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )*/
+    )
 )
 
 function startSimulation() {
@@ -39,6 +39,7 @@ function simulate(dispatch) {
 
     // Selectors
     const employees = getAllEmployees(state)
+    const hiredEmployees = getAllHiredEmployees(state)
     const engineers = getAllEngineers(state)
     const salespeople = getAllSalespeople(state)
     const productUtilities = getProductUtilities(state)
@@ -56,11 +57,37 @@ function simulate(dispatch) {
     }
     simulationGraph.updateVertices(reducedValues)
     simulationGraph.forwardTime()
-    console.log(simulationGraph)
+    //console.log(simulationGraph)
+
+    /* HR */
+
+    // Happiness Categorization
+
+    // Gets the percentages for happy, partially happy, and unhappy.
+
+    var jobSatisfactionCountArray = [0,0,0]
+    hiredEmployees.forEach(employee => {
+        console.log("fd");
+        return jobSatisfactionCountArray[employee.happiness]++
+    })
+
+    console.log("Count");
+    console.log(jobSatisfactionCountArray);
+
+    const jobSatisfactionPercentages = hiredEmployees.length === 0 ? [0,0,0] : jobSatisfactionCountArray.map(happinessEntry => happinessEntry/hiredEmployees.length)
+    console.log(jobSatisfactionPercentages);
+
+    const jobSatisfactionScore = [state.workingTimeModel, state.workingHours, state.companyCarPolicy, state.foodBenefits, state.gymMembership].reduce((count, jobSatisfactionInfluence) =>
+        count + jobSatisfactionInfluence.jobSatisfactionPoints,
+        0
+    )
+    console.log("Satisfaction Score");
+    console.log(jobSatisfactionScore);
 
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
-        const history = {
+
+        const financialHistoryEntry = {
             sales: simulationGraph.getVertexValue("revenue"),
             investments: simulationGraph.getVertexValue("investmentEarnings"),
             loans: 0,
@@ -70,7 +97,14 @@ function simulate(dispatch) {
             profit: simulationGraph.getVertexValue("profit"),
             netWorth: simulationGraph.getVertexValue("netWorth")
         }
-        dispatch(dailyFinancialUpdate(history))
+        const humanResourcesHistoryEntry = {
+            numberOfEmployees: employees.length,
+            jobSatisfactionPercentages: jobSatisfactionPercentages
+        }
+
+        dispatch(quarterlyFinancialHistoryEntry(financialHistoryEntry))
+        dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))
+
     }
 }
 

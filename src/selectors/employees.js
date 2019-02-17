@@ -8,6 +8,7 @@ import {  } from '../constants/HRConstants'
 const getVisibilityFilter = (state, props) => props.visibilityFilter || SHOW_HIRED
 
 export const getAllEmployees = state => Object.values(state.employees).flatMap(n => n)
+export const getAllHiredEmployees = state => Object.values(state.employees).flatMap(n => n).filter(e => e.isEmployed)
 export const getAllEngineers = state => state.employees[ENGINEER_TYPE]
 export const getAllSalespeople = state => state.employees[SALESPEOPLE_TYPE]
 
