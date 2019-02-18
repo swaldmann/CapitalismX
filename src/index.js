@@ -67,22 +67,14 @@ function simulate(dispatch) {
 
     var jobSatisfactionCountArray = [0,0,0]
     hiredEmployees.forEach(employee => {
-        console.log("fd");
         return jobSatisfactionCountArray[employee.happiness]++
     })
-
-    console.log("Count");
-    console.log(jobSatisfactionCountArray);
-
     const jobSatisfactionPercentages = hiredEmployees.length === 0 ? [0,0,0] : jobSatisfactionCountArray.map(happinessEntry => happinessEntry/hiredEmployees.length)
-    console.log(jobSatisfactionPercentages);
 
     const jobSatisfactionScore = [state.workingTimeModel, state.workingHours, state.companyCarPolicy, state.foodBenefits, state.gymMembership].reduce((count, jobSatisfactionInfluence) =>
         count + jobSatisfactionInfluence.jobSatisfactionPoints,
         0
     )
-    console.log("Satisfaction Score");
-    console.log(jobSatisfactionScore);
 
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })

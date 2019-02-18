@@ -2,12 +2,10 @@ import React from 'react'
 import {Line} from 'react-chartjs-2'
 import {quarterStrings} from '../../../util/Misc'
 
-const happinessIcons = ['☹️', '😐', '😊']
-
 const data = {
     labels: ['Q1', 'Q2', 'Q3', 'Q4'],
     datasets: [{
-        label: '☹️',
+        label: '😕',
         lineTension: 0,
         backgroundColor: "#DB3832",
         borderColor: "#DB3832",

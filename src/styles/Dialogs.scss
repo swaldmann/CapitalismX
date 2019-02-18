@@ -40,6 +40,11 @@
     flex: 1 1 auto;
 }
 
+.modal h1.content-height {
+    flex: 0 1 auto;
+    margin-right: 30px;
+}
+
 .content-height {
     flex: 0 1 auto;
 }
@@ -259,4 +264,29 @@ legend {
     background: #e5e5e5;
     padding: 8px;
     border-radius: 5px;
+}
+
+.emoji {
+    font-size: 22px;
+    margin-top: 3px;
+}
+
+.tabList {
+    flex: 1 1 auto;
+    margin-top: 9px;
+}
+
+.tabList > a {
+    background: #eee;
+    padding: 12px;
+    line-height: 1em;
+    color: #333;
+    text-decoration: none;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.tabList a.selected {
+    background: $button-blue;
+    color: white;
 }

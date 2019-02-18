@@ -2,7 +2,7 @@ import React from 'react'
 import StarRatings from 'react-star-ratings'
 import VisibleTrainingPopover from '../../../containers/VisibleTrainingPopover'
 
-const happinessIcons = ["☹️", "😐", "😊"]
+const happinessIcons = ["😕", "😐", "😊"]
 
 class EmployeeCell extends React.Component {
 
@@ -23,7 +23,7 @@ class EmployeeCell extends React.Component {
                       starDimension="10px"
                       starSpacing="3px"
                     />
-                    <span className="cell-detailTitle remaining-size">{employee.isEmployed && happinessIcons[employee.happiness]}</span>
+                    <span className="cell-detailTitle remaining-size emoji">{employee.isEmployed && happinessIcons[employee.happiness]}</span>
                     {employee.isEmployed && <button className="destructive" onClick={() => fireEmployee(employee.index)}>Fire</button>}
                     {!employee.isEmployed && <button className="constructive" onClick={() => hireEmployee(employee.index)}>Hire</button>}
                 </div>
