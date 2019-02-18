@@ -1,6 +1,5 @@
-function deepCopy(obj) {
-    return JSON.parse(JSON.stringify(obj))
-}
+
+import { deepCopy } from '../util/Misc'
 
 const CPUS = [
     {index: 0, name: "1 GHz", baseUtility: 20, availabilityOffset: 0, baseCost: 0.5},
@@ -79,3 +78,9 @@ export const SUPPLIER_TEMPLATES = [
 ]
 
 export const PRODUCTS = [SMARTPHONE]//, TV, NOTEBOOK, SERVER]
+
+// Manufacturing
+export const MACHINE_TEMPLATE = { name: "Machine", price: 50, utility: 200 }
+
+// Logistics
+export const TRUCK_TEMPLATE = { name: "Truck", price: 50, utility: 200 }

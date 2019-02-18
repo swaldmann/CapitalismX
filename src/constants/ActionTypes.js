@@ -21,6 +21,10 @@ export const SET_GYM_BENEFITS = 'SET_GYM_BENEFITS'
 
 // Production
 export const SWITCH_CURRENT_COMPONENT = 'SWITCH_CURRENT_COMPONENT'
+export const BUY_MACHINE = 'BUY_MACHINE'
+export const SELL_MACHINE = 'SELL_MACHINE'
+export const BUY_TRUCK = 'BUY_TRUCK'
+export const SELL_TRUCK = 'SELL_TRUCK'
 
 // Marketing
 export const START_CAMPAIGN = 'START_CAMPAIGN'

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import financials from './financials'
 import {employees, hrHistory, workingTimeModel, workingHours, companyCarPolicy, foodBenefits, gymMembership} from './employees'
-import products from './products'
+import {products, machines, trucks} from './products'
 import simulationState from './simulationState'
 import {marketing, campaigns, pressReleases, marketResearches} from './marketing'
 
@@ -20,6 +20,8 @@ const rootReducer = combineReducers({
 
     // Production
     products,
+    machines,
+    trucks,
 
     // Marketing
     marketing,

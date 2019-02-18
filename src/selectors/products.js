@@ -23,3 +23,9 @@ export const getProductUtilities = createSelector(
         return productUtilities
     }
 )
+
+// Manufacturing
+export const getMachines = state => state.machines
+
+// logistics
+export const getTrucks = state => state.trucks
