@@ -22,6 +22,7 @@ export const trainEmployee = (index, skillIncrease, salaryIncreasePercentage) =>
 // Production
 export const introduceNewProduct = productTemplate => ({ type: types.INTRODUCE_NEW_PRODUCT, productTemplate })
 export const deprecateProduct = productUuid => ({ type: types.DEPRECATE_PRODUCT, productUuid })
+export const switchCurrentProductTemplateIndex = productCategoryTemplateIndex => ({ type: types.SWITCH_CURRENT_PRODUCT_TEMPLATE, productCategoryTemplateIndex })
 export const switchCurrentComponent = (productIndex, componentTypeIndex, componentIndex) => ({ type: types.SWITCH_CURRENT_COMPONENT, productIndex, componentTypeIndex, componentIndex })
 export const buyMachine = machineTemplate => ({ type: types.BUY_MACHINE, machineTemplate })
 export const sellMachine = machineUuid => ({ type: types.SELL_MACHINE, machineUuid })

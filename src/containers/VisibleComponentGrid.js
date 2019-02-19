@@ -7,7 +7,7 @@ import { getProductUtilities } from '../selectors/products'
 
 const mapStateToProps = (state, props) => {
     return {
-        productTemplate: PRODUCT_TEMPLATES[0],
+        productTemplate: PRODUCT_TEMPLATES[state.currentProductTemplateIndex],
         productUtilities: getProductUtilities(state),
         elapsedDays: state.simulationState.elapsedDays
     }

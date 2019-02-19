@@ -114,7 +114,7 @@ div.rc-input-number~label {
     line-height: 70px;
 }
 
-input {
+input[type="text"], input.rc-input-number-input {
     padding: 10px;
     background: #eaeaea;
     border-radius: 10px;

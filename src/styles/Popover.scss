@@ -12,6 +12,10 @@
     max-height: 400px;
 }
 
+.tooltip-container button.selected {
+    background: rgb(64, 68, 75);
+}
+
 .tooltip-container li {
     list-style: none;
 }
@@ -22,7 +26,7 @@
     width: 1rem;
 }
 
-.tooltip-container input, .tooltip-container input.rc-input-number {
+.tooltip-container input[type="text"], .tooltip-container input.rc-input-number-input {
     background: rgb(41, 44, 51);
     color: white;
 }

@@ -2,6 +2,7 @@ import {
     SWITCH_CURRENT_COMPONENT,
     INTRODUCE_NEW_PRODUCT,
     DEPRECATE_PRODUCT,
+    SWITCH_CURRENT_PRODUCT_TEMPLATE,
     BUY_MACHINE,
     SELL_MACHINE,
     BUY_TRUCK,
@@ -52,10 +53,20 @@ export function trucks(state = [], action) {
 }
 
 export const logisticPartnerIndex = (state = 0, action) => {
-  switch (action.type) {
-    case SWITCH_LOGISTIC_PARTNER:
-      return action.logisticPartnerIndex
-    default:
-      return state
-  }
+    switch (action.type) {
+        case SWITCH_LOGISTIC_PARTNER:
+            return action.logisticPartnerIndex
+        default:
+            return state
+    }
+}
+
+export const currentProductTemplateIndex = (state = 0, action) => {
+    console.log(action);
+    switch (action.type) {
+        case SWITCH_CURRENT_PRODUCT_TEMPLATE:
+            return action.productCategoryTemplateIndex
+        default:
+            return state
+    }
 }

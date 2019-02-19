@@ -2,8 +2,10 @@ import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 import VisibleComponentGrid from '../../../containers/VisibleComponentGrid'
 import InputNumber from 'rc-input-number'
+import * as classNames from "classnames"
 
-const NewProductPopover = ({productTemplates, actions, elapsedDays}) => (
+
+const NewProductPopover = ({productTemplates, currentProductTemplateIndex, actions, elapsedDays}) => (
     <TooltipTrigger
         placement="top"
         trigger="click"
@@ -28,9 +30,9 @@ const NewProductPopover = ({productTemplates, actions, elapsedDays}) => (
               })}
             />
                 <div className="column-flexbox margin-bottom">
-                    {productTemplates.map(productTemplate =>
+                    {productTemplates.map((productTemplate, productTemplateIndex) =>
                         <div className="quarter">
-                            <button>
+                            <button className={classNames({selected: currentProductTemplateIndex === productTemplateIndex})} onClick={ () => actions.switchCurrentProductTemplateIndex(productTemplateIndex) }>
                                 {productTemplate.productCategoryName}
                             </button>
                         </div>
