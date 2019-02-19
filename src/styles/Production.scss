@@ -7,12 +7,14 @@
 
 .grid {
     margin-bottom: 20px;
+    min-width: 600px;
 }
 
 .grid-column {
     display: flex;
     flex: 1 0 auto;
 }
+
 .grid-column > button, .grid-column > div {
     flex: 1 1 0px;
     padding: 5px;

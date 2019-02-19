@@ -110,6 +110,10 @@
     margin-left: 28px;
 }
 
+.tooltip-arrow::before {
+    color: rgb(49, 53, 60);
+}
+
 input[type="radio"]+.subtitle {
     margin-bottom: 10px;
 }

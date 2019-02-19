@@ -10,8 +10,6 @@ import {
     SWITCH_LOGISTIC_PARTNER
 } from '../constants/ActionTypes'
 
-import { PRODUCTS } from '../constants/ProductionConstants'
-
 export function products(state = [], action) {
     switch (action.type) {
         case INTRODUCE_NEW_PRODUCT:

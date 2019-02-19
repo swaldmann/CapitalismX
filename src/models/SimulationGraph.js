@@ -13,7 +13,7 @@ class SimulationGraph extends Graph {
         // Input vertices, changeable by the user in the UI.
         this.createVertex("price", 100) // TODO: Missing UI
         this.createVertex("workingTimeModel", 0)
-        this.createVertex("investmentAmount", 1000) // TODO: Missing UI
+        this.createVertex("investmentAmount", 0) // TODO: Missing UI
         this.createVertex("investmentRisk", 4) // TOOD: Missing UI
         this.createVertex("investmentExpectedReturn", 0.08) // TODO: Missing UI
 
@@ -34,7 +34,7 @@ class SimulationGraph extends Graph {
         // vertices. Here we can define relationships between variables,
         // i.e. edges in the graph.
         this.createCalculatedVertex("totalSales", 0, function(elapsedDays, totalProductUtilities, price, totalSalespeopleSkills, oldValue) {
-            return (totalProductUtilities/price) * 10 * (1 + totalSalespeopleSkills/20) * (1 + Math.random()/10 * 5)
+            return totalSalespeopleSkills === 0 ? 0 : (totalProductUtilities/price) * 10 * (1 + totalSalespeopleSkills/20) * (1 + Math.random()/10 * 5)
         }, ["totalProductUtilities", "price", "totalSalespeopleSkills"])
 
         this.createCalculatedVertex("totalExpenses", 0, function(elapsedDays, totalProductComponentCost, totalSalaries, totalSales, oldValue) {

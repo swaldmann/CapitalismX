@@ -34,6 +34,15 @@ const CAMERAS = [
     {index: 20, name: "12 MP", baseUtility: 150, availabilityOffset: 23, baseCost: 0.8},
 ]
 
+const AUDIO = [
+    {index: 21, name: "Mono", baseUtility: 20, availabilityOffset: 0, baseCost: 0.3},
+    {index: 22, name: "Stereo", baseUtility: 30, availabilityOffset: 3, baseCost: 0.4},
+    {index: 23, name: "2.1", baseUtility: 100, availabilityOffset: 14, baseCost: 0.5},
+    {index: 24, name: "5.1", baseUtility: 130, availabilityOffset: 18, baseCost: 0.6},
+    {index: 25, name: "7.1", baseUtility: 150, availabilityOffset: 23, baseCost: 0.8},
+    {index: 26, name: "Studio", baseUtility: 180, availabilityOffset: 26, baseCost: 0.9}
+]
+
 const CPU_COMPONENT = {
     index: 0,
     imageName: "icons8-smartphone_cpu",
@@ -66,10 +75,39 @@ const CAMERA_COMPONENT = {
     allComponents: deepCopy(CAMERAS)
 }
 
-const SMARTPHONE = {index: 0, productCategoryName: "Phone", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}]}
-const TV         = {index: 1, productCategoryName: "TV", components: [{...CPU_COMPONENT}, {...DISPLAY_COMPONENT}]}
-const NOTEBOOK   = {index: 2, productCategoryName: "Notebook", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, ]}
-const SERVER     = {index: 3, productCategoryName: "Server", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}]}
+const AUDIO_COMPONENT = {
+    index: 4,
+    imageName: "icons8-volume_up",
+    typeDescription: "Audio",
+    currentIndex: 0,
+    allComponents: deepCopy(AUDIO)
+}
+
+const SMARTPHONE = {
+    productCategoryName: "Phone",
+    components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}, {...AUDIO_COMPONENT}],
+    launchPrice: 500000
+}
+
+const NOTEBOOK = {
+    productCategoryName: "Notebook",
+    components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...AUDIO_COMPONENT}],
+    launchPrice: 200000
+}
+
+const CONSOLE = {
+    productCategoryName: "Console",
+    components: [{...CPU_COMPONENT}, {...DISPLAY_COMPONENT}, {...AUDIO_COMPONENT}],
+    launchPrice: 50000
+}
+
+const TV = {
+    productCategoryName: "TV",
+    components: [{...DISPLAY_COMPONENT}, {...AUDIO_COMPONENT}],
+    launchPrice: 10000
+}
+
+export const PRODUCT_TEMPLATES = [deepCopy(TV), deepCopy(CONSOLE), deepCopy(NOTEBOOK), deepCopy(SMARTPHONE)]
 
 export const SUPPLIER_TEMPLATES = [
     { name: "Intel", costMultiplicator: 1.3, qualityMultiplicator: 1.4 },
@@ -77,15 +115,10 @@ export const SUPPLIER_TEMPLATES = [
     { name: "Micron", costMultiplicator: 1, qualityMultiplicator: 1 }
 ]
 
-export const PRODUCT_TEMPLATES = [deepCopy(SMARTPHONE), deepCopy(TV), deepCopy(NOTEBOOK), deepCopy(SERVER)]
-
-export const PRODUCTS = [SMARTPHONE]//, TV, NOTEBOOK, SERVER]
-
 // Manufacturing
 export const MACHINE_TEMPLATE = { name: "Machine", price: 50, utility: 200 }
 
 // Logistics
-
 export const LOGISTIC_PARTNER_TEMPLATES = [
     { title: "DHL", price: 50 }, { title: "FedEx", price: 30 }, { title: "UPS", price: 40 }
 ]

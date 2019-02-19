@@ -21,3 +21,16 @@ export function deepCopy(obj) {
 export function deepCopyWithUUID(obj) {
     return {...JSON.parse(JSON.stringify(obj)), uuid: uuid()}
 }
+
+export function dateStringAfterElapsedDays(elapsedDays) {
+    const date = new Date(1990, 0, 1)
+    const gameDate = addDays(date, elapsedDays)
+    const options = { year: 'numeric', month: 'short', day: 'numeric' }
+    return gameDate.toLocaleDateString("en-US", options)
+}
+
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}

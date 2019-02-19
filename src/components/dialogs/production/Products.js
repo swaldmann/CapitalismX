@@ -1,9 +1,10 @@
 import React from 'react'
 import VisibleNewProductPopover from "../../../containers/VisibleNewProductPopover"
+import {dateStringAfterElapsedDays} from '../../../util/Misc'
 
 class Products extends React.Component {
     render() {
-        const { products } = this.props
+        const { products, actions } = this.props
 
         return (
             <div className="dialogDetail">
@@ -17,8 +18,12 @@ class Products extends React.Component {
                             {products.map(product =>
                                 <li>
                                     <div className="flexbox">
-                                        <span className="cell-title content-size">{"Nike" + product.productCategoryName}</span>
-                                        <span className="cell-detailTitle remaining-size">{product.price.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
+                                        <span className="cell-title content-size"><b>{product.name}</b></span>
+                                        <span className="cell-detailTitle remaining-size"><b>{product.price.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</b></span>
+                                    </div>
+                                    <div className="flexbox">
+                                        <span className="cell-title content-size">Launched {dateStringAfterElapsedDays(product.buyDay)}</span>
+                                        <button className="destructive" onClick={() => actions.deprecateProduct(product.uuid)}>Deprecate</button>
                                     </div>
                                 </li>
                             )}
