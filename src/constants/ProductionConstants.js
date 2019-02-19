@@ -66,7 +66,7 @@ const CAMERA_COMPONENT = {
     allComponents: deepCopy(CAMERAS)
 }
 
-const SMARTPHONE = {index: 0, productCategoryName: "Smartphone", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}]}
+const SMARTPHONE = {index: 0, productCategoryName: "Phone", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}]}
 const TV         = {index: 1, productCategoryName: "TV", components: [{...CPU_COMPONENT}, {...DISPLAY_COMPONENT}]}
 const NOTEBOOK   = {index: 2, productCategoryName: "Notebook", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, ]}
 const SERVER     = {index: 3, productCategoryName: "Server", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}]}
@@ -77,7 +77,7 @@ export const SUPPLIER_TEMPLATES = [
     { name: "Micron", costMultiplicator: 1, qualityMultiplicator: 1 }
 ]
 
-export const PRODUCT_TEMPLATES = [SMARTPHONE, TV, NOTEBOOK, SERVER]
+export const PRODUCT_TEMPLATES = [deepCopy(SMARTPHONE), deepCopy(TV), deepCopy(NOTEBOOK), deepCopy(SERVER)]
 
 export const PRODUCTS = [SMARTPHONE]//, TV, NOTEBOOK, SERVER]
 

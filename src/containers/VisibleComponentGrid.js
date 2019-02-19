@@ -2,18 +2,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as ProductActions from '../actions'
 import ComponentGrid from '../components/dialogs/production/ComponentGrid'
-import { makeGetVisibleProducts, getProductUtilities } from '../selectors/products'
+import { PRODUCT_TEMPLATES } from '../constants/ProductionConstants'
+import { getProductUtilities } from '../selectors/products'
 
-const makeMapStateToProps = () => {
-    const getVisibleProducts = makeGetVisibleProducts()
-    const mapStateToProps = (state, props) => {
-        return {
-            products: getVisibleProducts(state, props),
-            productUtilities: getProductUtilities(state),
-            elapsedDays: state.simulationState.elapsedDays
-        }
+const mapStateToProps = (state, props) => {
+    return {
+        productTemplate: PRODUCT_TEMPLATES[0],
+        productUtilities: getProductUtilities(state),
+        elapsedDays: state.simulationState.elapsedDays
     }
-    return mapStateToProps
 }
 
 const mapDispatchToProps = dispatch => ({
@@ -21,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const VisibleComponentGrid = connect(
-    makeMapStateToProps,
+    mapStateToProps,
     mapDispatchToProps
 )(ComponentGrid)
 

@@ -26,16 +26,19 @@ const NewProductPopover = ({productTemplates, actions, elapsedDays}) => (
                 className: 'tooltip-arrow'
               })}
             />
-            <div className="column-flexbox margin-bottom">
-                {productTemplates.map(productTemplate =>
-                    <div className="quarter">
-                        <button onClick={() => console.log(elapsedDays)/*actions.introduceNewProduct(productTemplate, elapsedDays)*/}>
-                            {productTemplate.productCategoryName}
-                        </button>
-                    </div>
-                )}
-            </div>
-            <VisibleComponentGrid />
+                <div className="column-flexbox margin-bottom">
+                    {console.log("Templates")}
+                    {console.log(productTemplates)}
+                    {productTemplates.map(productTemplate =>
+                        <div className="quarter">
+                            <button>
+                                {productTemplate.productCategoryName}
+                            </button>
+                        </div>
+                    )}
+                </div>
+                <VisibleComponentGrid />
+                <button className="popoverFinishButton" onClick={() => actions.introduceNewProduct({...productTemplates[0], price: 500 }, elapsedDays) }>Finish</button>
             </div>
         )}
       >

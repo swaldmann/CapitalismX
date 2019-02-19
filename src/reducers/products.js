@@ -11,7 +11,7 @@ import {
 
 import { PRODUCTS } from '../constants/ProductionConstants'
 
-export function products(state = PRODUCTS, action) {
+export function products(state = [], action) {
     switch (action.type) {
         case INTRODUCE_NEW_PRODUCT:
             return [action.productTemplate].concat(state)

@@ -1,25 +1,31 @@
 import React from 'react'
 import VisibleNewProductPopover from "../../../containers/VisibleNewProductPopover"
-//import VisibleComponentGrid from "../../../containers/VisibleComponentGrid"
 
 class Products extends React.Component {
     render() {
-        const { products, actions } = this.props
-        console.log(products);
+        const { products } = this.props
 
         return (
             <div className="dialogDetail">
-                <div className="quarter panel"></div>
+                <div className="quarter panel">
+                    <h3>Research</h3>
+                </div>
                 <div className="column-flexbox remaining-size">
                     <h3>Products</h3>
                     <div className="borderedList">
                         <ul>
-                            <li>{products.map(product => product.productCategoryName)}</li>
+                            {products.map(product =>
+                                <li>
+                                    <div className="flexbox">
+                                        <span className="cell-title content-size">{"Nike" + product.productCategoryName}</span>
+                                        <span className="cell-detailTitle remaining-size">{product.price.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
+                                    </div>
+                                </li>
+                            )}
                         </ul>
                     </div>
                     <VisibleNewProductPopover />
                 </div>
-                {/*<VisibleComponentGrid />*/}
                 <div className="quarter panel">
                     <h3>Statistics</h3>
                 </div>
