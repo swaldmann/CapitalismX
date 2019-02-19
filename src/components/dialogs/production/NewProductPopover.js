@@ -48,7 +48,7 @@ const NewProductPopover = ({productTemplates, currentProductTemplateIndex, actio
                       formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     />
                 </div>
-                <button className="popoverFinishButton" onClick={() => actions.introduceNewProduct({...productTemplates[0], price: 500 }, elapsedDays) }>Finish</button>
+                <button className="popoverFinishButton" onClick={() => actions.introduceNewProduct({...productTemplates[currentProductTemplateIndex], price: 500 }, elapsedDays) }>Finish</button>
             </div>
         )}
       >
