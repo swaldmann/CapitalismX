@@ -29,7 +29,7 @@ const NewProductPopover = ({productTemplates, currentProductTemplateIndex, actio
                 className: 'tooltip-arrow'
               })}
             />
-                <div className="column-flexbox margin-bottom">
+                <div className="flexbox margin-bottom-large">
                     {productTemplates.map((productTemplate, productTemplateIndex) =>
                         <div className="quarter">
                             <button className={classNames({selected: currentProductTemplateIndex === productTemplateIndex})} onClick={ () => actions.switchCurrentProductTemplateIndex(productTemplateIndex) }>
@@ -38,7 +38,7 @@ const NewProductPopover = ({productTemplates, currentProductTemplateIndex, actio
                         </div>
                     )}
                 </div>
-                <input type="text" placeholder="NikePhone" />
+                <input type="text" placeholder="NikePhone" className="margin-bottom-large" />
                 <VisibleComponentGrid />
                 <div className="flexbox">
                     <label className="half">Price</label>

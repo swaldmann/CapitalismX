@@ -26,6 +26,10 @@
     width: 1rem;
 }
 
+.tooltip-container  .quarter:not(:last-child) {
+    border-right: 10px solid rgb(49, 53, 60);
+}
+
 .tooltip-container input[type="text"], .tooltip-container input.rc-input-number-input {
     background: rgb(41, 44, 51);
     color: white;
