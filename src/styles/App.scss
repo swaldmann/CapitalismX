@@ -165,15 +165,7 @@ button[disabled] {
     margin-right: 8px;
 }
 
-.graphicsSettings p {
-    margin-bottom: 10px;
-}
-
-.graphicsSettings {
-    margin-top: 50px;
-}
-
-.graphicsSettings > button:not(:last-child) {
+.buttonSet > button:not(:last-child) {
     margin-right: 10px;
 }
 
@@ -201,6 +193,14 @@ button[disabled] {
 canvas {
     height: 100%;
     width: 100%;
+}
+
+.menu h3 {
+    margin-top: 40px;
+}
+
+.menu p {
+    color: #777;
 }
 
 .pull-right {
@@ -295,6 +295,9 @@ hr {
     color: green;
 }
 
+.colorlessLink {
+    color: inherit;
+}
 
 /* fontawesome */
 
