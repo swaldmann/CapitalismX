@@ -10,7 +10,6 @@ export const quarterlyFinancialHistoryEntry = historyEntry => ({ type: types.DAI
 
 // HR
 export const monthlyHRHistoryEntry = (historyEntry, jobSatisfactionPoints) => ({ type: types.MONTHLY_HR_HISTORY_UPDATE, historyEntry, jobSatisfactionPoints })
-
 export const hireEmployee = index => ({ type: types.HIRE_EMPLOYEE, index })
 export const fireEmployee = index => ({ type: types.FIRE_EMPLOYEE, index })
 export const setWorkingTimeModel = model => ({ type: types.SET_WORKING_TIME_MODEL, model })
@@ -21,11 +20,14 @@ export const setGymMembership = gymMembership => ({ type: types.SET_GYM_BENEFITS
 export const trainEmployee = (index, skillIncrease, salaryIncreasePercentage) => ({ type: types.TRAIN_EMPLOYEE, index, skillIncrease, salaryIncreasePercentage })
 
 // Production
+export const introduceNewProduct = productTemplate => ({ type: types.INTRODUCE_NEW_PRODUCT, productTemplate })
+export const deprecateProduct = productUuid => ({ type: types.DEPRECATE_PRODUCT, productUuid })
 export const switchCurrentComponent = (productIndex, componentTypeIndex, componentIndex) => ({ type: types.SWITCH_CURRENT_COMPONENT, productIndex, componentTypeIndex, componentIndex })
 export const buyMachine = machineTemplate => ({ type: types.BUY_MACHINE, machineTemplate })
 export const sellMachine = machineUuid => ({ type: types.SELL_MACHINE, machineUuid })
 export const buyTruck = truckTemplate => ({ type: types.BUY_TRUCK, truckTemplate })
 export const sellTruck = truckUuid => ({ type: types.SELL_TRUCK, truckUuid })
+export const switchLogisticPartner = logisticPartnerIndex => ({ type: types.SWITCH_LOGISTIC_PARTNER, logisticPartnerIndex })
 
 // Marketing
 export const startCampaign = (campaignTemplate, campaignMediaTemplate, startElapsedDays) => ({ type: types.START_CAMPAIGN, campaignTemplate, campaignMediaTemplate, startElapsedDays })

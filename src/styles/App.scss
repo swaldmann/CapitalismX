@@ -120,6 +120,8 @@ input.rc-input-number-input {
     border-radius: 10px;
     font-size: 16px;
     text-align: right;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button[disabled] {

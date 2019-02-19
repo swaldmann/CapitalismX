@@ -25,17 +25,18 @@ const FinanceCompanySheet = ({ financials }) => (
             </tbody>
         </table>
         <h3>Investments</h3>
+        <h4>Stocks</h4>
         <div className="flexbox">
-            <label>Amount</label>
             <InputNumber
+                className="remaining-size"
               defaultValue={1000}
               formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             />
         </div>
-        <h3>Products</h3>
+        <h4>Real Estate</h4>
         <div className="flexbox">
-            <label>Price</label>
             <InputNumber
+                className="remaining-size"
               defaultValue={1000}
               formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             />

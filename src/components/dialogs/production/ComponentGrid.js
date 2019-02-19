@@ -9,7 +9,6 @@ const ComponentGrid = ({products, productUtilities, elapsedDays, actions}) => (
     {
         products.map((product, k) =>
         <div className="grid" key={k}>
-        <h3>{product.productCategoryName}</h3>
         {
             product.components.map((componentType, i) =>
             <div className="grid-column" key={i}>

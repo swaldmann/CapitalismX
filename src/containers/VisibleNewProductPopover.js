@@ -1,10 +1,12 @@
 import { connect } from 'react-redux'
-import PressReleasesPopover from '../components/dialogs/marketing/PressReleasesPopover'
+import NewProductPopover from '../components/dialogs/production/NewProductPopover'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../actions'
+import {PRODUCT_TEMPLATES} from '../constants/ProductionConstants'
 
 const mapStateToProps = state => {
     return {
+        productTemplates: PRODUCT_TEMPLATES,
         elapsedDays: state.simulationState.elapsedDays
     }
 }
@@ -13,9 +15,9 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Actions, dispatch)
 })
 
-const VisiblePressReleasesPopover = connect(
+const VisibleNewProductPopover = connect(
     mapStateToProps,
     mapDispatchToProps
-)(PressReleasesPopover)
+)(NewProductPopover)
 
-export default VisiblePressReleasesPopover
+export default VisibleNewProductPopover

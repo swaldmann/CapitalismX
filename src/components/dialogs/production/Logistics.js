@@ -1,5 +1,6 @@
 import React from 'react'
 import { deepCopyWithUUID } from '../../../util/Misc'
+import VisibleLogisticPartnerPanel from '../../../containers/VisibleLogisticPartnerPanel'
 
 class Logistics extends React.Component {
     render() {
@@ -8,7 +9,7 @@ class Logistics extends React.Component {
         return (
             <div className="dialogDetail">
                 <div className="quarter panel">
-                    <h3>Logistics Partner</h3>
+                    <VisibleLogisticPartnerPanel />
                 </div>
                 <div className="column-flexbox remaining-size">
                     <h3>Truck Fleet</h3>
@@ -19,7 +20,7 @@ class Logistics extends React.Component {
                                     <div className="flexbox">
                                         <img className="icon" src={require('../../../static/icons/icons8-truck.png')} alt="" />
                                         <span className="cell-title content-size">1200 units/day</span>
-                                        <span className="cell-detailTitle remaining-size">Level 3</span>
+                                        <span className="cell-detailTitle remaining-size">Level 1</span>
                                         <button>↑</button>
                                     </div>
                                     <div className="flexbox">

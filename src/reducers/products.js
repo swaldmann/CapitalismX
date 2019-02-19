@@ -1,15 +1,22 @@
 import {
     SWITCH_CURRENT_COMPONENT,
+    INTRODUCE_NEW_PRODUCT,
+    DEPRECATE_PRODUCT,
     BUY_MACHINE,
     SELL_MACHINE,
     BUY_TRUCK,
-    SELL_TRUCK
+    SELL_TRUCK,
+    SWITCH_LOGISTIC_PARTNER
 } from '../constants/ActionTypes'
 
 import { PRODUCTS } from '../constants/ProductionConstants'
 
 export function products(state = PRODUCTS, action) {
     switch (action.type) {
+        case INTRODUCE_NEW_PRODUCT:
+            return [action.productTemplate].concat(state)
+        case DEPRECATE_PRODUCT:
+            return state.filter(product => product.uuid !== action.productUuid)
         case SWITCH_CURRENT_COMPONENT:
             return state.map(product =>
                 product.index === action.productIndex ?
@@ -42,4 +49,13 @@ export function trucks(state = [], action) {
         default:
         return state
     }
+}
+
+export const logisticPartnerIndex = (state = 0, action) => {
+  switch (action.type) {
+    case SWITCH_LOGISTIC_PARTNER:
+      return action.logisticPartnerIndex
+    default:
+      return state
+  }
 }

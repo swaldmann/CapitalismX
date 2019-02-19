@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import PressReleasesPopover from '../components/dialogs/marketing/PressReleasesPopover'
+import LogisticPartnerPopover from '../components/dialogs/production/LogisticPartnerPopover'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../actions'
 
@@ -13,9 +13,9 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Actions, dispatch)
 })
 
-const VisiblePressReleasesPopover = connect(
+const VisibleLogisticPartnerPopover = connect(
     mapStateToProps,
     mapDispatchToProps
-)(PressReleasesPopover)
+)(LogisticPartnerPopover)
 
-export default VisiblePressReleasesPopover
+export default VisibleLogisticPartnerPopover

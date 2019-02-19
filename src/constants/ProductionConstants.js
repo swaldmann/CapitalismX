@@ -67,9 +67,9 @@ const CAMERA_COMPONENT = {
 }
 
 const SMARTPHONE = {index: 0, productCategoryName: "Smartphone", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}]}
-//const TV         = {index: 1, productCategoryName: "TV", components: [{...CPU_COMPONENT}, {...DISPLAY_COMPONENT}]}
-//const NOTEBOOK   = {index: 2, productCategoryName: "Notebook", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, ]}
-//const SERVER     = {index: 3, productCategoryName: "Server", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}]}
+const TV         = {index: 1, productCategoryName: "TV", components: [{...CPU_COMPONENT}, {...DISPLAY_COMPONENT}]}
+const NOTEBOOK   = {index: 2, productCategoryName: "Notebook", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, ]}
+const SERVER     = {index: 3, productCategoryName: "Server", components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}]}
 
 export const SUPPLIER_TEMPLATES = [
     { name: "Intel", costMultiplicator: 1.3, qualityMultiplicator: 1.4 },
@@ -77,10 +77,17 @@ export const SUPPLIER_TEMPLATES = [
     { name: "Micron", costMultiplicator: 1, qualityMultiplicator: 1 }
 ]
 
+export const PRODUCT_TEMPLATES = [SMARTPHONE, TV, NOTEBOOK, SERVER]
+
 export const PRODUCTS = [SMARTPHONE]//, TV, NOTEBOOK, SERVER]
 
 // Manufacturing
 export const MACHINE_TEMPLATE = { name: "Machine", price: 50, utility: 200 }
 
 // Logistics
+
+export const LOGISTIC_PARTNER_TEMPLATES = [
+    { title: "DHL", price: 50 }, { title: "FedEx", price: 30 }, { title: "UPS", price: 40 }
+]
+
 export const TRUCK_TEMPLATE = { name: "Truck", price: 50, utility: 200 }
