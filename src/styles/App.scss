@@ -114,14 +114,17 @@ div.rc-input-number~label {
     line-height: 70px;
 }
 
-input.rc-input-number-input {
+input {
     padding: 10px;
     background: #eaeaea;
     border-radius: 10px;
     font-size: 16px;
-    text-align: right;
     width: 100%;
     box-sizing: border-box;
+}
+
+.rc-input-number-input {
+    text-align: right;
 }
 
 button[disabled] {

@@ -22,6 +22,16 @@
     width: 1rem;
 }
 
+.tooltip-container input, .tooltip-container input.rc-input-number {
+    background: rgb(41, 44, 51);
+    color: white;
+}
+
+.tooltip-container label {
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
 .tooltip-arrow::before {
     border-style: solid;
     content: '';
