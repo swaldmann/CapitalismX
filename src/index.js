@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, /*compose*/ } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import './index.css'
@@ -17,7 +17,9 @@ var simulationGraph
 
 export const store = createStore(
     rootReducer,
-    applyMiddleware(thunk)/*,
+    applyMiddleware(thunk)
+    // Change to this if you want to use the Redux Devtools extension in Chrome.
+    /*,
     compose(
         applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -28,6 +30,7 @@ function startSimulation() {
     simulationGraph = new SimulationGraph()
 
     return (dispatch) => {
+        simulate(dispatch)
         setInterval(function() {
             simulate(dispatch)
         }, 3000)
@@ -53,24 +56,21 @@ function simulate(dispatch) {
         totalSalespeopleSkills: salespeople.reduce((totalSalespeopleSkills, salesperson) => salesperson.isEmployed ? totalSalespeopleSkills + salesperson.skill : totalSalespeopleSkills, 0),
         averageSalespeopleSatisfaction: salespeople.reduce((totalSalespeopleSatisfaction, salesperson) => salesperson.isEmployed ? totalSalespeopleSatisfaction + salesperson.happiness : totalSalespeopleSatisfaction, 0)/salespeople.length,
         totalProductUtilities: productUtilities.reduce((totalUtility, utility) => totalUtility += utility, 0),
-        taxRate: state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
+        taxRate: state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3,
+        netWorth: state.financials.cash || 25000
     }
     simulationGraph.updateVertices(reducedValues)
     simulationGraph.forwardTime()
-    //console.log(simulationGraph)
 
     /* HR */
 
     // Happiness Categorization
-
     // Gets the percentages for happy, partially happy, and unhappy.
-
     var jobSatisfactionCountArray = [0,0,0]
     hiredEmployees.forEach(employee => {
         return jobSatisfactionCountArray[employee.happiness]++
     })
     const jobSatisfactionPercentages = hiredEmployees.length === 0 ? [0,0,0] : jobSatisfactionCountArray.map(happinessEntry => happinessEntry/hiredEmployees.length)
-
     const jobSatisfactionScore = [state.workingTimeModel, state.workingHours, state.companyCarPolicy, state.foodBenefits, state.gymMembership].reduce((count, jobSatisfactionInfluence) =>
         count + jobSatisfactionInfluence.jobSatisfactionPoints,
         0

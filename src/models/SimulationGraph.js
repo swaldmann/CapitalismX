@@ -62,7 +62,7 @@ class SimulationGraph extends Graph {
 
         // In the end, all nodes will have a transitive relationship to
         // this node. The goal of the game is to maximize your net worth.
-        this.createCalculatedVertex("netWorth", 10000, function(elapsedDays, profit, investmentEarnings, oldValue) {
+        this.createCalculatedVertex("netWorth", 25000, function(elapsedDays, profit, investmentEarnings, oldValue) {
             return oldValue + profit + investmentEarnings
         }, ["profit", "investmentEarnings"])
     }

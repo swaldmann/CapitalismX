@@ -25,7 +25,7 @@ class EmployeeCell extends React.Component {
                     />
                     <span className="cell-detailTitle remaining-size emoji">{employee.isEmployed && happinessIcons[employee.happiness]}</span>
                     {employee.isEmployed && <button className="destructive" onClick={() => fireEmployee(employee.index)}>Fire</button>}
-                    {!employee.isEmployed && <button className="constructive" onClick={() => hireEmployee(employee.index)}>Hire</button>}}
+                    {!employee.isEmployed && <button className="constructive" onClick={() => hireEmployee(employee.index)}>Hire</button>}
                 </div>
             </li>
         )

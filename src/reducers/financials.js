@@ -1,5 +1,6 @@
 import {
     DAILY_FINANCIAL_UPDATE,
+    PURCHASE
 } from '../constants/ActionTypes'
 
 import { FINANCIALS } from '../constants/FinanceConstants'
@@ -21,14 +22,9 @@ export default function financials(state = initialState, action) {
                                      }).slice(1),
                                 elapsedDaysSinceFirstDayOfMonth: state.elapsedDaysSinceFirstDayOfMonth + 1,
                     }
-            // Column-based approach
-            /*return { ...state, cash: state.cash - action.costs,
-                                history: { ...state.history,
-                                    elapsedDaysSinceFirstDayOfMonth: state.history.elapsedDaysSinceFirstDayOfMonth + 1,
-                                    salaries: state.history.salaries.length >= 4 ? state.history.salaries.concat(action.costs).slice(1) : state.history.salaries.concat(action.costs)
-                                }
-                            }*/
+        case PURCHASE:
+            return { ...state, cash: state.cash - action.amount }
         default:
-        return state
+            return state
     }
 }

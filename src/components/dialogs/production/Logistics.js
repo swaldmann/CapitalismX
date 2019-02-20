@@ -1,5 +1,5 @@
 import React from 'react'
-import { deepCopyWithUUID } from '../../../util/Misc'
+import { deepCopyWithUUID, dateStringAfterElapsedDays } from '../../../util/Misc'
 import VisibleLogisticPartnerPanel from '../../../containers/VisibleLogisticPartnerPanel'
 
 class Logistics extends React.Component {
@@ -24,7 +24,7 @@ class Logistics extends React.Component {
                                         <button>↑</button>
                                     </div>
                                     <div className="flexbox">
-                                        <span className="cell-title content-size">Bought on day {truck.buyDay}</span>
+                                        <span className="cell-title content-size">Bought { dateStringAfterElapsedDays(truck.buyDay) }</span>
                                         <span className="cell-detailTitle remaining-size">{truck.price.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
                                         <button className="destructive" onClick={() => actions.sellTruck(truck.uuid)}>Sell</button>
                                     </div>

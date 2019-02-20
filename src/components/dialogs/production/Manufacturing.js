@@ -1,6 +1,6 @@
 import React from 'react'
 import VisibleProductsInfoColumn from "../../../containers/VisibleProductsInfoColumn"
-import { deepCopyWithUUID } from '../../../util/Misc'
+import { deepCopyWithUUID, dateStringAfterElapsedDays } from '../../../util/Misc'
 
 class Manufacturing extends React.Component {
     render() {
@@ -23,7 +23,7 @@ class Manufacturing extends React.Component {
                                         <button>↑</button>
                                     </div>
                                     <div className="flexbox">
-                                        <span className="cell-title content-size">Bought on day {machine.buyDay}</span>
+                                        <span className="cell-title content-size">Bought {dateStringAfterElapsedDays(machine.buyDay)}</span>
                                         <span className="cell-detailTitle remaining-size">{machine.price.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
                                         <button className="destructive" onClick={() => actions.sellMachine(machine.uuid)}>Sell</button>
                                     </div>

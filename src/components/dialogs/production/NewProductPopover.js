@@ -21,12 +21,18 @@ class NewProductPopover extends React.Component {
         this.setState({ productName: event.target.value });
     }
 
-    launchProduct = (actions) => {
-
+    launchProduct = () => {
+        const {productTemplates, currentProductTemplateIndex, actions, elapsedDays} = this.props
+        const productTemplate = productTemplates[currentProductTemplateIndex]
+        const price = this.state.price
+        const name = this.state.productName || productTemplate.productCategoryName 
+        const newProduct = deepCopyWithUUID({...productTemplate, unitsSold: 0, price: price, name: name, buyDay: elapsedDays })
+        actions.introduceNewProduct(newProduct)
+        actions.purchase(newProduct.launchPrice)
     }
 
  render() {
-     const {productTemplates, currentProductTemplateIndex, actions, elapsedDays} = this.props
+     const {productTemplates, currentProductTemplateIndex, actions} = this.props
 
      return (
          <TooltipTrigger
@@ -72,7 +78,7 @@ class NewProductPopover extends React.Component {
                               onChange={this.onChangePrice}
                          />
                      </div>
-                     <button className="popoverFinishButton" onClick={() => actions.introduceNewProduct(deepCopyWithUUID({...productTemplates[currentProductTemplateIndex], price: this.state.price, name: this.state.productName, buyDay: elapsedDays })) }>Launch ({productTemplates[currentProductTemplateIndex].launchPrice.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})})</button>
+                     <button className="popoverFinishButton" onClick={this.launchProduct}>Launch ({productTemplates[currentProductTemplateIndex].launchPrice.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})})</button>
                  </div>
              )}
            >

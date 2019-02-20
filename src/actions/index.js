@@ -7,6 +7,7 @@ export const pauseSimulation = () => ({ type: types.PAUSE_SIMULATION })
 
 // Finance
 export const quarterlyFinancialHistoryEntry = historyEntry => ({ type: types.DAILY_FINANCIAL_UPDATE, historyEntry: historyEntry})
+export const purchase = amount => ({ type: types.PURCHASE, amount })
 
 // HR
 export const monthlyHRHistoryEntry = (historyEntry, jobSatisfactionPoints) => ({ type: types.MONTHLY_HR_HISTORY_UPDATE, historyEntry, jobSatisfactionPoints })
