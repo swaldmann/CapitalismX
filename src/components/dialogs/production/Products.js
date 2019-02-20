@@ -24,7 +24,7 @@ class Products extends React.Component {
                                     <div className="flexbox">
                                         <span className="cell-title content-size">Launched {dateStringAfterElapsedDays(product.buyDay)}</span>
                                         <button className="destructive" onClick={() => actions.deprecateProduct(product.uuid)}>Deprecate</button>
-                                    </div>
+                                     </div>
                                 </li>
                             )}
                         </ul>

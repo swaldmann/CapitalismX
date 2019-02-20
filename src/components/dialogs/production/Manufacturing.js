@@ -5,7 +5,6 @@ import { deepCopyWithUUID, dateStringAfterElapsedDays } from '../../../util/Misc
 class Manufacturing extends React.Component {
     render() {
         const { machines, elapsedDays, machineTemplate, actions } = this.props
-        console.log(machines[0]);
 
         return (
             <div className="dialogDetail">

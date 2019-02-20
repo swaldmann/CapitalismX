@@ -8,8 +8,14 @@ import { FINANCIALS } from '../constants/FinanceConstants'
 const initialState = FINANCIALS
 
 export default function financials(state = initialState, action) {
+    /*if (state.cash < 0) {
+        alert(action.type)
+        alert("Congratulations, you successfully lost. There is no money left. This is why I, a generous developer, give you an additional $50,000.")
+        state.cash += 50000
+        return state
+    }*/
     switch (action.type) {
-        case DAILY_FINANCIAL_UPDATE:
+        case DAILY_FINANCIAL_UPDATE :
             return { ...state, cash: action.historyEntry.netWorth,
                                history: state.history.concat({
                                         sales:                           action.historyEntry.sales,

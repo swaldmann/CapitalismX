@@ -25,7 +25,7 @@ class NewProductPopover extends React.Component {
         const {productTemplates, currentProductTemplateIndex, actions, elapsedDays} = this.props
         const productTemplate = productTemplates[currentProductTemplateIndex]
         const price = this.state.price
-        const name = this.state.productName || productTemplate.productCategoryName 
+        const name = this.state.productName || productTemplate.productCategoryName
         const newProduct = deepCopyWithUUID({...productTemplate, unitsSold: 0, price: price, name: name, buyDay: elapsedDays })
         actions.introduceNewProduct(newProduct)
         actions.purchase(newProduct.launchPrice)

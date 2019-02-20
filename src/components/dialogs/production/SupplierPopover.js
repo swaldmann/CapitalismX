@@ -1,67 +1,75 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 
+import { deepCopy } from '../../../util/Misc'
 import {SUPPLIER_TEMPLATES} from '../../../constants/ProductionConstants'
 
-const SupplierPopover = ({component, elapsedDays, buttonDisabled, buttonClassName, actions}) => (
-    <TooltipTrigger
-        placement="top"
-        trigger="click"
-        tooltip={({
-          getTooltipProps,
-          getArrowProps,
-          tooltipRef,
-          arrowRef,
-          placement
-        }) => (
-          <div
-            {...getTooltipProps({
-              ref: tooltipRef,
-              className: 'tooltip-container'
-            })}
-          >
-            <div
-              {...getArrowProps({
-                ref: arrowRef,
-                'data-placement': placement,
-                className: 'tooltip-arrow'
-              })}
-            />
-                <div className="column-flexbox">
-                    <h3>Supplier</h3>
-                    <div className="borderedList">
-                        <ul>
-                            {SUPPLIER_TEMPLATES.map((supplierTemplate, trainingIndex) =>
-                                <li>
-                                    <div className="margin-bottom">
-                                        <button onClick={() => alert("yo")}>
-                                            <div className="flexbox">
-                                                <span className="cell-title content-size">{supplierTemplate.name}</span>
-                                                <span className="cell-detailTitle remaining-size">{supplierTemplate.costMultiplicator.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
+class SupplierPopover extends React.Component {
+    render() {
+        const {component, elapsedDays, buttonDisabled, componentType, buttonClassName, actions} = this.props
+
+        return (
+            <TooltipTrigger
+                placement="top"
+                trigger="click"
+                tooltip={({
+                  getTooltipProps,
+                  getArrowProps,
+                  tooltipRef,
+                  arrowRef,
+                  placement
+                }) => (
+                  <div
+                    {...getTooltipProps({
+                      ref: tooltipRef,
+                      className: 'tooltip-container tooltip-secondary'
+                    })}
+                  >
+                    <div
+                      {...getArrowProps({
+                        ref: arrowRef,
+                        'data-placement': placement,
+                        className: 'tooltip-arrow'
+                      })}
+                    />
+                        <div className="column-flexbox">
+                            <h3>Supplier</h3>
+                            <div className="borderedList">
+                                <ul>
+                                    {SUPPLIER_TEMPLATES.map((supplierTemplate, supplierIndex) =>
+                                        <li>
+                                            <div className="margin-bottom">
+                                                <button onClick={() => componentType.supplier = {...SUPPLIER_TEMPLATES[supplierIndex]} }>
+                                                    <div className="flexbox">
+                                                        <span className="cell-title content-size">{supplierTemplate.name}</span>
+                                                        <span className="cell-detailTitle remaining-size">{supplierTemplate.costMultiplicator.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
+                                                    </div>
+                                                </button>
                                             </div>
-                                        </button>
-                                    </div>
-                                </li>
-                            )}
-                        </ul>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        )}
-      >
-        {({ getTriggerProps, triggerRef }) => (
-          <button
-            {...getTriggerProps({
-              ref: triggerRef,
-              className: {buttonClassName},//'trigger centered constructive'
-              /* your props here */
-              disabled: {buttonDisabled}
-            })}
-          >
-            {component.name}
-            </button>
-        )}
-     </TooltipTrigger>
-)
+                )}
+              >
+                {({ getTriggerProps, triggerRef }) => (
+                  <button
+                    {...getTriggerProps({
+                      ref: triggerRef,
+                      className: buttonClassName,//'trigger centered constructive'
+
+                      disabled: false
+                    })}
+                  >
+                        <div className="cell-title">{component.name}</div>
+                        {console.log(component)}
+                        <div>{componentType.supplier.name}<span className="cell-detailTitle">${component.baseCost * componentType.supplier.costMultiplicator}</span></div>
+                    </button>
+                )}
+             </TooltipTrigger>
+    )}
+}
 
 export default SupplierPopover
