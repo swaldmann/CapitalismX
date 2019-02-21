@@ -42,9 +42,9 @@ class SimulationGraph extends Graph {
                         parseInt(utility/prices[i] * (1 + totalSalespeopleSkills/20) * (1 + Math.random()/10 * 5) * 100))
         }, ["productUtilities", "prices", "totalSalespeopleSkills"])
 
-        this.createCalculatedVertex("totalSales", 0, function(elapsedDays, salesFigures, price, oldValue) {
-            return salesFigures.reduce((totalSales, salesFigure) => salesFigure * price/10, 0)
-        }, ["salesFigures", "price"])
+        this.createCalculatedVertex("totalSales", 0, function(elapsedDays, salesFigures, prices, oldValue) {
+            return salesFigures.reduce((totalSales, salesFigure, i) => totalSales + salesFigure * prices[i]/100, 0)
+        }, ["salesFigures", "prices"])
 
         this.createCalculatedVertex("totalExpenses", 0, function(elapsedDays, totalProductComponentCost, totalSalaries, totalSales, oldValue) {
             return totalProductComponentCost * totalSales + totalSalaries
