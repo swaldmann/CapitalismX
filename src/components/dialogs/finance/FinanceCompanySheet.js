@@ -24,8 +24,17 @@ const FinanceCompanySheet = ({ financials }) => (
                 </tr>
             </tbody>
         </table>
+
         <h3>Investments</h3>
-        <h4>Stocks</h4>
+        <h4>Real Estate Fund</h4>
+        <div className="flexbox">
+            <InputNumber
+                className="remaining-size"
+              value={financials.investmentAmount}
+              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            />
+        </div>
+        <h4>Index Fund</h4>
         <div className="flexbox">
             <InputNumber
                 className="remaining-size"
@@ -33,7 +42,7 @@ const FinanceCompanySheet = ({ financials }) => (
               formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             />
         </div>
-        <h4>Real Estate</h4>
+        <h4>Venture Capital Fund</h4>
         <div className="flexbox">
             <InputNumber
                 className="remaining-size"
