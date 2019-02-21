@@ -13,7 +13,7 @@ class NewProductPopover extends React.Component {
         price: 1000
     }
 
-    onChangePrice = (self, price) => {
+    onChangePrice = (price) => {
         this.setState({ price: price })
     }
 
