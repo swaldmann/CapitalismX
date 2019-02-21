@@ -13,12 +13,12 @@ class NewProductPopover extends React.Component {
         price: 1000
     }
 
-    onChangePrice = (price) => {
-        this.setState({ price: price });
+    onChangePrice = (self, price) => {
+        this.setState({ price: price })
     }
 
     onChangeProductName = (event) => {
-        this.setState({ productName: event.target.value });
+        this.setState({ productName: event.target.value })
     }
 
     launchProduct = () => {
