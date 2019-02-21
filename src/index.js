@@ -46,6 +46,7 @@ function simulate(dispatch) {
     const salespeople = getAllSalespeople(state)
     const productUtilities = getProductUtilities(state)
 
+
     // Reducers
     const reducedValues = {
         totalSalaries: employees.reduce((totalSalaries, employee) => employee.isEmployed ? totalSalaries + employee.salary : totalSalaries, 0)/365,
@@ -54,9 +55,10 @@ function simulate(dispatch) {
         averageEngineerSatisfaction: engineers.reduce((totalEngineerSatisfaction, engineer) => engineer.isEmployed ? totalEngineerSatisfaction + engineer.happiness : totalEngineerSatisfaction, 0)/engineers.length,
         totalSalespeopleSkills: salespeople.reduce((totalSalespeopleSkills, salesperson) => salesperson.isEmployed ? totalSalespeopleSkills + salesperson.skill : totalSalespeopleSkills, 0),
         averageSalespeopleSatisfaction: salespeople.reduce((totalSalespeopleSatisfaction, salesperson) => salesperson.isEmployed ? totalSalespeopleSatisfaction + salesperson.happiness : totalSalespeopleSatisfaction, 0)/salespeople.length,
-        totalProductUtilities: productUtilities.reduce((totalUtility, utility) => totalUtility += utility, 0),
+        //totalProductUtilities: productUtilities.reduce((totalUtility, utility) => totalUtility += utility, 0),
         taxRate: state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3,
-        netWorth: state.financials.cash || 25000
+        netWorth: state.financials.cash || 25000,
+        productUtilities: productUtilities
     }
     simulationGraph.updateVertices(reducedValues)
     simulationGraph.forwardTime()
