@@ -21,7 +21,7 @@ const FinanceTable = ({ financialHistory, simulationState }) => (
                 </tr>
                 <tr>
                     <td><b>Investments</b></td>
-                    {financialHistory.map(entry => <td>${entry.investments.toFixed(0)}</td>)}
+                    {financialHistory.map(entry => <td>${entry.investmentEarnings.toFixed(0)}</td>)}
                 </tr>
                 <tr>
                     <td><b>Loans</b></td>
@@ -51,7 +51,7 @@ const FinanceTable = ({ financialHistory, simulationState }) => (
             <tbody>
                 <tr>
                     <td><b>Profit</b></td>
-                    {financialHistory.map(entry => <td>${(entry.sales + entry.investments + entry.loans - entry.materialCosts - entry.salaries - entry.loanInterests).toFixed(0)}</td>)}
+                    {financialHistory.map(entry => <td>${(entry.sales + entry.investmentEarnings + entry.loans - entry.materialCosts - entry.salaries - entry.loanInterests).toFixed(0)}</td>)}
                 </tr>
             </tbody>
         </table>

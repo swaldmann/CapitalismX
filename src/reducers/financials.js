@@ -17,9 +17,12 @@ export default function financials(state = initialState, action) {
     switch (action.type) {
         case DAILY_FINANCIAL_UPDATE :
             return { ...state, cash: action.historyEntry.netWorth,
+                            investmentAmount: action.historyEntry.investmentAmount,
+                            investmentEarnings: action.historyEntry.investmentEarnings,
                                history: state.history.concat({
                                         sales:                           action.historyEntry.sales,
-                                        investments:                     action.historyEntry.investments,
+                                        investmentAmount: action.historyEntry.investmentAmount,
+                                        investmentEarnings:                     action.historyEntry.investmentEarnings,
                                         loans:                           action.historyEntry.loans,
                                         materialCosts:                   action.historyEntry.materialCosts,
                                         salaries:                        action.historyEntry.salaries,

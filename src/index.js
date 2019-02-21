@@ -46,7 +46,6 @@ function simulate(dispatch) {
     const salespeople = getAllSalespeople(state)
     const productUtilities = getProductUtilities(state)
 
-
     // Reducers
     const reducedValues = {
         totalSalaries: employees.reduce((totalSalaries, employee) => employee.isEmployed ? totalSalaries + employee.salary : totalSalaries, 0)/365,
@@ -82,7 +81,8 @@ function simulate(dispatch) {
 
         const financialHistoryEntry = {
             sales: simulationGraph.getVertexValue("revenue"),
-            investments: simulationGraph.getVertexValue("investmentEarnings"),
+            investmentAmount: simulationGraph.getVertexValue("investmentAmount"),
+            investmentEarnings: simulationGraph.getVertexValue("investmentEarnings"),
             loans: 0,
             salaries: simulationGraph.getVertexValue("totalSalaries"),
             materialCosts: simulationGraph.getVertexValue("totalProductComponentCost"),
@@ -90,6 +90,9 @@ function simulate(dispatch) {
             profit: simulationGraph.getVertexValue("profit"),
             netWorth: simulationGraph.getVertexValue("netWorth")
         }
+
+        console.log(financialHistoryEntry.investmentEarnings)
+
         const humanResourcesHistoryEntry = {
             numberOfEmployees: employees.length,
             jobSatisfactionPercentages: jobSatisfactionPercentages

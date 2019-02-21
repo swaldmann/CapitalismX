@@ -6,6 +6,8 @@ const historyTemplate = {
     salaries: 0,
     loanInterests: 0,
     sales: 0,
+    investmentEarnings: 0,
+    investmentAmount: 0,
     loans: 0
 }
 

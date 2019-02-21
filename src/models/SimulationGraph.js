@@ -6,6 +6,7 @@ import {gauss} from './maths/functionsHelper'
 class SimulationGraph extends Graph {
     constructor(elapsedDays = 0) {
         super()
+        const self = this
         this.elapsedDays = elapsedDays
 
         /* Set up the Graph here */
@@ -13,8 +14,8 @@ class SimulationGraph extends Graph {
         // Input vertices, changeable by the user in the UI.
         this.createVertex("price", 100) // TODO: Missing UI
         this.createVertex("workingTimeModel", 0)
-        this.createVertex("investmentAmount", 0) // TODO: Missing UI
-        this.createVertex("investmentRisk", 4) // TOOD: Missing UI
+        //this.createVertex("investmentAmount", 100) // TODO: Missing UI
+        this.createVertex("investmentRisk", 0.2) // TOOD: Missing UI
         this.createVertex("investmentExpectedReturn", 0.08) // TODO: Missing UI
 
         // Aggregate functions, reduced from an array (list of objects),
@@ -54,21 +55,21 @@ class SimulationGraph extends Graph {
             return profit > 0 ? profit - (profit * taxRate) : profit
         }, ["revenue", "totalExpenses", "taxRate"])
 
-        this.createCalculatedVertex("investmentEarnings", 0, function(elapsedDays, investmentExpectedReturn, investmentAmount, investmentRisk) {
-            const ret = investmentAmount * gauss(investmentExpectedReturn, investmentRisk)
-            /*console.log(ret)
-            console.log(gauss(investmentExpectedReturn, investmentRisk));
-            console.log(investmentAmount)
-            console.log(investmentExpectedReturn)
-            console.log(investmentRisk)*/
-            return ret
-        }, ["investmentExpectedReturn", "investmentAmount", "investmentRisk"])
+        this.createCalculatedVertex("investmentAmount", 1000, function(elapsedDays, investmentExpectedReturn, investmentRisk, oldValue) {
+            const newValue = parseFloat(oldValue) * (1 + gauss(investmentExpectedReturn, investmentRisk))
+            self.createCalculatedVertex("investmentEarnings", 0, function(elapsedDays, oldValueEarnings) {
+                return newValue - oldValue
+            }, [])
+            return parseInt(newValue)
+        }, ["investmentExpectedReturn", "investmentRisk"])
+
+
 
         // In the end, all nodes will have a transitive relationship to
         // this node. The goal of the game is to maximize your net worth.
         this.createCalculatedVertex("netWorth", 25000, function(elapsedDays, profit, investmentEarnings, oldValue) {
-            return oldValue + profit + investmentEarnings
-        }, ["profit", "investmentEarnings"])
+            return (oldValue || 25000) + profit
+        }, ["profit"])
     }
 
     forwardTime = () => {
