@@ -119,16 +119,19 @@ export const CONSULTANCY_TEMPLATES = [
     {
         title: "O'Reilly & Company",
         description: "World-famous firm",
-        iconPath: "icons8-identity_disc.png"
+        iconPath: "icons8-identity_disc.png",
+        cost: 1000
     },
     {
         title: "Sinoido Consulting",
         description: "Local consultancy",
-        iconPath: "icons8-less_than2.png"
+        iconPath: "icons8-less_than2.png",
+        cost: 300
     },
     {
         title: "Wannabe Consultants",
         description: "Student consultancy",
-        iconPath: "icons8-multi_edit.png"
+        iconPath: "icons8-multi_edit.png",
+        cost: 100
     }
 ]

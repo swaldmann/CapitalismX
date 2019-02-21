@@ -20,7 +20,7 @@ const FinanceCompanySheet = ({ financials }) => (
                 </tr>
                 <tr className="table-border-top">
                     <td><b>Net Worth</b></td>
-                    <td>${(financials.cash + financials.assets).toFixed(0)}</td>
+                    <td>${financials.netWorth.toFixed(0)}</td>
                 </tr>
             </tbody>
         </table>

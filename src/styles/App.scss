@@ -292,11 +292,11 @@ hr {
     border-bottom: 1px solid #ddd;
 }
 
-#expenses td {
+#expenses td:not(:first-child) {
     color: #a31d0e;
 }
 
-#earnings td {
+#earnings td:not(:first-child) {
     color: green;
 }
 

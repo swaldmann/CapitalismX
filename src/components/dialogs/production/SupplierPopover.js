@@ -42,7 +42,7 @@ class SupplierPopover extends React.Component {
                                                 <button onClick={() => actions.switchComponentTypeSupplier(0, deepCopyWithUUID(supplierTemplate)) }>
                                                     <div className="flexbox">
                                                         <span className="cell-title content-size">{supplierTemplate.name}</span>
-                                                        <span className="cell-detailTitle remaining-size">{supplierTemplate.costMultiplicator.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
+                                                        <span className="cell-detailTitle remaining-size">x{supplierTemplate.costMultiplicator/*.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})*/}</span>
                                                     </div>
                                                 </button>
                                             </div>

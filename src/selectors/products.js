@@ -11,6 +11,14 @@ export const makeGetVisibleProducts = () => {
     )
 }
 
+export const getProductPrices = createSelector(
+    [getProducts],
+    (products) => {
+        const productPrices = products.map(product => product.price)
+        return productPrices
+    }
+)
+
 export const getProductUtilities = createSelector(
     [getProducts],
     function(products) {

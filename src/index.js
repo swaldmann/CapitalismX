@@ -7,9 +7,9 @@ import './index.css'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import rootReducer from './reducers'
-import { getProductUtilities } from './selectors/products'
+import { getProductUtilities, getProductPrices } from './selectors/products'
 import { getAllEngineers, getAllSalespeople, getAllEmployees, getAllHiredEmployees } from './selectors/employees'
-import { quarterlyFinancialHistoryEntry, monthlyHRHistoryEntry } from './actions'
+import { dailyProductUpdate, dailyFinancialUpdate, quarterlyFinancialHistoryEntry, monthlyHRHistoryEntry } from './actions'
 import SimulationGraph from './models/SimulationGraph'
 import { LOBBYIST_TEMPLATES } from './constants/MarketingConstants'
 
@@ -17,12 +17,12 @@ var simulationGraph
 
 export const store = createStore(
     rootReducer,
-    //applyMiddleware(thunk)
+    applyMiddleware(thunk)
     // Change to this if you want to use the Redux Devtools extension in Chrome.
-    compose(
+    /*compose(
         applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    )*/
 )
 
 function startSimulation() {
@@ -45,6 +45,7 @@ function simulate(dispatch) {
     const engineers = getAllEngineers(state)
     const salespeople = getAllSalespeople(state)
     const productUtilities = getProductUtilities(state)
+    const productPrices = getProductPrices(state)
 
     // Reducers
     const reducedValues = {
@@ -56,8 +57,9 @@ function simulate(dispatch) {
         averageSalespeopleSatisfaction: salespeople.reduce((totalSalespeopleSatisfaction, salesperson) => salesperson.isEmployed ? totalSalespeopleSatisfaction + salesperson.happiness : totalSalespeopleSatisfaction, 0)/salespeople.length,
         //totalProductUtilities: productUtilities.reduce((totalUtility, utility) => totalUtility += utility, 0),
         taxRate: state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3,
-        netWorth: state.financials.cash || 25000,
-        productUtilities: productUtilities
+        cash: state.financials.cash || 25000,
+        productUtilities: productUtilities,
+        prices: productPrices
     }
     simulationGraph.updateVertices(reducedValues)
     simulationGraph.forwardTime()
@@ -79,26 +81,32 @@ function simulate(dispatch) {
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
 
-        const financialHistoryEntry = {
+        const financials = { ...state.financials,
             sales: simulationGraph.getVertexValue("revenue"),
             investmentAmount: simulationGraph.getVertexValue("investmentAmount"),
             investmentEarnings: simulationGraph.getVertexValue("investmentEarnings"),
-            loans: 0,
+            loans: simulationGraph.getVertexValue("loans"),
             salaries: simulationGraph.getVertexValue("totalSalaries"),
             materialCosts: simulationGraph.getVertexValue("totalProductComponentCost"),
-            loanInterests: 0,
+            loanInterests: simulationGraph.getVertexValue("loanInterests"),
+            ebit: simulationGraph.getVertexValue("ebit"),
+            taxRate: simulationGraph.getVertexValue("taxRate"),
+            taxes: simulationGraph.getVertexValue("taxes"),
             profit: simulationGraph.getVertexValue("profit"),
+              cash: simulationGraph.getVertexValue("cash"),
             netWorth: simulationGraph.getVertexValue("netWorth")
         }
-
-        console.log(financialHistoryEntry.investmentEarnings)
 
         const humanResourcesHistoryEntry = {
             numberOfEmployees: employees.length,
             jobSatisfactionPercentages: jobSatisfactionPercentages
         }
 
-        dispatch(quarterlyFinancialHistoryEntry(financialHistoryEntry))
+        const salesFigures = simulationGraph.getVertexValue("salesFigures")
+
+        dispatch(dailyProductUpdate(salesFigures))
+        dispatch(dailyFinancialUpdate(financials))
+        dispatch(quarterlyFinancialHistoryEntry(financials))
         dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))
 
     }

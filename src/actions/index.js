@@ -6,7 +6,8 @@ export const startSimulation = () => ({ type: types.START_SIMULATION })
 export const pauseSimulation = () => ({ type: types.PAUSE_SIMULATION })
 
 /* Finance */
-export const quarterlyFinancialHistoryEntry = historyEntry => ({ type: types.DAILY_FINANCIAL_UPDATE, historyEntry: historyEntry})
+export const dailyFinancialUpdate = financials => ({ type: types.DAILY_FINANCIAL_UPDATE, financials: financials })
+export const quarterlyFinancialHistoryEntry = financials => ({ type: types.QUARTERLY_FINANCIAL_HISTORY_ENTRY, financials: financials})
 export const purchase = amount => ({ type: types.PURCHASE, amount })
 
 /* HR */
@@ -21,6 +22,8 @@ export const setGymMembership = gymMembership => ({ type: types.SET_GYM_BENEFITS
 export const trainEmployee = (index, skillIncrease, salaryIncreasePercentage) => ({ type: types.TRAIN_EMPLOYEE, index, skillIncrease, salaryIncreasePercentage })
 
 /* Production */
+
+export const dailyProductUpdate = (salesFigures) => ({ type: types.DAILY_PRODUCT_UPDATE, salesFigures})
 
 // Products
 export const introduceNewProduct = productTemplate => ({ type: types.INTRODUCE_NEW_PRODUCT, productTemplate })

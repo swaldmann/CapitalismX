@@ -12,11 +12,13 @@ class SimulationGraph extends Graph {
         /* Set up the Graph here */
 
         // Input vertices, changeable by the user in the UI.
-        this.createVertex("price", 100) // TODO: Missing UI
+        this.createVertex("price", 100)
         this.createVertex("workingTimeModel", 0)
-        //this.createVertex("investmentAmount", 100) // TODO: Missing UI
-        this.createVertex("investmentRisk", 0.2) // TOOD: Missing UI
-        this.createVertex("investmentExpectedReturn", 0.08) // TODO: Missing UI
+        this.createVertex("investmentRisk", 0.005)
+        this.createVertex("investmentExpectedReturn", Math.pow(1.08, 1/365)-1)
+        this.createVertex("taxRate", 0.15)
+        this.createVertex("loans", 0)
+        this.createVertex("loanInterests", 0)
 
         // Aggregate functions, reduced from an array (list of objects),
         // which itself is changeable by the user by adding, removing
@@ -27,19 +29,21 @@ class SimulationGraph extends Graph {
         this.createVertex("averageEngineerSatisfaction", 0.5)
         this.createVertex("totalSalespeopleSkills", 0)
         this.createVertex("averageSalespeopleSatisfaction", 0.5)
-        this.createVertex("productUtilities", 0)
+        this.createVertex("productUtilities", [])
         this.createVertex("totalProductComponentCost", 0)
-        this.createVertex("taxRate", 0.15)
+        this.createVertex("prices", [])
 
         // All calculated vertices store dictionary keys to their input
         // vertices. Here we can define relationships between variables,
         // i.e. edges in the graph.
-        this.createCalculatedVertex("salesFigures", 0, function(elapsedDays, productUtilities, price, totalSalespeopleSkills, oldValue) {
-            return productUtilities.map(utility => totalSalespeopleSkills === 0 ? 0 : (utility/price) * (1 + totalSalespeopleSkills/20) * (1 + Math.random()/10 * 5))
-        }, ["productUtilities", "price", "totalSalespeopleSkills"])
+        this.createCalculatedVertex("salesFigures", 0, function(elapsedDays, productUtilities, prices, totalSalespeopleSkills, oldValue) {
+            return productUtilities.map((utility, i) =>
+                        totalSalespeopleSkills === 0 ? 0 :
+                        parseInt(utility/prices[i] * (1 + totalSalespeopleSkills/20) * (1 + Math.random()/10 * 5) * 100))
+        }, ["productUtilities", "prices", "totalSalespeopleSkills"])
 
         this.createCalculatedVertex("totalSales", 0, function(elapsedDays, salesFigures, price, oldValue) {
-            return salesFigures.reduce((totalSales, salesFigure) => salesFigure * price, 0)
+            return salesFigures.reduce((totalSales, salesFigure) => salesFigure * price/10, 0)
         }, ["salesFigures", "price"])
 
         this.createCalculatedVertex("totalExpenses", 0, function(elapsedDays, totalProductComponentCost, totalSalaries, totalSales, oldValue) {
@@ -50,26 +54,35 @@ class SimulationGraph extends Graph {
             return totalSales * price
         }, ["totalSales", "price"])
 
-        this.createCalculatedVertex("profit", 0, function(elapsedDays, revenue, totalExpenses, taxRate, oldValue) {
-            const profit = revenue - totalExpenses
-            return profit > 0 ? profit - (profit * taxRate) : profit
-        }, ["revenue", "totalExpenses", "taxRate"])
+        this.createCalculatedVertex("ebit", 0, function(elapsedDays, revenue, totalExpenses, oldValue) {
+            return revenue - totalExpenses
+        }, ["revenue", "totalExpenses"])
+
+        this.createCalculatedVertex("taxes", 0, function(elapsedDays, ebit, taxRate, oldValue) {
+            return ebit > 0 ? ebit * taxRate : 0
+        }, ["ebit", "taxRate"])
+
+        this.createCalculatedVertex("profit", 0, function(elapsedDays, ebit, taxes, oldValue) {
+            return ebit - taxes
+        }, ["ebit", "taxes"])
 
         this.createCalculatedVertex("investmentAmount", 1000, function(elapsedDays, investmentExpectedReturn, investmentRisk, oldValue) {
             const newValue = parseFloat(oldValue) * (1 + gauss(investmentExpectedReturn, investmentRisk))
             self.createCalculatedVertex("investmentEarnings", 0, function(elapsedDays, oldValueEarnings) {
-                return newValue - oldValue
+                return parseInt(newValue) - parseInt(oldValue)
             }, [])
             return parseInt(newValue)
         }, ["investmentExpectedReturn", "investmentRisk"])
 
-
-
-        // In the end, all nodes will have a transitive relationship to
-        // this node. The goal of the game is to maximize your net worth.
-        this.createCalculatedVertex("netWorth", 25000, function(elapsedDays, profit, investmentEarnings, oldValue) {
-            return (oldValue || 25000) + profit
+        this.createCalculatedVertex("cash", 25000, function(elapsedDays, profit, oldValue) {
+            return oldValue + profit
         }, ["profit"])
+
+        // In the end, all nodes will lead into this node.
+        // The goal of the game is to maximize your net worth.
+        this.createCalculatedVertex("netWorth", 25000, function(elapsedDays, cash, investmentAmount, oldValue) {
+            return cash + investmentAmount
+        }, ["cash", "investmentAmount"])
     }
 
     forwardTime = () => {
