@@ -16,7 +16,7 @@ class Logistics extends React.Component {
                     <div className="borderedList">
                         <ul>
                             {trucks.map(truck =>
-                                <li>
+                                <li key={truck.uuid}>
                                     <div className="flexbox">
                                         <img className="icon" src={require('../../../static/icons/icons8-truck.png')} alt="" />
                                         <span className="cell-title content-size">1200 units/day</span>

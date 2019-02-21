@@ -7,6 +7,7 @@ import {PRODUCT_TEMPLATES} from '../constants/ProductionConstants'
 const mapStateToProps = state => {
     return {
         productTemplates: PRODUCT_TEMPLATES,
+        componentTypeTemplates: state.componentTypeTemplates,
         currentProductTemplateIndex: state.currentProductTemplateIndex,
         elapsedDays: state.simulationState.elapsedDays
     }

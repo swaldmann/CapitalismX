@@ -1,7 +1,7 @@
 import React from 'react'
 import VisibleCampaignPopover from '../../../containers/VisibleCampaignPopover'
 
-const startDate = new Date(1990,0,1)
+//const startDate = new Date(1990,0,1)
 
 const CampaignList = ({ campaigns, elapsedDays }) => (
     <div className="third column-flexbox">

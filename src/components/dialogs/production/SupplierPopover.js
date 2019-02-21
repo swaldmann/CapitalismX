@@ -1,16 +1,16 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 
-import { deepCopy } from '../../../util/Misc'
+import { deepCopyWithUUID } from '../../../util/Misc'
 import {SUPPLIER_TEMPLATES} from '../../../constants/ProductionConstants'
 
 class SupplierPopover extends React.Component {
     render() {
-        const {component, elapsedDays, buttonDisabled, componentType, buttonClassName, actions} = this.props
+        const { componentTypeTemplate, buttonClassName, actions} = this.props
 
         return (
             <TooltipTrigger
-                placement="top"
+                placement="auto"
                 trigger="click"
                 tooltip={({
                   getTooltipProps,
@@ -37,9 +37,9 @@ class SupplierPopover extends React.Component {
                             <div className="borderedList">
                                 <ul>
                                     {SUPPLIER_TEMPLATES.map((supplierTemplate, supplierIndex) =>
-                                        <li>
+                                        <li key={supplierIndex}>
                                             <div className="margin-bottom">
-                                                <button onClick={() => componentType.supplier = {...SUPPLIER_TEMPLATES[supplierIndex]} }>
+                                                <button onClick={() => actions.switchComponentTypeSupplier(0, deepCopyWithUUID(supplierTemplate)) }>
                                                     <div className="flexbox">
                                                         <span className="cell-title content-size">{supplierTemplate.name}</span>
                                                         <span className="cell-detailTitle remaining-size">{supplierTemplate.costMultiplicator.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
@@ -63,9 +63,8 @@ class SupplierPopover extends React.Component {
                       disabled: false
                     })}
                   >
-                        <div className="cell-title">{component.name}</div>
-                        {console.log(component)}
-                        <div>{componentType.supplier.name}<span className="cell-detailTitle">${component.baseCost * componentType.supplier.costMultiplicator}</span></div>
+                        <div className="cell-title"></div>
+                        <div>{componentTypeTemplate.supplier.name}<span className="cell-detailTitle">${componentTypeTemplate.supplier.costMultiplicator}</span></div>
                     </button>
                 )}
              </TooltipTrigger>

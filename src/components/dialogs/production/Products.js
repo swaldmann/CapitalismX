@@ -16,7 +16,7 @@ class Products extends React.Component {
                     <div className="borderedList">
                         <ul>
                             {products.map(product =>
-                                <li>
+                                <li key={product.uuid}>
                                     <div className="flexbox">
                                         <span className="cell-title content-size"><b>{product.name}</b> ({product.unitsSold} sold)</span>
                                         <span className="cell-detailTitle remaining-size"><b>{product.price.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</b></span>

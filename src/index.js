@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware, /*compose*/ } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import './index.css'
@@ -17,13 +17,12 @@ var simulationGraph
 
 export const store = createStore(
     rootReducer,
-    applyMiddleware(thunk)
+    //applyMiddleware(thunk)
     // Change to this if you want to use the Redux Devtools extension in Chrome.
-    /*,
     compose(
         applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )*/
+    )
 )
 
 function startSimulation() {

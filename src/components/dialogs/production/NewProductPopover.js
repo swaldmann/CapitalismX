@@ -2,9 +2,9 @@ import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 import VisibleComponentGrid from '../../../containers/VisibleComponentGrid'
 import InputNumber from 'rc-input-number'
-import {deepCopyWithUUID} from '../../../util/Misc.js'
+import {deepCopyWithUUID, deepCopy} from '../../../util/Misc.js'
 import * as classNames from "classnames"
-
+import VisibleSupplierPopover from "../../../containers/VisibleSupplierPopover"
 
 class NewProductPopover extends React.Component {
 
@@ -22,18 +22,19 @@ class NewProductPopover extends React.Component {
     }
 
     launchProduct = () => {
-        const {productTemplates, currentProductTemplateIndex, actions, elapsedDays} = this.props
+        const {productTemplates, currentProductTemplateIndex, componentTypeTemplates, actions, elapsedDays} = this.props
         const productTemplate = productTemplates[currentProductTemplateIndex]
         const price = this.state.price
         const name = this.state.productName || productTemplate.productCategoryName
-        const newProduct = deepCopyWithUUID({...productTemplate, unitsSold: 0, price: price, name: name, buyDay: elapsedDays })
+        const components = productTemplate.components.map(componentType => componentTypeTemplates[componentType.index])
+        const newProduct = deepCopyWithUUID({...productTemplate, unitsSold: 0, price: price, name: name, buyDay: elapsedDays, components: deepCopy(components) })
         actions.introduceNewProduct(newProduct)
         actions.purchase(newProduct.launchPrice)
     }
 
  render() {
-     const {productTemplates, currentProductTemplateIndex, actions} = this.props
-
+     const {productTemplates, currentProductTemplateIndex, componentTypeTemplates, actions} = this.props
+     //console.log(componentTypeTemplates)
      return (
          <TooltipTrigger
              placement="top"
@@ -60,7 +61,7 @@ class NewProductPopover extends React.Component {
                  />
                      <div className="flexbox margin-bottom-large">
                          {productTemplates.map((productTemplate, productTemplateIndex) =>
-                             <div className="quarter">
+                             <div key={productTemplate.uuid} className="quarter">
                                  <button className={classNames({selected: currentProductTemplateIndex === productTemplateIndex})} onClick={ () => actions.switchCurrentProductTemplateIndex(productTemplateIndex) }>
                                      {productTemplate.productCategoryName}
                                  </button>
@@ -68,7 +69,17 @@ class NewProductPopover extends React.Component {
                          )}
                      </div>
                      <input onChange={this.onChangeProductName} type="text" placeholder={"cap" + productTemplates[currentProductTemplateIndex].productCategoryName} className="margin-bottom-large" />
-                     <VisibleComponentGrid />
+                     <div className="flexbox">
+                        <VisibleComponentGrid />
+                        <div className="quarter">
+                            {
+                                productTemplates[currentProductTemplateIndex].components.map((template, templateIndex) =>
+                                    //console.log(template)
+                                    <VisibleSupplierPopover key={template.uuid} componentTypeTemplate={template} />
+                                )
+                            }
+                        </div>
+                     </div>
                      <div className="flexbox">
                          <label className="quarter">Price</label>
                          <InputNumber

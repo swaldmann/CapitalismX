@@ -1,5 +1,5 @@
 
-import { deepCopy } from '../util/Misc'
+import { deepCopy, deepCopyWithUUID } from '../util/Misc'
 
 const CPUS = [
     {index: 0, name: "1 GHz", baseUtility: 20, availabilityOffset: 0, baseCost: 10},
@@ -39,6 +39,7 @@ const AUDIO = [
     {index: 22, name: "Stereo", baseUtility: 30, availabilityOffset: 3, baseCost: 4},
     {index: 23, name: "2.1", baseUtility: 100, availabilityOffset: 14, baseCost: 4},
     {index: 24, name: "5.1", baseUtility: 130, availabilityOffset: 18, baseCost: 4},
+    {index: 25, name: "7.1", baseUtility: 140, availabilityOffset: 20, baseCost: 4},
     {index: 26, name: "Studio", baseUtility: 180, availabilityOffset: 26, baseCost: 4}
 ]
 
@@ -55,7 +56,7 @@ const CPU_COMPONENT = {
     imageName: "icons8-smartphone_cpu",
     typeDescription: "CPU",
     currentIndex: 0,
-    supplier: defaultSupplier,
+    supplier: deepCopy(defaultSupplier),
     allComponents: deepCopy(CPUS)
 }
 
@@ -95,6 +96,10 @@ const AUDIO_COMPONENT = {
     allComponents: deepCopy(AUDIO)
 }
 
+export const ALL_COMPONENT_TEMPLATES = [
+    CPU_COMPONENT, STORAGE_COMPONENT, DISPLAY_COMPONENT, CAMERA_COMPONENT, AUDIO_COMPONENT
+]
+
 const SMARTPHONE = {
     productCategoryName: "Phone",
     components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}, {...AUDIO_COMPONENT}],
@@ -109,18 +114,17 @@ const NOTEBOOK = {
 
 const CONSOLE = {
     productCategoryName: "Console",
-    components: [{...CPU_COMPONENT}, {...DISPLAY_COMPONENT}, {...AUDIO_COMPONENT}],
+    components: [deepCopyWithUUID(CPU_COMPONENT), deepCopyWithUUID(DISPLAY_COMPONENT), deepCopyWithUUID(AUDIO_COMPONENT)],
     launchPrice: 50000
 }
 
 const TV = {
     productCategoryName: "TV",
-    components: [{...DISPLAY_COMPONENT}, {...AUDIO_COMPONENT}],
+    components: [deepCopyWithUUID(DISPLAY_COMPONENT), deepCopyWithUUID(AUDIO_COMPONENT)],
     launchPrice: 10000
 }
 
-export const PRODUCT_TEMPLATES = [deepCopy(TV), deepCopy(CONSOLE), deepCopy(NOTEBOOK), deepCopy(SMARTPHONE)]
-
+export const PRODUCT_TEMPLATES = [deepCopyWithUUID(TV), deepCopyWithUUID(CONSOLE), deepCopyWithUUID(NOTEBOOK), deepCopyWithUUID(SMARTPHONE)]
 
 // Manufacturing
 export const MACHINE_TEMPLATE = { name: "Machine", price: 50, utility: 200 }

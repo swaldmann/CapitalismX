@@ -14,7 +14,7 @@ class Manufacturing extends React.Component {
                     <div className="borderedList">
                         <ul>
                             {machines.map(machine =>
-                                <li>
+                                <li key={machine.uuid}>
                                     <div className="flexbox">
                                         <img className="icon" src={require('../../../static/icons/icons8-gear.png')} alt="" />
                                         <span className="cell-title content-size">500 units/hour</span>

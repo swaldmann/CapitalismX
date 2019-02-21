@@ -7,8 +7,13 @@ import {
     SELL_MACHINE,
     BUY_TRUCK,
     SELL_TRUCK,
-    SWITCH_LOGISTIC_PARTNER
+    SWITCH_LOGISTIC_PARTNER,
+    SWITCH_COMPONENT_TYPE_SUPPLIER
 } from '../constants/ActionTypes'
+
+import {
+    ALL_COMPONENT_TEMPLATES
+} from '../constants/ProductionConstants'
 
 export function products(state = [], action) {
     switch (action.type) {
@@ -16,13 +21,6 @@ export function products(state = [], action) {
             return [action.productTemplate].concat(state)
         case DEPRECATE_PRODUCT:
             return state.filter(product => product.uuid !== action.productUuid)
-        case SWITCH_CURRENT_COMPONENT:
-            return state.map(product =>
-                product.index === action.productIndex ?
-                ({ ...product, components: product.components.map(componentType =>
-                    componentType.index === action.componentTypeIndex ? { ...componentType, currentIndex: action.componentIndex} : componentType
-                )}) : product
-            )
         default:
         return state
     }
@@ -50,6 +48,24 @@ export function trucks(state = [], action) {
     }
 }
 
+export function componentTypeTemplates(state = ALL_COMPONENT_TEMPLATES, action) {
+    switch (action.type) {
+        case SWITCH_COMPONENT_TYPE_SUPPLIER:
+            return state.map(componentType => componentType.uuid === action.uuid ? {...componentType, supplier: action.supplier} : componentType)
+        case SWITCH_CURRENT_COMPONENT:
+            console.log(state)
+            console.log(action.componentTypeIndex)
+            console.log(action.componentIndex)
+            return state.map((componentType, i) => i === action.componentTypeIndex ? {...componentType, currentIndex: action.componentIndex} : componentType )
+            /*state.map((componentTemplate, i) =>
+                i === action.productTypeIndex ? ({ ...componentTemplate, components: componentTemplate.components.map(componentType =>
+                    componentType.index === action.componentTypeIndex ? { ...componentType, currentIndex: action.componentIndex} : componentType
+                )}) : componentTemplate)*/
+        default:
+            return state
+    }
+}
+
 export const logisticPartnerIndex = (state = 0, action) => {
     switch (action.type) {
         case SWITCH_LOGISTIC_PARTNER:
@@ -60,7 +76,6 @@ export const logisticPartnerIndex = (state = 0, action) => {
 }
 
 export const currentProductTemplateIndex = (state = 0, action) => {
-    console.log(action);
     switch (action.type) {
         case SWITCH_CURRENT_PRODUCT_TEMPLATE:
             return action.productCategoryTemplateIndex
