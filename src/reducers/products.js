@@ -53,14 +53,7 @@ export function componentTypeTemplates(state = ALL_COMPONENT_TEMPLATES, action) 
         case SWITCH_COMPONENT_TYPE_SUPPLIER:
             return state.map(componentType => componentType.uuid === action.uuid ? {...componentType, supplier: action.supplier} : componentType)
         case SWITCH_CURRENT_COMPONENT:
-            console.log(state)
-            console.log(action.componentTypeIndex)
-            console.log(action.componentIndex)
             return state.map((componentType, i) => i === action.componentTypeIndex ? {...componentType, currentIndex: action.componentIndex} : componentType )
-            /*state.map((componentTemplate, i) =>
-                i === action.productTypeIndex ? ({ ...componentTemplate, components: componentTemplate.components.map(componentType =>
-                    componentType.index === action.componentTypeIndex ? { ...componentType, currentIndex: action.componentIndex} : componentType
-                )}) : componentTemplate)*/
         default:
             return state
     }
