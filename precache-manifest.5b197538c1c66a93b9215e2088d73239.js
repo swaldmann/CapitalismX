@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/CapitalismX/static/media/city-block-3-0.88ea3d6c.vox"
   },
   {
-    "revision": "f71fd6979549a677a349",
+    "revision": "213489123e4697d03d0d",
     "url": "/CapitalismX/static/css/main.0919490c.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/CapitalismX/static/media/city-block-2-0.cd6b1832.vox"
   },
   {
-    "revision": "f71fd6979549a677a349",
-    "url": "/CapitalismX/static/js/main.f71fd697.chunk.js"
+    "revision": "213489123e4697d03d0d",
+    "url": "/CapitalismX/static/js/main.21348912.chunk.js"
   },
   {
     "revision": "172118ca42e6d5c1719a83d53bb66423",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/CapitalismX/static/media/waternormals.4418dde3.jpg"
   },
   {
-    "revision": "638aefdaf8f3c0666060437e7d19d18b",
+    "revision": "3fb03e2f240efad08b02a0d055eec13e",
     "url": "/CapitalismX/index.html"
   }
 ];
