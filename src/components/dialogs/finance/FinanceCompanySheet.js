@@ -3,7 +3,7 @@ import InputNumber from 'rc-input-number'
 
 const FinanceCompanySheet = ({ financials }) => (
     <div className="quarter panel">
-        <h2><i className="fas fa-building"></i>Company</h2>
+        <h3>Company</h3>
         <table id="company">
             <tbody>
                 <tr>

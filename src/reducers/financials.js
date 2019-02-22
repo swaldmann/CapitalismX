@@ -20,7 +20,6 @@ export default function financials(state = initialState, action) {
         case DAILY_FINANCIAL_UPDATE:
             return action.financials
         case QUARTERLY_FINANCIAL_HISTORY_ENTRY:
-        console.log(state.history);
             return  { ...state, history: state.history.concat({...action.financials, history: undefined}).slice(1) }
         case PURCHASE:
             return { ...state, cash: state.cash - action.amount }

@@ -5,7 +5,7 @@ class FinanceTable extends React.Component {
         const { financialHistory, simulationState } = this.props
         return (
         <div className="half">
-            <h2><i className="fas fa-exchange-alt"></i>Cashflow</h2>
+            <h3>Cashflow</h3>
             <table>
                 <thead>
                     <tr>

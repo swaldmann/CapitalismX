@@ -10,7 +10,8 @@ class NewProductPopover extends React.Component {
 
     state = {
         productName: "",
-        price: 1000
+        price: 1000,
+        showsTooltip: false
     }
 
     onChangePrice = (price) => {
@@ -19,6 +20,10 @@ class NewProductPopover extends React.Component {
 
     onChangeProductName = (event) => {
         this.setState({ productName: event.target.value })
+    }
+
+    onVisibilityChange = (tooltipShown) => {
+        this.setState({ showsTooltip: tooltipShown })
     }
 
     launchProduct = () => {
@@ -30,6 +35,7 @@ class NewProductPopover extends React.Component {
         const newProduct = deepCopyWithUUID({...productTemplate, unitsSold: 0, price: price, name: name, buyDay: elapsedDays, components: deepCopy(components) })
         actions.introduceNewProduct(newProduct)
         actions.purchase(newProduct.launchPrice)
+        this.setState({ showsTooltip: false })
     }
 
  render() {
@@ -39,6 +45,8 @@ class NewProductPopover extends React.Component {
          <TooltipTrigger
              placement="top"
              trigger="click"
+             tooltipShown={this.state.showsTooltip}
+             onVisibilityChange={this.onVisibilityChange}
              tooltip={({
                getTooltipProps,
                getArrowProps,

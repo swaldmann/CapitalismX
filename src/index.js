@@ -7,7 +7,7 @@ import './index.css'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import rootReducer from './reducers'
-import { getProductUtilities, getProductPrices } from './selectors/products'
+import { getProductUtilities, getProductPrices, getProductComponentCosts } from './selectors/products'
 import { getAllEngineers, getAllSalespeople, getAllEmployees, getAllHiredEmployees } from './selectors/employees'
 import { dailyProductUpdate, dailyFinancialUpdate, quarterlyFinancialHistoryEntry, monthlyHRHistoryEntry } from './actions'
 import SimulationGraph from './models/SimulationGraph'
@@ -46,6 +46,7 @@ function simulate(dispatch) {
     const salespeople = getAllSalespeople(state)
     const productUtilities = getProductUtilities(state)
     const productPrices = getProductPrices(state)
+    const productComponentCosts = getProductComponentCosts(state)
 
     // Reducers
     const reducedValues = {
@@ -55,12 +56,12 @@ function simulate(dispatch) {
         averageEngineerSatisfaction: engineers.reduce((totalEngineerSatisfaction, engineer) => engineer.isEmployed ? totalEngineerSatisfaction + engineer.happiness : totalEngineerSatisfaction, 0)/engineers.length,
         totalSalespeopleSkills: salespeople.reduce((totalSalespeopleSkills, salesperson) => salesperson.isEmployed ? totalSalespeopleSkills + salesperson.skill : totalSalespeopleSkills, 0),
         averageSalespeopleSatisfaction: salespeople.reduce((totalSalespeopleSatisfaction, salesperson) => salesperson.isEmployed ? totalSalespeopleSatisfaction + salesperson.happiness : totalSalespeopleSatisfaction, 0)/salespeople.length,
-        //totalProductUtilities: productUtilities.reduce((totalUtility, utility) => totalUtility += utility, 0),
+        totalProductComponentCosts: productComponentCosts,
         taxRate: state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3,
-        cash: state.financials.cash || 25000,
         productUtilities: productUtilities,
         prices: productPrices
     }
+
     simulationGraph.updateVertices(reducedValues)
     simulationGraph.forwardTime()
 
@@ -77,6 +78,8 @@ function simulate(dispatch) {
         count + jobSatisfactionInfluence.jobSatisfactionPoints,
         0
     )
+
+    console.log(simulationGraph.getVertexValue("totalProductComponentCost"))
 
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })

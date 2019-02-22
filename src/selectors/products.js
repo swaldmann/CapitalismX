@@ -32,6 +32,19 @@ export const getProductUtilities = createSelector(
     }
 )
 
+export const getProductComponentCosts = createSelector(
+    [getProducts],
+    function(products) {
+        const componentCosts = products.map(product =>
+            product.components.reduce((totalCost, component) =>
+                totalCost + component.allComponents[component.currentIndex].baseCost,
+                0
+            )
+        )
+        return componentCosts
+    }
+)
+
 // Manufacturing
 export const getMachines = state => state.machines
 

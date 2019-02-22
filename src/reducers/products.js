@@ -19,7 +19,6 @@ import {
 export function products(state = [], action) {
     switch (action.type) {
         case DAILY_PRODUCT_UPDATE:
-            console.log(action.salesFigures);
             return state.map((product, i) => ({...product, unitsSold: product.unitsSold + action.salesFigures[i]}))
         case INTRODUCE_NEW_PRODUCT:
             return [action.productTemplate].concat(state)
