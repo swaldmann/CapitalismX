@@ -3,6 +3,11 @@ import VisibleProductsInfoColumn from "../../../containers/VisibleProductsInfoCo
 import { deepCopyWithUUID, dateStringAfterElapsedDays } from '../../../util/Misc'
 
 class Manufacturing extends React.Component {
+    buyMachine = (machineTemplate, actions) => {
+        actions.buyMachine(machineTemplate)
+        actions.purchase(3000)
+    }
+
     render() {
         const { machines, elapsedDays, machineTemplate, actions } = this.props
 
@@ -30,7 +35,7 @@ class Manufacturing extends React.Component {
                             )}
                         </ul>
                     </div>
-                    <button className="centered" onClick={() => actions.buyMachine({...deepCopyWithUUID(machineTemplate), buyDay: elapsedDays})}>Buy Machine</button>
+                    <button className="centered" onClick={() => this.buyMachine({...deepCopyWithUUID(machineTemplate), buyDay: elapsedDays}, actions)}>Buy Machine ($3,000)</button>
                 </div>
                 <div className="panel quarter">
                     <h3>Statistics</h3>

@@ -112,7 +112,6 @@ function simulate(dispatch) {
         dispatch(dailyFinancialUpdate(financials))
         dispatch(quarterlyFinancialHistoryEntry(financials))
         dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))
-
     }
 }
 

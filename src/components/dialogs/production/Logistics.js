@@ -3,6 +3,11 @@ import { deepCopyWithUUID, dateStringAfterElapsedDays } from '../../../util/Misc
 import VisibleLogisticPartnerPanel from '../../../containers/VisibleLogisticPartnerPanel'
 
 class Logistics extends React.Component {
+    buyTruck = (truckTemplate, actions) => {
+        actions.buyTruck(truckTemplate)
+        actions.purchase(5000)
+    }
+
     render() {
         const { trucks, elapsedDays, truckTemplate, actions } = this.props
 
@@ -10,6 +15,7 @@ class Logistics extends React.Component {
             <div className="dialogDetail">
                 <div className="quarter panel">
                     <VisibleLogisticPartnerPanel />
+                    <h4>Logistic</h4>
                 </div>
                 <div className="column-flexbox remaining-size">
                     <h3>Truck Fleet</h3>
@@ -32,7 +38,7 @@ class Logistics extends React.Component {
                             )}
                         </ul>
                     </div>
-                    <button className="centered" onClick={() => actions.buyTruck({...deepCopyWithUUID(truckTemplate), buyDay: elapsedDays})}>Buy Truck</button>
+                    <button className="centered" onClick={() => this.buyTruck({...deepCopyWithUUID(truckTemplate), buyDay: elapsedDays}, actions)}>Buy Truck ($5,000)</button>
                 </div>
                 <div className="panel quarter">
                     <h3>Statistics</h3>
