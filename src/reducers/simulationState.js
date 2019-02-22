@@ -7,7 +7,7 @@ import {
 const initialState = {
     elapsedDays: 0,
     isPlaying: true,
-    showMenu: true
+    showMenu: window.location.pathname.endsWith("CapitalismX/")
 }
 
 export default function simulationState(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function simulationState(state = initialState, action) {
         case PAUSE_SIMULATION:
             return { ...state, isPlaying: false}
         case TOGGLE_MENU_VISIBILITY:
-            return { ...state, showMenu: !state.showMenu}
+            return { ...state, showMenu: !state.showMenu }
         default:
         return state
     }
