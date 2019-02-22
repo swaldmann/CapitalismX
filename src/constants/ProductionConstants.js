@@ -2,45 +2,45 @@
 import { deepCopy, deepCopyWithUUID } from '../util/Misc'
 
 const CPUS = [
-    {index: 0, name: "1 GHz", baseUtility: 20, availabilityOffset: 0, baseCost: 10},
-    {index: 1, name: "1.5 GHz", baseUtility: 40, availabilityOffset: 3, baseCost: 10},
-    {index: 2, name: "3 GHz", baseUtility: 70, availabilityOffset: 7, baseCost: 10},
-    {index: 3, name: "2x 3 GHz", baseUtility: 90, availabilityOffset: 14, baseCost: 10},
-    {index: 4, name: "4x 3 GHz", baseUtility: 120, availabilityOffset: 19, baseCost: 10}
+    {index: 0, name: "1 GHz", baseUtility: 20, availabilityOffset: 0, baseCost: 20},
+    {index: 1, name: "1.5 GHz", baseUtility: 40, availabilityOffset: 3, baseCost: 20},
+    {index: 2, name: "3 GHz", baseUtility: 70, availabilityOffset: 7, baseCost: 20},
+    {index: 3, name: "2x 3 GHz", baseUtility: 90, availabilityOffset: 14, baseCost: 20},
+    {index: 4, name: "4x 3 GHz", baseUtility: 120, availabilityOffset: 19, baseCost: 20}
 ]
 
 const STORAGES = [
-    {index: 5, name: "2 GB", baseUtility: 30, availabilityOffset: 0, baseCost: 5},
-    {index: 6, name: "10 GB", baseUtility: 60, availabilityOffset: 3, baseCost: 5},
-    {index: 7, name: "50 GB", baseUtility: 90, availabilityOffset: 11, baseCost: 5},
-    {index: 8, name: "200 GB", baseUtility: 120, availabilityOffset: 15, baseCost: 5},
-    {index: 9, name: "200 GB SSD", baseUtility: 130, availabilityOffset: 24, baseCost: 5},
-    {index: 10, name: "1 TB SSD", baseUtility: 150, availabilityOffset: 30, baseCost: 5}
+    {index: 5, name: "2 GB", baseUtility: 30, availabilityOffset: 0, baseCost: 15},
+    {index: 6, name: "10 GB", baseUtility: 60, availabilityOffset: 3, baseCost: 15},
+    {index: 7, name: "50 GB", baseUtility: 90, availabilityOffset: 11, baseCost: 15},
+    {index: 8, name: "200 GB", baseUtility: 120, availabilityOffset: 15, baseCost: 15},
+    {index: 9, name: "200 GB SSD", baseUtility: 130, availabilityOffset: 24, baseCost: 15},
+    {index: 10, name: "1 TB SSD", baseUtility: 150, availabilityOffset: 30, baseCost: 15}
 ]
 
 const DISPLAYS = [
-    {index: 11, name: "Plasma", baseUtility: 20, availabilityOffset: 0, baseCost: 6},
-    {index: 12, name: "LCD", baseUtility: 30, availabilityOffset: 5, baseCost: 6},
-    {index: 13, name: "LED", baseUtility: 70, availabilityOffset: 10, baseCost: 6},
-    {index: 14, name: "OLED", baseUtility: 100, availabilityOffset: 15, baseCost: 6},
-    {index: 15, name: "QLED", baseUtility: 120, availabilityOffset: 20, baseCost: 6},
+    {index: 11, name: "Plasma", baseUtility: 20, availabilityOffset: 0, baseCost: 20},
+    {index: 12, name: "LCD", baseUtility: 30, availabilityOffset: 5, baseCost: 20},
+    {index: 13, name: "LED", baseUtility: 70, availabilityOffset: 10, baseCost: 20},
+    {index: 14, name: "OLED", baseUtility: 100, availabilityOffset: 15, baseCost: 20},
+    {index: 15, name: "QLED", baseUtility: 120, availabilityOffset: 20, baseCost: 20},
 ]
 
 const CAMERAS = [
-    {index: 16, name: "1.2 MP", baseUtility: 20, availabilityOffset: 0, baseCost: 12},
-    {index: 17, name: "2 MP", baseUtility: 30, availabilityOffset: 2, baseCost: 12},
-    {index: 18, name: "5 MP", baseUtility: 100, availabilityOffset: 14, baseCost: 12},
-    {index: 19, name: "8 MP", baseUtility: 130, availabilityOffset: 19, baseCost: 12},
-    {index: 20, name: "12 MP", baseUtility: 150, availabilityOffset: 23, baseCost: 12},
+    {index: 16, name: "1.2 MP", baseUtility: 20, availabilityOffset: 0, baseCost: 22},
+    {index: 17, name: "2 MP", baseUtility: 30, availabilityOffset: 2, baseCost: 22},
+    {index: 18, name: "5 MP", baseUtility: 100, availabilityOffset: 14, baseCost: 22},
+    {index: 19, name: "8 MP", baseUtility: 130, availabilityOffset: 19, baseCost: 22},
+    {index: 20, name: "12 MP", baseUtility: 150, availabilityOffset: 23, baseCost: 22},
 ]
 
 const AUDIO = [
-    {index: 21, name: "Mono", baseUtility: 20, availabilityOffset: 0, baseCost: 4},
-    {index: 22, name: "Stereo", baseUtility: 30, availabilityOffset: 3, baseCost: 4},
-    {index: 23, name: "2.1", baseUtility: 100, availabilityOffset: 14, baseCost: 4},
-    {index: 24, name: "5.1", baseUtility: 130, availabilityOffset: 18, baseCost: 4},
-    {index: 25, name: "7.1", baseUtility: 140, availabilityOffset: 20, baseCost: 4},
-    {index: 26, name: "Studio", baseUtility: 180, availabilityOffset: 26, baseCost: 4}
+    {index: 21, name: "Mono", baseUtility: 20, availabilityOffset: 0, baseCost: 18},
+    {index: 22, name: "Stereo", baseUtility: 30, availabilityOffset: 3, baseCost: 18},
+    {index: 23, name: "2.1", baseUtility: 100, availabilityOffset: 14, baseCost: 18},
+    {index: 24, name: "5.1", baseUtility: 130, availabilityOffset: 18, baseCost: 18},
+    {index: 25, name: "7.1", baseUtility: 140, availabilityOffset: 20, baseCost: 18},
+    {index: 26, name: "Studio", baseUtility: 180, availabilityOffset: 26, baseCost: 18}
 ]
 
 export const SUPPLIER_TEMPLATES = [

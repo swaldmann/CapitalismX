@@ -10,7 +10,7 @@ class NewProductPopover extends React.Component {
 
     state = {
         productName: "",
-        price: 1000,
+        price: 100,
         showsTooltip: false
     }
 
@@ -92,7 +92,7 @@ class NewProductPopover extends React.Component {
                          <label className="quarter">Price</label>
                          <InputNumber
                              className="three-quarter"
-                          defaultValue={1000}
+                          defaultValue={100}
                              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                               onChange={this.onChangePrice}
                          />

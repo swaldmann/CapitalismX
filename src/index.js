@@ -59,7 +59,8 @@ function simulate(dispatch) {
         totalProductComponentCosts: productComponentCosts,
         taxRate: state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3,
         productUtilities: productUtilities,
-        prices: productPrices
+        prices: productPrices,
+        cash: state.financials.cash
     }
 
     simulationGraph.updateVertices(reducedValues)
