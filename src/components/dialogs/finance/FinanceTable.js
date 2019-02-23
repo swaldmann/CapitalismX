@@ -1,4 +1,5 @@
 import React from 'react'
+import {quarterStrings} from '../../../util/Misc'
 
 class FinanceTable extends React.Component {
     render() {
@@ -10,12 +11,11 @@ class FinanceTable extends React.Component {
                 <thead>
                     <tr>
                         <th></th>
-                        {[...Array(4).keys()].map(i => <th>Q{((simulationState.elapsedDays - 4 + i)%4 + 4)%4 + 1}/{parseInt((simulationState.elapsedDays - 4 + i)/4 + 90)%100}</th>)}
+                        {[...Array(4).keys()].map(i => <th>{quarterStrings(simulationState.elapsedDays)[i]}</th>)}
                     </tr>
                 </thead>
             </table>
             <hr />
-
             <table id="earnings">
                 <tbody>
                     <tr>

@@ -11,7 +11,7 @@ export function uniqueIDFromIntegers(a, b) {
 }
 
 export function quarterStrings(elapsedDays) {
-    return [...Array(4).keys()].map(i => "Q" + (((elapsedDays - 4 + i)%4 + 4)%4 + 1) + "/'" + parseInt(((elapsedDays - 4 + i)/4 + 90)%100).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}))
+    return [...Array(4).keys()].map(i => "Q" + (((elapsedDays - 4 + i)%4 + 4)%4 + 1) + "/'" + ('0' + parseInt((elapsedDays - 4 + i)/4 + 90)%100).slice(-2))
 }
 
 export function deepCopy(obj) {
