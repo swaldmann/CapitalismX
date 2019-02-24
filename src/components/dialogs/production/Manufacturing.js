@@ -32,7 +32,7 @@ class Manufacturing extends React.Component {
                                         <button>↑</button>
                                     </div>
                                     <div className="flexbox">
-                                        <span className="cell-title content-size">Bought {dateStringAfterElapsedDays(machine.buyDay)}</span>
+                                        <span className="cell-title content-size">{/*"Bought " +*/ dateStringAfterElapsedDays(machine.buyDay)}</span>
                                         <span className="cell-detailTitle remaining-size">{dollarString(machine.price)}</span>
                                         <button className="destructive" onClick={() => this.sellMachine(machine, actions)}>Sell</button>
                                     </div>

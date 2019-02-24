@@ -65,7 +65,7 @@ const STORAGE_COMPONENT = {
     imageName: "icons8-ssd",
     typeDescription: "Storage",
     currentIndex: 0,
-    supplier: defaultSupplier,
+    supplier: deepCopyWithUUID(defaultSupplier),
     allComponents: deepCopy(STORAGES)
 }
 
@@ -74,7 +74,7 @@ const DISPLAY_COMPONENT = {
     imageName: "icons8-color_wheel_2",
     typeDescription: "Screen",
     currentIndex: 0,
-    supplier: defaultSupplier,
+    supplier: deepCopyWithUUID(defaultSupplier),
     allComponents: deepCopy(DISPLAYS)
 }
 
@@ -83,7 +83,7 @@ const CAMERA_COMPONENT = {
     imageName: "icons8-integrated_webcam",
     typeDescription: "Camera",
     currentIndex: 0,
-    supplier: defaultSupplier,
+    supplier: deepCopyWithUUID(defaultSupplier),
     allComponents: deepCopy(CAMERAS)
 }
 
@@ -92,7 +92,7 @@ const AUDIO_COMPONENT = {
     imageName: "icons8-volume_up",
     typeDescription: "Audio",
     currentIndex: 0,
-    supplier: defaultSupplier,
+    supplier: deepCopyWithUUID(defaultSupplier),
     allComponents: deepCopy(AUDIO)
 }
 
@@ -131,7 +131,7 @@ const TV = {
 export const PRODUCT_TEMPLATES = [deepCopyWithUUID(TV), deepCopyWithUUID(CONSOLE), deepCopyWithUUID(NOTEBOOK), deepCopyWithUUID(SMARTPHONE)]
 
 // Manufacturing
-export const MACHINE_TEMPLATE = { name: "Machine", price: 3000, dailyCapacity: 200, dailyUsedCapacity: 0 }
+export const MACHINE_TEMPLATE = { name: "Machine", price: 3000, dailyCapacity: 500, dailyUsedCapacity: 0 }
 
 // Logistics
 export const LOGISTIC_PARTNER_TEMPLATES = [

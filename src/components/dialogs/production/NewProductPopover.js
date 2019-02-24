@@ -2,7 +2,7 @@ import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 import VisibleComponentGrid from '../../../containers/VisibleComponentGrid'
 import InputNumber from 'rc-input-number'
-import {deepCopyWithUUID, deepCopy} from '../../../util/Misc.js'
+import {deepCopyWithUUID, deepCopy, dollarString } from '../../../util/Misc.js'
 import * as classNames from "classnames"
 import VisibleSupplierPopover from "../../../containers/VisibleSupplierPopover"
 
@@ -11,11 +11,16 @@ class NewProductPopover extends React.Component {
     state = {
         productName: "",
         price: 100,
+        amount: 1000,
         showsTooltip: false
     }
 
     onChangePrice = (price) => {
         this.setState({ price: price })
+    }
+
+    onChangeAmount = (amount) => {
+        this.setState({ amount: amount })
     }
 
     onChangeProductName = (event) => {
@@ -32,7 +37,7 @@ class NewProductPopover extends React.Component {
         const price = this.state.price
         const name = this.state.productName || productTemplate.productCategoryName
         const components = productTemplate.components.map(componentType => componentTypeTemplates[componentType.index])
-        const newProduct = deepCopyWithUUID({...productTemplate, unitsSold: 0, price: price, name: name, buyDay: elapsedDays, components: deepCopy(components) })
+        const newProduct = deepCopyWithUUID({...productTemplate, unitsSold: 0, amountToProduce: this.state.amount, price: price, name: name, buyDay: elapsedDays, components: deepCopy(components) })
         actions.introduceNewProduct(newProduct)
         actions.purchase(newProduct.launchPrice)
         this.setState({ showsTooltip: false })
@@ -96,7 +101,15 @@ class NewProductPopover extends React.Component {
                               onChange={this.onChangePrice}
                          />
                      </div>
-                     <button className="popoverFinishButton" onClick={this.launchProduct}>Launch ({productTemplates[currentProductTemplateIndex].launchPrice.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})})</button>
+                     <div className="flexbox">
+                         <label className="quarter">Amount</label>
+                         <InputNumber
+                             className="three-quarter"
+                          defaultValue={1000}
+                              onChange={this.onChangeAmount}
+                         />
+                     </div>
+                     <button className="popoverFinishButton" onClick={this.launchProduct}>Launch ({dollarString(productTemplates[currentProductTemplateIndex].launchPrice)})</button>
                  </div>
              )}
            >

@@ -77,7 +77,7 @@ class LogisticPartnerPopover extends React.Component {
                   /* your props here */
                 })}
               >
-                Hire Logistic Partner
+                Switch Logistic Partner
                 </button>
             )}
          </TooltipTrigger>

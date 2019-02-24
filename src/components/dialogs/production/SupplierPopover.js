@@ -5,13 +5,31 @@ import { deepCopyWithUUID } from '../../../util/Misc'
 import {SUPPLIER_TEMPLATES} from '../../../constants/ProductionConstants'
 
 class SupplierPopover extends React.Component {
+
+    state = {
+        showsTooltip: false
+    }
+
+    onVisibilityChange = (tooltipShown) => {
+        this.setState({ showsTooltip: tooltipShown })
+    }
+
+    switchComponentTypeSupplier = (componentIndex, supplier, actions) => {
+        actions.switchComponentTypeSupplier(0, supplier)
+        this.setState({ showsTooltip: false })
+    }
+
     render() {
         const { componentTypeTemplate, buttonClassName, actions} = this.props
+
+        console.log(this.props);
 
         return (
             <TooltipTrigger
                 placement="auto"
                 trigger="click"
+                tooltipShown={this.state.showsTooltip}
+                onVisibilityChange={this.onVisibilityChange}
                 tooltip={({
                   getTooltipProps,
                   getArrowProps,
@@ -39,7 +57,7 @@ class SupplierPopover extends React.Component {
                                     {SUPPLIER_TEMPLATES.map((supplierTemplate, supplierIndex) =>
                                         <li key={supplierIndex}>
                                             <div className="margin-bottom">
-                                                <button onClick={() => actions.switchComponentTypeSupplier(0, deepCopyWithUUID(supplierTemplate)) }>
+                                                <button onClick={() => this.switchComponentTypeSupplier(0, deepCopyWithUUID(supplierTemplate), actions) }>
                                                     <div className="flexbox">
                                                         <span className="cell-title content-size">{supplierTemplate.name}</span>
                                                         <span className="cell-detailTitle remaining-size">x{supplierTemplate.costMultiplicator/*.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})*/}</span>
