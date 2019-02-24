@@ -43,6 +43,8 @@ export const sellMachine = machineUuid => ({ type: types.SELL_MACHINE, machineUu
 export const buyTruck = truckTemplate => ({ type: types.BUY_TRUCK, truckTemplate })
 export const sellTruck = truckUuid => ({ type: types.SELL_TRUCK, truckUuid })
 export const switchLogisticPartner = logisticPartnerIndex => ({ type: types.SWITCH_LOGISTIC_PARTNER, logisticPartnerIndex })
+export const buyWarehouse = warehouseTemplate => ({ type: types.BUY_WAREHOUSE, warehouseTemplate })
+export const sellWarehouse = warehouseUuid => ({ type: types.SELL_WAREHOUSE, warehouseUuid })
 
 /* Marketing */
 export const startCampaign = (campaignTemplate, campaignMediaTemplate, startElapsedDays) => ({ type: types.START_CAMPAIGN, campaignTemplate, campaignMediaTemplate, startElapsedDays })

@@ -32,7 +32,7 @@ const options = {
     scales: {
         yAxes: [{
             ticks: {
-                beginAtZero:true
+                beginAtZero: true
             }
         }]
     },
@@ -60,7 +60,8 @@ const FinanceCharts = ({ financialHistory, elapsedDays }) => (
         <Line height={100} options={options} data={{...data, labels: quarterStrings(elapsedDays), datasets: [{...data.datasets[0], data: financialHistory.map(history => history.salaries.toFixed(0))}]}} />
         <h4>Investments</h4>
         <Line height={100} options={options} data={{...data, labels: quarterStrings(elapsedDays), datasets: [{...data.datasets[0], data: financialHistory.map(history => history.totalInvestmentAmount.toFixed(0))}]}} />
-
+        <h4>Loans</h4>
+        <Line height={100} options={options} data={{...data, labels: quarterStrings(elapsedDays), datasets: [{...data.datasets[0], data: financialHistory.map(history => history.loans.toFixed(0))}]}} />
     </div>
 )
 

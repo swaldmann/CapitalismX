@@ -1,6 +1,7 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 import {LOGISTIC_PARTNER_TEMPLATES} from '../../../constants/ProductionConstants'
+import { dollarString } from '../../../util/Misc'
 
 class LogisticPartnerPopover extends React.Component {
 
@@ -18,7 +19,7 @@ class LogisticPartnerPopover extends React.Component {
     }
 
     render() {
-        const {actions, logisticPartnerIndex} = this.props
+        const {actions/*, logisticPartnerIndex*/} = this.props
         return (
         <TooltipTrigger
             placement="top"
@@ -53,7 +54,11 @@ class LogisticPartnerPopover extends React.Component {
                                 <li>
                                     <div className="margin-bottom">
                                         <button onClick={() => this.switchLogisticPartner(logisticPartnerIndex, actions)}>
-                                            {logisticPartnerTemplate.title}
+                                            <div className="cell-title margin-bottom-large">{logisticPartnerTemplate.title}</div>
+                                            <div className="flexbox subtitle">
+                                                <div className="cell-title">{dollarString(logisticPartnerTemplate.price)}/delivery</div>
+                                                <div className="cell-detailTitle">Quality {logisticPartnerTemplate.quality}</div>
+                                            </div>
                                         </button>
                                     </div>
                                 </li>

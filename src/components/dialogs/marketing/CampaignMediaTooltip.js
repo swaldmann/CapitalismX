@@ -2,6 +2,7 @@ import React from "react"
 import TooltipTrigger from 'react-popper-tooltip'
 import * as classNames from "classnames"
 import {CAMPAIGN_MEDIA_TEMPLATES} from '../../../constants/MarketingConstants'
+import {dollarString} from '../../../util/Misc'
 
 class CampaignMediaTooltip extends React.Component {
     state = {
@@ -52,7 +53,7 @@ class CampaignMediaTooltip extends React.Component {
                                     <button onClick={() => this.startCampaign(campaignTemplate, campaignMediaTemplate, elapsedDays, campaignMediaActions)}>
                                         <div className="flexbox">
                                             <span className="cell-title content-size">{campaignMediaTemplate.iconPath && <img src={require("../../../static/icons/" + campaignMediaTemplate.iconPath)} className="icon" alt="" />}{campaignMediaTemplate.name}</span>
-                                            <span className="cell-detailTitle remaining-size">{campaignMediaTemplate.cost.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
+                                            <span className="cell-detailTitle remaining-size">{dollarString(campaignMediaTemplate.cost)}</span>
                                         </div>
                                         <div className="subtitle"><i className="fas fa-fw fa-xs fa-user-friends"></i>{campaignMediaTemplate.reach}</div>
                                     </button>

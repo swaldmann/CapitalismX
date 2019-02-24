@@ -8,6 +8,8 @@ import {
     SELL_MACHINE,
     BUY_TRUCK,
     SELL_TRUCK,
+    BUY_WAREHOUSE,
+    SELL_WAREHOUSE,
     SWITCH_LOGISTIC_PARTNER,
     SWITCH_COMPONENT_TYPE_SUPPLIER
 } from '../constants/ActionTypes'
@@ -47,7 +49,18 @@ export function trucks(state = [], action) {
         case SELL_TRUCK:
             return state.filter(truck => truck.uuid !== action.truckUuid)
         default:
-        return state
+            return state
+    }
+}
+
+export function warehouses(state = [], action) {
+    switch (action.type) {
+        case BUY_WAREHOUSE:
+            return [action.warehouseTemplate].concat(state)
+        case SELL_WAREHOUSE:
+            return state.filter(warehouse => warehouse.uuid !== action.warehouseUuid)
+        default:
+            return state
     }
 }
 

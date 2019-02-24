@@ -5,7 +5,12 @@ import { deepCopyWithUUID, dateStringAfterElapsedDays, dollarString } from '../.
 class Manufacturing extends React.Component {
     buyMachine = (machineTemplate, actions) => {
         actions.buyMachine(machineTemplate)
-        actions.purchase(3000)
+        actions.purchase(machineTemplate.price)
+    }
+
+    sellMachine = (machine, actions) => {
+        actions.sellMachine(machine.uuid)
+        actions.purchase(-machine.price)
     }
 
     render() {
@@ -22,20 +27,20 @@ class Manufacturing extends React.Component {
                                 <li key={machine.uuid}>
                                     <div className="flexbox">
                                         <img className="icon" src={require('../../../static/icons/icons8-gear.png')} alt="" />
-                                        <span className="cell-title content-size">500 units/hour</span>
+                                        <span className="cell-title content-size">{machineTemplate.unitsPerDay} units/day</span>
                                         <span className="cell-detailTitle remaining-size">Level 1</span>
                                         <button>↑</button>
                                     </div>
                                     <div className="flexbox">
                                         <span className="cell-title content-size">Bought {dateStringAfterElapsedDays(machine.buyDay)}</span>
                                         <span className="cell-detailTitle remaining-size">{dollarString(machine.price)}</span>
-                                        <button className="destructive" onClick={() => actions.sellMachine(machine.uuid)}>Sell</button>
+                                        <button className="destructive" onClick={() => this.sellMachine(machine, actions)}>Sell</button>
                                     </div>
                                 </li>
                             )}
                         </ul>
                     </div>
-                    <button className="centered" onClick={() => this.buyMachine({...deepCopyWithUUID(machineTemplate), buyDay: elapsedDays}, actions)}>Buy Machine ($3,000)</button>
+                    <button className="centered" onClick={() => this.buyMachine({...deepCopyWithUUID(machineTemplate), buyDay: elapsedDays}, actions)}>Buy Machine ({dollarString(machineTemplate.price)})</button>
                 </div>
                 <div className="panel quarter">
                     <h3>Statistics</h3>

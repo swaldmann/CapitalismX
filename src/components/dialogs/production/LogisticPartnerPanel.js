@@ -9,7 +9,7 @@ const LogisticPartnerPanel = ({hiredLogisticPartner, actions}) => (
             The logistic partner delivers all products which can't be delivered by the truck fleet.<br />
             <div className="choosableItem">
                 <div><b>Currently employing</b></div>
-                {hiredLogisticPartner ? hiredLogisticPartner.title : "No Logistic Partner"}
+                {hiredLogisticPartner.title}
             </div>
             <VisibleLogisticPartnerPopover />
         </div>

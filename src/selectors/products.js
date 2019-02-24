@@ -48,5 +48,5 @@ export const getProductComponentCosts = createSelector(
 // Manufacturing
 export const getMachines = state => state.machines
 
-// logistics
+// Logistics
 export const getTrucks = state => state.trucks
