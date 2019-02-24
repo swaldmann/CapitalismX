@@ -68,7 +68,7 @@ class SimulationGraph extends Graph {
         }, ["ebit", "taxes"])
 
         this.createCalculatedVertex("investmentEarnings", [], function(elapsedDays, investments, oldValue) {
-            return investments.map(investment => investment.amount * gauss(investment.expectedYearlyReturn, investment.standardDeviation))
+            return investments.map(investment => investment.amount * gauss(investment.expectedDailyReturn, investment.standardDeviation))
         }, ["investments"])
 
         this.createCalculatedVertex("totalInvestmentEarnings", 0, function(elapsedDays, investmentEarnings, oldValue) {

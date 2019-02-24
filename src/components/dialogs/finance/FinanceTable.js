@@ -1,5 +1,6 @@
 import React from 'react'
 import {dollarString, quarterStrings} from '../../../util/Misc'
+import * as classNames from 'classnames'
 
 class FinanceTable extends React.Component {
     render() {
@@ -16,7 +17,7 @@ class FinanceTable extends React.Component {
                 </thead>
             </table>
             <hr />
-            <table id="earnings">
+            <table className="earnings">
                 <tbody>
                     <tr>
                         <td><b>Sales</b></td>
@@ -29,7 +30,7 @@ class FinanceTable extends React.Component {
                 </tbody>
             </table>
             <hr />
-            <table id="expenses">
+            <table className="expenses">
                 <tbody>
                     <tr>
                         <td><b>Salaries</b></td>
@@ -63,7 +64,7 @@ class FinanceTable extends React.Component {
                 </tbody>
             </table>
             <hr />
-            <table>
+            <table className="expenses">
                 <tbody>
                     <tr>
                         <td><b>Taxes</b></td>
@@ -76,8 +77,7 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Investments</b></td>
-                        {console.log(financialHistory)}
-                        {financialHistory.map(entry => <td>{dollarString(entry.totalInvestmentEarnings)}</td>)}
+                        {financialHistory.map(entry => <td className={classNames({ 'earning': entry.totalInvestmentEarnings > 0, 'expense': entry.totalInvestmentEarnings < 0})}>{dollarString(entry.totalInvestmentEarnings)}</td>)}
                     </tr>
                 </tbody>
             </table>

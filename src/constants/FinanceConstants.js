@@ -28,20 +28,20 @@ export const FINANCIALS = {
 
 const INVESTMENT_REALESTATE = {
     name: "Real Estate Fund",
-    expectedYearlyReturn: 0.06,
-    standardDeviation: 0.1,
+    expectedDailyReturn: 0.0001596535875, // = (1.06/1)^(1/365) - 1
+    standardDeviation: 0.01046847845, // = 0.2/sqrt(365)
 }
 
 const INVESTMENT_STOCKS = {
     name: "Stocks (Index Fund)",
-    expectedYearlyReturn: 0.08,
-    standardDeviation: 0.2,
+    expectedDailyReturn: 0.0002108743984, // = (1.08/1)^(1/365) - 1
+    standardDeviation: 0.01570271768, // 0.3/sqrt(365)
 }
 
 const INVESTMENT_VENTURECAPITAL = {
     name: "Venture Capital Fund",
-    expectedYearlyReturn: 0.1,
-    standardDeviation: 0.3,
+    expectedDailyReturn: 0.0002611578761, // = (1.1/1)^(1/365) - 1
+    standardDeviation: 0.02617119613, // 0.5/sqrt(365)
 }
 
 export const INVESTMENTS = [
