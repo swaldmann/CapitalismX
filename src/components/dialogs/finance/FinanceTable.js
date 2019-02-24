@@ -67,7 +67,7 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Taxes</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.taxes)}</td>)}
+                        {financialHistory.map(entry => <td>{dollarString(-entry.taxes)}</td>)}
                     </tr>
                 </tbody>
             </table>
