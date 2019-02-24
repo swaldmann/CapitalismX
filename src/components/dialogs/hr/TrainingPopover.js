@@ -12,9 +12,10 @@ class TrainingPopover extends React.Component {
         this.setState({ showsTooltip: tooltipShown })
     }
 
-    trainEmployee = (employeeIndex, skillIncrease, salaryIncreasePercentage, actions) => {
+    trainEmployee = (employeeIndex, trainingTemplate, actions) => {
         this.setState({ showsTooltip: false })
-        actions.trainEmployee(employeeIndex, skillIncrease, salaryIncreasePercentage)
+        actions.trainEmployee(employeeIndex, trainingTemplate.skillIncrease, trainingTemplate.salaryIncreasePercentage)
+        actions.purchase(trainingTemplate.cost)
     }
 
     render() {
@@ -52,7 +53,7 @@ class TrainingPopover extends React.Component {
                                 {TRAINING_TEMPLATES.map((trainingTemplate, trainingIndex) =>
                                     <li>
                                         <div className="margin-bottom">
-                                            <button disabled={employee.skill + trainingTemplate.skillIncrease > 5} onClick={() => this.trainEmployee(employee.index, trainingTemplate.skillIncrease, trainingTemplate.salaryIncreasePercentage, actions)}>
+                                            <button disabled={employee.skill + trainingTemplate.skillIncrease > 5} onClick={() => this.trainEmployee(employee.index, trainingTemplate, actions)}>
 
                                                 <div className="flexbox">
                                                     <span className="cell-title content-size">{trainingTemplate.name}</span>
