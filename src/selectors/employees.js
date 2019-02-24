@@ -1,3 +1,4 @@
+
 import { createSelector } from 'reselect'
 import {
     SHOW_HIRED, SHOW_AVAILABLE,
@@ -11,6 +12,8 @@ export const getAllEmployees = state => Object.values(state.employees).flatMap(n
 export const getAllHiredEmployees = state => Object.values(state.employees).flatMap(n => n).filter(e => e.isEmployed)
 export const getAllEngineers = state => state.employees[ENGINEER_TYPE]
 export const getAllSalespeople = state => state.employees[SALESPEOPLE_TYPE]
+export const getAllHiredEngineers = state => state.employees[ENGINEER_TYPE].filter(e => e.isEmployed)
+export const getAllHiredSalespeople = state => state.employees[SALESPEOPLE_TYPE].filter(e => e.isEmployed)
 
 const getEmployees = (state, props) => Array.isArray(state.employees) ?  state.employees : state.employees[props.employeeType]
 
@@ -32,11 +35,41 @@ export const makeGetVisibleEmployees = () => {
     )
 }
 
-export const getHiredEmployeeCount = createSelector(
-    [getAllEmployees],
+export const getTotalSalaries = createSelector(
+    [getAllHiredEmployees],
     employees => (
         employees.reduce((count, employee) =>
-            employee.isEmployed ? count + 1 : count,
+            count + employee.salary,
+            0
+        )
+    )
+)
+
+export const getTotalEngineerQualityOfWork = createSelector(
+    [getAllHiredEngineers],
+    engineers => (
+        engineers.reduce((count, engineer) =>
+            count + engineer.skill * engineer.happiness,
+            0
+        )
+    )
+)
+
+export const getTotalSalespeopleQualityOfWork = createSelector(
+    [getAllHiredSalespeople],
+    salespeople => (
+        salespeople.reduce((count, salesperson) => {
+            return count + salesperson.skill * salesperson.happiness},
+            0
+        )
+    )
+)
+
+export const getHiredEmployeeCount = createSelector(
+    [getAllHiredEmployees],
+    employees => (
+        employees.reduce((count, employee) =>
+            count + 1,
             0
         )
     )

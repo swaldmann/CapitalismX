@@ -24,7 +24,6 @@ class Graph {
     }
 
     setVertex(key, value) {
-        console.log(key);
         this.vertices[key].value = value
     }
 
@@ -38,7 +37,6 @@ class Graph {
     recalculate() {
         const self = this
         Object.keys(this.adjacencyList).forEach(function(adjacencyObjectKey) {
-            console.log(adjacencyObjectKey);
             const adjacencyObject = self.adjacencyList[adjacencyObjectKey]
             const fromNodes = adjacencyObject.fromKeys.map(fromKey => self.getVertex(fromKey).value)
             const toNode = self.getVertex(adjacencyObject.toKey).value

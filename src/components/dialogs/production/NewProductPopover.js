@@ -39,7 +39,7 @@ class NewProductPopover extends React.Component {
     }
 
  render() {
-     const {productTemplates, currentProductTemplateIndex, componentTypeTemplates, actions} = this.props
+     const {productTemplates, currentProductTemplateIndex, /*componentTypeTemplates,*/ actions} = this.props
      //console.log(componentTypeTemplates)
      return (
          <TooltipTrigger

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, /*compose*/ } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import './index.css'
@@ -8,8 +8,7 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import rootReducer from './reducers'
 import { getProductUtilities, getProductPrices, getProductComponentCosts } from './selectors/products'
-import { getAllEngineers, getAllSalespeople, getAllEmployees, getAllHiredEmployees } from './selectors/employees'
-import { getInvestmentAmounts } from './selectors/finance'
+import { getTotalSalespeopleQualityOfWork, getTotalEngineerQualityOfWork, getAllEmployees, getAllHiredEmployees, getTotalSalaries } from './selectors/employees'
 import { dailyProductUpdate, dailyInvestmentsUpdate, dailyFinancialUpdate, quarterlyFinancialHistoryEntry, monthlyHRHistoryEntry } from './actions'
 import SimulationGraph from './models/SimulationGraph'
 import { LOBBYIST_TEMPLATES } from './constants/MarketingConstants'
@@ -44,28 +43,21 @@ function simulate(dispatch) {
     // Selectors
     const employees = getAllEmployees(state)
     const hiredEmployees = getAllHiredEmployees(state)
-    const engineers = getAllEngineers(state)
-    const salespeople = getAllSalespeople(state)
     const productUtilities = getProductUtilities(state)
     const productPrices = getProductPrices(state)
-    const productComponentCosts = getProductComponentCosts(state)
-    const investmentAmounts = getInvestmentAmounts(state)
+    const taxRate = state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
 
     // Reducers
     const reducedValues = {
-        totalSalaries: employees.reduce((totalSalaries, employee) => employee.isEmployed ? totalSalaries + employee.salary : totalSalaries, 0)/365,
-        averageEmployeeSatisfaction: employees.reduce((totalEmployeeSatisfaction, employee) => employee.isEmployed ? totalEmployeeSatisfaction + employee.happiness : totalEmployeeSatisfaction, 0)/employees.length,
-        totalEngineerSkills: engineers.reduce((totalEngineerSkills, engineer) => engineer.isEmployed ? totalEngineerSkills + engineer.skill : totalEngineerSkills, 0),
-        averageEngineerSatisfaction: engineers.reduce((totalEngineerSatisfaction, engineer) => engineer.isEmployed ? totalEngineerSatisfaction + engineer.happiness : totalEngineerSatisfaction, 0)/engineers.length,
-        totalSalespeopleSkills: salespeople.reduce((totalSalespeopleSkills, salesperson) => salesperson.isEmployed ? totalSalespeopleSkills + salesperson.skill : totalSalespeopleSkills, 0),
-        averageSalespeopleSatisfaction: salespeople.reduce((totalSalespeopleSatisfaction, salesperson) => salesperson.isEmployed ? totalSalespeopleSatisfaction + salesperson.happiness : totalSalespeopleSatisfaction, 0)/salespeople.length,
-        totalProductComponentCosts: productComponentCosts,
-        taxRate: state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3,
+        totalSalaries: getTotalSalaries(state)/365,
+        totalEngineerQualityOfWork: getTotalEngineerQualityOfWork(state),
+        totalSalespeopleQualityOfWork: getTotalSalespeopleQualityOfWork(state),
+        productComponentCosts: getProductComponentCosts(state),
+        taxRate: taxRate,
         productUtilities: productUtilities,
         prices: productPrices,
         cash: state.financials.cash || 50000,
         investments: state.investments || INVESTMENTS
-        //,investmentAmounts: investmentAmounts
     }
 
     simulationGraph.updateVertices(reducedValues)
@@ -85,8 +77,6 @@ function simulate(dispatch) {
         0
     )
 
-    console.log(simulationGraph.getVertexValue("totalInvestmentEarnings"))
-
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
 
@@ -105,7 +95,7 @@ function simulate(dispatch) {
             taxes: simulationGraph.getVertexValue("taxes"),
             profit: simulationGraph.getVertexValue("profit"),
               cash: simulationGraph.getVertexValue("cash"),
-            netWorth: simulationGraph.getVertexValue("netWorth")
+            netWorth: simulationGraph.getVertexValue("netWorth"),
         }
 
         const humanResourcesHistoryEntry = {

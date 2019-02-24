@@ -1,4 +1,5 @@
 import * as uuid from 'uuid/v4'
+import { deepCopyWithUUID } from '../util/Misc'
 
 const historyLength = 4
 
@@ -23,7 +24,7 @@ export const FINANCIALS = {
     cash: 0,
     assets: 0,
     liabilities: 0,
-    history: new Array(historyLength).fill(historyTemplate)
+    history: new Array(historyLength).fill(deepCopyWithUUID(historyTemplate))
 }
 
 const INVESTMENT_REALESTATE = {

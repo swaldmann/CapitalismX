@@ -14,7 +14,7 @@ const FinanceCompanySheet = ({ financials, investments }) => (
                 </tr>
                 <tr>
                     <td><b>Assets</b></td>
-                    <td>{dollarString(financials.totalInvestmentAmount)}</td>
+                    <td>{dollarString(financials.assets)}</td>
                 </tr>
                 <tr>
                     <td><b>Liabilities</b></td>

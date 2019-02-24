@@ -121,10 +121,13 @@ input[type="text"], .number-input {
     font-size: 16px;
     width: 100%;
     box-sizing: border-box;
-    text-align: right;
     color: #333;
     font-weight: normal;
     margin-bottom: 20px;
+}
+
+.number-input {
+    text-align: right;
 }
 
 input.rc-input-number-input {

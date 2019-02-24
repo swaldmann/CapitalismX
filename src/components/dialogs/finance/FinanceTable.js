@@ -1,4 +1,5 @@
 import React from 'react'
+import * as uuid from 'uuid/v4'
 import {dollarString, quarterStrings} from '../../../util/Misc'
 import * as classNames from 'classnames'
 
@@ -12,7 +13,7 @@ class FinanceTable extends React.Component {
                 <thead>
                     <tr>
                         <th></th>
-                        {[...Array(4).keys()].map(i => <th>{quarterStrings(simulationState.elapsedDays)[i]}</th>)}
+                        {[...Array(4).keys()].map(i => <th key={uuid()}>{quarterStrings(simulationState.elapsedDays)[i]}</th>)}
                     </tr>
                 </thead>
             </table>
@@ -21,11 +22,11 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Sales</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.sales)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.sales)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Loans</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.loans)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.loans)}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -34,23 +35,23 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Salaries</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.salaries)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.salaries)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Material</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.materialCosts)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.materialCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Logistics</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.logisticsCosts)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.logisticsCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Warehousing</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.warehousingCosts)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.warehousingCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Loan Payment</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.loanInterests)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.loanInterests)}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -59,7 +60,7 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>EBIT</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.ebit)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.ebit)}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -68,7 +69,7 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Taxes</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(-entry.taxes)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(-entry.taxes)}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -77,7 +78,7 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Investments</b></td>
-                        {financialHistory.map(entry => <td className={classNames({ 'earning': entry.totalInvestmentEarnings > 0, 'expense': entry.totalInvestmentEarnings < 0})}>{dollarString(entry.totalInvestmentEarnings)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.totalInvestmentEarnings > 0, 'expense': entry.totalInvestmentEarnings < 0})}>{dollarString(entry.totalInvestmentEarnings)}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -86,7 +87,7 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Profit</b></td>
-                        {financialHistory.map(entry => <td>{dollarString(entry.profit)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.profit)}</td>)}
                     </tr>
                 </tbody>
             </table>
