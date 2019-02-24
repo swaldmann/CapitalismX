@@ -1,15 +1,15 @@
 import {
     DAILY_FINANCIAL_UPDATE,
+    DAILY_INVESTMENTS_UPDATE,
     QUARTERLY_FINANCIAL_HISTORY_ENTRY,
-    PURCHASE
+    PURCHASE,
+    BUY_FUND,
+    SELL_FUND
 } from '../constants/ActionTypes'
 
-import { FINANCIALS } from '../constants/FinanceConstants'
-import {deepCopy} from '../util/Misc'
+import { FINANCIALS, INVESTMENTS } from '../constants/FinanceConstants'
 
-const initialState = FINANCIALS
-
-export default function financials(state = initialState, action) {
+export function financials(state = FINANCIALS, action) {
     /*if (state.cash < 0) {
         alert(action.type)
         alert("Congratulations, you successfully lost. There is no money left. This is why I, a generous developer, give you an additional $50,000.")
@@ -23,6 +23,19 @@ export default function financials(state = initialState, action) {
             return  { ...state, history: state.history.concat({...action.financials, history: undefined}).slice(1) }
         case PURCHASE:
             return { ...state, cash: state.cash - action.amount }
+        default:
+            return state
+    }
+}
+
+export function investments(state = INVESTMENTS, action) {
+    switch (action.type) {
+        case BUY_FUND:
+            return state.map(investment => investment.uuid === action.uuid ? {...investment, amount: investment.amount + action.amount} : investment)
+        case SELL_FUND:
+            return state.map(investment => investment.uuid === action.uuid ? {...investment, amount: investment.amount - action.amount} : investment)
+        case DAILY_INVESTMENTS_UPDATE:
+            return state.map((investment, i) => ({...investment, amount: investment.amount + action.investmentEarnings[i]}))
         default:
             return state
     }

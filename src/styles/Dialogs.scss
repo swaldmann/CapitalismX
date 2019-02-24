@@ -252,7 +252,8 @@ legend {
 }
 
 .destructive {
-    background: rgb(168, 33, 33);
+    color: white !important;
+    background: rgb(168, 33, 33) !important;
 }
 
 .tooltip-container .flexbox button {
@@ -260,6 +261,7 @@ legend {
 }
 
 .tooltip-container button.constructive, .tooltip-container button.constructive:hover {
+    color: white;
     background: green;
 }
 

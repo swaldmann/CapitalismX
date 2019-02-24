@@ -9,9 +9,11 @@ import registerServiceWorker from './registerServiceWorker'
 import rootReducer from './reducers'
 import { getProductUtilities, getProductPrices, getProductComponentCosts } from './selectors/products'
 import { getAllEngineers, getAllSalespeople, getAllEmployees, getAllHiredEmployees } from './selectors/employees'
-import { dailyProductUpdate, dailyFinancialUpdate, quarterlyFinancialHistoryEntry, monthlyHRHistoryEntry } from './actions'
+import { getInvestmentAmounts } from './selectors/finance'
+import { dailyProductUpdate, dailyInvestmentsUpdate, dailyFinancialUpdate, quarterlyFinancialHistoryEntry, monthlyHRHistoryEntry } from './actions'
 import SimulationGraph from './models/SimulationGraph'
 import { LOBBYIST_TEMPLATES } from './constants/MarketingConstants'
+import { INVESTMENTS } from './constants/FinanceConstants'
 
 var simulationGraph
 
@@ -47,6 +49,7 @@ function simulate(dispatch) {
     const productUtilities = getProductUtilities(state)
     const productPrices = getProductPrices(state)
     const productComponentCosts = getProductComponentCosts(state)
+    const investmentAmounts = getInvestmentAmounts(state)
 
     // Reducers
     const reducedValues = {
@@ -60,7 +63,9 @@ function simulate(dispatch) {
         taxRate: state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3,
         productUtilities: productUtilities,
         prices: productPrices,
-        cash: state.financials.cash
+        cash: state.financials.cash || 50000,
+        investments: state.investments || INVESTMENTS
+        //,investmentAmounts: investmentAmounts
     }
 
     simulationGraph.updateVertices(reducedValues)
@@ -80,15 +85,15 @@ function simulate(dispatch) {
         0
     )
 
-    console.log(simulationGraph.getVertexValue("totalProductComponentCost"))
+    console.log(simulationGraph.getVertexValue("totalInvestmentEarnings"))
 
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
 
         const financials = { ...state.financials,
-            sales: simulationGraph.getVertexValue("revenue"),
-            investmentAmount: simulationGraph.getVertexValue("investmentAmount"),
-            investmentEarnings: simulationGraph.getVertexValue("investmentEarnings"),
+            sales: simulationGraph.getVertexValue("totalSales"),
+            //investmentAmount: simulationGraph.getVertexValue("investmentAmount"),
+            totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),
             loans: simulationGraph.getVertexValue("loans"),
             salaries: simulationGraph.getVertexValue("totalSalaries"),
             materialCosts: simulationGraph.getVertexValue("totalProductComponentCost"),
@@ -107,8 +112,10 @@ function simulate(dispatch) {
         }
 
         const salesFigures = simulationGraph.getVertexValue("salesFigures")
+        const investmentEarnings = simulationGraph.getVertexValue("investmentEarnings")
 
         dispatch(dailyProductUpdate(salesFigures))
+        dispatch(dailyInvestmentsUpdate(investmentEarnings))
         dispatch(dailyFinancialUpdate(financials))
         dispatch(quarterlyFinancialHistoryEntry(financials))
         dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))

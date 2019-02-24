@@ -1,7 +1,8 @@
 import React from 'react'
-import InputNumber from 'rc-input-number'
 
-const FinanceCompanySheet = ({ financials }) => (
+import VisibleInvestmentsPopover from '../../../containers/VisibleInvestmentsPopover'
+
+const FinanceCompanySheet = ({ financials, investments }) => (
     <div className="quarter panel">
         <h3>Company</h3>
         <table id="company">
@@ -26,30 +27,12 @@ const FinanceCompanySheet = ({ financials }) => (
         </table>
 
         <h3>Investments</h3>
-        <h4>Real Estate Fund</h4>
-        <div className="flexbox">
-            <InputNumber
-                className="remaining-size"
-              value={financials.investmentAmount}
-              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-            />
-        </div>
-        <h4>Index Fund</h4>
-        <div className="flexbox">
-            <InputNumber
-                className="remaining-size"
-              defaultValue={1000}
-              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-            />
-        </div>
-        <h4>Venture Capital Fund</h4>
-        <div className="flexbox">
-            <InputNumber
-                className="remaining-size"
-              defaultValue={1000}
-              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-            />
-        </div>
+        { investments.map(investment =>
+            <div key={investment.uuid}>
+                <label className="margin-bottom">{investment.name}</label>
+                <VisibleInvestmentsPopover investment={investment} />
+            </div>
+        )}
     </div>
 )
 

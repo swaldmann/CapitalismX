@@ -82,7 +82,6 @@ class NewProductPopover extends React.Component {
                         <div className="quarter">
                             {
                                 productTemplates[currentProductTemplateIndex].components.map((template, templateIndex) =>
-                                    //console.log(template)
                                     <VisibleSupplierPopover key={template.uuid} componentTypeTemplate={template} />
                                 )
                             }

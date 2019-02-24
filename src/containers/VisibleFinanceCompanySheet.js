@@ -3,7 +3,8 @@ import FinanceCompanySheet from '../components/dialogs/finance/FinanceCompanyShe
 
 const mapStateToProps = (state, props) => {
     return {
-        financials: state.financials
+        financials: state.financials,
+        investments: state.investments
     }
 }
 

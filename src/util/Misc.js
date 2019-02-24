@@ -14,6 +14,10 @@ export function quarterStrings(elapsedDays) {
     return [...Array(4).keys()].map(i => "Q" + (((elapsedDays - 4 + i)%4 + 4)%4 + 1) + "/'" + ('0' + parseInt((elapsedDays - 4 + i)/4 + 90)%100).slice(-2))
 }
 
+export function dollarString(amount) {
+    return amount.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})
+}
+
 export function deepCopy(obj) {
     return JSON.parse(JSON.stringify(obj))
 }

@@ -40,7 +40,7 @@ class FinanceTable extends React.Component {
                         {financialHistory.map(entry => <td>${entry.salaries.toFixed(0)}</td>)}
                     </tr>
                     <tr>
-                        <td><b>Loan interest</b></td>
+                        <td><b>Loan Payment</b></td>
                         {financialHistory.map(entry => <td>${entry.loanInterests.toFixed(0)}</td>)}
                     </tr>
                 </tbody>
@@ -59,7 +59,8 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Investments</b></td>
-                        {financialHistory.map(entry => <td>${entry.investmentEarnings.toFixed(0)}</td>)}
+                        {console.log(financialHistory)}
+                        {financialHistory.map(entry => <td>${entry.totalInvestmentEarnings.toFixed(0)}</td>)}
                     </tr>
                 </tbody>
             </table>
