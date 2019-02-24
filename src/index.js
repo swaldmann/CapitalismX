@@ -53,6 +53,8 @@ function simulate(dispatch) {
         totalEngineerQualityOfWork: getTotalEngineerQualityOfWork(state),
         totalSalespeopleQualityOfWork: getTotalSalespeopleQualityOfWork(state),
         productComponentCosts: getProductComponentCosts(state),
+        totalWarehousingCosts: 0,
+        totalLogisticsCosts: 0,
         taxRate: taxRate,
         productUtilities: productUtilities,
         prices: productPrices,
@@ -84,17 +86,17 @@ function simulate(dispatch) {
             sales: simulationGraph.getVertexValue("totalSales"),
             totalInvestmentAmount: simulationGraph.getVertexValue("totalInvestmentAmount"),
             totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),
-            warehousingCosts: 0,
-            logisticsCosts: 0,
-            loans: simulationGraph.getVertexValue("loans"),
+            totalWarehousingCosts: simulationGraph.getVertexValue("totalWarehousingCosts"),
+            totalLogisticsCosts: simulationGraph.getVertexValue("totalLogisticsCosts"),
+            totalMaterialCosts: simulationGraph.getVertexValue("totalProductComponentCost"),
             salaries: simulationGraph.getVertexValue("totalSalaries"),
-            materialCosts: simulationGraph.getVertexValue("totalProductComponentCost"),
+            loans: simulationGraph.getVertexValue("loans"),
             loanInterests: simulationGraph.getVertexValue("loanInterests"),
             ebit: simulationGraph.getVertexValue("ebit"),
             taxRate: simulationGraph.getVertexValue("taxRate"),
             taxes: simulationGraph.getVertexValue("taxes"),
             profit: simulationGraph.getVertexValue("profit"),
-              cash: simulationGraph.getVertexValue("cash"),
+            cash: simulationGraph.getVertexValue("cash"),
             netWorth: simulationGraph.getVertexValue("netWorth"),
         }
 
@@ -109,8 +111,8 @@ function simulate(dispatch) {
         dispatch(dailyProductUpdate(salesFigures))
         dispatch(dailyInvestmentsUpdate(investmentEarnings))
         dispatch(dailyFinancialUpdate(financials))
-        dispatch(quarterlyFinancialHistoryEntry(financials))
         dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))
+        dispatch(quarterlyFinancialHistoryEntry(financials))
     }
 }
 

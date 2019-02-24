@@ -22,6 +22,10 @@ export function financials(state = FINANCIALS, action) {
         case QUARTERLY_FINANCIAL_HISTORY_ENTRY:
             return  { ...state, history: state.history.concat({...action.financials, history: undefined}).slice(1) }
         case PURCHASE:
+            /*if (state.cash <= action.amount) {
+                alert("This action can't be done. You are bankrupt.")
+                return state
+            }*/
             return { ...state, cash: state.cash - action.amount }
         default:
             return state

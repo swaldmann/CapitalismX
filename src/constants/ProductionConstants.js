@@ -131,13 +131,13 @@ const TV = {
 export const PRODUCT_TEMPLATES = [deepCopyWithUUID(TV), deepCopyWithUUID(CONSOLE), deepCopyWithUUID(NOTEBOOK), deepCopyWithUUID(SMARTPHONE)]
 
 // Manufacturing
-export const MACHINE_TEMPLATE = { name: "Machine", price: 3000, unitsPerDay: 200 }
+export const MACHINE_TEMPLATE = { name: "Machine", price: 3000, dailyCapacity: 200, dailyUsedCapacity: 0 }
 
 // Logistics
 export const LOGISTIC_PARTNER_TEMPLATES = [
     { title: "DHL", price: 14, quality: 5 }, { title: "FedEx", price: 12, quality: 4 }, { title: "UPS", price: 9, quality: 3 }
 ]
 
-export const WAREHOUSE_TEMPLATE = { name: "Warehouse", price: 50000, capacity: 50000 }
+export const WAREHOUSE_TEMPLATE = { name: "Warehouse", price: 50000, capacity: 5000, capacityUsed: 0 }
 
-export const TRUCK_TEMPLATE = { name: "Truck", price: 5000, dailyDeliveries: 50 }
+export const TRUCK_TEMPLATE = { name: "Truck", price: 5000, dailyCapacity: 1000, dailyUsedCapacity: 0 }

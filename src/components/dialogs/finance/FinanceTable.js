@@ -39,15 +39,15 @@ class FinanceTable extends React.Component {
                     </tr>
                     <tr>
                         <td><b>Material</b></td>
-                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.materialCosts)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.totalMaterialCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Logistics</b></td>
-                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.logisticsCosts)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.totalLogisticsCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Warehousing</b></td>
-                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.warehousingCosts)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.totalWarehousingCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Loan Payment</b></td>

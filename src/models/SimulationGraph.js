@@ -6,7 +6,7 @@ import {gauss} from './maths/functionsHelper'
 class SimulationGraph extends Graph {
     constructor(elapsedDays = 0) {
         super()
-        
+
         this.elapsedDays = elapsedDays
 
         /* Set up the Graph here */
@@ -25,6 +25,8 @@ class SimulationGraph extends Graph {
         this.createVertex("totalSalaries", 0)
         this.createVertex("totalEngineerQualityOfWork", 0)
         this.createVertex("totalSalespeopleQualityOfWork", 0)
+        this.createVertex("totalWarehousingCosts", 0)
+        this.createVertex("totalLogisticsCosts", 0)
         this.createVertex("productUtilities", [])
         this.createVertex("productComponentCosts", 0)
         this.createVertex("prices", [])
@@ -75,15 +77,19 @@ class SimulationGraph extends Graph {
             return investments.map((investment, i) => investment.amount + investmentEarnings[i]).reduce((totalAmount, investment) => totalAmount + investment, 0)
         }, ["investments", "investmentEarnings"])
 
+        this.createCalculatedVertex("assets", 0, function(elapsedDays, totalInvestmentAmount, totalLogisticCosts, totalWarehousingCosts, oldValue) {
+            return totalInvestmentAmount + totalLogisticCosts + totalWarehousingCosts
+        }, ["totalInvestmentAmount", "totalLogisticsCosts", "totalWarehousingCosts"])
+
         this.createCalculatedVertex("cash", 50000, function(elapsedDays, profit, oldValue) {
             return oldValue + profit
         }, ["profit"])
 
         // In the end, all nodes will lead into this node.
         // The goal of the game is to maximize your net worth.
-        this.createCalculatedVertex("netWorth", 50000, function(elapsedDays, cash, totalInvestmentAmount, oldValue) {
-            return cash + totalInvestmentAmount
-        }, ["cash", "totalInvestmentAmount"])
+        this.createCalculatedVertex("netWorth", 50000, function(elapsedDays, cash, assets, oldValue) {
+            return cash + assets
+        }, ["cash", "assets"])
     }
 
     forwardTime = () => {

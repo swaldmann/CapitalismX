@@ -58,8 +58,8 @@ export const getTotalEngineerQualityOfWork = createSelector(
 export const getTotalSalespeopleQualityOfWork = createSelector(
     [getAllHiredSalespeople],
     salespeople => (
-        salespeople.reduce((count, salesperson) => {
-            return count + salesperson.skill * salesperson.happiness},
+        salespeople.reduce((count, salesperson) =>
+            count + salesperson.skill * salesperson.happiness,
             0
         )
     )

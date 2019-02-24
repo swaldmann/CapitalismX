@@ -4,9 +4,9 @@ import { deepCopyWithUUID } from '../util/Misc'
 const historyLength = 4
 
 const historyTemplate = {
-    materialCosts: 0,
-    warehousingCosts: 0,
-    logisticsCosts: 0,
+    totalMaterialCosts: 0,
+    totalWarehousingCosts: 0,
+    totalLogisticsCosts: 0,
     salaries: 0,
     loanInterests: 0,
     sales: 0,

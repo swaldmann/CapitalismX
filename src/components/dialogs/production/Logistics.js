@@ -30,7 +30,6 @@ class Logistics extends React.Component {
             <div className="dialogDetail">
                 <div className="quarter panel">
                     <VisibleLogisticPartnerPanel />
-                    <h4>Logistic</h4>
                 </div>
                 <div className="column-flexbox quarter">
                     <h3>Truck Fleet</h3>
@@ -40,12 +39,12 @@ class Logistics extends React.Component {
                                 <li key={truck.uuid}>
                                     <div className="flexbox">
                                         <img className="icon" src={require('../../../static/icons/icons8-truck.png')} alt="" />
-                                        <span className="cell-title content-size">1200 units/day</span>
-                                        <span className="cell-detailTitle remaining-size">Level 1</span>
+                                        <span className="cell-title remaining-size">{truck.dailyUsedCapacity}/{truck.dailyCapacity}</span>
+                                        <span className="cell-detailTitle content-size level">1</span>
                                         <button>↑</button>
                                     </div>
                                     <div className="flexbox">
-                                        <span className="cell-title content-size">Bought { dateStringAfterElapsedDays(truck.buyDay) }</span>
+                                        <span className="cell-title content-size">{/*"Bought" +*/ dateStringAfterElapsedDays(truck.buyDay) }</span>
                                         <span className="cell-detailTitle remaining-size">{ dollarString(truck.price)}</span>
                                         <button className="destructive" onClick={() => this.sellTruck(truck, actions)}>Sell</button>
                                     </div>
@@ -63,12 +62,12 @@ class Logistics extends React.Component {
                                 <li key={warehouse.uuid}>
                                     <div className="flexbox">
                                         <img className="icon" src={require('../../../static/icons/icons8-garage_closed.png')} alt="" />
-                                        <span className="cell-title content-size">Capacity: {warehouse.capacity}</span>
-                                        <span className="cell-detailTitle remaining-size">Level 1</span>
+                                        <span className="cell-title remaining-size">{warehouse.capacityUsed}/{warehouse.capacity}</span>
+                                        <span className="cell-detailTitle content-size level">1</span>
                                         <button>↑</button>
                                     </div>
                                     <div className="flexbox">
-                                        <span className="cell-title content-size">Bought { dateStringAfterElapsedDays(warehouse.buyDay) }</span>
+                                        <span className="cell-title content-size">{/*"Bought" +*/ dateStringAfterElapsedDays(warehouse.buyDay) }</span>
                                         <span className="cell-detailTitle remaining-size">{ dollarString(warehouse.price)}</span>
                                         <button className="destructive" onClick={() => this.sellWarehouse(warehouse, actions)}>Sell</button>
                                     </div>
