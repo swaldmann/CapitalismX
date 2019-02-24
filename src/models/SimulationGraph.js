@@ -44,7 +44,7 @@ class SimulationGraph extends Graph {
         }, ["productUtilities", "prices", "totalSalespeopleSkills"])
 
         this.createCalculatedVertex("totalSales", 0, function(elapsedDays, salesFigures, prices, oldValue) {
-            return salesFigures.reduce((totalSales, salesFigure, i) => totalSales + salesFigure * prices[i]/100, 0)
+            return salesFigures.reduce((totalSales, salesFigure, i) => totalSales + salesFigure * prices[i], 0)
         }, ["salesFigures", "prices"])
 
         this.createCalculatedVertex("totalProductComponentCost", 0, function(elapsedDays, totalProductComponentCosts, salesFigures, oldValue) {
