@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { dollarString } from '../../../util/Misc'
 import VisibleInvestmentsPopover from '../../../containers/VisibleInvestmentsPopover'
 
 const FinanceCompanySheet = ({ financials, investments }) => (
@@ -9,19 +10,19 @@ const FinanceCompanySheet = ({ financials, investments }) => (
             <tbody>
                 <tr>
                     <td><b>Cash</b></td>
-                    <td>${financials.cash.toFixed(0)}</td>
+                    <td>{dollarString(financials.cash)}</td>
                 </tr>
                 <tr>
                     <td><b>Assets</b></td>
-                    <td>${financials.assets.toFixed(0)}</td>
+                    <td>{dollarString(financials.totalInvestmentAmount)}</td>
                 </tr>
                 <tr>
                     <td><b>Liabilities</b></td>
-                    <td>$0</td>
+                    <td>{dollarString(financials.liabilities)}</td>
                 </tr>
                 <tr className="table-border-top">
                     <td><b>Net Worth</b></td>
-                    <td>${financials.netWorth.toFixed(0)}</td>
+                    <td>{dollarString(financials.netWorth)}</td>
                 </tr>
             </tbody>
         </table>

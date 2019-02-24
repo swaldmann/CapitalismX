@@ -1,5 +1,5 @@
 import React from 'react'
-import {quarterStrings} from '../../../util/Misc'
+import {dollarString, quarterStrings} from '../../../util/Misc'
 
 class FinanceTable extends React.Component {
     render() {
@@ -20,11 +20,11 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Sales</b></td>
-                        {financialHistory.map(entry => <td>${entry.sales.toFixed(0)}</td>)}
+                        {financialHistory.map(entry => <td>{dollarString(entry.sales)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Loans</b></td>
-                        {financialHistory.map(entry => <td>${entry.loans.toFixed(0)}</td>)}
+                        {financialHistory.map(entry => <td>{dollarString(entry.loans)}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -32,16 +32,24 @@ class FinanceTable extends React.Component {
             <table id="expenses">
                 <tbody>
                     <tr>
-                        <td><b>Material</b></td>
-                        {financialHistory.map(entry => <td>${entry.materialCosts.toFixed(0)}</td>)}
+                        <td><b>Salaries</b></td>
+                        {financialHistory.map(entry => <td>{dollarString(entry.salaries)}</td>)}
                     </tr>
                     <tr>
-                        <td><b>Salaries</b></td>
-                        {financialHistory.map(entry => <td>${entry.salaries.toFixed(0)}</td>)}
+                        <td><b>Material</b></td>
+                        {financialHistory.map(entry => <td>{dollarString(entry.materialCosts)}</td>)}
+                    </tr>
+                    <tr>
+                        <td><b>Logistics</b></td>
+                        {financialHistory.map(entry => <td>{dollarString(entry.logisticsCosts)}</td>)}
+                    </tr>
+                    <tr>
+                        <td><b>Warehousing</b></td>
+                        {financialHistory.map(entry => <td>{dollarString(entry.warehousingCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Loan Payment</b></td>
-                        {financialHistory.map(entry => <td>${entry.loanInterests.toFixed(0)}</td>)}
+                        {financialHistory.map(entry => <td>{dollarString(entry.loanInterests)}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -50,7 +58,16 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>EBIT</b></td>
-                        {financialHistory.map(entry => <td>${(entry.ebit).toFixed(0)}</td>)}
+                        {financialHistory.map(entry => <td>{dollarString(entry.ebit)}</td>)}
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <table>
+                <tbody>
+                    <tr>
+                        <td><b>Taxes</b></td>
+                        {financialHistory.map(entry => <td>{dollarString(entry.taxes)}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -60,16 +77,7 @@ class FinanceTable extends React.Component {
                     <tr>
                         <td><b>Investments</b></td>
                         {console.log(financialHistory)}
-                        {financialHistory.map(entry => <td>${entry.totalInvestmentEarnings.toFixed(0)}</td>)}
-                    </tr>
-                </tbody>
-            </table>
-            <hr />
-            <table>
-                <tbody>
-                    <tr>
-                        <td><b>Taxes</b></td>
-                        {financialHistory.map(entry => <td>${entry.taxes.toFixed(0)}</td>)}
+                        {financialHistory.map(entry => <td>{dollarString(entry.totalInvestmentEarnings)}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -78,7 +86,7 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Profit</b></td>
-                        {financialHistory.map(entry => <td>${entry.profit.toFixed(0)}</td>)}
+                        {financialHistory.map(entry => <td>{dollarString(entry.profit)}</td>)}
                     </tr>
                 </tbody>
             </table>

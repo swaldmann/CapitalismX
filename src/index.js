@@ -92,8 +92,10 @@ function simulate(dispatch) {
 
         const financials = { ...state.financials,
             sales: simulationGraph.getVertexValue("totalSales"),
-            //investmentAmount: simulationGraph.getVertexValue("investmentAmount"),
+            totalInvestmentAmount: simulationGraph.getVertexValue("totalInvestmentAmount"),
             totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),
+            warehousingCosts: 0,
+            logisticsCosts: 0,
             loans: simulationGraph.getVertexValue("loans"),
             salaries: simulationGraph.getVertexValue("totalSalaries"),
             materialCosts: simulationGraph.getVertexValue("totalProductComponentCost"),

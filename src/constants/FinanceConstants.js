@@ -4,11 +4,13 @@ const historyLength = 4
 
 const historyTemplate = {
     materialCosts: 0,
+    warehousingCosts: 0,
+    logisticsCosts: 0,
     salaries: 0,
     loanInterests: 0,
     sales: 0,
     totalInvestmentEarnings: 0,
-    investmentAmount: 0,
+    totalInvestmentAmount: 0,
     loans: 0,
     cash: 0,
     netWorth: 50000,
