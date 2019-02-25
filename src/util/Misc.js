@@ -68,3 +68,7 @@ export function getMonthsBetween(date1,date2,roundUpFractionalMonths) {
 
     return (inverse?-1:1)*(yearsDifference*12+monthsDifference+monthCorrection);
 }
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}

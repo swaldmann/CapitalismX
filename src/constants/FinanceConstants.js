@@ -5,8 +5,10 @@ const historyLength = 4
 
 const historyTemplate = {
     totalMaterialCosts: 0,
-    totalWarehousingCosts: 0,
     totalLogisticsCosts: 0,
+    totalLobbyistCosts: 0,
+    totalMachineCosts: 0,
+    totalMarketingCosts: 0,
     salaries: 0,
     loanInterests: 0,
     sales: 0,

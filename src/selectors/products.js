@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import { onlyUnique } from '../util/Misc'
 
 export const getProducts = state => state.products
 export const getTrucks = state => state.trucks
@@ -27,7 +28,7 @@ export const getProductUtilities = createSelector(
     function(products) {
         const productUtilities = products.map(product =>
             product.components.reduce((totalUtility, component) =>
-                totalUtility + component.allComponents[component.currentIndex].baseUtility,
+                totalUtility + component.allComponents[component.currentIndex].baseUtility * component.supplier.qualityMultiplicator,
                 0
             )
         )
@@ -40,11 +41,26 @@ export const getProductComponentCosts = createSelector(
     function(products) {
         const componentCosts = products.map(product =>
             product.components.reduce((totalCost, component) =>
-                totalCost + component.allComponents[component.currentIndex].cost,
+                totalCost + component.allComponents[component.currentIndex].cost * component.supplier.costMultiplicator,
                 0
             )
         )
         return componentCosts
+    }
+)
+
+/*export const getMaximumProductUtilityForComponentType = createSelector(
+    [getProducts],
+    function(products) {
+        const distinctCategories = products.map(product => product.category).filter( onlyUnique )
+        return products.map((product, i) => ({name: product.productCategoryName, totalUtility: getProductUtilities[i] })).reduce((utility, product) => , ))
+    }
+)*/
+
+export const getTotalTruckCosts = createSelector(
+    [getTrucks],
+    function(trucks) {
+        return trucks.reduce((count, truck) => count + truck.dailyFixCost, 0)
     }
 )
 
@@ -55,10 +71,24 @@ export const getTruckValues = createSelector(
     }
 )
 
+export const getTotalMachineCosts = createSelector(
+    [getMachines],
+    function(machines) {
+        return machines.reduce((count, machine) => count + machine.dailyFixCost, 0)
+    }
+)
+
 export const getMachineValues = createSelector(
     [getMachines],
     function(machines) {
         return machines.reduce((count, machine) => count + machine.price, 0)
+    }
+)
+
+export const getTotalWarehouseCosts = createSelector(
+    [getWarehouses],
+    function(warehouses) {
+        return warehouses.reduce((count, warehouse) => count + warehouse.dailyFixCost, 0)
     }
 )
 

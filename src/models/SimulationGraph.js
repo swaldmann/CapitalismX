@@ -78,9 +78,9 @@ class SimulationGraph extends Graph {
             return totalInvestmentAmount + propertyAssets
         }, ["totalInvestmentAmount", "propertyAssets"])
 
-        this.createCalculatedVertex("profit", 0, function(elapsedDays, ebit, totalInvestmentEarnings, taxes, oldValue) {
-            return ebit - taxes + totalInvestmentEarnings
-        }, ["ebit", "totalInvestmentEarnings", "taxes"])
+        this.createCalculatedVertex("profit", 0, function(elapsedDays, ebit, totalInvestmentEarnings, taxes, totalLogisticsCosts, oldValue) {
+            return ebit - taxes + totalInvestmentEarnings - totalLogisticsCosts
+        }, ["ebit", "totalInvestmentEarnings", "taxes", "totalLogisticsCosts"])
 
         this.createCalculatedVertex("cash", 50000, function(elapsedDays, profit, totalInvestmentEarnings, oldValue) {
             return oldValue + profit - totalInvestmentEarnings

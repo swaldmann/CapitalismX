@@ -13,6 +13,9 @@ import { getProductUtilities,
          getTruckValues,
          getWarehouseValues,
          getMachineValues,
+         getTotalTruckCosts,
+         getTotalMachineCosts,
+         getTotalWarehouseCosts,
          getProductComponentCosts } from './selectors/products'
 import { getTotalSalespeopleQualityOfWork,
          getTotalEngineerQualityOfWork,
@@ -62,6 +65,7 @@ function simulate(dispatch) {
     const productUtilities = getProductUtilities(state)
     const productPrices = getProductPrices(state)
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
+    const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
     const taxRate = state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
     //const elapsedDays = this.state.simulationState.elapsedDays
 
@@ -71,8 +75,7 @@ function simulate(dispatch) {
         totalEngineerQualityOfWork: getTotalEngineerQualityOfWork(state),
         totalSalespeopleQualityOfWork: getTotalSalespeopleQualityOfWork(state),
         productComponentCosts: getProductComponentCosts(state),
-        totalWarehousingCosts: 0,
-        totalLogisticsCosts: 0,
+        totalLogisticsCosts: totalLogisticsCosts,
         propertyAssets: propertyAssets,
         taxRate: taxRate,
         productUtilities: productUtilities,
@@ -97,7 +100,6 @@ function simulate(dispatch) {
         count + jobSatisfactionInfluence.jobSatisfactionPoints,
         0
     )
-    const jobSatisfaction = 10
 
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
@@ -106,9 +108,11 @@ function simulate(dispatch) {
             sales: simulationGraph.getVertexValue("totalSales"),
             totalInvestmentAmount: simulationGraph.getVertexValue("totalInvestmentAmount"),
             totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),
-            totalWarehousingCosts: simulationGraph.getVertexValue("totalWarehousingCosts"),
             totalLogisticsCosts: simulationGraph.getVertexValue("totalLogisticsCosts"),
             totalMaterialCosts: simulationGraph.getVertexValue("totalProductComponentCost"),
+            totalMachineCosts: getTotalMachineCosts(state),
+            totalLobbyistCosts: LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].costPerMonth,
+            totalMarketingCosts: 0,
             salaries: simulationGraph.getVertexValue("totalSalaries"),
             loans: simulationGraph.getVertexValue("loans"),
             loanInterests: simulationGraph.getVertexValue("loanInterests"),
