@@ -44,7 +44,7 @@ class NewProductPopover extends React.Component {
     }
 
  render() {
-     const {productTemplates, currentProductTemplateIndex, /*componentTypeTemplates,*/ actions} = this.props
+     const {productTemplates, currentProductTemplateIndex, componentTypeTemplates, actions} = this.props
      //console.log(componentTypeTemplates)
      return (
          <TooltipTrigger
@@ -85,9 +85,10 @@ class NewProductPopover extends React.Component {
                      <div className="flexbox">
                         <VisibleComponentGrid />
                         <div className="quarter">
+                            <h4 className="text-center">Supplier</h4>
                             {
                                 productTemplates[currentProductTemplateIndex].components.map((template, templateIndex) =>
-                                    <VisibleSupplierPopover key={template.uuid} componentTypeTemplate={template} />
+                                    <VisibleSupplierPopover key={template.uuid} componentTypeTemplate={componentTypeTemplates[templateIndex]} />
                                 )
                             }
                         </div>

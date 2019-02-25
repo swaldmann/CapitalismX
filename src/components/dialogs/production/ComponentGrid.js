@@ -8,6 +8,7 @@ class ComponentGrid extends React.Component {
         const {productTemplate, productTemplateIndex, componentTypeTemplates, elapsedDays, actions} = this.props
         return (
             <div className="grid">
+                <h4 className="text-center">Components</h4>
             {
                 productTemplate.components.map((componentType, i) =>
                 <div className="grid-column" key={i}>

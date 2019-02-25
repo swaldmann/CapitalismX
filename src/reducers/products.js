@@ -67,7 +67,7 @@ export function warehouses(state = [], action) {
 export function componentTypeTemplates(state = ALL_COMPONENT_TEMPLATES, action) {
     switch (action.type) {
         case SWITCH_COMPONENT_TYPE_SUPPLIER:
-            return state.map(componentType => componentType.uuid === action.uuid ? {...componentType, supplier: action.supplier} : componentType)
+            return state.map(componentType => componentType.index === action.componentType ? {...componentType, supplier: action.supplier} : componentType)
         case SWITCH_CURRENT_COMPONENT:
             return state.map((componentType, i) => i === action.componentTypeIndex ? {...componentType, currentIndex: action.componentIndex} : componentType )
         default:

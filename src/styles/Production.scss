@@ -18,6 +18,7 @@
 
 .grid-column > button, .grid-column > div {
     flex: 1 1 0px;
+    transition: none;
     padding: 5px;
     margin: 3px !important;
 }
@@ -34,6 +35,14 @@
     font-weight: normal;
     color: #ddd;
     text-align: center;
+}
+
+.grid-supplier {
+    margin: 3px;
+    padding: 5px;
+    box-sizing: border-box;
+    height: 34px;
+    font-size: 14px;
 }
 
 .grid-column img, .icon {
