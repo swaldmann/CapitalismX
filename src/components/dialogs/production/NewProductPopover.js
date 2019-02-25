@@ -102,14 +102,14 @@ class NewProductPopover extends React.Component {
                               onChange={this.onChangePrice}
                          />
                      </div>
-                     <div className="flexbox">
+                     {/*<div className="flexbox">
                          <label className="quarter">Amount</label>
                          <InputNumber
                              className="three-quarter"
                           defaultValue={1000}
                               onChange={this.onChangeAmount}
                          />
-                     </div>
+                     </div>*/}
                      <button className="popoverFinishButton" onClick={this.launchProduct}>Launch ({dollarString(productTemplates[currentProductTemplateIndex].launchPrice)})</button>
                  </div>
              )}

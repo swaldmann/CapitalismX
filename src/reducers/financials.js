@@ -3,6 +3,7 @@ import {
     DAILY_INVESTMENTS_UPDATE,
     QUARTERLY_FINANCIAL_HISTORY_ENTRY,
     PURCHASE,
+    PURCHASE_ASSET,
     BUY_FUND,
     SELL_FUND
 } from '../constants/ActionTypes'
@@ -27,6 +28,8 @@ export function financials(state = FINANCIALS, action) {
                 return state
             }*/
             return { ...state, cash: state.cash - action.amount }
+        case PURCHASE_ASSET:
+            return { ...state, cash: state.cash - action.amount, assets: state.assets + action.amount }
         default:
             return state
     }

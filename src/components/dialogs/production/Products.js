@@ -18,7 +18,7 @@ class Products extends React.Component {
                             {products.map(product =>
                                 <li key={product.uuid}>
                                     <div className="flexbox">
-                                        <span className="cell-title content-size"><img src={require("../../../static/icons/" + product.productCategoryIconPath)} className="icon" alt="" /><b>{product.name}</b> ({product.unitsSold}{/*product.amountToProduce*/} sold){product.components.map(component => <b>{component.allComponents[component.currentIndex].cost.toFixed(0) + ", "}</b>)}</span>
+                                        <span className="cell-title content-size"><img src={require("../../../static/icons/" + product.productCategoryIconPath)} className="icon" alt="" /><b>{product.name}</b> ({product.unitsSold}{/*product.amountToProduce*/} sold)</span>
                                         <span className="cell-detailTitle remaining-size"><b>{product.price.toLocaleString("en-US", {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0})}</b></span>
                                     </div>
                                     <div className="flexbox">

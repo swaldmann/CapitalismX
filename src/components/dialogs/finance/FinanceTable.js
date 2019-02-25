@@ -87,7 +87,7 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Profit</b></td>
-                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.profit)}</td>)}
+                        {financialHistory.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.profit > 0, 'expense': entry.profit < 0})}>{dollarString(entry.profit)}</td>)}
                     </tr>
                 </tbody>
             </table>

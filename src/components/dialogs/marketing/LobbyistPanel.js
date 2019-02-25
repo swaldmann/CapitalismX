@@ -9,8 +9,8 @@ const LobbyistPanel = ({hiredLobbyist, actions}) => (
             A lobbyist can assert its influence over the government, thereby mitigating its impact on the company or achieving benefits.<br />
             <div className="choosableItem">
                 <div><b>Currently employing</b></div>
-                {hiredLobbyist && <img className="icon" src={require('../../../static/icons/' + hiredLobbyist.iconPath)} alt="" />}
-                {hiredLobbyist ? hiredLobbyist.title : "No Lobbyist"}
+                {hiredLobbyist.iconPath && <img className="icon" src={require('../../../static/icons/' + hiredLobbyist.iconPath)} alt="" />}
+                {hiredLobbyist.title}
             </div>
             <VisibleLobbyistPopover />
         </div>

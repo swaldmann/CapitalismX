@@ -85,33 +85,38 @@ export const MARKET_RESEARCHES = []
 
 export const MARKETING = {
     consultancyIndex: null,
-    lobbyistIndex: null
+    lobbyistIndex: 4
 }
 
 export const LOBBYIST_TEMPLATES = [
     {
         title: "Senator",
         iconPath: "icons8-man_face.png",
-        cost: 10000,
+        costPerMonth: 10000,
         taxRate: 0.1
     },
     {
         title: "Congressman",
         iconPath: "icons8-valet.png",
-        cost: 5000,
+        costPerMonth: 5000,
         taxRate: 0.15
     },
     {
         title: "Mayor",
         iconPath: "icons8-old_man.png",
-        cost: 2000,
+        costPerMonth: 2000,
         taxRate: 0.2
     },
     {
         title: "Worker's Union Leader",
         iconPath: "icons8-gardener.png",
-        cost: 1000,
+        costPerMonth: 1000,
         taxRate: 0.25
+    }, {
+        title: "None",
+        iconPath: "",
+        costPerMonth: 0,
+        taxRate: 0.3
     }
 ]
 
@@ -120,18 +125,18 @@ export const CONSULTANCY_TEMPLATES = [
         title: "O'Reilly & Company",
         description: "World-famous firm",
         iconPath: "icons8-identity_disc.png",
-        cost: 1000
+        costPerMonth: 1000
     },
     {
         title: "Sinoido Consulting",
         description: "Local consultancy",
         iconPath: "icons8-less_than2.png",
-        cost: 300
+        costPerMonth: 300
     },
     {
         title: "Wannabe Consultants",
         description: "Student consultancy",
         iconPath: "icons8-multi_edit.png",
-        cost: 100
+        costPerMonth: 100
     }
 ]

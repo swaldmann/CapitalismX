@@ -5,22 +5,22 @@ import VisibleLogisticPartnerPanel from '../../../containers/VisibleLogisticPart
 class Logistics extends React.Component {
     buyTruck = (truckTemplate, actions) => {
         actions.buyTruck(truckTemplate)
-        actions.purchase(truckTemplate.price)
+        actions.purchaseAsset(truckTemplate.price)
     }
 
     sellTruck = (truck, actions) => {
         actions.sellTruck(truck.uuid)
-        actions.purchase(-truck.price)
+        actions.purchaseAsset(-truck.price)
     }
 
     buyWarehouse = (warehouseTemplate, actions) => {
         actions.buyWarehouse(warehouseTemplate)
-        actions.purchase(warehouseTemplate.price)
+        actions.purchaseAsset(warehouseTemplate.price)
     }
 
     sellWarehouse = (warehouse, actions) => {
         actions.sellWarehouse(warehouse.uuid)
-        actions.purchase(-warehouse.price)
+        actions.purchaseAsset(-warehouse.price)
     }
 
     render() {

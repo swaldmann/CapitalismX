@@ -79,7 +79,6 @@ class SupplierPopover extends React.Component {
                     })}
                   >
                         <div className="cell-title"></div>
-                        <div>{componentTypeTemplate.typeDescription}</div>
                         <div>{componentTypeTemplate.supplier.name}<span className="cell-detailTitle">({dollarString(componentTypeTemplate.allComponents[componentTypeTemplate.currentIndex].cost * componentTypeTemplate.supplier.costMultiplicator)})</span></div>
                     </button>
                 )}

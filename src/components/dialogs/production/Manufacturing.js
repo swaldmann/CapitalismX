@@ -5,12 +5,12 @@ import { deepCopyWithUUID, dateStringAfterElapsedDays, dollarString } from '../.
 class Manufacturing extends React.Component {
     buyMachine = (machineTemplate, actions) => {
         actions.buyMachine(machineTemplate)
-        actions.purchase(machineTemplate.price)
+        actions.purchaseAsset(machineTemplate.price)
     }
 
     sellMachine = (machine, actions) => {
         actions.sellMachine(machine.uuid)
-        actions.purchase(-machine.price)
+        actions.purchaseAsset(-machine.price)
     }
 
     render() {

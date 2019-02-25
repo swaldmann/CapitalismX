@@ -31,8 +31,8 @@ class Marketing extends React.Component {
                 <div className="dialogDetail">
                     <div className="panel">
                         <h3>Public Relations</h3>
-                        <VisibleLobbyistPanel />
                         <VisibleConsultancyPanel />
+                        <VisibleLobbyistPanel />
                     </div>
                     <div className="remaining-size flexbox">
                         <VisibleCampaignList />

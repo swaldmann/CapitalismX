@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect'
 
 export const getProducts = state => state.products
+export const getTrucks = state => state.trucks
+export const getMachines = state => state.machines
+export const getWarehouses = state => state.warehouses
 
 export const makeGetVisibleProducts = () => {
     return createSelector(
@@ -45,8 +48,23 @@ export const getProductComponentCosts = createSelector(
     }
 )
 
-// Manufacturing
-export const getMachines = state => state.machines
+export const getTruckValues = createSelector(
+    [getTrucks],
+    function(trucks) {
+        return trucks.reduce((count, truck) => count + truck.price, 0)
+    }
+)
 
-// Logistics
-export const getTrucks = state => state.trucks
+export const getMachineValues = createSelector(
+    [getMachines],
+    function(machines) {
+        return machines.reduce((count, machine) => count + machine.price, 0)
+    }
+)
+
+export const getWarehouseValues = createSelector(
+    [getWarehouses],
+    function(warehouses) {
+        return warehouses.reduce((count, warehouse) => count + warehouse.price, 0)
+    }
+)

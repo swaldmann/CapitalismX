@@ -10,6 +10,9 @@ import { addDays, getMonthsBetween } from './util/Misc'
 import rootReducer from './reducers'
 import { getProductUtilities,
          getProductPrices,
+         getTruckValues,
+         getWarehouseValues,
+         getMachineValues,
          getProductComponentCosts } from './selectors/products'
 import { getTotalSalespeopleQualityOfWork,
          getTotalEngineerQualityOfWork,
@@ -21,7 +24,8 @@ import { dailyProductUpdate,
          dailyFinancialUpdate,
          quarterlyFinancialHistoryEntry,
          monthlyComponentUpdate,
-         monthlyHRHistoryEntry } from './actions'
+         monthlyHRHistoryEntry,
+         purchase } from './actions'
 import SimulationGraph from './models/SimulationGraph'
 import { LOBBYIST_TEMPLATES } from './constants/MarketingConstants'
 import { INVESTMENTS } from './constants/FinanceConstants'
@@ -57,6 +61,7 @@ function simulate(dispatch) {
     const hiredEmployees = getAllHiredEmployees(state)
     const productUtilities = getProductUtilities(state)
     const productPrices = getProductPrices(state)
+    const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const taxRate = state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
     //const elapsedDays = this.state.simulationState.elapsedDays
 
@@ -68,6 +73,7 @@ function simulate(dispatch) {
         productComponentCosts: getProductComponentCosts(state),
         totalWarehousingCosts: 0,
         totalLogisticsCosts: 0,
+        propertyAssets: propertyAssets,
         taxRate: taxRate,
         productUtilities: productUtilities,
         prices: productPrices,
@@ -110,8 +116,9 @@ function simulate(dispatch) {
             taxRate: simulationGraph.getVertexValue("taxRate"),
             taxes: simulationGraph.getVertexValue("taxes"),
             profit: simulationGraph.getVertexValue("profit"),
-            cash: simulationGraph.getVertexValue("cash"),
+            cash: simulationGraph.getVertexValue("cash"),// - LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].costPerMonth
             netWorth: simulationGraph.getVertexValue("netWorth"),
+            assets: simulationGraph.getVertexValue("assets")
         }
 
         const humanResourcesHistoryEntry = {
@@ -129,7 +136,7 @@ function simulate(dispatch) {
         const elapsedMonths = getMonthsBetween(startDate, currentDate, false)
 
         dispatch(dailyProductUpdate(salesFigures))
-        //if (monthDay === 5) {
+        //if (monthDay === 1) {
             dispatch(monthlyComponentUpdate(elapsedMonths))
         //}
         dispatch(dailyInvestmentsUpdate(investmentEarnings))

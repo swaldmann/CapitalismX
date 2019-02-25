@@ -10,6 +10,7 @@ export const dailyFinancialUpdate = financials => ({ type: types.DAILY_FINANCIAL
 export const dailyInvestmentsUpdate = investmentEarnings => ({ type: types.DAILY_INVESTMENTS_UPDATE, investmentEarnings: investmentEarnings })
 export const quarterlyFinancialHistoryEntry = financials => ({ type: types.QUARTERLY_FINANCIAL_HISTORY_ENTRY, financials: financials})
 export const purchase = amount => ({ type: types.PURCHASE, amount })
+export const purchaseAsset = amount => ({ type: types.PURCHASE_ASSET, amount })
 export const buyFund = (uuid, amount) => ({ type: types.BUY_FUND, uuid, amount })
 export const sellFund = (uuid, amount) => ({ type: types.SELL_FUND, uuid, amount })
 

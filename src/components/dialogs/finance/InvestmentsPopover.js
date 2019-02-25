@@ -21,14 +21,14 @@ class ConsultancyPopover extends React.Component {
     buyFund = (uuid, amount, actions) => {
         this.setState({ showsTooltip: false })
         actions.buyFund(uuid, amount, actions)
-        actions.purchase(amount)
+        actions.purchaseAsset(amount)
         this.setState({ currentInputNumber: 1000 })
     }
 
     sellFund = (uuid, amount, actions) => {
         this.setState({ showsTooltip: false })
         actions.sellFund(uuid, amount, actions)
-        actions.purchase(-amount)
+        actions.purchaseAsset(-amount)
         this.setState({ currentInputNumber: 1000 })
     }
 
