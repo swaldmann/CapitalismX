@@ -37,7 +37,7 @@ export const getProductComponentCosts = createSelector(
     function(products) {
         const componentCosts = products.map(product =>
             product.components.reduce((totalCost, component) =>
-                totalCost + component.allComponents[component.currentIndex].baseCost,
+                totalCost + component.allComponents[component.currentIndex].cost,
                 0
             )
         )

@@ -12,7 +12,7 @@ const ENGINEERS = [
     {index: 8, name: "Liliana Travis", skill: 1, salary: 44000, happiness: 2, isEmployed: false},
     {index: 9, name: "Paul Botcher", skill: 1, salary: 44000, happiness: 2, isEmployed: false},
     {index: 10, name: "Nina Screwup", skill: 1, salary: 38000, happiness: 1, isEmployed: false}
-]
+].map(e => ({...e, happiness: 0, jobSatisfaction: e.happiness * 3}))
 
 const SALESPEOPLE = [
     {index: 11, name: "Steve Jobs", skill: 5, salary: 150000, happiness: 2, isEmployed: false},
@@ -24,7 +24,7 @@ const SALESPEOPLE = [
     {index: 17, name: "Lisa Su", skill: 2, salary: 60000, happiness: 1, isEmployed: false},
     {index: 18, name: "Sam Gomez", skill: 1, salary: 45000, happiness: 0, isEmployed: false},
     {index: 19, name: "Joe Gill", skill: 1, salary: 35000, happiness: 1, isEmployed: false}
-]
+].map(e => ({...e, happiness: 0, jobSatisfaction: e.happiness * 3}))
 
 // HR History
 const historyLength = 4

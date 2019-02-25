@@ -40,7 +40,7 @@ export function employees(state = EMPLOYEES, action) {
                 const fullHappinessThreshold = employee.skill * 3
                 const partialHappinessThreshold = employee.skill * 2
                 const happiness = action.jobSatisfactionPoints >= fullHappinessThreshold ? 2 : action.jobSatisfactionPoints >= partialHappinessThreshold ? 1 : 0
-                return employee.happiness !== happiness ? { ...employee, happiness: happiness} : employee
+                return employee.happiness !== happiness ? { ...employee, happiness: happiness, jobSatisfaction: Math.sqrt(action.jobSatisfactionPoints)*33 } : employee
             })})))
         default:
         return state

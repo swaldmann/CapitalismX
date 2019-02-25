@@ -1,15 +1,27 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware, /*compose*/ } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import './index.css'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
+import { addDays, getMonthsBetween } from './util/Misc'
 import rootReducer from './reducers'
-import { getProductUtilities, getProductPrices, getProductComponentCosts } from './selectors/products'
-import { getTotalSalespeopleQualityOfWork, getTotalEngineerQualityOfWork, getAllEmployees, getAllHiredEmployees, getTotalSalaries } from './selectors/employees'
-import { dailyProductUpdate, dailyInvestmentsUpdate, dailyFinancialUpdate, quarterlyFinancialHistoryEntry, monthlyHRHistoryEntry } from './actions'
+import { getProductUtilities,
+         getProductPrices,
+         getProductComponentCosts } from './selectors/products'
+import { getTotalSalespeopleQualityOfWork,
+         getTotalEngineerQualityOfWork,
+         getAllEmployees,
+         getAllHiredEmployees,
+         getTotalSalaries } from './selectors/employees'
+import { dailyProductUpdate,
+         dailyInvestmentsUpdate,
+         dailyFinancialUpdate,
+         quarterlyFinancialHistoryEntry,
+         monthlyComponentUpdate,
+         monthlyHRHistoryEntry } from './actions'
 import SimulationGraph from './models/SimulationGraph'
 import { LOBBYIST_TEMPLATES } from './constants/MarketingConstants'
 import { INVESTMENTS } from './constants/FinanceConstants'
@@ -18,12 +30,12 @@ var simulationGraph
 
 export const store = createStore(
     rootReducer,
-    applyMiddleware(thunk)
+    //applyMiddleware(thunk),
     // Change to this if you want to use the Redux Devtools extension in Chrome.
-    /*compose(
+    compose(
         applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )*/
+    )
 )
 
 function startSimulation() {
@@ -46,6 +58,7 @@ function simulate(dispatch) {
     const productUtilities = getProductUtilities(state)
     const productPrices = getProductPrices(state)
     const taxRate = state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
+    //const elapsedDays = this.state.simulationState.elapsedDays
 
     // Reducers
     const reducedValues = {
@@ -78,6 +91,7 @@ function simulate(dispatch) {
         count + jobSatisfactionInfluence.jobSatisfactionPoints,
         0
     )
+    const jobSatisfaction = 10
 
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
@@ -108,7 +122,16 @@ function simulate(dispatch) {
         const salesFigures = simulationGraph.getVertexValue("salesFigures")
         const investmentEarnings = simulationGraph.getVertexValue("investmentEarnings")
 
+        const elapsedDays = state.simulationState.elapsedDays
+        const startDate = new Date(1990, 0, 1)
+        const currentDate = addDays(startDate, elapsedDays * 28)
+        const monthDay = currentDate.getDay()
+        const elapsedMonths = getMonthsBetween(startDate, currentDate, false)
+
         dispatch(dailyProductUpdate(salesFigures))
+        //if (monthDay === 5) {
+            dispatch(monthlyComponentUpdate(elapsedMonths))
+        //}
         dispatch(dailyInvestmentsUpdate(investmentEarnings))
         dispatch(dailyFinancialUpdate(financials))
         dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))

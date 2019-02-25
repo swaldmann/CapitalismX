@@ -58,7 +58,7 @@ class SupplierPopover extends React.Component {
                                                 <button onClick={() => this.switchComponentTypeSupplier(componentTypeTemplate.index, deepCopyWithUUID(supplierTemplate), actions) }>
                                                     <div className="flexbox">
                                                         <span className="cell-title content-size">{supplierTemplate.name}</span>
-                                                        <span className="cell-detailTitle remaining-size">{dollarString(componentTypeTemplate.allComponents[componentTypeTemplate.currentIndex].baseCost * supplierTemplate.costMultiplicator)}</span>
+                                                        <span className="cell-detailTitle remaining-size">{dollarString(componentTypeTemplate.allComponents[componentTypeTemplate.currentIndex].cost * supplierTemplate.costMultiplicator)}</span>
                                                     </div>
                                                 </button>
                                             </div>
@@ -79,7 +79,8 @@ class SupplierPopover extends React.Component {
                     })}
                   >
                         <div className="cell-title"></div>
-                        <div>{componentTypeTemplate.supplier.name}<span className="cell-detailTitle">({dollarString(componentTypeTemplate.allComponents[componentTypeTemplate.currentIndex].baseCost * componentTypeTemplate.supplier.costMultiplicator)})</span></div>
+                        <div>{componentTypeTemplate.typeDescription}</div>
+                        <div>{componentTypeTemplate.supplier.name}<span className="cell-detailTitle">({dollarString(componentTypeTemplate.allComponents[componentTypeTemplate.currentIndex].cost * componentTypeTemplate.supplier.costMultiplicator)})</span></div>
                     </button>
                 )}
              </TooltipTrigger>

@@ -33,8 +33,38 @@ export function dateStringAfterElapsedDays(elapsedDays) {
     return gameDate.toLocaleDateString("en-US", options)
 }
 
-function addDays(date, days) {
+export function addDays(date, days) {
   var result = new Date(date);
   result.setDate(result.getDate() + days);
   return result;
+}
+
+// https://stackoverflow.com/a/26930998
+export function getMonthsBetween(date1,date2,roundUpFractionalMonths) {
+    var startDate=date1;
+    var endDate=date2;
+    var inverse=false;
+    if(date1>date2) {
+        startDate=date2;
+        endDate=date1;
+        inverse=true;
+    }
+
+    //Calculate the differences between the start and end dates
+    var yearsDifference=endDate.getFullYear()-startDate.getFullYear();
+    var monthsDifference=endDate.getMonth()-startDate.getMonth();
+    var daysDifference=endDate.getDate()-startDate.getDate();
+
+    var monthCorrection=0;
+    //If roundUpFractionalMonths is true, check if an extra month needs to be added from rounding up.
+    //The difference is done by ceiling (round up), e.g. 3 months and 1 day will be 4 months.
+    if(roundUpFractionalMonths===true && daysDifference>0) {
+        monthCorrection=1;
+    }
+    //If the day difference between the 2 months is negative, the last month is not a whole month.
+    else if(roundUpFractionalMonths!==true && daysDifference<0) {
+        monthCorrection=-1;
+    }
+
+    return (inverse?-1:1)*(yearsDifference*12+monthsDifference+monthCorrection);
 }

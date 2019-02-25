@@ -25,8 +25,8 @@ export const setGymMembership = gymMembership => ({ type: types.SET_GYM_BENEFITS
 export const trainEmployee = (index, skillIncrease, salaryIncreasePercentage) => ({ type: types.TRAIN_EMPLOYEE, index, skillIncrease, salaryIncreasePercentage })
 
 /* Production */
-
 export const dailyProductUpdate = (salesFigures) => ({ type: types.DAILY_PRODUCT_UPDATE, salesFigures})
+export const monthlyComponentUpdate = (elapsedMonths) => ({ type: types.MONTHLY_COMPONENT_UPDATES, elapsedMonths})
 
 // Products
 export const introduceNewProduct = productTemplate => ({ type: types.INTRODUCE_NEW_PRODUCT, productTemplate })

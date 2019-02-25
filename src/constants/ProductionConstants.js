@@ -7,7 +7,7 @@ const CPUS = [
     {index: 2, name: "3 GHz", baseUtility: 70, availabilityOffset: 7, baseCost: 20},
     {index: 3, name: "2x 3 GHz", baseUtility: 90, availabilityOffset: 14, baseCost: 20},
     {index: 4, name: "4x 3 GHz", baseUtility: 120, availabilityOffset: 19, baseCost: 20}
-]
+].map(component => ({...component, cost: component.baseCost}))
 
 const STORAGES = [
     {index: 5, name: "2 GB", baseUtility: 30, availabilityOffset: 0, baseCost: 15},
@@ -16,7 +16,7 @@ const STORAGES = [
     {index: 8, name: "200 GB", baseUtility: 120, availabilityOffset: 15, baseCost: 15},
     {index: 9, name: "200 GB SSD", baseUtility: 130, availabilityOffset: 24, baseCost: 15},
     {index: 10, name: "1 TB SSD", baseUtility: 150, availabilityOffset: 30, baseCost: 15}
-]
+].map(component => ({...component, cost: component.baseCost}))
 
 const DISPLAYS = [
     {index: 11, name: "Plasma", baseUtility: 20, availabilityOffset: 0, baseCost: 20},
@@ -24,7 +24,7 @@ const DISPLAYS = [
     {index: 13, name: "LED", baseUtility: 70, availabilityOffset: 10, baseCost: 20},
     {index: 14, name: "OLED", baseUtility: 100, availabilityOffset: 15, baseCost: 20},
     {index: 15, name: "QLED", baseUtility: 120, availabilityOffset: 20, baseCost: 20},
-]
+].map(component => ({...component, cost: component.baseCost}))
 
 const CAMERAS = [
     {index: 16, name: "1.2 MP", baseUtility: 20, availabilityOffset: 0, baseCost: 22},
@@ -32,7 +32,7 @@ const CAMERAS = [
     {index: 18, name: "5 MP", baseUtility: 100, availabilityOffset: 14, baseCost: 22},
     {index: 19, name: "8 MP", baseUtility: 130, availabilityOffset: 19, baseCost: 22},
     {index: 20, name: "12 MP", baseUtility: 150, availabilityOffset: 23, baseCost: 22},
-]
+].map(component => ({...component, cost: component.baseCost}))
 
 const AUDIO = [
     {index: 21, name: "Mono", baseUtility: 20, availabilityOffset: 0, baseCost: 18},
@@ -41,13 +41,13 @@ const AUDIO = [
     {index: 24, name: "5.1", baseUtility: 130, availabilityOffset: 18, baseCost: 18},
     {index: 25, name: "7.1", baseUtility: 140, availabilityOffset: 20, baseCost: 18},
     {index: 26, name: "Studio", baseUtility: 180, availabilityOffset: 26, baseCost: 18}
-]
+].map(component => ({...component, cost: component.baseCost}))
 
 export const SUPPLIER_TEMPLATES = [
     { name: "Premium", costMultiplicator: 3, qualityMultiplicator: 1.4 },
     { name: "Medium", costMultiplicator: 2, qualityMultiplicator: 1.2 },
     { name: "Cheap", costMultiplicator: 1, qualityMultiplicator: 1 }
-]
+].map(component => ({...component, cost: component.baseCost}))
 
 const defaultSupplier = SUPPLIER_TEMPLATES[2]
 

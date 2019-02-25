@@ -1,5 +1,6 @@
 import {
     DAILY_PRODUCT_UPDATE,
+    MONTHLY_COMPONENT_UPDATES,
     SWITCH_CURRENT_COMPONENT,
     INTRODUCE_NEW_PRODUCT,
     DEPRECATE_PRODUCT,
@@ -64,12 +65,22 @@ export function warehouses(state = [], action) {
     }
 }
 
+function componentCost(component, elapsedMonths) {
+    const y_a = component.availabilityOffset
+    const t = elapsedMonths/12
+    const p = component.baseCost
+    const result = (-0.0001 * Math.pow(t+1-y_a, 5) + 0.0112 * Math.pow(t+1-y_a, 4) - 0.4239 * Math.pow(t+1-y_a,3) + 7.3219 * Math.pow(t+1-y_a,2) - 49.698 * (t+1-y_a) + 143.32) * p/100
+    return result
+}
+
 export function componentTypeTemplates(state = ALL_COMPONENT_TEMPLATES, action) {
     switch (action.type) {
         case SWITCH_COMPONENT_TYPE_SUPPLIER:
             return state.map(componentType => componentType.index === action.componentType ? {...componentType, supplier: action.supplier} : componentType)
         case SWITCH_CURRENT_COMPONENT:
             return state.map((componentType, i) => i === action.componentTypeIndex ? {...componentType, currentIndex: action.componentIndex} : componentType )
+        case MONTHLY_COMPONENT_UPDATES:
+            return state.map((componentType, i) => ({...componentType, allComponents: componentType.allComponents.map(component => ({...component, cost: componentCost(component, action.elapsedMonths)}))}))
         default:
             return state
     }

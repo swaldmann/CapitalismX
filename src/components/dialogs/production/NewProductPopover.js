@@ -87,8 +87,8 @@ class NewProductPopover extends React.Component {
                         <div className="quarter">
                             <h4 className="text-center">Supplier</h4>
                             {
-                                productTemplates[currentProductTemplateIndex].components.map((template, templateIndex) =>
-                                    <VisibleSupplierPopover key={template.uuid} componentTypeTemplate={componentTypeTemplates[templateIndex]} />
+                                productTemplates[currentProductTemplateIndex].components.map(template =>
+                                    <VisibleSupplierPopover key={template.uuid} componentTypeTemplate={componentTypeTemplates[template.index]} />
                                 )
                             }
                         </div>
