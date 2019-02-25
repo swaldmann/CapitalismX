@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/CapitalismX/precache-manifest.e3f8b84dbfd491e8bf842fea406f6f40.js"
+  "/CapitalismX/precache-manifest.81def625c542b2f136d2c840b2d0bc0f.js"
 );
 
 workbox.clientsClaim();
