@@ -7,8 +7,11 @@ import './index.css'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import { addDays, getMonthsBetween } from './util/Misc'
+import { loadState, saveState } from './util/Persistence'
+import throttle from 'lodash/throttle'
 import rootReducer from './reducers'
 import { getProductUtilities,
+         getMaximumProductUtilityForComponentType,
          getProductPrices,
          getTruckValues,
          getWarehouseValues,
@@ -35,15 +38,21 @@ import { INVESTMENTS } from './constants/FinanceConstants'
 
 var simulationGraph
 
+const persistedState = loadState()
 export const store = createStore(
     rootReducer,
-    //applyMiddleware(thunk),
+    persistedState,
+    //applyMiddleware(thunk)
     // Change to this if you want to use the Redux Devtools extension in Chrome.
     compose(
         applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 )
+
+store.subscribe(throttle(() => {
+    saveState(store.getState())
+}, 1000))
 
 function startSimulation() {
     simulationGraph = new SimulationGraph()
@@ -67,15 +76,18 @@ function simulate(dispatch) {
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
     const taxRate = state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
-    //const elapsedDays = this.state.simulationState.elapsedDays
+    //const maximumProductUtilityForComponentType = getMaximumProductUtilityForComponentType(state)
 
     // Reducers
     const reducedValues = {
-        totalSalaries: getTotalSalaries(state)/365,
+        totalSalaries: parseInt(getTotalSalaries(state)/365),
         totalEngineerQualityOfWork: getTotalEngineerQualityOfWork(state),
         totalSalespeopleQualityOfWork: getTotalSalespeopleQualityOfWork(state),
         productComponentCosts: getProductComponentCosts(state),
         totalLogisticsCosts: totalLogisticsCosts,
+        totalMachineCosts: getTotalMachineCosts(state),
+        totalLobbyistCosts: LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].costPerMonth,
+        totalMarketingCosts: 0,
         propertyAssets: propertyAssets,
         taxRate: taxRate,
         productUtilities: productUtilities,
@@ -105,14 +117,14 @@ function simulate(dispatch) {
         dispatch({ type: 'START_SIMULATION' })
 
         const financials = { ...state.financials,
-            sales: simulationGraph.getVertexValue("totalSales"),
+            sales: simulationGraph.getVertexValue("totalSalesRevenue"),
             totalInvestmentAmount: simulationGraph.getVertexValue("totalInvestmentAmount"),
             totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),
             totalLogisticsCosts: simulationGraph.getVertexValue("totalLogisticsCosts"),
             totalMaterialCosts: simulationGraph.getVertexValue("totalProductComponentCost"),
-            totalMachineCosts: getTotalMachineCosts(state),
-            totalLobbyistCosts: LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].costPerMonth,
-            totalMarketingCosts: 0,
+            totalMachineCosts: simulationGraph.getVertexValue("totalMachineCosts"),
+            totalLobbyistCosts: simulationGraph.getVertexValue("totalLobbyistCosts"),
+            totalMarketingCosts: simulationGraph.getVertexValue("totalMarketingCosts"),
             salaries: simulationGraph.getVertexValue("totalSalaries"),
             loans: simulationGraph.getVertexValue("loans"),
             loanInterests: simulationGraph.getVertexValue("loanInterests"),
@@ -120,7 +132,7 @@ function simulate(dispatch) {
             taxRate: simulationGraph.getVertexValue("taxRate"),
             taxes: simulationGraph.getVertexValue("taxes"),
             profit: simulationGraph.getVertexValue("profit"),
-            cash: simulationGraph.getVertexValue("cash"),// - LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].costPerMonth
+            cash: simulationGraph.getVertexValue("cash"),
             netWorth: simulationGraph.getVertexValue("netWorth"),
             assets: simulationGraph.getVertexValue("assets")
         }

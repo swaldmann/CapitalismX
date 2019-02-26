@@ -5,7 +5,7 @@ import {products, machines, trucks, warehouses, logisticPartnerIndex, currentPro
 import simulationState from './simulationState'
 import {marketing, campaigns, pressReleases, marketResearches} from './marketing'
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
     // Finance
     financials,
     investments,
@@ -37,5 +37,12 @@ const rootReducer = combineReducers({
     // Simulation
     simulationState
 })
+
+const rootReducer = (state, action) => {
+    if (action.type === 'CLEAR_STATE') {
+        state = undefined
+    }
+    return appReducer(state, action)
+}
 
 export default rootReducer

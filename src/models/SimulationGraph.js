@@ -25,8 +25,10 @@ class SimulationGraph extends Graph {
         this.createVertex("totalSalaries", 0)
         this.createVertex("totalEngineerQualityOfWork", 0)
         this.createVertex("totalSalespeopleQualityOfWork", 0)
-        this.createVertex("totalWarehousingCosts", 0)
         this.createVertex("totalLogisticsCosts", 0)
+        this.createVertex("totalLobbyistCosts", 0)
+        this.createVertex("totalMarketingCosts", 0)
+        this.createVertex("totalMachineCosts", 0)
         this.createVertex("productUtilities", [])
         this.createVertex("productComponentCosts", 0)
         this.createVertex("prices", [])
@@ -42,21 +44,25 @@ class SimulationGraph extends Graph {
                         parseInt(utility/prices[i] * (1 + totalSalespeopleQualityOfWork/20) * (1 + Math.random()/10 * 5)))
         }, ["productUtilities", "prices", "totalSalespeopleQualityOfWork"])
 
-        this.createCalculatedVertex("totalSales", 0, function(elapsedDays, salesFigures, prices, oldValue) {
-            return salesFigures.reduce((totalSales, salesFigure, i) => totalSales + salesFigure * prices[i], 0)
+        this.createCalculatedVertex("totalSalesRevenue", 0, function(elapsedDays, salesFigures, prices, oldValue) {
+            return salesFigures.reduce((totalSalesRevenue, salesFigure, i) => totalSalesRevenue + salesFigure * prices[i], 0)
         }, ["salesFigures", "prices"])
 
         this.createCalculatedVertex("totalProductComponentCost", 0, function(elapsedDays, productComponentCosts, salesFigures, oldValue) {
             return salesFigures.map((salesFigure, i) => salesFigure * productComponentCosts[i]).reduce((totalCost, cost) => totalCost + cost, 0)
         }, ["productComponentCosts", "salesFigures"])
 
-        this.createCalculatedVertex("totalExpenses", 0, function(elapsedDays, totalProductComponentCost, totalSalaries, totalSales, oldValue) {
-            return totalProductComponentCost + totalSalaries
-        }, ["totalProductComponentCost", "totalSalaries", "totalSales"])
+        this.createCalculatedVertex("totalProductionCost", 0, function(elapsedDays, totalProductComponentCost, totalMachineCosts) {
+            return totalProductComponentCost + totalMachineCosts
+        }, ["totalProductComponentCost", "totalMachineCosts"])
 
-        this.createCalculatedVertex("ebit", 0, function(elapsedDays, totalSales, totalExpenses, oldValue) {
-            return totalSales - totalExpenses
-        }, ["totalSales", "totalExpenses"])
+        this.createCalculatedVertex("totalExpenses", 0, function(elapsedDays, totalProductionCost, totalSalaries, totalLogisticsCosts, totalLobbyistCosts, totalMarketingCosts, oldValue) {
+            return totalProductionCost + totalSalaries + totalLogisticsCosts + totalLobbyistCosts + totalMarketingCosts
+        }, ["totalProductionCost", "totalSalaries", "totalLogisticsCosts", "totalLobbyistCosts", "totalMarketingCosts"])
+
+        this.createCalculatedVertex("ebit", 0, function(elapsedDays, totalSalesRevenue, totalExpenses, oldValue) {
+            return totalSalesRevenue - totalExpenses
+        }, ["totalSalesRevenue", "totalExpenses"])
 
         this.createCalculatedVertex("taxes", 0, function(elapsedDays, ebit, taxRate, oldValue) {
             return ebit > 0 ? ebit * taxRate : 0
@@ -78,9 +84,9 @@ class SimulationGraph extends Graph {
             return totalInvestmentAmount + propertyAssets
         }, ["totalInvestmentAmount", "propertyAssets"])
 
-        this.createCalculatedVertex("profit", 0, function(elapsedDays, ebit, totalInvestmentEarnings, taxes, totalLogisticsCosts, oldValue) {
-            return ebit - taxes + totalInvestmentEarnings - totalLogisticsCosts
-        }, ["ebit", "totalInvestmentEarnings", "taxes", "totalLogisticsCosts"])
+        this.createCalculatedVertex("profit", 0, function(elapsedDays, ebit, totalInvestmentEarnings, taxes, oldValue) {
+            return ebit - taxes + totalInvestmentEarnings
+        }, ["ebit", "totalInvestmentEarnings", "taxes"])
 
         this.createCalculatedVertex("cash", 50000, function(elapsedDays, profit, totalInvestmentEarnings, oldValue) {
             return oldValue + profit - totalInvestmentEarnings

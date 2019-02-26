@@ -1,6 +1,9 @@
 import * as types from '../constants/ActionTypes'
 
-export const toggleMenuVisibility = () => ({ type: types.TOGGLE_MENU_VISIBILITY })
+export const clearState = () => ({ type: types.CLEAR_STATE })
+
+export const showMenu = () => ({ type: types.SHOW_MENU })
+export const hideMenu = () => ({ type: types.HIDE_MENU })
 
 export const startSimulation = () => ({ type: types.START_SIMULATION })
 export const pauseSimulation = () => ({ type: types.PAUSE_SIMULATION })

@@ -49,13 +49,15 @@ export const getProductComponentCosts = createSelector(
     }
 )
 
-/*export const getMaximumProductUtilityForComponentType = createSelector(
+export const getMaximumProductUtilityForComponentType = createSelector(
     [getProducts],
     function(products) {
-        const distinctCategories = products.map(product => product.category).filter( onlyUnique )
-        return products.map((product, i) => ({name: product.productCategoryName, totalUtility: getProductUtilities[i] })).reduce((utility, product) => , ))
+        const result = [...products.reduce((map, p, i) => map.has(p.productCategoryName) && map.get(p.productCategoryName).baseUtility > p.baseUtility ? map : map.set(p.productCategoryName, p), new Map()).values()]
+        console.log("Yoooo")
+        console.log(result)
+        return result
     }
-)*/
+)
 
 export const getTotalTruckCosts = createSelector(
     [getTrucks],

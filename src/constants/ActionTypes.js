@@ -1,7 +1,11 @@
+// Persistence
+export const CLEAR_STATE = 'CLEAR_STATE'
+
 // Time
 export const START_SIMULATION = 'START_SIMULATION'
 export const PAUSE_SIMULATION = 'PAUSE_SIMULATION'
-export const TOGGLE_MENU_VISIBILITY = 'TOGGLE_MENU_VISIBILITY'
+export const SHOW_MENU = 'SHOW_MENU'
+export const HIDE_MENU = 'HIDE_MENU'
 
 // Finance
 export const DAILY_FINANCIAL_UPDATE = 'DAILY_FINANCIAL_UPDATE'
