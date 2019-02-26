@@ -312,7 +312,7 @@ th, td {
 }
 
 .table-border-top > td {
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 hr {
@@ -322,6 +322,11 @@ hr {
 
 #company {
     margin-bottom: 40px;
+}
+
+#company td:first-child {
+    color: black;
+    font-weight: normal;
 }
 
 #company hr {

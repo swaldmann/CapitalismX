@@ -9,19 +9,19 @@ const FinanceCompanySheet = ({ financials, investments }) => (
         <table id="company">
             <tbody>
                 <tr>
-                    <td><b>Cash</b></td>
+                    <td>Cash</td>
                     <td>{dollarString(financials.cash)}</td>
                 </tr>
                 <tr>
-                    <td><b>Assets</b></td>
+                    <td>Assets</td>
                     <td>{dollarString(financials.assets)}</td>
                 </tr>
                 <tr>
-                    <td><b>Liabilities</b></td>
+                    <td>Liabilities</td>
                     <td>{dollarString(financials.liabilities)}</td>
                 </tr>
                 <tr className="table-border-top">
-                    <td><b>Net Worth</b></td>
+                    <td>Net Worth</td>
                     <td>{dollarString(financials.netWorth)}</td>
                 </tr>
             </tbody>
@@ -34,6 +34,10 @@ const FinanceCompanySheet = ({ financials, investments }) => (
                 <VisibleInvestmentsPopover investment={investment} />
             </div>
         )}
+
+        <h3>Bank</h3>
+        <span><b>Current Loan Amount</b><br />{dollarString(0)} at 0% interest<br /></span>
+        <button>Request Loan</button>
     </div>
 )
 
