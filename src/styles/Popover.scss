@@ -123,6 +123,12 @@ input[type="radio"]~.subtitle {
     margin-left: 18px;
 }
 
+.tooltip-caption {
+    color: grey;
+    font-size: 14px;
+    margin: 6px 0px;
+}
+
 .tooltip-container .popoverFinishButton {
     background: rgb(74, 81, 93);
     text-align: center;
