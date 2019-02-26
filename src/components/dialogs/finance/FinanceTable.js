@@ -25,8 +25,8 @@ class FinanceTable extends React.Component {
                         {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.sales)}</td>)}
                     </tr>
                     <tr>
-                        <td><b>Loans</b></td>
-                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.loans)}</td>)}
+                        <td><b>Sold Assets</b></td>
+                        {financialHistory.map(entry => <td key={uuid()}>{dollarString(0)/*dollarString(entry.loans)*/}</td>)}
                     </tr>
                 </tbody>
             </table>
@@ -58,7 +58,7 @@ class FinanceTable extends React.Component {
                         {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.totalMarketingCosts)}</td>)}
                     </tr>
                     <tr>
-                        <td><b>Loan Payment</b></td>
+                        <td><b>Loan Interest</b></td>
                         {financialHistory.map(entry => <td key={uuid()}>{dollarString(entry.loanInterests)}</td>)}
                     </tr>
                 </tbody>
