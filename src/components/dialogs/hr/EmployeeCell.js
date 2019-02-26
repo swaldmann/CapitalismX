@@ -19,7 +19,7 @@ class EmployeeCell extends React.Component {
 
     render() {
         const { employee } = this.props
-
+        console.log(employee)
         return (
             <li>
                 <div className="flexbox">
@@ -29,7 +29,7 @@ class EmployeeCell extends React.Component {
                 </div>
                 <div className="flexbox">
                     <StarRatings
-                      rating={employee.skill}
+                      rating={employee.skill/20}
                       starRatedColor="orange"
                       starDimension="10px"
                       starSpacing="3px"

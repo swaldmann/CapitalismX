@@ -33,12 +33,12 @@ export function employees(state = EMPLOYEES, action) {
             )})))
         case TRAIN_EMPLOYEE:
             return Object.assign({}, ...Object.keys(state).map(k => ({[k]: state[k].map(employee =>
-                employee.index === action.index ? { ...employee, skill: employee.skill + action.skillIncrease <= 5 ? employee.skill + action.skillIncrease : 5, salary: employee.salary *= (1 + action.salaryIncreasePercentage) } : employee
+                employee.index === action.index ? { ...employee, skill: employee.skill + action.skillIncrease <= 100 ? employee.skill + action.skillIncrease : 100, salary: employee.salary *= (1 + action.salaryIncreasePercentage) } : employee
             )})))
         case MONTHLY_HR_HISTORY_UPDATE:
             return Object.assign({}, ...Object.keys(state).map(k => ({[k]: state[k].map(employee => {
-                const fullHappinessThreshold = employee.skill * 3
-                const partialHappinessThreshold = employee.skill * 2
+                const fullHappinessThreshold = employee.skill/20 * 3
+                const partialHappinessThreshold = employee.skill/20 * 2
                 const happiness = action.jobSatisfactionPoints >= fullHappinessThreshold ? 2 : action.jobSatisfactionPoints >= partialHappinessThreshold ? 1 : 0
                 return employee.happiness !== happiness ? { ...employee, happiness: happiness, jobSatisfaction: Math.sqrt(action.jobSatisfactionPoints)*33 } : employee
             })})))

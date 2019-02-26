@@ -53,7 +53,7 @@ class TrainingPopover extends React.Component {
                                 {TRAINING_TEMPLATES.map((trainingTemplate, trainingIndex) =>
                                     <li>
                                         <div className="margin-bottom">
-                                            <button disabled={employee.skill + trainingTemplate.skillIncrease > 5} onClick={() => this.trainEmployee(employee.index, trainingTemplate, actions)}>
+                                            <button disabled={employee.skill + trainingTemplate.skillIncrease > 100} onClick={() => this.trainEmployee(employee.index, trainingTemplate, actions)}>
 
                                                 <div className="flexbox">
                                                     <span className="cell-title content-size">{trainingTemplate.name}</span>
@@ -74,7 +74,8 @@ class TrainingPopover extends React.Component {
               <button
                 {...getTriggerProps({
                   ref: triggerRef,
-                  className: 'trigger centered constructive'
+                  className: 'trigger centered constructive',
+                  disabled: employee.skill >= 100
                   /* your props here */
                 })}
               >
