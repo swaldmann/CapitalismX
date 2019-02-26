@@ -289,6 +289,10 @@ th, td {
     text-align: right;
 }
 
+#company td:first-child {
+    text-align: left;
+}
+
 .table-border-top {
     border-top: 1px solid #ddd;
 }
