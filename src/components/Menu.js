@@ -36,7 +36,7 @@ class Menu extends React.Component {
                 <div className="two-thirds">
                     <h1>Capitalism X</h1>
                     <button className="large" onClick={this.newGame}>New Game</button>
-                    <button className="large" onClick={this.loadGame}>Load Game</button>
+                    <button className="large" onClick={this.loadGame}>Continue Game</button>
 
                     <h3><img className="icon" src={require("../static/icons/icons8-monitor.png")} alt="" />Graphics</h3>
                     <div className="paragraph">
