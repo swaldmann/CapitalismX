@@ -11,6 +11,7 @@ export const pauseSimulation = () => ({ type: types.PAUSE_SIMULATION })
 /* Finance */
 export const dailyFinancialUpdate = financials => ({ type: types.DAILY_FINANCIAL_UPDATE, financials: financials })
 export const dailyInvestmentsUpdate = investmentEarnings => ({ type: types.DAILY_INVESTMENTS_UPDATE, investmentEarnings: investmentEarnings })
+export const dailyFinancialHistoryEntry = financials => ({ type: types.DAILY_FINANCIAL_HISTORY_ENTRY, financials: financials })
 export const quarterlyFinancialHistoryEntry = financials => ({ type: types.QUARTERLY_FINANCIAL_HISTORY_ENTRY, financials: financials})
 export const purchase = amount => ({ type: types.PURCHASE, amount })
 export const purchaseAsset = amount => ({ type: types.PURCHASE_ASSET, amount })

@@ -11,7 +11,10 @@ export function uniqueIDFromIntegers(a, b) {
 }
 
 export function quarterStrings(elapsedDays) {
-    return [...Array(4).keys()].map(i => "Q" + (((elapsedDays - 4 + i)%4 + 4)%4 + 1) + "/'" + ('0' + parseInt((elapsedDays - 4 + i)/4 + 90)%100).slice(-2))
+    const startDate = new Date(1990, 0, 1)
+    const gameDate = dateForElapsedDays(elapsedDays)
+    const quarterDifference = Math.ceil(getMonthsBetween(startDate, gameDate)/4)
+    return [...Array(4).keys()].map(i => "Q" + (((quarterDifference - 4 + i)%4 + 4)%4 + 1) + "/'" + ('0' + parseInt((quarterDifference - 4 + i)/4 + 90)%100).slice(-2))
 }
 
 export function dollarString(amount) {

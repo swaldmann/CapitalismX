@@ -37,6 +37,7 @@ import { getTotalSalespeopleQualityOfWork,
 import { dailyProductUpdate,
          dailyInvestmentsUpdate,
          dailyFinancialUpdate,
+         dailyFinancialHistoryEntry,
          quarterlyFinancialHistoryEntry,
          monthlyComponentUpdate,
          monthlyHRHistoryEntry,
@@ -100,8 +101,13 @@ function simulate(dispatch) {
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
 
-    //const productAppeals = getProductAppeals(state)
-    //console.log(productAppeals);
+    console.log("=======")
+    console.log("Demands")
+    console.log("=======")
+
+    console.log(getMaximumTotalQualityForProductTypes(state))
+    console.log(getMaximumMarketQualityForProductTypes(state))
+    console.log(getMaximumProxyQualityForProductTypes(state))
     console.log(getProductAppeals(state))
     console.log(getPriceAppeals(state))
     console.log(getOverallAppeals(state))
@@ -170,7 +176,7 @@ function simulate(dispatch) {
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
 
-        const financials = { ...state.financials,
+        const financials = {//...state.financials,
             sales: simulationGraph.getVertexValue("totalSalesRevenue"),
             totalInvestmentAmount: simulationGraph.getVertexValue("totalInvestmentAmount"),
             totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),
@@ -201,17 +207,25 @@ function simulate(dispatch) {
 
         const elapsedDays = state.simulationState.elapsedDays
         const startDate = new Date(1990, 0, 1)
-        const currentDate = addDays(startDate, elapsedDays * 28)
+        const currentDate = addDays(startDate, elapsedDays)
         const elapsedMonths = getMonthsBetween(startDate, currentDate, false)
 
+        // Daily updates
         dispatch(dailyProductUpdate(salesFigures))
-        //if (monthDay === 1) {
-            dispatch(monthlyComponentUpdate(elapsedMonths))
-        //}
         dispatch(dailyInvestmentsUpdate(investmentEarnings))
         dispatch(dailyFinancialUpdate(financials))
-        dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))
-        dispatch(quarterlyFinancialHistoryEntry(financials))
+        dispatch(dailyFinancialHistoryEntry(financials))
+
+        // Monthly updates
+        if (currentDate.getDate() === 1) {
+            dispatch(monthlyComponentUpdate(elapsedMonths))
+            dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))
+        }
+
+        // Quarterly updates
+        if (currentDate.getMonth() % 3 === 0 && currentDate.getDate() === 1) {
+            dispatch(quarterlyFinancialHistoryEntry(financials))
+        }
     }
 }
 

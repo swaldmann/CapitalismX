@@ -100,7 +100,7 @@ export const gymMembershipIndex = (state = 0, action) => {
 export const hrHistory = (state = HR_HISTORY, action) => {
     switch (action.type) {
         case MONTHLY_HR_HISTORY_UPDATE:
-            return state.concat(action.historyEntry).slice(1)
+            return state.concat(action.historyEntry)
         default:
             return state
     }
