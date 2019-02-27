@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware/*,compose*/ } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import './index.css'
@@ -10,6 +10,7 @@ import { addDays, getMonthsBetween } from './util/Misc'
 import { loadState, saveState } from './util/Persistence'
 import throttle from 'lodash/throttle'
 import rootReducer from './reducers'
+import SimulationGraph from './models/SimulationGraph'
 import { getProcurementQualities,
          getMaximumProcurementQualityForProductTypes,
          getProductPrices,
@@ -31,13 +32,29 @@ import { dailyProductUpdate,
          quarterlyFinancialHistoryEntry,
          monthlyComponentUpdate,
          monthlyHRHistoryEntry,
-         purchase } from './actions'
-import SimulationGraph from './models/SimulationGraph'
-import { LOBBYIST_TEMPLATES } from './constants/MarketingConstants'
-import { R_AND_D_TEMPLATES,
-         SYSTEM_SECURITY_TEMPLATES,
-         PROCESS_AUTOMATION_TEMPLATES } from './constants/ProductionConstants'
-import { INVESTMENTS } from './constants/FinanceConstants'
+         purchase
+} from './actions'
+
+import {
+    LOBBYIST_TEMPLATES
+} from './constants/MarketingConstants'
+import {
+    R_AND_D_TEMPLATES,
+    SYSTEM_SECURITY_TEMPLATES,
+    PROCESS_AUTOMATION_TEMPLATES
+} from './constants/ProductionConstants'
+import {
+    INVESTMENTS
+} from './constants/FinanceConstants'
+import {
+    WORKING_TIME_MODEL_TEMPLATES,
+    WORKING_HOUR_TEMPLATES,
+    COMPANY_CAR_TEMPLATES,
+    IT_EQUIPMENT_TEMPLATES,
+    FOOD_BENEFITS_TEMPLATES,
+    GYM_MEMBERSHIP_TEMPLATES
+} from './constants/HRConstants'
+
 
 var simulationGraph
 
@@ -45,12 +62,12 @@ const persistedState = loadState()
 export const store = createStore(
     rootReducer,
     persistedState,
-    //applyMiddleware(thunk)
+    applyMiddleware(thunk)
     // Change to this if you want to use the Redux Devtools extension in Chrome.
-    compose(
+    /*compose(
         applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    )*/
 )
 
 store.subscribe(throttle(() => {
@@ -117,7 +134,13 @@ function simulate(dispatch) {
         return jobSatisfactionCountArray[employee.happiness]++
     })
     const jobSatisfactionPercentages = hiredEmployees.length === 0 ? [0,0,0] : jobSatisfactionCountArray.map(happinessEntry => happinessEntry/hiredEmployees.length)
-    const jobSatisfactionScore = [state.workingTimeModel, state.workingHours, state.companyCarPolicy, state.foodBenefits, state.gymMembership].reduce((count, jobSatisfactionInfluence) =>
+    const workingTimeModel = WORKING_TIME_MODEL_TEMPLATES[state.workingTimeModelIndex]
+    const workingHours = WORKING_HOUR_TEMPLATES[state.workingHoursIndex]
+    const companyCarPolicy = COMPANY_CAR_TEMPLATES[state.companyCarPolicyIndex]
+    const itEquipmentPolicy = IT_EQUIPMENT_TEMPLATES[state.itEquipmentPolicyIndex]
+    const foodBenefits = FOOD_BENEFITS_TEMPLATES[state.foodBenefitsIndex]
+    const gymMembership = GYM_MEMBERSHIP_TEMPLATES[state.gymMembershipIndex]
+    const jobSatisfactionScore = [workingTimeModel, workingHours, companyCarPolicy, itEquipmentPolicy, foodBenefits, gymMembership].reduce((count, jobSatisfactionInfluence) =>
         count + jobSatisfactionInfluence.jobSatisfactionPoints,
         0
     )

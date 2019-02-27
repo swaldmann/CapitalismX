@@ -3,23 +3,17 @@ import {
     HIRE_EMPLOYEE,
     FIRE_EMPLOYEE,
     TRAIN_EMPLOYEE,
-    SET_WORKING_TIME_MODEL,
-    SET_WORKING_HOURS,
-    SET_COMPANY_CAR,
-    SET_FOOD_BENEFITS,
-    SET_GYM_BENEFITS,
-    SET_IT_EQUIPMENT_POLICY,
+    SET_WORKING_TIME_MODEL_INDEX,
+    SET_WORKING_HOURS_INDEX,
+    SET_COMPANY_CAR_INDEX,
+    SET_FOOD_BENEFITS_INDEX,
+    SET_GYM_BENEFITS_INDEX,
+    SET_IT_EQUIPMENT_POLICY_INDEX,
     MONTHLY_HR_HISTORY_UPDATE
 } from '../constants/ActionTypes'
 
 import { EMPLOYEES } from '../constants/HRConstants'
 import {
-    WORKING_TIME_MODEL_FIXED,
-    WORKING_HOURS_EIGHT,
-    COMPANY_CAR_NONE,
-    IT_EQUIPMENT_AVERAGE,
-    FOOD_BENEFITS_NONE,
-    GYM_MEMBERSHIP_NONE,
     HR_HISTORY
  } from '../constants/HRConstants'
 
@@ -49,55 +43,55 @@ export function employees(state = EMPLOYEES, action) {
     }
 }
 
-export const workingTimeModel = (state = WORKING_TIME_MODEL_FIXED, action) => {
+export const workingTimeModelIndex = (state = 0, action) => {
     switch (action.type) {
-        case SET_WORKING_TIME_MODEL:
-            return action.model
+        case SET_WORKING_TIME_MODEL_INDEX:
+            return action.index
         default:
             return state
     }
 }
 
-export const workingHours = (state = WORKING_HOURS_EIGHT, action) => {
+export const workingHoursIndex = (state = 1, action) => {
     switch (action.type) {
-        case SET_WORKING_HOURS:
-            return action.workingHours
+        case SET_WORKING_HOURS_INDEX:
+            return action.index
         default:
             return state
     }
 }
 
-export const companyCarPolicy = (state = COMPANY_CAR_NONE, action) => {
+export const companyCarPolicyIndex = (state = 0, action) => {
     switch (action.type) {
-        case SET_COMPANY_CAR:
-            return action.companyCarPolicy
+        case SET_COMPANY_CAR_INDEX:
+            return action.index
         default:
             return state
     }
 }
 
-export const itEquipmentPolicy = (state = IT_EQUIPMENT_AVERAGE, action) => {
+export const itEquipmentPolicyIndex = (state = 0, action) => {
     switch (action.type) {
-        case SET_IT_EQUIPMENT_POLICY:
-            return action.model
+        case SET_IT_EQUIPMENT_POLICY_INDEX:
+            return action.index
         default:
             return state
     }
 }
 
-export const foodBenefits = (state = FOOD_BENEFITS_NONE, action) => {
+export const foodBenefitsIndex = (state = 0, action) => {
     switch (action.type) {
-        case SET_FOOD_BENEFITS:
-            return action.foodBenefits
+        case SET_FOOD_BENEFITS_INDEX:
+            return action.index
         default:
             return state
     }
 }
 
-export const gymMembership = (state = GYM_MEMBERSHIP_NONE, action) => {
+export const gymMembershipIndex = (state = 0, action) => {
     switch (action.type) {
-        case SET_GYM_BENEFITS:
-            return action.gymMembership
+        case SET_GYM_BENEFITS_INDEX:
+            return action.index
         default:
             return state
     }

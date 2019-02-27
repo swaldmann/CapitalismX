@@ -54,111 +54,124 @@ export const TRAINING_TEMPLATES = [
 ]*/
 
 // Working Time
-export const WORKING_TIME_MODEL_FIXED = {
-    index: 0,
-    monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 0
-}
-export const WORKING_TIME_MODEL_FLEX = {
-    index: 1,
-    monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 2
-}
-
-export const WORKING_TIME_MODEL_TRUST  = {
-    index: 2,
-    monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 4
-}
+export const WORKING_TIME_MODEL_TEMPLATES = [
+    {
+        index: 0,
+        monthlyCostPerEmployee: 0,
+        jobSatisfactionPoints: 0,
+        description: "Fixed Hours"
+    },
+    {
+        index: 1,
+        monthlyCostPerEmployee: 0,
+        jobSatisfactionPoints: 2,
+        description: "Flextime"
+    },
+    {
+        index: 2,
+        monthlyCostPerEmployee: 0,
+        jobSatisfactionPoints: 4,
+        description: "Trust-based"
+    }
+]
 
 // Working Hours
-export const WORKING_HOURS_TEN = {
-    index: 2,
-    monthlyCostPerEmployee: 1000,
-    jobSatisfactionPoints: 0
-}
-
-export const WORKING_HOURS_EIGHT = {
-    index: 1,
-    monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 3
-}
-
-export const WORKING_HOURS_SIX = {
-    index: 0,
-    monthlyCostPerEmployee: 1000,
-    jobSatisfactionPoints: 5
-}
+export const WORKING_HOUR_TEMPLATES = [
+    {
+        index: 0,
+        description: "6 hours",
+        monthlyCostPerEmployee: 1000,
+        jobSatisfactionPoints: 0
+    },
+    {
+        index: 1,
+        description: "8 hours",
+        monthlyCostPerEmployee: 0,
+        jobSatisfactionPoints: 3
+    },
+    {
+        index: 2,
+        description: "10 hours",
+        monthlyCostPerEmployee: 0,
+        jobSatisfactionPoints: 5
+    }
+]
 
 // Company Car
-export const COMPANY_CAR_NONE = {
-    identifier: 'COMPANY_CAR_NONE',
-    monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 0
-}
-
-export const COMPANY_CAR_SUBCOMPACT = {
-    identifier: 'COMPANY_CAR_SUBCOMPACT',
-    monthlyCostPerEmployee: 300,
-    jobSatisfactionPoints: 2
-}
-
-export const COMPANY_CAR_SEDAN = {
-    identifier: 'COMPANY_CAR_SEDAN',
-    monthlyCostPerEmployee: 600,
-    jobSatisfactionPoints: 4
-}
+export const COMPANY_CAR_TEMPLATES = [
+    {
+        index: 0,
+        description: "None",
+        monthlyCostPerEmployee: 0,
+        jobSatisfactionPoints: 0
+    },
+    {
+        index: 1,
+        description: "Subcompact",
+        monthlyCostPerEmployee: 300,
+        jobSatisfactionPoints: 2
+    },
+    {
+        index: 2,
+        description: "Sedan",
+        monthlyCostPerEmployee: 600,
+        jobSatisfactionPoints: 4
+    }
+]
 
 // IT Equipment
-export const IT_EQUIPMENT_AVERAGE = {
-    identifier: 'IT_EQUIPMENT_AVERAGE',
-    monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 0
-}
-
-export const IT_EQUIPMENT_HIGH_END = {
-    identifier: 'IT_EQUIPMENT_HIGH_END',
-    monthlyCostPerEmployee: 50,
-    jobSatisfactionPoints: 2
-}
+export const IT_EQUIPMENT_TEMPLATES = [
+    {
+        index: 0,
+        description: "Market average",
+        monthlyCostPerEmployee: 0,
+        jobSatisfactionPoints: 0
+    },
+    {
+        index: 1,
+        description: "High-end",
+        monthlyCostPerEmployee: 50,
+        jobSatisfactionPoints: 2
+    }
+]
 
 // Food/Coffee
-export const FOOD_BENEFITS_NONE = {
-    identifier: 'FOOD_BENEFITS_NONE',
-    monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 0
-}
-
-export const FOOD_BENEFITS_PAID = {
-    identifier: 'FOOD_BENEFITS_PAID',
-    monthlyCostPerEmployee: 50,
-    jobSatisfactionPoints: 2
-}
-
-export const FOOD_BENEFITS_FREE = {
-    identifier: 'FOOD_BENEFITS_FREE',
-    monthlyCostPerEmployee: 100,
-    jobSatisfactionPoints: 5
-}
+export const FOOD_BENEFITS_TEMPLATES = [
+    {
+        index: 0,
+        description: "None",
+        monthlyCostPerEmployee: 0,
+        jobSatisfactionPoints: 0
+    },
+    {
+        index: 1,
+        description: "Free",
+        monthlyCostPerEmployee: 100,
+        jobSatisfactionPoints: 5
+    }
+]
 
 // Gym Membership
-export const GYM_MEMBERSHIP_NONE = {
-    identifier: 'GYM_MEMBERSHIP_NONE',
-    monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 0
-}
-
-export const GYM_MEMBERSHIP_SUBSIDIZED = {
-    identifier: 'GYM_MEMBERSHIP_SUBSIDIZED',
-    monthlyCostPerEmployee: 50,
-    jobSatisfactionPoints: 2
-}
-
-export const GYM_MEMBERSHIP_FREE = {
-    identifier: 'GYM_MEMBERSHIP_FREE',
-    monthlyCostPerEmployee: 100,
-    jobSatisfactionPoints: 4
-}
+export const GYM_MEMBERSHIP_TEMPLATES = [
+    {
+        index: 0,
+        description: "None",
+        monthlyCostPerEmployee: 0,
+        jobSatisfactionPoints: 0
+    },
+    {
+        index: 1,
+        description: "Subsidized",
+        monthlyCostPerEmployee: 50,
+        jobSatisfactionPoints: 2
+    },
+    {
+        index: 2,
+        description: "Free",
+        monthlyCostPerEmployee: 100,
+        jobSatisfactionPoints: 4
+    }
+]
 
 // Types
 export const ENGINEER_TYPE = "Engineers"

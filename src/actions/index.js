@@ -21,12 +21,12 @@ export const sellFund = (uuid, amount) => ({ type: types.SELL_FUND, uuid, amount
 export const monthlyHRHistoryEntry = (historyEntry, jobSatisfactionPoints) => ({ type: types.MONTHLY_HR_HISTORY_UPDATE, historyEntry, jobSatisfactionPoints })
 export const hireEmployee = index => ({ type: types.HIRE_EMPLOYEE, index })
 export const fireEmployee = index => ({ type: types.FIRE_EMPLOYEE, index })
-export const setWorkingTimeModel = model => ({ type: types.SET_WORKING_TIME_MODEL, model })
-export const setWorkingHours = workingHours => ({ type: types.SET_WORKING_HOURS, workingHours })
-export const setCompanyCarPolicy = companyCarPolicy => ({ type: types.SET_COMPANY_CAR, companyCarPolicy })
-export const setITEquipmentPolicy = equipmentPolicy => ({ type: types.SET_IT_EQUIPMENT_POLICY, equipmentPolicy })
-export const setFoodBenefits = foodBenefits => ({ type: types.SET_FOOD_BENEFITS, foodBenefits })
-export const setGymMembership = gymMembership => ({ type: types.SET_GYM_BENEFITS, gymMembership })
+export const setWorkingTimeModelIndex = index => ({ type: types.SET_WORKING_TIME_MODEL_INDEX, index })
+export const setWorkingHoursIndex = index => ({ type: types.SET_WORKING_HOURS_INDEX, index })
+export const setCompanyCarPolicyIndex = index => ({ type: types.SET_COMPANY_CAR_INDEX, index })
+export const setITEquipmentPolicyIndex = index => ({ type: types.SET_IT_EQUIPMENT_POLICY_INDEX, index })
+export const setFoodBenefitsIndex = index => ({ type: types.SET_FOOD_BENEFITS_INDEX, index })
+export const setGymMembershipIndex = index => ({ type: types.SET_GYM_BENEFITS_INDEX, index })
 export const trainEmployee = (index, skillIncrease, salaryIncreasePercentage) => ({ type: types.TRAIN_EMPLOYEE, index, skillIncrease, salaryIncreasePercentage })
 
 /* Production */

@@ -8,12 +8,12 @@ import {
 import {
     employees,
     hrHistory,
-    workingTimeModel,
-    workingHours,
-    companyCarPolicy,
-    itEquipmentPolicy,
-    foodBenefits,
-    gymMembership
+    workingTimeModelIndex,
+    workingHoursIndex,
+    companyCarPolicyIndex,
+    itEquipmentPolicyIndex,
+    foodBenefitsIndex,
+    gymMembershipIndex
 } from './employees'
 import {
     products,
@@ -43,12 +43,12 @@ const appReducer = combineReducers({
     // HR
     employees,
     hrHistory,
-    workingTimeModel,
-    workingHours,
-    companyCarPolicy,
-    itEquipmentPolicy,
-    foodBenefits,
-    gymMembership,
+    workingTimeModelIndex,
+    workingHoursIndex,
+    companyCarPolicyIndex,
+    itEquipmentPolicyIndex,
+    foodBenefitsIndex,
+    gymMembershipIndex,
 
     // Production
     products,
