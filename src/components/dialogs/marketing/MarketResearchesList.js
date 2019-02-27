@@ -8,7 +8,7 @@ const MarketResearchesList = ({ marketResearches, elapsedDays }) => (
             <ul>
                 {
                     marketResearches.map(marketResearch =>
-                        <li>
+                        <li key={marketResearch.uuid}>
                             <img className="icon" alt="" src={require('../../../static/icons/icons8-microscope.png')} />{marketResearch.marketResearchTemplate.name}
                             <div className="detailTitle">{elapsedDays >= marketResearch.startElapsedDays + 5 ? (elapsedDays - marketResearch.startElapsedDays) + " days ago" : "Underway"}</div>
                         </li>

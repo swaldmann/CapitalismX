@@ -1,6 +1,7 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 import {PRESS_RELEASE_TEMPLATES} from '../../../constants/MarketingConstants'
+import { deepCopyWithUUID } from '../../../util/Misc'
 
 class PressReleasesPopover extends React.Component {
     state = {
@@ -13,7 +14,7 @@ class PressReleasesPopover extends React.Component {
 
     makePressRelease = (pressReleaseTemplate, elapsedDays, actions) => {
         this.setState({ showsTooltip: false })
-        actions.makePressRelease(pressReleaseTemplate, elapsedDays)
+        actions.makePressRelease(deepCopyWithUUID(pressReleaseTemplate), elapsedDays)
     }
 
     render() {

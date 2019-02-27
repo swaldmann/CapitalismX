@@ -1,6 +1,7 @@
 import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
-import {MARKET_RESEARCHES_TEMPLATES} from '../../../constants/MarketingConstants'
+import { MARKET_RESEARCHES_TEMPLATES } from '../../../constants/MarketingConstants'
+import { deepCopyWithUUID } from '../../../util/Misc'
 
 class MarketResearchesPopover extends React.Component {
     state = {
@@ -13,7 +14,7 @@ class MarketResearchesPopover extends React.Component {
 
     doMarketResearch = (marketResearchTemplate, actions) => {
         this.setState({ showsTooltip: false })
-        actions.doMarketResearch(marketResearchTemplate)
+        actions.doMarketResearch(deepCopyWithUUID(marketResearchTemplate))
     }
 
     render() {

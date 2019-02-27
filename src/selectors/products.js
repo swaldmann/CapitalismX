@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { onlyUnique } from '../util/Misc'
+import { PRODUCT_TEMPLATES } from '../constants/ProductionConstants'
 
 export const getProducts = state => state.products
 export const getTrucks = state => state.trucks
@@ -36,6 +36,12 @@ export const getProcurementQualities = createSelector(
     }
 )
 
+// This servers as a proxy value for the demand calculation for a specific product.
+export const getMaximumMarketQualityForProductTypes = createSelector(
+    [getProducts],
+
+)
+
 export const getMaximumProcurementQualityForProductTypes = createSelector(
     [getProducts,
     getProcurementQualities],
@@ -46,7 +52,7 @@ export const getMaximumProcurementQualityForProductTypes = createSelector(
                     ),
                     [0,0,0,0]
                 )
-    }
+        }
 )
 
 export const getProductComponentCosts = createSelector(
