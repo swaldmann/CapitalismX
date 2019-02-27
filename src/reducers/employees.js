@@ -8,14 +8,16 @@ import {
     SET_COMPANY_CAR,
     SET_FOOD_BENEFITS,
     SET_GYM_BENEFITS,
+    SET_IT_EQUIPMENT_POLICY,
     MONTHLY_HR_HISTORY_UPDATE
 } from '../constants/ActionTypes'
 
 import { EMPLOYEES } from '../constants/HRConstants'
 import {
     WORKING_TIME_MODEL_FIXED,
-    WORKING_HOURS_8,
+    WORKING_HOURS_EIGHT,
     COMPANY_CAR_NONE,
+    IT_EQUIPMENT_AVERAGE,
     FOOD_BENEFITS_NONE,
     GYM_MEMBERSHIP_NONE,
     HR_HISTORY
@@ -56,7 +58,7 @@ export const workingTimeModel = (state = WORKING_TIME_MODEL_FIXED, action) => {
     }
 }
 
-export const workingHours = (state = WORKING_HOURS_8, action) => {
+export const workingHours = (state = WORKING_HOURS_EIGHT, action) => {
     switch (action.type) {
         case SET_WORKING_HOURS:
             return action.workingHours
@@ -69,6 +71,15 @@ export const companyCarPolicy = (state = COMPANY_CAR_NONE, action) => {
     switch (action.type) {
         case SET_COMPANY_CAR:
             return action.companyCarPolicy
+        default:
+            return state
+    }
+}
+
+export const itEquipmentPolicy = (state = IT_EQUIPMENT_AVERAGE, action) => {
+    switch (action.type) {
+        case SET_IT_EQUIPMENT_POLICY:
+            return action.model
         default:
             return state
     }

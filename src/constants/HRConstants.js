@@ -1,4 +1,3 @@
-
 // Employees
 const ENGINEERS = [
     {index: 0, name: "Elon Musk", skill: 92, salary: 150000, happiness: 0, isEmployed: false},
@@ -73,22 +72,22 @@ export const WORKING_TIME_MODEL_TRUST  = {
 }
 
 // Working Hours
-export const WORKING_HOURS_10 = {
+export const WORKING_HOURS_TEN = {
     index: 2,
-    monthlyCostPerEmployee: -10,
+    monthlyCostPerEmployee: 1000,
     jobSatisfactionPoints: 0
 }
 
-export const WORKING_HOURS_8 = {
+export const WORKING_HOURS_EIGHT = {
     index: 1,
     monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 2
+    jobSatisfactionPoints: 3
 }
 
-export const WORKING_HOURS_6 = {
+export const WORKING_HOURS_SIX = {
     index: 0,
-    monthlyCostPerEmployee: 20,
-    jobSatisfactionPoints: 4
+    monthlyCostPerEmployee: 1000,
+    jobSatisfactionPoints: 5
 }
 
 // Company Car
@@ -100,14 +99,27 @@ export const COMPANY_CAR_NONE = {
 
 export const COMPANY_CAR_SUBCOMPACT = {
     identifier: 'COMPANY_CAR_SUBCOMPACT',
-    monthlyCostPerEmployee: 40,
+    monthlyCostPerEmployee: 300,
     jobSatisfactionPoints: 2
 }
 
 export const COMPANY_CAR_SEDAN = {
     identifier: 'COMPANY_CAR_SEDAN',
-    monthlyCostPerEmployee: 80,
+    monthlyCostPerEmployee: 600,
     jobSatisfactionPoints: 4
+}
+
+// IT Equipment
+export const IT_EQUIPMENT_AVERAGE = {
+    identifier: 'IT_EQUIPMENT_AVERAGE',
+    monthlyCostPerEmployee: 0,
+    jobSatisfactionPoints: 0
+}
+
+export const IT_EQUIPMENT_HIGH_END = {
+    identifier: 'IT_EQUIPMENT_HIGH_END',
+    monthlyCostPerEmployee: 50,
+    jobSatisfactionPoints: 2
 }
 
 // Food/Coffee
@@ -119,14 +131,14 @@ export const FOOD_BENEFITS_NONE = {
 
 export const FOOD_BENEFITS_PAID = {
     identifier: 'FOOD_BENEFITS_PAID',
-    monthlyCostPerEmployee: 0,
-    jobSatisfactionPoints: 1
+    monthlyCostPerEmployee: 50,
+    jobSatisfactionPoints: 2
 }
 
 export const FOOD_BENEFITS_FREE = {
     identifier: 'FOOD_BENEFITS_FREE',
-    monthlyCostPerEmployee: 40,
-    jobSatisfactionPoints: 4
+    monthlyCostPerEmployee: 100,
+    jobSatisfactionPoints: 5
 }
 
 // Gym Membership
@@ -138,13 +150,13 @@ export const GYM_MEMBERSHIP_NONE = {
 
 export const GYM_MEMBERSHIP_SUBSIDIZED = {
     identifier: 'GYM_MEMBERSHIP_SUBSIDIZED',
-    monthlyCostPerEmployee: 25,
+    monthlyCostPerEmployee: 50,
     jobSatisfactionPoints: 2
 }
 
 export const GYM_MEMBERSHIP_FREE = {
     identifier: 'GYM_MEMBERSHIP_FREE',
-    monthlyCostPerEmployee: 50,
+    monthlyCostPerEmployee: 100,
     jobSatisfactionPoints: 4
 }
 
