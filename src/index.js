@@ -12,7 +12,9 @@ import throttle from 'lodash/throttle'
 import rootReducer from './reducers'
 import SimulationGraph from './models/SimulationGraph'
 import { getProcurementQualities,
-         getMaximumProcurementQualityForProductTypes,
+         getMaximumProxyQualityForProductTypes,
+         getMaximumMarketQualityForProductTypes,
+         getMaximumTotalQualityForProductTypes,
          getProductPrices,
          getTruckValues,
          getWarehouseValues,
@@ -20,6 +22,7 @@ import { getProcurementQualities,
          getTotalTruckCosts,
          getTotalMachineCosts,
          getTotalWarehouseCosts,
+         getAverageMachineTechnology,
          getProductComponentCosts } from './selectors/products'
 import { getTotalSalespeopleQualityOfWork,
          getTotalEngineerQualityOfWork,
@@ -38,11 +41,7 @@ import { dailyProductUpdate,
 import {
     LOBBYIST_TEMPLATES
 } from './constants/MarketingConstants'
-import {
-    R_AND_D_TEMPLATES,
-    SYSTEM_SECURITY_TEMPLATES,
-    PROCESS_AUTOMATION_TEMPLATES
-} from './constants/ProductionConstants'
+
 import {
     INVESTMENTS
 } from './constants/FinanceConstants'
@@ -96,12 +95,19 @@ function simulate(dispatch) {
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
 
+    const proxyQualities = getMaximumProxyQualityForProductTypes(state)
+
     // Variables from state which can be asychnronously changed by the user
     const taxRate = state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
+
+    // Production
     const rAndDFactor = 0.8 + 0.1 * (state.rAndDIndex + 1)
     const systemsSecurityFactor = 0.8 + 0.1 * (state.systemsSecurityIndex + 1)
     const processAutomationFactor = 0.8 + 0.1 * (state.processAutomationIndex + 1)
-    const maximumProcurementQualityForProductTypes = getMaximumProcurementQualityForProductTypes(state)
+    const productionTechnologyFactor = 0.5 + 0.25 * getAverageMachineTechnology(state)
+    //const maximumProcurementQualityForProductTypes = getMaximumProcurementQualityForProductTypes(state)
+
+
 
     // Reducers
     const reducedValues = {
@@ -119,7 +125,7 @@ function simulate(dispatch) {
         prices: productPrices,
         cash: state.financials.cash || 50000,
         investments: state.investments || INVESTMENTS,
-        manufacturingMultiplicator: rAndDFactor * processAutomationFactor * systemsSecurityFactor
+        manufacturingMultiplicator: rAndDFactor * processAutomationFactor * systemsSecurityFactor * productionTechnologyFactor
     }
 
     simulationGraph.updateVertices(reducedValues)
