@@ -36,6 +36,19 @@ export const getProcurementQualities = createSelector(
     }
 )
 
+export const getMaximumProcurementQualityForProductTypes = createSelector(
+    [getProducts,
+    getProcurementQualities],
+    (products, procurementQualities) => {
+        return products.reduce((maxQualities, p, i) =>
+                    maxQualities.map((currentMaxQuality, j) =>
+                        j === p.productCategoryIndex && procurementQualities[i] > maxQualities[p.productCategoryIndex] ? procurementQualities[i] : currentMaxQuality
+                    ),
+                    [0,0,0,0]
+                )
+    }
+)
+
 export const getProductComponentCosts = createSelector(
     [getProducts],
     function(products) {
@@ -46,14 +59,6 @@ export const getProductComponentCosts = createSelector(
             )
         )
         return componentCosts
-    }
-)
-
-export const getMaximumProductUtilityForComponentType = createSelector(
-    [getProducts],
-    function(products) {
-        const result = [...products.reduce((map, p, i) => map.has(p.productCategoryName) && map.get(p.productCategoryName).baseUtility > p.baseUtility ? map : map.set(p.productCategoryName, p), new Map()).values()]
-        return result
     }
 )
 

@@ -11,7 +11,7 @@ import { loadState, saveState } from './util/Persistence'
 import throttle from 'lodash/throttle'
 import rootReducer from './reducers'
 import { getProcurementQualities,
-         getMaximumProductUtilityForComponentType,
+         getMaximumProcurementQualityForProductTypes,
          getProductPrices,
          getTruckValues,
          getWarehouseValues,
@@ -84,7 +84,7 @@ function simulate(dispatch) {
     const rAndDFactor = 0.8 + 0.1 * (state.rAndDIndex + 1)
     const systemsSecurityFactor = 0.8 + 0.1 * (state.systemsSecurityIndex + 1)
     const processAutomationFactor = 0.8 + 0.1 * (state.processAutomationIndex + 1)
-    //const maximumProductUtilityForComponentType = getMaximumProductUtilityForComponentType(state)
+    const maximumProcurementQualityForProductTypes = getMaximumProcurementQualityForProductTypes(state)
 
     // Reducers
     const reducedValues = {

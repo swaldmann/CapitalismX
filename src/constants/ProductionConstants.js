@@ -101,6 +101,7 @@ export const ALL_COMPONENT_TEMPLATES = [
 ]
 
 const SMARTPHONE = {
+    productCategoryIndex: 0,
     productCategoryName: "Phone",
     productCategoryIconPath: "icons8-android.png",
     components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}, {...AUDIO_COMPONENT}],
@@ -108,6 +109,7 @@ const SMARTPHONE = {
 }
 
 const NOTEBOOK = {
+    productCategoryIndex: 1,
     productCategoryName: "Notebook",
     productCategoryIconPath: "icons8-laptop.png",
     components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...AUDIO_COMPONENT}],
@@ -115,6 +117,7 @@ const NOTEBOOK = {
 }
 
 const CONSOLE = {
+    productCategoryIndex: 2,
     productCategoryName: "Console",
     productCategoryIconPath: "icons8-controller.png",
     components: [deepCopyWithUUID(CPU_COMPONENT), deepCopyWithUUID(DISPLAY_COMPONENT), deepCopyWithUUID(AUDIO_COMPONENT)],
@@ -122,6 +125,7 @@ const CONSOLE = {
 }
 
 const TV = {
+    productCategoryIndex: 3,
     productCategoryName: "TV",
     productCategoryIconPath: "icons8-tv.png",
     components: [deepCopyWithUUID(DISPLAY_COMPONENT), deepCopyWithUUID(AUDIO_COMPONENT)],
