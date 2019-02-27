@@ -1,9 +1,39 @@
-import { combineReducers } from 'redux'
-import {financials, investments} from './financials'
-import {employees, hrHistory, workingTimeModel, workingHours, companyCarPolicy, itEquipmentPolicy, foodBenefits, gymMembership} from './employees'
-import {products, machines, trucks, warehouses, logisticPartnerIndex, currentProductTemplateIndex, componentTypeTemplates} from './products'
+import {
+    combineReducers
+} from 'redux'
+import {
+    financials,
+    investments
+} from './financials'
+import {
+    employees,
+    hrHistory,
+    workingTimeModel,
+    workingHours,
+    companyCarPolicy,
+    itEquipmentPolicy,
+    foodBenefits,
+    gymMembership
+} from './employees'
+import {
+    products,
+    machines,
+    trucks,
+    warehouses,
+    logisticPartnerIndex,
+    rAndDIndex,
+    systemsSecurityIndex,
+    processAutomationIndex,
+    currentProductTemplateIndex,
+    componentTypeTemplates
+} from './products'
 import simulationState from './simulationState'
-import {marketing, campaigns, pressReleases, marketResearches} from './marketing'
+import {
+    marketing,
+    campaigns,
+    pressReleases,
+    marketResearches
+} from './marketing'
 
 const appReducer = combineReducers({
     // Finance
@@ -25,6 +55,9 @@ const appReducer = combineReducers({
     machines,
     trucks,
     warehouses,
+    rAndDIndex,
+    systemsSecurityIndex,
+    processAutomationIndex,
     logisticPartnerIndex,
     currentProductTemplateIndex,
     componentTypeTemplates,

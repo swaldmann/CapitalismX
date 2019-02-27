@@ -128,10 +128,47 @@ const TV = {
     launchPrice: 10000
 }
 
-export const PRODUCT_TEMPLATES = [deepCopyWithUUID(TV), deepCopyWithUUID(CONSOLE), deepCopyWithUUID(NOTEBOOK), deepCopyWithUUID(SMARTPHONE)]
+export const PRODUCT_TEMPLATES = [
+    deepCopyWithUUID(TV),
+    deepCopyWithUUID(CONSOLE),
+    deepCopyWithUUID(NOTEBOOK),
+    deepCopyWithUUID(SMARTPHONE)
+]
 
 // Manufacturing
-export const MACHINE_TEMPLATE = { name: "Machine", price: 3000, dailyFixCost: 20, variableCosts: 5, dailyCapacity: 500, dailyUsedCapacity: 0 }
+export const MACHINE_TEMPLATE = {
+    name: "Machine",
+    price: 3000,
+    dailyFixCost: 20,
+    variableCosts: 5,
+    dailyCapacity: 500,
+    dailyUsedCapacity: 0,
+    technologyLevel: 5
+}
+
+export const R_AND_D_TEMPLATES = [
+    { name: "Sleeper", cost: 0  },
+    { name: "Follower", cost: 5000 },
+    { name: "Early adopter", cost:  10000},
+    { name: "Niche leader", cost: 15000 },
+    { name: "Cutting-edge research", cost: 20000 }
+]
+
+export const SYSTEM_SECURITY_TEMPLATES = [
+    { name: "Unconcerned", cost: 0  },
+    { name: "Bad", cost: 5000 },
+    { name: "Medium", cost:  10000},
+    { name: "Good", cost: 15000 },
+    { name: "Very good", cost: 20000 }
+]
+
+export const PROCESS_AUTOMATION_TEMPLATES = [
+    { name: "No investment", cost: 0 },
+    { name: "Bad", cost: 5000 },
+    { name: "Medium", cost:  10000},
+    { name: "Good", cost: 15000 },
+    { name: "Very good", cost: 20000 }
+]
 
 // Logistics
 export const LOGISTIC_PARTNER_TEMPLATES = [

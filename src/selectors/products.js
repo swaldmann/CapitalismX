@@ -23,7 +23,7 @@ export const getProductPrices = createSelector(
     }
 )
 
-export const getProductUtilities = createSelector(
+export const getProcurementQualities = createSelector(
     [getProducts],
     function(products) {
         const productUtilities = products.map(product =>
@@ -53,8 +53,6 @@ export const getMaximumProductUtilityForComponentType = createSelector(
     [getProducts],
     function(products) {
         const result = [...products.reduce((map, p, i) => map.has(p.productCategoryName) && map.get(p.productCategoryName).baseUtility > p.baseUtility ? map : map.set(p.productCategoryName, p), new Map()).values()]
-        console.log("Yoooo")
-        console.log(result)
         return result
     }
 )

@@ -19,7 +19,6 @@ class EmployeeCell extends React.Component {
 
     render() {
         const { employee } = this.props
-        console.log(employee)
         return (
             <li>
                 <div className="flexbox">

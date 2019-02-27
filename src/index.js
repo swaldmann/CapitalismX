@@ -10,7 +10,7 @@ import { addDays, getMonthsBetween } from './util/Misc'
 import { loadState, saveState } from './util/Persistence'
 import throttle from 'lodash/throttle'
 import rootReducer from './reducers'
-import { getProductUtilities,
+import { getProcurementQualities,
          getMaximumProductUtilityForComponentType,
          getProductPrices,
          getTruckValues,
@@ -34,6 +34,9 @@ import { dailyProductUpdate,
          purchase } from './actions'
 import SimulationGraph from './models/SimulationGraph'
 import { LOBBYIST_TEMPLATES } from './constants/MarketingConstants'
+import { R_AND_D_TEMPLATES,
+         SYSTEM_SECURITY_TEMPLATES,
+         PROCESS_AUTOMATION_TEMPLATES } from './constants/ProductionConstants'
 import { INVESTMENTS } from './constants/FinanceConstants'
 
 var simulationGraph
@@ -71,11 +74,16 @@ function simulate(dispatch) {
     // Selectors
     const employees = getAllEmployees(state)
     const hiredEmployees = getAllHiredEmployees(state)
-    const productUtilities = getProductUtilities(state)
+    const procurementQualities = getProcurementQualities(state)
     const productPrices = getProductPrices(state)
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
+
+    // Variables from state which can be asychnronously changed by the user
     const taxRate = state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
+    const rAndDFactor = 0.8 + 0.1 * (state.rAndDIndex + 1)
+    const systemsSecurityFactor = 0.8 + 0.1 * (state.systemsSecurityIndex + 1)
+    const processAutomationFactor = 0.8 + 0.1 * (state.processAutomationIndex + 1)
     //const maximumProductUtilityForComponentType = getMaximumProductUtilityForComponentType(state)
 
     // Reducers
@@ -90,10 +98,11 @@ function simulate(dispatch) {
         totalMarketingCosts: 0,
         propertyAssets: propertyAssets,
         taxRate: taxRate,
-        productUtilities: productUtilities,
+        procurementQualities: getProcurementQualities(state),
         prices: productPrices,
         cash: state.financials.cash || 50000,
-        investments: state.investments || INVESTMENTS
+        investments: state.investments || INVESTMENTS,
+        manufacturingMultiplicator: rAndDFactor * processAutomationFactor * systemsSecurityFactor
     }
 
     simulationGraph.updateVertices(reducedValues)

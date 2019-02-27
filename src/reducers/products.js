@@ -7,6 +7,9 @@ import {
     SWITCH_CURRENT_PRODUCT_TEMPLATE,
     BUY_MACHINE,
     SELL_MACHINE,
+    SWITCH_R_AND_D_INDEX,
+    SWITCH_SYSTEMS_SECURITY_INDEX,
+    SWITCH_PROCESS_AUTOMATION_INDEX,
     BUY_TRUCK,
     SELL_TRUCK,
     BUY_WAREHOUSE,
@@ -90,6 +93,33 @@ export const logisticPartnerIndex = (state = 0, action) => {
     switch (action.type) {
         case SWITCH_LOGISTIC_PARTNER:
             return action.logisticPartnerIndex
+        default:
+            return state
+    }
+}
+
+export const rAndDIndex = (state = 0, action) => {
+    switch (action.type) {
+        case SWITCH_R_AND_D_INDEX:
+            return action.index
+        default:
+            return state
+    }
+}
+
+export const systemsSecurityIndex = (state = 0, action) => {
+    switch (action.type) {
+        case SWITCH_SYSTEMS_SECURITY_INDEX:
+            return action.index
+        default:
+            return state
+    }
+}
+
+export const processAutomationIndex = (state = 0, action) => {
+    switch (action.type) {
+        case SWITCH_PROCESS_AUTOMATION_INDEX:
+            return action.index
         default:
             return state
     }

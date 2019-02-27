@@ -18,6 +18,7 @@ class SimulationGraph extends Graph {
         this.createVertex("taxRate", 0.15)
         this.createVertex("loans", 0)
         this.createVertex("loanInterests", 0)
+        this.createVertex("manufacturingMultiplicator", 0)
 
         // Aggregate functions, reduced from an array (list of objects),
         // which itself is changeable by the user by adding, removing
@@ -29,7 +30,7 @@ class SimulationGraph extends Graph {
         this.createVertex("totalLobbyistCosts", 0)
         this.createVertex("totalMarketingCosts", 0)
         this.createVertex("totalMachineCosts", 0)
-        this.createVertex("productUtilities", [])
+        this.createVertex("procurementQualities", [])
         this.createVertex("productComponentCosts", 0)
         this.createVertex("prices", [])
         this.createVertex("investments", [])
@@ -38,11 +39,15 @@ class SimulationGraph extends Graph {
         // All calculated vertices store dictionary keys to their input
         // vertices. Here we can define relationships between variables,
         // i.e. edges in the graph.
-        this.createCalculatedVertex("salesFigures", 0, function(elapsedDays, productUtilities, prices, totalSalespeopleQualityOfWork, oldValue) {
-            return productUtilities.map((utility, i) =>
+        this.createCalculatedVertex("productQualities", 0, function(elapsedDays, procurementQualities, manufacturingMultiplicator, totalEngineerQualityOfWork) {
+            return procurementQualities.map(q => q * manufacturingMultiplicator * totalEngineerQualityOfWork)
+        }, ["procurementQualities", "manufacturingMultiplicator", "totalEngineerQualityOfWork"])
+
+        this.createCalculatedVertex("salesFigures", 0, function(elapsedDays, productQualities, prices, totalSalespeopleQualityOfWork, oldValue) {
+            return productQualities.map((utility, i) =>
                         totalSalespeopleQualityOfWork === 0 ? 0 :
                         parseInt(utility/prices[i] * (1 + totalSalespeopleQualityOfWork/20) * (1 + Math.random()/10 * 5)))
-        }, ["productUtilities", "prices", "totalSalespeopleQualityOfWork"])
+        }, ["productQualities", "prices", "totalSalespeopleQualityOfWork"])
 
         this.createCalculatedVertex("totalSalesRevenue", 0, function(elapsedDays, salesFigures, prices, oldValue) {
             return salesFigures.reduce((totalSalesRevenue, salesFigure, i) => totalSalesRevenue + salesFigure * prices[i], 0)

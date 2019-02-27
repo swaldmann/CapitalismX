@@ -28,7 +28,7 @@ class Manufacturing extends React.Component {
                                     <div className="flexbox">
                                         <img className="icon" src={require('../../../static/icons/icons8-gear.png')} alt="" />
                                         <span className="cell-title remaining-size">{machineTemplate.dailyUsedCapacity}/{machineTemplate.dailyCapacity}</span>
-                                        <span className="cell-detailTitle content-size-size level">{1}</span>
+                                        <span className="cell-detailTitle content-size-size level">{machineTemplate.technologyLevel}</span>
                                         <button>↑</button>
                                     </div>
                                     <div className="flexbox">

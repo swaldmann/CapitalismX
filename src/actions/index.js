@@ -43,6 +43,9 @@ export const switchComponentTypeSupplier = (componentType, supplier) => ({ type:
 // Manufacturing
 export const buyMachine = machineTemplate => ({ type: types.BUY_MACHINE, machineTemplate })
 export const sellMachine = machineUuid => ({ type: types.SELL_MACHINE, machineUuid })
+export const switchRAndDIndex = index => ({ type: types.SWITCH_R_AND_D_INDEX, index })
+export const switchProcessAutomationIndex = index => ({ type: types.SWITCH_PROCESS_AUTOMATION_INDEX, index })
+export const switchSystemsSecurityIndex = index => ({ type: types.SWITCH_SYSTEMS_SECURITY_INDEX, index })
 
 // Logistics
 export const buyTruck = truckTemplate => ({ type: types.BUY_TRUCK, truckTemplate })
