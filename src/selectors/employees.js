@@ -49,7 +49,7 @@ export const getTotalEngineerQualityOfWork = createSelector(
     [getAllHiredEngineers],
     engineers => (
         engineers.reduce((count, engineer) =>
-            count + 0.5 * engineer.skill + 0.5 * Math.sqrt(engineer.jobSatisfaction) * 33,
+            count + 0.5 * engineer.skill * (0.5 * Math.pow(engineer.jobSatisfaction, 1/3) * 33)/100,
             0
         )
     )
