@@ -63,7 +63,6 @@ class Logistics extends React.Component {
                                     <div className="flexbox">
                                         <img className="icon" src={require('../../../static/icons/icons8-garage_closed.png')} alt="" />
                                         <span className="cell-title remaining-size">{warehouse.capacityUsed}/{warehouse.capacity}</span>
-                                        <span className="cell-detailTitle content-size level">1</span>
                                         <button>↑</button>
                                     </div>
                                     <div className="flexbox">
