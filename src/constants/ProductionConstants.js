@@ -44,9 +44,9 @@ const AUDIO = [
 ].map(component => ({...component, cost: component.baseCost}))
 
 export const SUPPLIER_TEMPLATES = [
-    { name: "Premium", costMultiplicator: 3, qualityMultiplicator: 1.4 },
-    { name: "Medium", costMultiplicator: 2, qualityMultiplicator: 1.2 },
-    { name: "Cheap", costMultiplicator: 1, qualityMultiplicator: 1 }
+    { name: "Premium", costMultiplicator: 1.2, qualityMultiplicator: 1.4 },
+    { name: "Medium", costMultiplicator: 1, qualityMultiplicator: 1.2 },
+    { name: "Cheap", costMultiplicator: 0.8, qualityMultiplicator: 1 }
 ].map(component => ({...component, cost: component.baseCost}))
 
 const defaultSupplier = SUPPLIER_TEMPLATES[2]
