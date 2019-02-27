@@ -15,6 +15,11 @@ import { getProcurementQualities,
          getMaximumProxyQualityForProductTypes,
          getMaximumMarketQualityForProductTypes,
          getMaximumTotalQualityForProductTypes,
+         getDemandTotalPercentages,
+         getDemandPeriodicPercentages,
+         getProductAppeals,
+         getPriceAppeals,
+         getOverallAppeals,
          getProductPrices,
          getTruckValues,
          getWarehouseValues,
@@ -95,7 +100,18 @@ function simulate(dispatch) {
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
 
-    const proxyQualities = getMaximumProxyQualityForProductTypes(state)
+    //const productAppeals = getProductAppeals(state)
+    //console.log(productAppeals);
+    console.log(getProductAppeals(state))
+    console.log(getPriceAppeals(state))
+    console.log(getOverallAppeals(state))
+    console.log(getDemandTotalPercentages(state))
+    console.log(getDemandPeriodicPercentages(state))
+
+
+
+    //const proxyQualities = getMaximumProxyQualityForProductTypes(state)
+
 
     // Variables from state which can be asychnronously changed by the user
     const taxRate = state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
@@ -186,7 +202,6 @@ function simulate(dispatch) {
         const elapsedDays = state.simulationState.elapsedDays
         const startDate = new Date(1990, 0, 1)
         const currentDate = addDays(startDate, elapsedDays * 28)
-        const monthDay = currentDate.getDay()
         const elapsedMonths = getMonthsBetween(startDate, currentDate, false)
 
         dispatch(dailyProductUpdate(salesFigures))

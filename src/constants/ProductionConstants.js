@@ -106,6 +106,7 @@ const SMARTPHONE = {
     productCategoryIconPath: "icons8-android.png",
     components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}, {...AUDIO_COMPONENT}],
     launchPrice: 500000,
+    basePrice: 800
 }
 
 const NOTEBOOK = {
@@ -113,7 +114,8 @@ const NOTEBOOK = {
     productCategoryName: "Notebook",
     productCategoryIconPath: "icons8-laptop.png",
     components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...AUDIO_COMPONENT}],
-    launchPrice: 200000
+    launchPrice: 200000,
+    basePrice: 1000
 }
 
 const CONSOLE = {
@@ -121,7 +123,8 @@ const CONSOLE = {
     productCategoryName: "Console",
     productCategoryIconPath: "icons8-controller.png",
     components: [deepCopyWithUUID(CPU_COMPONENT), deepCopyWithUUID(DISPLAY_COMPONENT), deepCopyWithUUID(AUDIO_COMPONENT)],
-    launchPrice: 50000
+    launchPrice: 50000,
+    basePrice: 400
 }
 
 const TV = {
@@ -129,7 +132,8 @@ const TV = {
     productCategoryName: "TV",
     productCategoryIconPath: "icons8-tv.png",
     components: [deepCopyWithUUID(DISPLAY_COMPONENT), deepCopyWithUUID(AUDIO_COMPONENT)],
-    launchPrice: 10000
+    launchPrice: 10000,
+    basePrice: 600
 }
 
 export const PRODUCT_TEMPLATES = [

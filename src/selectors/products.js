@@ -21,38 +21,6 @@ export const makeGetVisibleProducts = () => {
     )
 }
 
-export const getProductPrices = createSelector(
-    [getProducts],
-    (products) => {
-        return products.map(product => product.price)
-    }
-)
-
-export const getProcurementQualities = createSelector(
-    [getProducts],
-    (products) => {
-        return products.map(product =>
-            product.components.reduce((totalUtility, component) =>
-                totalUtility + component.allComponents[component.currentIndex].baseUtility * component.supplier.qualityMultiplicator,
-                0
-            )
-        )
-    }
-)
-
-export const getProductComponentCosts = createSelector(
-    [getProducts],
-    function(products) {
-        const componentCosts = products.map(product =>
-            product.components.reduce((totalCost, component) =>
-                totalCost + component.allComponents[component.currentIndex].cost * component.supplier.costMultiplicator,
-                0
-            )
-        )
-        return componentCosts
-    }
-)
-
 export const getTotalTruckCosts = createSelector(
     [getTrucks],
     function(trucks) {
@@ -99,7 +67,67 @@ export const getWarehouseValues = createSelector(
         warehouses.reduce((count, warehouse) => count + warehouse.price, 0)
 )
 
-/* Demand */
+export const getProductComponentCosts = createSelector(
+    [getProducts],
+    function(products) {
+        const componentCosts = products.map(product =>
+            product.components.reduce((totalCost, component) =>
+                totalCost + component.allComponents[component.currentIndex].cost * component.supplier.costMultiplicator,
+                0
+            )
+        )
+        return componentCosts
+    }
+)
+
+export const getProductPrices = createSelector(
+    [getProducts],
+    (products) => {
+        return products.map(product => product.price)
+    }
+)
+
+export const getProcurementQualities = createSelector(
+    [getProducts],
+    (products) => {
+        return products.map(product =>
+            product.components.reduce((totalUtility, component) =>
+                totalUtility + component.allComponents[component.currentIndex].baseUtility * component.supplier.qualityMultiplicator,
+                0
+            )
+        )
+    }
+)
+
+export const getProductionProcessProductivity = createSelector(
+    [getAverageMachineTechnology,
+     getRAndDIndex,
+     getSystemsSecurityIndex,
+     getProcessAutomationIndex,
+     getTotalEngineerQualityOfWork],
+     (averageMachineTechnology,
+      rAndDIndex,
+      systemsSecurityIndex,
+      processAutomationIndex,
+      totalEngineerQualityOfWork) => {
+          const rAndDFactor = 0.8 + 0.1 * (rAndDIndex + 1)
+          const systemsSecurityFactor = 0.8 + 0.1 * (systemsSecurityIndex + 1)
+          const processAutomationFactor = 0.8 + 0.1 * (processAutomationIndex + 1)
+          const productionTechnologyFactor = 0.7 + 0.15 * averageMachineTechnology
+          return rAndDFactor * systemsSecurityFactor * processAutomationFactor * totalEngineerQualityOfWork * productionTechnologyFactor
+      }
+)
+export const getProductQualities = createSelector(
+    [getProcurementQualities, getProductionProcessProductivity],
+    (procurementQualities, productionProcessProductivity) =>
+        procurementQualities.map(procurementQuality => procurementQuality * productionProcessProductivity)
+)
+
+/**********/
+/* DEMAND */
+/**********/
+
+/* Product Appeal */
 
 // Maximum procurement quality for our own products for each product type.
 export const getMaximumProcurementQualityForProductTypes = createSelector(
@@ -110,7 +138,7 @@ export const getMaximumProcurementQualityForProductTypes = createSelector(
                     maxQualities.map((currentMaxQuality, j) =>
                         j === p.productCategoryIndex && procurementQualities[i] > maxQualities[p.productCategoryIndex] ? procurementQualities[i] : currentMaxQuality
                     ),
-                    [0,0,0,0]
+                    [0,0,0,0] // new Array(PRODUCT_TEMPLATES.length).fill(0)
                 )
         }
 )
@@ -118,28 +146,23 @@ export const getMaximumProcurementQualityForProductTypes = createSelector(
 // Maximum total quality for our own products for each product type.
 export const getMaximumTotalQualityForProductTypes = createSelector(
     [getMaximumProcurementQualityForProductTypes,
-     getAverageMachineTechnology,
-     getRAndDIndex,
-     getSystemsSecurityIndex,
-     getProcessAutomationIndex,
-     getTotalEngineerQualityOfWork
-    ],
+     getProductionProcessProductivity],
     (maximumProcurementQualityForProductTypes,
-     averageMachineTechnology,
-     rAndDIndex,
-     systemsSecurityIndex,
-     processAutomationIndex,
-     totalEngineerQualityOfWork) => {
+     productionProcessProductivity) => {
         return maximumProcurementQualityForProductTypes.map(procurementQuality => {
-            const rAndDFactor = 0.8 + 0.1 * (rAndDIndex + 1)
-            const systemsSecurityFactor = 0.8 + 0.1 * (systemsSecurityIndex + 1)
-            const processAutomationFactor = 0.8 + 0.1 * (processAutomationIndex + 1)
-            const productionTechnologyFactor = 0.5 + 0.25 * averageMachineTechnology
-            return procurementQuality * productionTechnologyFactor * rAndDFactor * systemsSecurityFactor * processAutomationFactor * totalEngineerQualityOfWork
+            return procurementQuality * productionProcessProductivity
         })
     }
 )
 
+// Maximum market quality for each product type. We assume competitors use
+// the current state-of-the-art components on the market. Thus, the sum of
+// the baseUtilities for each component is used here.
+// We can outcompete the competitors by choosing the best components as well
+// and bring the production productivity to > 1 by investing in R&D, process
+// automation or having high-skilled and satisfied engineers.
+// We can multiply this value by some constant < 1 to decrease
+// and > 1 to increase the game difficulty.
 export const getMaximumMarketQualityForProductTypes = createSelector(
     [getElapsedDays],
     (elapsedDays) =>
@@ -152,10 +175,64 @@ export const getMaximumMarketQualityForProductTypes = createSelector(
         })
 )
 
+// The maximum proxy quality. If we have released a better product than the
+// current competitor proxy has now before, we will choose the highest of value
+// of our products for this particular product type.
+// This is necessary so we can't release the same product with the same utility
+// over and over again and have the same demand for it, i.e. our products are
+// also competing with themselves.
 export const getMaximumProxyQualityForProductTypes = createSelector(
     [getMaximumMarketQualityForProductTypes,
      getMaximumTotalQualityForProductTypes,
     ],
     (maximumMarketQualityForProductTypes, maximumTotalQualityForProductTypes) =>
         maximumMarketQualityForProductTypes.map((marketQuality, i) => Math.max(marketQuality, maximumTotalQualityForProductTypes[i]))
+)
+
+export const getProductAppeals = createSelector(
+    [getProductQualities,
+     getProducts,
+     getMaximumProxyQualityForProductTypes],
+    (productQualities, products, maximumProxyQualityForProductTypes) =>
+        productQualities.map((quality, i) => quality/maximumProxyQualityForProductTypes[products[i].productCategoryIndex])
+)
+
+/* Price Appeal */
+
+export const getPriceAppeals = createSelector(
+    [getProducts],
+    (products) =>
+        products.map(product => {
+            return product.price/product.basePrice
+        })
+)
+
+/* Overall Appeal */
+
+export const getOverallAppeals = createSelector(
+    [getProductAppeals, getPriceAppeals],
+    (productAppeals, priceAppeals) =>
+        productAppeals.map((productAppeal, i) =>
+            Math.tanh(productAppeal * priceAppeals[i]/500000)
+        )
+)
+
+/* Demand */
+
+export const getDemandTotalPercentages = createSelector(
+    [getOverallAppeals],
+    (overallAppeals) =>
+        overallAppeals.map(overallAppeal => {
+            return Math.tanh(overallAppeal)
+        }
+    )
+)
+
+export const getDemandPeriodicPercentages = createSelector(
+    [getProducts, getDemandTotalPercentages, getElapsedDays],
+    (products, demandTotalPercentages, elapsedDays) =>
+        products.map((product, i) => {
+            const daysSinceProductLaunch = elapsedDays - product.buyDay
+            return demandTotalPercentages[i] * 0.002 * (-0.5 * Math.tanh(0.01 * daysSinceProductLaunch - 5) + 0.5)
+        })
 )
