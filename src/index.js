@@ -89,7 +89,7 @@ function startSimulation() {
         simulate(dispatch)
         setInterval(function() {
             simulate(dispatch)
-        }, 3000)
+        }, 1000)
     }
 }
 
@@ -178,6 +178,9 @@ function simulate(dispatch) {
         dispatch({ type: 'START_SIMULATION' })
 
         const financials = {//...state.financials,
+            totalAssetsSold: 0,
+            totalAssetsBought: 0,
+            totalDepreciation: 0,
             totalSalesRevenue: getTotalSalesRevenue(state),
             totalInvestmentAmount: simulationGraph.getVertexValue("totalInvestmentAmount"),
             totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),

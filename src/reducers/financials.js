@@ -9,6 +9,8 @@ import {
     SELL_FUND
 } from '../constants/ActionTypes'
 
+import { deepCopyWithUUID } from '../util/Misc'
+
 import { FINANCIALS, INVESTMENTS } from '../constants/FinanceConstants'
 
 export function financials(state = FINANCIALS, action) {
@@ -18,6 +20,8 @@ export function financials(state = FINANCIALS, action) {
         state.cash += 50000
         return state
     }*/
+    const lastIndex = state.history.length - 1
+
     switch (action.type) {
         case DAILY_FINANCIAL_UPDATE:
             return { ...state,
@@ -27,7 +31,6 @@ export function financials(state = FINANCIALS, action) {
                 liabilities: action.financials.liabilities
             }
         case DAILY_FINANCIAL_HISTORY_ENTRY:
-            const lastIndex = state.history.length - 1
             return { ...state, history: state.history.map((entry, i) => {
                             if (i === lastIndex) {
                                 return Object.assign({}, ...Object.keys(entry).map(k => ({[k]: action.financials[k] + entry[k]})))
@@ -36,7 +39,7 @@ export function financials(state = FINANCIALS, action) {
                         })
                     }
         case QUARTERLY_FINANCIAL_HISTORY_ENTRY:
-            return { ...state, history: state.history.concat({...action.financials, history: 0})}
+            return { ...state, history: state.history.concat(deepCopyWithUUID({...action.financials, history: 0}))}
         case PURCHASE:
             /*if (state.cash <= action.amount) {
                 alert("This action can't be done. You are bankrupt.")
@@ -44,7 +47,16 @@ export function financials(state = FINANCIALS, action) {
             }*/
             return { ...state, cash: state.cash - action.amount }
         case PURCHASE_ASSET:
-            return { ...state, cash: state.cash - action.amount, assets: state.assets + action.amount }
+            const key = action.amount >= 0 ? 'totalAssetsBought' : 'totalAssetsSold'
+            return { ...state, cash: state.cash - action.amount,
+                             assets: state.assets + action.amount,
+                             history: state.history.map((entry, i) => {
+                                if (i === lastIndex) {
+                                    return Object.assign({}, ...Object.keys(entry).map(k => k === key ? ({[k]:entry[k] - action.amount}) : ({[k]: entry[k]})))
+                                }
+                                return entry
+                            })
+                         }
         default:
             return state
     }
