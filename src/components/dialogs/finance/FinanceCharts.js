@@ -29,6 +29,7 @@ const data = {
 };
 
 const options = {
+    animation: false,
     scales: {
         yAxes: [{
             ticks: {
