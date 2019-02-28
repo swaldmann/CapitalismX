@@ -52,9 +52,6 @@ export const PRESS_RELEASE_TEMPLATES = [
         name: "Privacy and Security Efforts"
     },
     {
-        name: "Affordable Prices"
-    },
-    {
         name: "Guaranteed Delivery Times"
     },
     {
