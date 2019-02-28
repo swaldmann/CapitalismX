@@ -27,6 +27,10 @@ const FinanceCompanySheet = ({ financials, investments }) => (
             </tbody>
         </table>
 
+        <h3>Bank</h3>
+        <span><b>Current Loan Amount</b><br />{dollarString(0)} at 0% interest<br /></span>
+        <button>Request Loan</button>
+
         <h3>Investments</h3>
         { investments.map(investment =>
             <div key={investment.uuid}>
@@ -34,10 +38,6 @@ const FinanceCompanySheet = ({ financials, investments }) => (
                 <VisibleInvestmentsPopover investment={investment} />
             </div>
         )}
-
-        <h3>Bank</h3>
-        <span><b>Current Loan Amount</b><br />{dollarString(0)} at 0% interest<br /></span>
-        <button>Request Loan</button>
     </div>
 )
 
