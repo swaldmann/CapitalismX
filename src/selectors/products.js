@@ -234,7 +234,7 @@ export const getDemandTotalPercentages = createSelector(
     [getOverallAppeals],
     (overallAppeals) =>
         overallAppeals.map(overallAppeal => {
-            return Math.tanh(overallAppeal)
+            return Math.tanh(overallAppeal/2)
         }
     )
 )
