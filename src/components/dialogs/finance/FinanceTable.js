@@ -94,7 +94,11 @@ class FinanceTable extends React.Component {
             <table>
                 <tbody>
                     <tr>
+<<<<<<< HEAD
                         <td><b>Capital Gains</b></td>
+=======
+                        <td><b>Inv. Gains</b></td>
+>>>>>>> 36993d08fd7a3884d57a3ca9b9635b8c91e227a6
                         {history.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.totalInvestmentEarnings > 0, 'expense': entry.totalInvestmentEarnings < 0})}>{dollarString(entry.totalInvestmentEarnings)}</td>)}
                     </tr>
                     <tr>

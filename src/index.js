@@ -166,7 +166,11 @@ function simulate(dispatch) {
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
 
+<<<<<<< HEAD
         const financials = {
+=======
+        const financials = {//...state.financials,
+>>>>>>> 36993d08fd7a3884d57a3ca9b9635b8c91e227a6
             totalAssetsSold: 0,
             totalAssetsBought: 0,
             totalDepreciation: 0,
