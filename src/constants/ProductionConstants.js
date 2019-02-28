@@ -1,4 +1,3 @@
-
 import { deepCopy, deepCopyWithUUID } from '../util/Misc'
 
 const CPUS = [
@@ -100,26 +99,17 @@ export const ALL_COMPONENT_TEMPLATES = [
     CPU_COMPONENT, STORAGE_COMPONENT, DISPLAY_COMPONENT, CAMERA_COMPONENT, AUDIO_COMPONENT
 ]
 
-const SMARTPHONE = {
+const TV = {
     productCategoryIndex: 0,
-    productCategoryName: "Phone",
-    productCategoryIconPath: "icons8-android.png",
-    components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}, {...AUDIO_COMPONENT}],
-    launchPrice: 500000,
-    basePrice: 800
-}
-
-const NOTEBOOK = {
-    productCategoryIndex: 1,
-    productCategoryName: "Notebook",
-    productCategoryIconPath: "icons8-laptop.png",
-    components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...AUDIO_COMPONENT}],
-    launchPrice: 200000,
-    basePrice: 1000
+    productCategoryName: "TV",
+    productCategoryIconPath: "icons8-tv.png",
+    components: [deepCopyWithUUID(DISPLAY_COMPONENT), deepCopyWithUUID(AUDIO_COMPONENT)],
+    launchPrice: 10000,
+    basePrice: 600
 }
 
 const CONSOLE = {
-    productCategoryIndex: 2,
+    productCategoryIndex: 1,
     productCategoryName: "Console",
     productCategoryIconPath: "icons8-controller.png",
     components: [deepCopyWithUUID(CPU_COMPONENT), deepCopyWithUUID(DISPLAY_COMPONENT), deepCopyWithUUID(AUDIO_COMPONENT)],
@@ -127,13 +117,22 @@ const CONSOLE = {
     basePrice: 400
 }
 
-const TV = {
+const NOTEBOOK = {
+    productCategoryIndex: 2,
+    productCategoryName: "Notebook",
+    productCategoryIconPath: "icons8-laptop.png",
+    components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...AUDIO_COMPONENT}],
+    launchPrice: 200000,
+    basePrice: 1000
+}
+
+const SMARTPHONE = {
     productCategoryIndex: 3,
-    productCategoryName: "TV",
-    productCategoryIconPath: "icons8-tv.png",
-    components: [deepCopyWithUUID(DISPLAY_COMPONENT), deepCopyWithUUID(AUDIO_COMPONENT)],
-    launchPrice: 10000,
-    basePrice: 600
+    productCategoryName: "Phone",
+    productCategoryIconPath: "icons8-android.png",
+    components: [{...CPU_COMPONENT}, {...STORAGE_COMPONENT}, {...DISPLAY_COMPONENT}, {...CAMERA_COMPONENT}, {...AUDIO_COMPONENT}],
+    launchPrice: 500000,
+    basePrice: 800
 }
 
 export const PRODUCT_TEMPLATES = [

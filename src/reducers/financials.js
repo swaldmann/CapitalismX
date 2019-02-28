@@ -19,17 +19,17 @@ export function financials(state = FINANCIALS, action) {
         return state
     }*/
     switch (action.type) {
-        //case DAILY_FINANCIAL_UPDATE:
-            //return action.financials
+        case DAILY_FINANCIAL_UPDATE:
+            return { ...state,
+                netWorth: action.financials.netWorth,
+                cash: action.financials.cash,
+                assets: action.financials.assets,
+                liabilities: action.financials.liabilities
+            }
         case DAILY_FINANCIAL_HISTORY_ENTRY:
-
-            console.log(state);
             const lastIndex = state.history.length - 1
             return { ...state, history: state.history.map((entry, i) => {
                             if (i === lastIndex) {
-                                //console.log(entry);
-                                //let newObj = Object.assign({}, ...Object.keys(obj).map(k => ({[k]: obj[k] * obj[k]})));
-
                                 return Object.assign({}, ...Object.keys(entry).map(k => ({[k]: action.financials[k] + entry[k]})))
                             }
                             return entry

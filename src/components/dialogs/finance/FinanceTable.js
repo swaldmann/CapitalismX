@@ -7,7 +7,7 @@ class FinanceTable extends React.Component {
     render() {
         const { financialHistory, simulationState } = this.props
 
-        // Get 5 last elements of history
+        // Get 4 last elements of history
         const history = financialHistory.slice(Math.max(financialHistory.length - 4, 1))
 
         return (
@@ -26,7 +26,7 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Sales</b></td>
-                        {history.map(entry => <td key={uuid()}>{dollarString(entry.sales)}</td>)}
+                        {history.map(entry => <td key={uuid()}>{dollarString(entry.totalSalesRevenue)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Sold Assets</b></td>
@@ -89,17 +89,17 @@ class FinanceTable extends React.Component {
             <table>
                 <tbody>
                     <tr>
-                        <td><b>Investments</b></td>
-                        {history.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.totalInvestmentEarnings > 0, 'expense': entry.totalInvestmentEarnings < 0})}>{dollarString(entry.totalInvestmentEarnings)}</td>)}
+                        <td><b>NOPAT</b></td>
+                        {history.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.profit > 0, 'expense': entry.profit < 0})}>{dollarString(entry.profit)}</td>)}
                     </tr>
                 </tbody>
             </table>
-            <hr />
+            <h3 className="margin-top-large">Asset Changes</h3>
             <table>
                 <tbody>
                     <tr>
-                        <td><b>NOPAT</b></td>
-                        {history.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.profit > 0, 'expense': entry.profit < 0})}>{dollarString(entry.profit)}</td>)}
+                        <td><b>Investments</b></td>
+                        {history.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.totalInvestmentEarnings > 0, 'expense': entry.totalInvestmentEarnings < 0})}>{dollarString(entry.totalInvestmentEarnings)}</td>)}
                     </tr>
                 </tbody>
             </table>

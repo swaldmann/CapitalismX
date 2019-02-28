@@ -15,11 +15,14 @@ import { getProcurementQualities,
          getMaximumProxyQualityForProductTypes,
          getMaximumMarketQualityForProductTypes,
          getMaximumTotalQualityForProductTypes,
+         getProductionProcessProductivity,
          getDemandTotalPercentages,
          getDemandPeriodicPercentages,
+         getTotalSalesRevenue,
          getProductAppeals,
          getPriceAppeals,
          getOverallAppeals,
+         getDemandPeriodicAmounts,
          getProductPrices,
          getTruckValues,
          getWarehouseValues,
@@ -96,7 +99,6 @@ function simulate(dispatch) {
     // Selectors
     const employees = getAllEmployees(state)
     const hiredEmployees = getAllHiredEmployees(state)
-    const procurementQualities = getProcurementQualities(state)
     const productPrices = getProductPrices(state)
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
@@ -105,16 +107,16 @@ function simulate(dispatch) {
     console.log("Demands")
     console.log("=======")
 
-    console.log(getMaximumTotalQualityForProductTypes(state))
+    /*console.log(getMaximumTotalQualityForProductTypes(state))
     console.log(getMaximumMarketQualityForProductTypes(state))
     console.log(getMaximumProxyQualityForProductTypes(state))
     console.log(getProductAppeals(state))
     console.log(getPriceAppeals(state))
     console.log(getOverallAppeals(state))
-    console.log(getDemandTotalPercentages(state))
-    console.log(getDemandPeriodicPercentages(state))
+    console.log(getDemandTotalPercentages(state))*/
+    //console.log(getDemandPeriodicPercentages(state))
 
-
+    console.log(getTotalSalesRevenue(state));
 
     //const proxyQualities = getMaximumProxyQualityForProductTypes(state)
 
@@ -130,7 +132,6 @@ function simulate(dispatch) {
     //const maximumProcurementQualityForProductTypes = getMaximumProcurementQualityForProductTypes(state)
 
 
-
     // Reducers
     const reducedValues = {
         totalSalaries: parseInt(getTotalSalaries(state)/365),
@@ -139,11 +140,11 @@ function simulate(dispatch) {
         productComponentCosts: getProductComponentCosts(state),
         totalLogisticsCosts: totalLogisticsCosts,
         totalMachineCosts: getTotalMachineCosts(state),
+        demandPeriodicAmounts: getDemandPeriodicAmounts(state),
         totalLobbyistCosts: LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].costPerMonth,
         totalMarketingCosts: 0,
         propertyAssets: propertyAssets,
         taxRate: taxRate,
-        procurementQualities: getProcurementQualities(state),
         prices: productPrices,
         cash: state.financials.cash || 50000,
         investments: state.investments || INVESTMENTS,
@@ -177,7 +178,7 @@ function simulate(dispatch) {
         dispatch({ type: 'START_SIMULATION' })
 
         const financials = {//...state.financials,
-            sales: simulationGraph.getVertexValue("totalSalesRevenue"),
+            totalSalesRevenue: getTotalSalesRevenue(state),
             totalInvestmentAmount: simulationGraph.getVertexValue("totalInvestmentAmount"),
             totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),
             totalLogisticsCosts: simulationGraph.getVertexValue("totalLogisticsCosts"),
@@ -194,15 +195,20 @@ function simulate(dispatch) {
             profit: simulationGraph.getVertexValue("profit"),
             cash: simulationGraph.getVertexValue("cash"),
             netWorth: simulationGraph.getVertexValue("netWorth"),
-            assets: simulationGraph.getVertexValue("assets")
+            assets: simulationGraph.getVertexValue("assets"),
+            liabilities: 0
         }
+
+        console.log("Sales");
+        console.log(getTotalSalesRevenue(state));
 
         const humanResourcesHistoryEntry = {
             numberOfEmployees: employees.length,
             jobSatisfactionPercentages: jobSatisfactionPercentages
         }
 
-        const salesFigures = simulationGraph.getVertexValue("salesFigures")
+
+        const salesFigures = simulationGraph.getVertexValue("demandPeriodicAmounts")
         const investmentEarnings = simulationGraph.getVertexValue("investmentEarnings")
 
         const elapsedDays = state.simulationState.elapsedDays

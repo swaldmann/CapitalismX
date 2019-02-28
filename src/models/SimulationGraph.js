@@ -30,7 +30,7 @@ class SimulationGraph extends Graph {
         this.createVertex("totalLobbyistCosts", 0)
         this.createVertex("totalMarketingCosts", 0)
         this.createVertex("totalMachineCosts", 0)
-        this.createVertex("procurementQualities", [])
+        this.createVertex("demandPeriodicAmounts", [])
         this.createVertex("productComponentCosts", 0)
         this.createVertex("prices", [])
         this.createVertex("investments", [])
@@ -39,23 +39,14 @@ class SimulationGraph extends Graph {
         // All calculated vertices store dictionary keys to their input
         // vertices. Here we can define relationships between variables,
         // i.e. edges in the graph.
-        this.createCalculatedVertex("productQualities", 0, function(elapsedDays, procurementQualities, manufacturingMultiplicator, totalEngineerQualityOfWork) {
-            return procurementQualities.map(q => q * manufacturingMultiplicator * totalEngineerQualityOfWork)
-        }, ["procurementQualities", "manufacturingMultiplicator", "totalEngineerQualityOfWork"])
 
-        this.createCalculatedVertex("salesFigures", 0, function(elapsedDays, productQualities, prices, totalSalespeopleQualityOfWork, oldValue) {
-            return productQualities.map((utility, i) =>
-                        totalSalespeopleQualityOfWork === 0 ? 0 :
-                        parseInt(utility/prices[i] * (1 + totalSalespeopleQualityOfWork/20) * (1 + Math.random()/10 * 5)))
-        }, ["productQualities", "prices", "totalSalespeopleQualityOfWork"])
+        this.createCalculatedVertex("totalSalesRevenue", 0, function(elapsedDays, demandPeriodicAmounts, prices, oldValue) {
+            return demandPeriodicAmounts.reduce((totalSalesRevenue, amount, i) => totalSalesRevenue + amount * prices[i], 0)
+        }, ["demandPeriodicAmounts", "prices"])
 
-        this.createCalculatedVertex("totalSalesRevenue", 0, function(elapsedDays, salesFigures, prices, oldValue) {
-            return salesFigures.reduce((totalSalesRevenue, salesFigure, i) => totalSalesRevenue + salesFigure * prices[i], 0)
-        }, ["salesFigures", "prices"])
-
-        this.createCalculatedVertex("totalProductComponentCost", 0, function(elapsedDays, productComponentCosts, salesFigures, oldValue) {
-            return salesFigures.map((salesFigure, i) => salesFigure * productComponentCosts[i]).reduce((totalCost, cost) => totalCost + cost, 0)
-        }, ["productComponentCosts", "salesFigures"])
+        this.createCalculatedVertex("totalProductComponentCost", 0, function(elapsedDays, productComponentCosts, demandPeriodicAmounts, oldValue) {
+            return demandPeriodicAmounts.map((salesFigure, i) => salesFigure * productComponentCosts[i]).reduce((totalCost, cost) => totalCost + cost, 0)
+        }, ["productComponentCosts", "demandPeriodicAmounts"])
 
         this.createCalculatedVertex("totalProductionCost", 0, function(elapsedDays, totalProductComponentCost, totalMachineCosts) {
             return totalProductComponentCost + totalMachineCosts

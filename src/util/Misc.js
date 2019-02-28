@@ -13,7 +13,7 @@ export function uniqueIDFromIntegers(a, b) {
 export function quarterStrings(elapsedDays) {
     const startDate = new Date(1990, 0, 1)
     const gameDate = dateForElapsedDays(elapsedDays)
-    const quarterDifference = Math.ceil(getMonthsBetween(startDate, gameDate)/4)
+    const quarterDifference = Math.ceil(getMonthsBetween(startDate, gameDate)/4) + 1
     return [...Array(4).keys()].map(i => "Q" + (((quarterDifference - 4 + i)%4 + 4)%4 + 1) + "/'" + ('0' + parseInt((quarterDifference - 4 + i)/4 + 90)%100).slice(-2))
 }
 

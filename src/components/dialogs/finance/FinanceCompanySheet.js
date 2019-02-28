@@ -22,7 +22,7 @@ const FinanceCompanySheet = ({ financials, investments }) => (
                 </tr>
                 <tr className="table-border-top">
                     <td>Net Worth</td>
-                    <td>{/*dollarString(financials.netWorth)*/}</td>
+                    <td>{dollarString(financials.netWorth)}</td>
                 </tr>
             </tbody>
         </table>

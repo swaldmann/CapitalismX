@@ -67,6 +67,12 @@ export const getWarehouseValues = createSelector(
         warehouses.reduce((count, warehouse) => count + warehouse.price, 0)
 )
 
+export const getTotalUnitsSold = createSelector(
+    [getProducts],
+    (products) =>
+        products.reduce(product => product.unitsSold)
+)
+
 export const getProductComponentCosts = createSelector(
     [getProducts],
     function(products) {
@@ -112,15 +118,17 @@ export const getProductionProcessProductivity = createSelector(
       totalEngineerQualityOfWork) => {
           const rAndDFactor = 0.8 + 0.1 * (rAndDIndex + 1)
           const systemsSecurityFactor = 0.8 + 0.1 * (systemsSecurityIndex + 1)
-          const processAutomationFactor = 0.8 + 0.1 * (processAutomationIndex + 1)
           const productionTechnologyFactor = 0.7 + 0.15 * averageMachineTechnology
-          return rAndDFactor * systemsSecurityFactor * processAutomationFactor * totalEngineerQualityOfWork * productionTechnologyFactor
+          const processAutomationFactor = 0.8 + 0.1 * (processAutomationIndex + 1)
+          const totalEngineerQualityOfWorkFactor = Math.sqrt(totalEngineerQualityOfWork * processAutomationFactor)/15
+          return rAndDFactor * systemsSecurityFactor * processAutomationFactor * totalEngineerQualityOfWorkFactor * productionTechnologyFactor
       }
 )
 export const getProductQualities = createSelector(
     [getProcurementQualities, getProductionProcessProductivity],
     (procurementQualities, productionProcessProductivity) =>
-        procurementQualities.map(procurementQuality => procurementQuality * productionProcessProductivity)
+        procurementQualities.map(procurementQuality =>
+            procurementQuality * productionProcessProductivity)
 )
 
 /**********/
@@ -184,8 +192,9 @@ export const getMaximumMarketQualityForProductTypes = createSelector(
 export const getMaximumProxyQualityForProductTypes = createSelector(
     [getMaximumMarketQualityForProductTypes,
      getMaximumTotalQualityForProductTypes,
+     getProducts
     ],
-    (maximumMarketQualityForProductTypes, maximumTotalQualityForProductTypes) =>
+    (maximumMarketQualityForProductTypes, maximumTotalQualityForProductTypes, products) =>
         maximumMarketQualityForProductTypes.map((marketQuality, i) => Math.max(marketQuality, maximumTotalQualityForProductTypes[i]))
 )
 
@@ -194,7 +203,9 @@ export const getProductAppeals = createSelector(
      getProducts,
      getMaximumProxyQualityForProductTypes],
     (productQualities, products, maximumProxyQualityForProductTypes) =>
-        productQualities.map((quality, i) => quality/maximumProxyQualityForProductTypes[products[i].productCategoryIndex])
+        productQualities.map((quality, i) => {
+            return quality/maximumProxyQualityForProductTypes[products[i].productCategoryIndex]
+        })
 )
 
 /* Price Appeal */
@@ -203,7 +214,7 @@ export const getPriceAppeals = createSelector(
     [getProducts],
     (products) =>
         products.map(product => {
-            return product.price/product.basePrice
+            return product.basePrice/product.price
         })
 )
 
@@ -213,7 +224,7 @@ export const getOverallAppeals = createSelector(
     [getProductAppeals, getPriceAppeals],
     (productAppeals, priceAppeals) =>
         productAppeals.map((productAppeal, i) =>
-            Math.tanh(productAppeal * priceAppeals[i]/500000)
+            productAppeal * priceAppeals[i]
         )
 )
 
@@ -233,6 +244,25 @@ export const getDemandPeriodicPercentages = createSelector(
     (products, demandTotalPercentages, elapsedDays) =>
         products.map((product, i) => {
             const daysSinceProductLaunch = elapsedDays - product.buyDay
-            return demandTotalPercentages[i] * 0.002 * (-0.5 * Math.tanh(0.01 * daysSinceProductLaunch - 5) + 0.5)
+            return demandTotalPercentages[i] * (0.002 * (-0.5 * Math.tanh(0.01 * daysSinceProductLaunch - 3) + 0.5))
         })
+)
+
+const populationSize = 1000000
+
+export const getDemandPeriodicAmounts = createSelector(
+    [getDemandPeriodicPercentages],
+    (demandPeriodicPercentages) =>
+        demandPeriodicPercentages.map(percentage => parseInt(percentage * populationSize))
+)
+
+/* Revenue */
+export const getTotalSalesRevenue = createSelector(
+    [getDemandPeriodicAmounts, getProductPrices],
+    (periodicAmounts, prices) => {
+        //console.log("Now");
+        //console.log(periodicAmounts);
+        //console.log(prices);
+        return periodicAmounts.reduce((totalSalesRevenue, amount, i) => totalSalesRevenue + amount * prices[i], 0)
+    }
 )
