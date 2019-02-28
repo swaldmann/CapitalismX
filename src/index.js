@@ -146,7 +146,7 @@ function simulate(dispatch) {
         propertyAssets: propertyAssets,
         taxRate: taxRate,
         prices: productPrices,
-        cash: state.financials.cash || 50000,
+        cash: state.financials.cash || 1000000,
         investments: state.investments || INVESTMENTS,
         manufacturingMultiplicator: rAndDFactor * processAutomationFactor * systemsSecurityFactor * productionTechnologyFactor
     }
