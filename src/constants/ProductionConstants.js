@@ -19,7 +19,7 @@ const STORAGES = [
 
 const DISPLAYS = [
     {index: 11, name: "Plasma", baseUtility: 20, availabilityOffset: 0, baseCost: 20},
-    {index: 12, name: "LCD", baseUtility: 30, availabilityOffset: 0, baseCost: 20},
+    {index: 12, name: "LCD", baseUtility: 30, availabilityOffset: 0, baseCost: 30},
     {index: 13, name: "LED", baseUtility: 70, availabilityOffset: 10, baseCost: 20},
     {index: 14, name: "OLED", baseUtility: 100, availabilityOffset: 15, baseCost: 20},
     {index: 15, name: "QLED", baseUtility: 120, availabilityOffset: 20, baseCost: 20},

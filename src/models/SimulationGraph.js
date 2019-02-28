@@ -91,8 +91,8 @@ class SimulationGraph extends Graph {
         // In the end, all nodes will lead into this node.
         // The goal of the game is to maximize your net worth.
         this.createCalculatedVertex("netWorth", 50000, function(elapsedDays, cash, assets, oldValue) {
-            console.log(cash);
-            console.log(assets);
+            // console.log(cash);
+            // console.log(assets);
             return cash + assets
         }, ["cash", "assets"])
     }

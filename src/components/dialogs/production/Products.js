@@ -21,7 +21,13 @@ class Products extends React.Component {
                                         <span className="cell-detailTitle remaining-size"><b>{dollarString(product.price)}</b></span>
                                     </div>
                                     <div className="flexbox">
-                                        <span className="cell-title content-size">{product.components.map(component => <span><img className="icon-inline" src={require("../../../static/icons/" + component.imageName + ".png")} alt="" />{" " + component.allComponents[component.currentIndex].name + " "}</span>)}</span>
+                                        <span className="cell-title content-size">
+                                            {product.components.map(component =>
+                                                <span>
+                                                    <img className="icon-inline" src={require("../../../static/icons/" + component.imageName + ".png")} alt="" />
+                                                    {" " + component.allComponents[component.currentIndex].name + " "}
+                                                </span>)}
+                                        </span>
                                      </div>
                                     <div className="flexbox">
                                         <span className="cell-title content-size">Launched {dateStringAfterElapsedDays(product.buyDay)}</span>

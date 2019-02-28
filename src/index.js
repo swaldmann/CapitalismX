@@ -92,9 +92,9 @@ function simulate(dispatch) {
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
 
-    console.log("=======")
-    console.log("Demands")
-    console.log("=======")
+    // console.log("=======")
+    // console.log("Demands")
+    // console.log("=======")
 
     /*console.log(getMaximumTotalQualityForProductTypes(state))
     console.log(getMaximumMarketQualityForProductTypes(state))
@@ -105,7 +105,7 @@ function simulate(dispatch) {
     console.log(getDemandTotalPercentages(state))*/
     //console.log(getDemandPeriodicPercentages(state))
 
-    console.log(getTotalSalesRevenue(state));
+    // console.log(getTotalSalesRevenue(state));
 
     //const proxyQualities = getMaximumProxyQualityForProductTypes(state)
 
@@ -191,8 +191,8 @@ function simulate(dispatch) {
             liabilities: 0
         }
 
-        console.log("Sales");
-        console.log(getTotalSalesRevenue(state));
+        //console.log("Sales");
+        //console.log(getTotalSalesRevenue(state));
 
         const humanResourcesHistoryEntry = {
             numberOfEmployees: employees.length,
