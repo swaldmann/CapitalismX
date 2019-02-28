@@ -148,7 +148,7 @@ export const MACHINE_TEMPLATE = {
     price: 3000,
     dailyFixCost: 20,
     variableCosts: 5,
-    dailyCapacity: 500,
+    dailyCapacity: 200,
     dailyUsedCapacity: 0,
     technologyLevel: 5
 }

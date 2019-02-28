@@ -32,6 +32,7 @@ export const trainEmployee = (index, skillIncrease, salaryIncreasePercentage) =>
 
 /* Production */
 export const dailyProductUpdate = (salesFigures) => ({ type: types.DAILY_PRODUCT_UPDATE, salesFigures})
+export const dailyMachineCapacityUpdate = capacities => ({ type: types.DAILY_MACHINE_CAPACITIES_UPDATE, capacities: capacities })
 export const monthlyComponentUpdate = (elapsedMonths) => ({ type: types.MONTHLY_COMPONENT_UPDATES, elapsedMonths})
 
 // Products

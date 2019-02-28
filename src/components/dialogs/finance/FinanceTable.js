@@ -35,27 +35,27 @@ class FinanceTable extends React.Component {
                 <tbody>
                     <tr>
                         <td><b>Salaries</b></td>
-                        {history.map(entry => <td key={uuid()}>{dollarString(entry.salaries)}</td>)}
+                        {history.map(entry => <td key={uuid()}>{dollarString(-entry.salaries)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Material</b></td>
-                        {history.map(entry => <td key={uuid()}>{dollarString(entry.totalMaterialCosts)}</td>)}
+                        {history.map(entry => <td key={uuid()}>{dollarString(-entry.totalMaterialCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Machines</b></td>
-                        {history.map(entry => <td key={uuid()}>{dollarString(entry.totalMachineCosts)}</td>)}
+                        {history.map(entry => <td key={uuid()}>{dollarString(-entry.totalMachineCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Logistics</b></td>
-                        {history.map(entry => <td key={uuid()}>{dollarString(entry.totalLogisticsCosts)}</td>)}
+                        {history.map(entry => <td key={uuid()}>{dollarString(-entry.totalLogisticsCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Lobbying</b></td>
-                        {history.map(entry => <td key={uuid()}>{dollarString(entry.totalLobbyistCosts)}</td>)}
+                        {history.map(entry => <td key={uuid()}>{dollarString(-entry.totalLobbyistCosts)}</td>)}
                     </tr>
                     <tr>
                         <td><b>Marketing</b></td>
-                        {history.map(entry => <td key={uuid()}>{dollarString(entry.totalMarketingCosts)}</td>)}
+                        {history.map(entry => <td key={uuid()}>{dollarString(-entry.totalMarketingCosts)}</td>)}
                     </tr>
                 </tbody>
             </table>

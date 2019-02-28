@@ -86,3 +86,7 @@ export function getMonthsBetween(date1, date2, roundUpFractionalMonths) {
 export function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
+
+export function getRandomFloat(min, max) {
+  return Math.random() * (max - min) + min;
+}

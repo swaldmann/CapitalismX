@@ -1,5 +1,6 @@
 import {
     DAILY_PRODUCT_UPDATE,
+    DAILY_MACHINE_CAPACITIES_UPDATE,
     MONTHLY_COMPONENT_UPDATES,
     SWITCH_CURRENT_COMPONENT,
     INTRODUCE_NEW_PRODUCT,
@@ -31,7 +32,7 @@ export function products(state = [], action) {
         case DEPRECATE_PRODUCT:
             return state.filter(product => product.uuid !== action.productUuid)
         default:
-        return state
+            return state
     }
 }
 
@@ -41,8 +42,12 @@ export function machines(state = [], action) {
             return [action.machineTemplate].concat(state)
         case SELL_MACHINE:
             return state.filter(machine => machine.uuid !== action.machineUuid)
+        case DAILY_MACHINE_CAPACITIES_UPDATE:
+            return state.map((machine, i) => {
+                return ({...machine, dailyUsedCapacity: action.capacities[i]})
+            })
         default:
-        return state
+            return state
     }
 }
 

@@ -35,14 +35,11 @@ class SimulationGraph extends Graph {
         this.createVertex("prices", [])
         this.createVertex("investments", [])
         this.createVertex("propertyAssets", 0)
+        this.createVertex("totalSalesRevenue")
 
         // All calculated vertices store dictionary keys to their input
         // vertices. Here we can define relationships between variables,
         // i.e. edges in the graph.
-
-        this.createCalculatedVertex("totalSalesRevenue", 0, function(elapsedDays, demandPeriodicAmounts, prices, oldValue) {
-            return demandPeriodicAmounts.reduce((totalSalesRevenue, amount, i) => totalSalesRevenue + amount * prices[i], 0)
-        }, ["demandPeriodicAmounts", "prices"])
 
         this.createCalculatedVertex("totalProductComponentCost", 0, function(elapsedDays, productComponentCosts, demandPeriodicAmounts, oldValue) {
             return demandPeriodicAmounts.map((salesFigure, i) => salesFigure * productComponentCosts[i]).reduce((totalCost, cost) => totalCost + cost, 0)
@@ -90,7 +87,7 @@ class SimulationGraph extends Graph {
 
         // In the end, all nodes will lead into this node.
         // The goal of the game is to maximize your net worth.
-        this.createCalculatedVertex("netWorth", 50000, function(elapsedDays, cash, assets, oldValue) {
+        this.createCalculatedVertex("netWorth", 1000000, function(elapsedDays, cash, assets, oldValue) {
             // console.log(cash);
             // console.log(assets);
             return cash + assets

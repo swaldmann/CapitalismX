@@ -27,9 +27,9 @@ class Manufacturing extends React.Component {
                                 <li key={machine.uuid}>
                                     <div className="flexbox">
                                         <img className="icon" src={require('../../../static/icons/icons8-gear.png')} alt="" />
-                                        <span className="cell-title remaining-size">{machineTemplate.dailyUsedCapacity}/{machineTemplate.dailyCapacity}</span>
+                                        <span className="cell-title remaining-size">{machine.dailyUsedCapacity}/{machine.dailyCapacity}</span>
                                         <span className="cell-detailTitle content-size-size level">{machineTemplate.technologyLevel}</span>
-                                        <button disabled={machineTemplate.technologyLevel === 5}>↑</button>
+                                        <button disabled={machine.technologyLevel === 5}>↑</button>
                                     </div>
                                     <div className="flexbox">
                                         <span className="cell-title content-size">{/*"Bought " +*/ dateStringAfterElapsedDays(machine.buyDay)}</span>

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import { getTotalEngineerQualityOfWork } from './employees'
 import { PRODUCT_TEMPLATES } from '../constants/ProductionConstants'
-import { dateForElapsedDays } from '../util/Misc'
+import { dateForElapsedDays, getRandomFloat } from '../util/Misc'
 
 export const getProducts = state => state.products
 export const getTrucks = state => state.trucks
@@ -138,7 +138,7 @@ export const getProductQualities = createSelector(
 export const getTotalMachineCapacity = createSelector(
     [getMachines],
     (machines) =>
-        machines.reduce((totalCapacity, machine) => totalCapacity + machine, 0)
+        machines.reduce((totalCapacity, machine) => totalCapacity + machine.dailyCapacity, 0)
 )
 
 export const getTotalDailySupply = createSelector(
@@ -264,22 +264,51 @@ export const getDemandPeriodicPercentages = createSelector(
         })
 )
 
-const populationSize = 1000000
+const populationSize = 100000
 
 export const getDemandPeriodicAmounts = createSelector(
     [getDemandPeriodicPercentages],
     (demandPeriodicPercentages) =>
-        demandPeriodicPercentages.map(percentage => parseInt(percentage * populationSize))
+        demandPeriodicPercentages.map(percentage => parseInt(percentage * populationSize * /* Minor error term */ getRandomFloat(1, 1.2)))
+)
+
+export const getDemandTotalPeriodicAmount = createSelector(
+    [getDemandPeriodicAmounts],
+    (amounts) =>
+        amounts.reduce((totalAmount, amount) => totalAmount + amount, 0)
 )
 
 /* Revenue */
 
+export const getUsedMachineCapacities = createSelector(
+    [getMachines, getDemandTotalPeriodicAmount],
+    (machines, totalDemandAmount) => {
+        var leftoverDemand = totalDemandAmount
+        return machines.map(machine => {
+            const usedCapacity = Math.min(leftoverDemand, machine.dailyCapacity)
+            leftoverDemand -= usedCapacity
+            return usedCapacity
+        })
+    }
+)
+
+export const getActualSalesFigures = createSelector(
+    [getDemandPeriodicAmounts, getDemandTotalPeriodicAmount, getTotalMachineCapacity],
+    (periodicAmounts, totalPeriodicAmount, totalMachineCapacity) => {
+        var leftoverCapacity = totalMachineCapacity
+        return periodicAmounts.map((amount, i) => {
+            const actualAmountProduced = Math.min(periodicAmounts[i], leftoverCapacity)
+            leftoverCapacity -= amount
+            return actualAmountProduced
+        })
+    }
+)
+
 export const getTotalSalesRevenue = createSelector(
-    [getDemandPeriodicAmounts, getProductPrices],
-    (periodicAmounts, prices) => {
-        //console.log("Now");
-        //console.log(periodicAmounts);
-        //console.log(prices);
-        return periodicAmounts.reduce((totalSalesRevenue, amount, i) => totalSalesRevenue + amount * prices[i], 0)
+    [getActualSalesFigures, getProductPrices],
+    (actualSalesFigures, prices) => {
+        return actualSalesFigures.reduce((totalSalesRevenue, salesFigure, i) => {
+            return totalSalesRevenue + salesFigure * prices[i]
+        }, 0)
     }
 )

@@ -12,11 +12,13 @@ import throttle from 'lodash/throttle'
 import rootReducer from './reducers'
 import SimulationGraph from './models/SimulationGraph'
 import { getTotalSalesRevenue,
+         getActualSalesFigures,
          getDemandPeriodicAmounts,
          getProductPrices,
          getTruckValues,
          getWarehouseValues,
          getMachineValues,
+         getUsedMachineCapacities,
          getTotalTruckCosts,
          getTotalMachineCosts,
          getTotalWarehouseCosts,
@@ -31,6 +33,7 @@ import { dailyProductUpdate,
          dailyInvestmentsUpdate,
          dailyFinancialUpdate,
          dailyFinancialHistoryEntry,
+         dailyMachineCapacityUpdate,
          quarterlyFinancialHistoryEntry,
          monthlyComponentUpdate,
          monthlyHRHistoryEntry
@@ -105,7 +108,7 @@ function simulate(dispatch) {
     console.log(getDemandTotalPercentages(state))*/
     //console.log(getDemandPeriodicPercentages(state))
 
-    // console.log(getTotalSalesRevenue(state));
+    console.log(getTotalSalesRevenue(state));
 
     //const proxyQualities = getMaximumProxyQualityForProductTypes(state)
 
@@ -135,6 +138,7 @@ function simulate(dispatch) {
         propertyAssets: propertyAssets,
         taxRate: taxRate,
         prices: productPrices,
+        totalSalesRevenue: getTotalSalesRevenue(state),
         cash: state.financials.cash || 1000000,
         investments: state.investments || INVESTMENTS,
         manufacturingMultiplicator: rAndDFactor * processAutomationFactor * systemsSecurityFactor * productionTechnologyFactor
@@ -200,8 +204,9 @@ function simulate(dispatch) {
         }
 
 
-        const salesFigures = simulationGraph.getVertexValue("demandPeriodicAmounts")
+        const salesFigures = getActualSalesFigures(state)
         const investmentEarnings = simulationGraph.getVertexValue("investmentEarnings")
+        const usedMachineCapacities = getUsedMachineCapacities(state)
 
         const elapsedDays = state.simulationState.elapsedDays
         const startDate = new Date(1990, 0, 1)
@@ -213,11 +218,14 @@ function simulate(dispatch) {
         dispatch(dailyInvestmentsUpdate(investmentEarnings))
         dispatch(dailyFinancialUpdate(financials))
         dispatch(dailyFinancialHistoryEntry(financials))
+        dispatch(dailyMachineCapacityUpdate(usedMachineCapacities))
+        console.log(humanResourcesHistoryEntry);
+        console.log(jobSatisfactionScore);
+        dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))
 
         // Monthly updates
         if (currentDate.getDate() === 1) {
             dispatch(monthlyComponentUpdate(elapsedMonths))
-            dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))
         }
 
         // Quarterly updates

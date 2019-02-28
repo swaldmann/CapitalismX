@@ -75,6 +75,9 @@ const HRStatistics = ({ hrHistory, elapsedDays }) => (
         <h3>Statistics</h3>
         <h4>Employee Satisfaction</h4>
          <Line height={180} data={{...data, labels: quarterStrings(elapsedDays), datasets: data.datasets.map((dataset, index) => ({...dataset, data: hrHistory.map((entry, dataIndex) => entry.jobSatisfactionPercentages[index])}))}} options={options} />
+         <div className="subtitle">
+            <small>The employee satisfaction is updated quarterly.</small>
+         </div>
     </div>
 )
 
