@@ -72,7 +72,7 @@ class NewProductPopover extends React.Component {
                      className: 'tooltip-arrow'
                    })}
                  />
-                     <div className="flexbox margin-bottom-large">
+                     <div className="flexbox margin-bottom-medium">
                          {productTemplates.map((productTemplate, productTemplateIndex) =>
                              <div key={productTemplate.uuid} className="quarter">
                                  <button className={classNames({selected: currentProductTemplateIndex === productTemplateIndex})} onClick={ () => actions.switchCurrentProductTemplateIndex(productTemplateIndex) }>
@@ -81,7 +81,7 @@ class NewProductPopover extends React.Component {
                              </div>
                          )}
                      </div>
-                     <input onChange={this.onChangeProductName} type="text" placeholder={"cap" + productTemplates[currentProductTemplateIndex].productCategoryName} className="margin-bottom-large" />
+                     <input onChange={this.onChangeProductName} type="text" placeholder={"cap" + productTemplates[currentProductTemplateIndex].productCategoryName} className="margin-bottom-medium" />
                      <div className="flexbox">
                         <VisibleComponentGrid />
                         <div className="quarter">

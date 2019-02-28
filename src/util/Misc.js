@@ -29,6 +29,12 @@ export function deepCopyWithUUID(obj) {
     return {...JSON.parse(JSON.stringify(obj)), uuid: uuid()}
 }
 
+export function numberOfElapsedYears(elapsedDays) {
+    const date = new Date(1990, 0, 1)
+    const currentDate = dateForElapsedDays(elapsedDays)
+    return parseInt(getMonthsBetween(date, currentDate)/12)
+}
+
 export function dateForElapsedDays(elapsedDays) {
     const date = new Date(1990, 0, 1)
     return addDays(date, elapsedDays)
@@ -48,7 +54,7 @@ export function addDays(date, days) {
 }
 
 // https://stackoverflow.com/a/26930998
-export function getMonthsBetween(date1,date2,roundUpFractionalMonths) {
+export function getMonthsBetween(date1, date2, roundUpFractionalMonths) {
     var startDate=date1;
     var endDate=date2;
     var inverse=false;

@@ -56,7 +56,7 @@ class LobbyistPopover extends React.Component {
                                         <div className="margin-bottom">
                                             <button onClick={() => this.hireLobbyist(lobbyistIndex, actions)}>
 
-                                                <div className="cell-title margin-bottom-large">{lobbyistTemplate.iconPath && <img className="icon" alt="" src={require('../../../static/icons/' + lobbyistTemplate.iconPath)} />}{lobbyistTemplate.title}
+                                                <div className="cell-title margin-bottom-medium">{lobbyistTemplate.iconPath && <img className="icon" alt="" src={require('../../../static/icons/' + lobbyistTemplate.iconPath)} />}{lobbyistTemplate.title}
                                                 </div>
                                                 <div className="flexbox subtitle">
                                                     <div className="cell-title">${lobbyistTemplate.costPerMonth}/month</div>

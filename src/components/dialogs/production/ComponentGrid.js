@@ -1,7 +1,6 @@
 import React from 'react'
-import {uniqueIDFromIntegers} from "../../../util/Misc"
+import { uniqueIDFromIntegers, numberOfElapsedYears } from "../../../util/Misc"
 import * as classNames from "classnames"
-
 
 class ComponentGrid extends React.Component {
     render() {
@@ -18,7 +17,8 @@ class ComponentGrid extends React.Component {
                           component={component}
                                 key={uniqueIDFromIntegers(i, j)}
                           className={classNames({ 'componentActive': componentTypeTemplates[componentType.index].currentIndex === j,
-                                               'componentAvailable': component.availabilityOffset <= elapsedDays })}
+                                               'componentAvailable': component.availabilityOffset <= numberOfElapsedYears(elapsedDays) })}
+                           disabled={component.availabilityOffset > numberOfElapsedYears(elapsedDays)}
                             onClick={() => actions.switchCurrentComponent(productTemplateIndex, componentType.index, j)}
                         >{component.name}</button>}
                     )}

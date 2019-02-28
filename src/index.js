@@ -11,17 +11,7 @@ import { loadState, saveState } from './util/Persistence'
 import throttle from 'lodash/throttle'
 import rootReducer from './reducers'
 import SimulationGraph from './models/SimulationGraph'
-import { getProcurementQualities,
-         getMaximumProxyQualityForProductTypes,
-         getMaximumMarketQualityForProductTypes,
-         getMaximumTotalQualityForProductTypes,
-         getProductionProcessProductivity,
-         getDemandTotalPercentages,
-         getDemandPeriodicPercentages,
-         getTotalSalesRevenue,
-         getProductAppeals,
-         getPriceAppeals,
-         getOverallAppeals,
+import { getTotalSalesRevenue,
          getDemandPeriodicAmounts,
          getProductPrices,
          getTruckValues,
@@ -43,8 +33,7 @@ import { dailyProductUpdate,
          dailyFinancialHistoryEntry,
          quarterlyFinancialHistoryEntry,
          monthlyComponentUpdate,
-         monthlyHRHistoryEntry,
-         purchase
+         monthlyHRHistoryEntry
 } from './actions'
 
 import {
@@ -54,6 +43,7 @@ import {
 import {
     INVESTMENTS
 } from './constants/FinanceConstants'
+
 import {
     WORKING_TIME_MODEL_TEMPLATES,
     WORKING_HOUR_TEMPLATES,
@@ -62,7 +52,6 @@ import {
     FOOD_BENEFITS_TEMPLATES,
     GYM_MEMBERSHIP_TEMPLATES
 } from './constants/HRConstants'
-
 
 var simulationGraph
 
@@ -89,7 +78,7 @@ function startSimulation() {
         simulate(dispatch)
         setInterval(function() {
             simulate(dispatch)
-        }, 3000)
+        }, 1000)
     }
 }
 
@@ -177,7 +166,10 @@ function simulate(dispatch) {
     if (state.simulationState.isPlaying) {
         dispatch({ type: 'START_SIMULATION' })
 
-        const financials = {//...state.financials,
+        const financials = {
+            totalAssetsSold: 0,
+            totalAssetsBought: 0,
+            totalDepreciation: 0,
             totalSalesRevenue: getTotalSalesRevenue(state),
             totalInvestmentAmount: simulationGraph.getVertexValue("totalInvestmentAmount"),
             totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),

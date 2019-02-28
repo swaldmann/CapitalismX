@@ -54,7 +54,7 @@ class LogisticPartnerPopover extends React.Component {
                                 <li>
                                     <div className="margin-bottom">
                                         <button onClick={() => this.switchLogisticPartner(logisticPartnerIndex, actions)}>
-                                            <div className="cell-title margin-bottom-large">{logisticPartnerTemplate.title}</div>
+                                            <div className="cell-title margin-bottom-medium">{logisticPartnerTemplate.title}</div>
                                             <div className="flexbox subtitle">
                                                 <div className="cell-title">{dollarString(logisticPartnerTemplate.price)}/delivery</div>
                                                 <div className="cell-detailTitle">Quality {logisticPartnerTemplate.quality}</div>

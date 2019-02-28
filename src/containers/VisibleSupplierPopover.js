@@ -10,7 +10,6 @@ const mapStateToProps = (state, props) => {
         componentTypeTemplate: props.componentTypeTemplate,
         component: props.component,
         elapsedDays: state.simulationState.elapsedDays,
-        buttonClassName: props.buttonClassName,
         buttonDisabled: props.diabled
     }
 }

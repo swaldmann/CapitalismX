@@ -20,7 +20,7 @@ class SupplierPopover extends React.Component {
     }
 
     render() {
-        const { componentTypeTemplate, buttonClassName, actions} = this.props
+        const { componentTypeTemplate, actions} = this.props
 
         return (
             <TooltipTrigger
