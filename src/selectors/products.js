@@ -132,6 +132,22 @@ export const getProductQualities = createSelector(
 )
 
 /**********/
+/* SUPPLY */
+/**********/
+
+export const getTotalMachineCapacity = createSelector(
+    [getMachines],
+    (machines) =>
+        machines.reduce((totalCapacity, machine) => totalCapacity + machine, 0)
+)
+
+export const getTotalDailySupply = createSelector(
+    [getTotalMachineCapacity],
+    (machineCapacities) =>
+        machineCapacities.reduce((totalSupply, machineCapacity) => totalSupply + machineCapacity, 0)
+)
+
+/**********/
 /* DEMAND */
 /**********/
 
@@ -257,6 +273,7 @@ export const getDemandPeriodicAmounts = createSelector(
 )
 
 /* Revenue */
+
 export const getTotalSalesRevenue = createSelector(
     [getDemandPeriodicAmounts, getProductPrices],
     (periodicAmounts, prices) => {

@@ -28,7 +28,6 @@ const FinanceCompanySheet = ({ financials, investments }) => (
         </table>
 
         <h3>Bank</h3>
-<<<<<<< HEAD
         <div>
             <span>
                 <b>Current Loan Amount</b><br />
@@ -36,10 +35,6 @@ const FinanceCompanySheet = ({ financials, investments }) => (
             </span>
             <button disabled className="margin-bottom-large">Request Loan</button>
         </div>
-=======
-        <span><b>Current Loan Amount</b><br />{dollarString(0)} at 0% interest<br /></span>
-        <button>Request Loan</button>
->>>>>>> 36993d08fd7a3884d57a3ca9b9635b8c91e227a6
 
         <h3>Investments</h3>
         { investments.map(investment =>
