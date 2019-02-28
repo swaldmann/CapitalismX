@@ -141,7 +141,7 @@ function simulate(dispatch) {
         totalLogisticsCosts: totalLogisticsCosts,
         totalMachineCosts: getTotalMachineCosts(state),
         demandPeriodicAmounts: getDemandPeriodicAmounts(state),
-        totalLobbyistCosts: LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].costPerMonth,
+        totalLobbyistCosts: LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].costPerMonth/30,
         totalMarketingCosts: 0,
         propertyAssets: propertyAssets,
         taxRate: taxRate,

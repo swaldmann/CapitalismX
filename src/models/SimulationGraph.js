@@ -80,17 +80,19 @@ class SimulationGraph extends Graph {
             return totalInvestmentAmount + propertyAssets
         }, ["totalInvestmentAmount", "propertyAssets"])
 
-        this.createCalculatedVertex("profit", 0, function(elapsedDays, ebit, totalInvestmentEarnings, taxes, oldValue) {
-            return ebit - taxes + totalInvestmentEarnings
-        }, ["ebit", "totalInvestmentEarnings", "taxes"])
+        this.createCalculatedVertex("profit", 0, function(elapsedDays, ebit, taxes, oldValue) {
+            return ebit - taxes
+        }, ["ebit", "taxes"])
 
-        this.createCalculatedVertex("cash", 50000, function(elapsedDays, profit, totalInvestmentEarnings, oldValue) {
-            return oldValue + profit - totalInvestmentEarnings
-        }, ["profit", "totalInvestmentEarnings"])
+        this.createCalculatedVertex("cash", 50000, function(elapsedDays, profit, oldValue) {
+            return oldValue + profit
+        }, ["profit"])
 
         // In the end, all nodes will lead into this node.
         // The goal of the game is to maximize your net worth.
         this.createCalculatedVertex("netWorth", 50000, function(elapsedDays, cash, assets, oldValue) {
+            console.log(cash);
+            console.log(assets);
             return cash + assets
         }, ["cash", "assets"])
     }

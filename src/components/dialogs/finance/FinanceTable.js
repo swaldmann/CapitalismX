@@ -28,10 +28,6 @@ class FinanceTable extends React.Component {
                         <td><b>Sales</b></td>
                         {history.map(entry => <td key={uuid()}>{dollarString(entry.totalSalesRevenue)}</td>)}
                     </tr>
-                    <tr>
-                        <td><b>Sold Assets</b></td>
-                        {history.map(entry => <td key={uuid()}>{dollarString(0)/*dollarString(entry.loans)*/}</td>)}
-                    </tr>
                 </tbody>
             </table>
             <hr />
@@ -98,8 +94,28 @@ class FinanceTable extends React.Component {
             <table>
                 <tbody>
                     <tr>
-                        <td><b>Investments</b></td>
+                        <td><b>Inv. Gains</b></td>
                         {history.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.totalInvestmentEarnings > 0, 'expense': entry.totalInvestmentEarnings < 0})}>{dollarString(entry.totalInvestmentEarnings)}</td>)}
+                    </tr>
+                    <tr>
+                        <td><b>Inv. Bought</b></td>
+                        {history.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.totalInvestmentEarnings > 0, 'expense': entry.totalInvestmentEarnings < 0})}>{dollarString(entry.totalInvestmentEarnings)}</td>)}
+                    </tr>
+                    <tr>
+                        <td><b>Inv. Sold</b></td>
+                        {history.map(entry => <td key={uuid()} className={classNames({ 'earning': entry.totalInvestmentEarnings > 0, 'expense': entry.totalInvestmentEarnings < 0})}>{dollarString(entry.totalInvestmentEarnings)}</td>)}
+                    </tr>
+                    <tr>
+                        <td><b>Assets Bought</b></td>
+                        {history.map(entry => <td key={uuid()}>{dollarString(0)/*dollarString(entry.loans)*/}</td>)}
+                    </tr>
+                    <tr>
+                        <td><b>Assets Sold</b></td>
+                        {history.map(entry => <td key={uuid()}>{dollarString(0)/*dollarString(entry.loans)*/}</td>)}
+                    </tr>
+                    <tr>
+                        <td><b>Depreciation</b></td>
+                        {history.map(entry => <td key={uuid()}>{dollarString(0)/*dollarString(entry.loans)*/}</td>)}
                     </tr>
                 </tbody>
             </table>
