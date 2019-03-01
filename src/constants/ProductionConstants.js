@@ -182,6 +182,6 @@ export const LOGISTIC_PARTNER_TEMPLATES = [
     { title: "DHL", price: 14, quality: 5 }, { title: "FedEx", price: 12, quality: 4 }, { title: "UPS", price: 9, quality: 3 }
 ]
 
-export const WAREHOUSE_TEMPLATE = { name: "Warehouse", price: 50000, capacity: 5000, capacityUsed: 0, dailyFixCost: 500, variableCosts: 0.5,  }
+export const WAREHOUSE_TEMPLATE = { name: "Warehouse", price: 250000, capacity: 5000, capacityUsed: 0, dailyFixCost: 1000/30 + 10000/30, variableCosts: 5,  }
 
-export const TRUCK_TEMPLATE = { name: "Truck", price: 5000, dailyFixCost: 20, variableCosts: 5, dailyCapacity: 1000, dailyUsedCapacity: 0 }
+export const TRUCK_TEMPLATE = { name: "Truck", price: 100000, dailyFixCost /* = cost per delivery */: 200, variableCosts: 5, dailyCapacity: 1000, dailyUsedCapacity: 0 }

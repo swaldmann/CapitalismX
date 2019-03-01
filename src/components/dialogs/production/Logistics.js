@@ -52,7 +52,7 @@ class Logistics extends React.Component {
                             )}
                         </ul>
                     </div>
-                    <button className="centered" onClick={() => this.buyTruck({...deepCopyWithUUID(truckTemplate), buyDay: elapsedDays}, actions)}>Buy Truck ($5,000)</button>
+                    <button className="centered" onClick={() => this.buyTruck({...deepCopyWithUUID(truckTemplate), buyDay: elapsedDays}, actions)}>Buy Truck ({ dollarString(100000) })</button>
                 </div>
                 <div className="column-flexbox quarter">
                     <h3>Warehouses</h3>
@@ -74,7 +74,7 @@ class Logistics extends React.Component {
                             )}
                         </ul>
                     </div>
-                    <button className="centered" onClick={() => this.buyWarehouse({...deepCopyWithUUID(warehouseTemplate), buyDay: elapsedDays}, actions)}>Buy Warehouse ($50,000)</button>
+                    <button className="centered" onClick={() => this.buyWarehouse({...deepCopyWithUUID(warehouseTemplate), buyDay: elapsedDays}, actions)}>Buy Warehouse ({ dollarString(250000) })</button>
                 </div>
                 <div className="panel quarter">
                     <h3>Statistics</h3>

@@ -96,24 +96,24 @@ export const LOBBYIST_TEMPLATES = [
         title: "Congressman",
         iconPath: "icons8-valet.png",
         costPerMonth: 5000,
-        taxRate: 0.15
+        taxRate: 0.13
     },
     {
         title: "Mayor",
         iconPath: "icons8-old_man.png",
         costPerMonth: 2000,
-        taxRate: 0.2
+        taxRate: 0.16
     },
     {
         title: "Worker's Union Leader",
         iconPath: "icons8-gardener.png",
         costPerMonth: 1000,
-        taxRate: 0.25
+        taxRate: 0.18
     }, {
         title: "None",
         iconPath: "",
         costPerMonth: 0,
-        taxRate: 0.3
+        taxRate: 0.2
     }
 ]
 
