@@ -41,8 +41,6 @@ class Marketing extends React.Component {
                     </div>
                     <div className="panel">
                         <h3>Statistics</h3>
-                        <h4>Competitors</h4>
-                        <p>Market Share: 92%</p>
                     </div>
                 </div>
             </Modal>
