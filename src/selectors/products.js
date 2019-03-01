@@ -284,11 +284,28 @@ export const getUsedMachineCapacities = createSelector(
     [getMachines, getDemandTotalPeriodicAmount],
     (machines, totalDemandAmount) => {
         var leftoverDemand = totalDemandAmount
-        return machines.map(machine => {
+        const result = machines.map(machine => {
             const usedCapacity = Math.min(leftoverDemand, machine.dailyCapacity)
             leftoverDemand -= usedCapacity
             return usedCapacity
         })
+        return result
+    }
+)
+
+export const getTotalUsedMachineCapacitiesAfterUpdate = createSelector(
+    [getMachines],
+    (machines) =>
+        machines.map(machine => machine.dailyUsedCapacity).reduce((total, capacity) => total + capacity, 0)
+)
+
+export const getTotalUsedMachineCapacity = createSelector(
+    [getUsedMachineCapacities],
+    (usedMachineCapacities) => {
+        return usedMachineCapacities.reduce((totalCapacity, capacity) => {
+            return totalCapacity + capacity
+        }
+        , 0)
     }
 )
 
@@ -302,6 +319,12 @@ export const getActualSalesFigures = createSelector(
             return actualAmountProduced
         })
     }
+)
+
+export const getTotalSalesFigure = createSelector(
+    [getActualSalesFigures],
+    (salesFigures) =>
+        salesFigures.reduce((totalSalesFigure, salesFigure) => totalSalesFigure + salesFigure, 0)
 )
 
 export const getTotalSalesRevenue = createSelector(
