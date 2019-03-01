@@ -211,7 +211,8 @@ export const getMaximumProxyQualityForProductTypes = createSelector(
      getProducts
     ],
     (maximumMarketQualityForProductTypes, maximumTotalQualityForProductTypes, products) =>
-        maximumMarketQualityForProductTypes.map((marketQuality, i) => Math.max(marketQuality, maximumTotalQualityForProductTypes[i]))
+        maximumMarketQualityForProductTypes.map((marketQuality, i) => marketQuality)
+        /*Math.max(marketQuality, maximumTotalQualityForProductTypes[i]*/
 )
 
 export const getProductAppeals = createSelector(

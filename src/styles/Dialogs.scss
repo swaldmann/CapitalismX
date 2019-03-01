@@ -36,6 +36,10 @@
     flex-flow: column;
 }
 
+.tooltip-container > .column-flexbox {
+    overflow: hidden;
+}
+
 .remaining-size {
     flex: 1 1 auto;
 }
