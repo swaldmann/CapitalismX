@@ -6,15 +6,19 @@
 }
 
 .grid {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    flex-basis: 75%;
+    flex-grow: 1;
 }
 
 .grid-column {
     display: flex;
     flex: 1 0 auto;
 }
+
 .grid-column > button, .grid-column > div {
     flex: 1 1 0px;
+    transition: none;
     padding: 5px;
     margin: 3px !important;
 }
@@ -26,11 +30,19 @@
 
 .grid-column > button {
     border-radius: 5px;
-    background: #eee;
+    background: #3f454e;
     font-size: 14px;
     font-weight: normal;
-    color: #777;
+    color: #ddd;
     text-align: center;
+}
+
+.grid-supplier {
+    margin: 3px;
+    padding: 5px;
+    box-sizing: border-box;
+    height: 34px;
+    font-size: 14px;
 }
 
 .grid-column img, .icon {
@@ -38,6 +50,14 @@
     width: 24px;
     margin-right: 4px;
     vertical-align: -6px;
+}
+
+.icon-inline {
+    height: 20px;
+    width: 20px;
+    margin-right: 2px;
+    margin-left: 5px;
+    vertical-align: -4px;
 }
 
 .debug-box {

@@ -4,7 +4,7 @@ import FinanceCharts from '../components/dialogs/finance/FinanceCharts'
 const mapStateToProps = (state, props) => {
     return {
         financialHistory: state.financials.history,
-        simulationState: state.simulationState
+        elapsedDays: state.simulationState.elapsedDays
     }
 }
 

@@ -12,6 +12,10 @@
     max-height: 400px;
 }
 
+.tooltip-container button.selected {
+    background: rgb(64, 68, 75);
+}
+
 .tooltip-container li {
     list-style: none;
 }
@@ -20,6 +24,20 @@
     height: 1rem;
     position: absolute;
     width: 1rem;
+}
+
+.tooltip-container  .quarter:not(:last-child) {
+    border-right: 10px solid rgb(49, 53, 60);
+}
+
+.tooltip-container input[type="text"], .tooltip-container input.rc-input-number-input {
+    background: rgb(41, 44, 51);
+    color: white;
+}
+
+.tooltip-container label {
+    padding: 8px;
+    margin-bottom: 15px;
 }
 
 .tooltip-arrow::before {
@@ -92,6 +110,10 @@
     margin-left: 28px;
 }
 
+.tooltip-arrow::before {
+    color: rgb(49, 53, 60);
+}
+
 input[type="radio"]+.subtitle {
     margin-bottom: 10px;
 }
@@ -99,4 +121,15 @@ input[type="radio"]+.subtitle {
 input[type="radio"]~.subtitle {
     margin-bottom: 10px;
     margin-left: 18px;
+}
+
+.tooltip-caption {
+    color: grey;
+    font-size: 14px;
+    margin: 6px 0px;
+}
+
+.tooltip-container .popoverFinishButton {
+    background: rgb(74, 81, 93);
+    text-align: center;
 }

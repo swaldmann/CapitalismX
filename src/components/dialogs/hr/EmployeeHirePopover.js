@@ -2,6 +2,7 @@ import React from 'react'
 import TooltipTrigger from 'react-popper-tooltip'
 import VisibleEmployeeList from '../../../containers/VisibleEmployeeList'
 import { SHOW_AVAILABLE } from '../../../constants/HRConstants'
+import { dollarString } from '../../../util/Misc'
 
 const EmployeeHirePopover = ({ employeeType }) => (
     <TooltipTrigger
@@ -28,6 +29,7 @@ const EmployeeHirePopover = ({ employeeType }) => (
               })}
             />
             <VisibleEmployeeList visibilityFilter={SHOW_AVAILABLE} employeeType={employeeType} />
+            <p className="tooltip-caption">Each employee costs {dollarString(5000)} to hire<br /> or fire, regardless of skill level.</p>
           </div>
         )}
       >
@@ -36,7 +38,6 @@ const EmployeeHirePopover = ({ employeeType }) => (
             {...getTriggerProps({
               ref: triggerRef,
               className: 'trigger centered'
-              /* your props here */
             })}
           >
             Hire {employeeType}

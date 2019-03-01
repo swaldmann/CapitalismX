@@ -1,33 +1,55 @@
+import * as uuid from 'uuid/v4'
+import { deepCopyWithUUID } from '../util/Misc'
+
 const historyLength = 4
 
 const historyTemplate = {
-    elapsedDaysSinceFirstDayOfMonth: 0,
-    materialCosts: 0,
+    totalMaterialCosts: 0,
+    totalLogisticsCosts: 0,
+    totalLobbyistCosts: 0,
+    totalMachineCosts: 0,
+    totalMarketingCosts: 0,
     salaries: 0,
     loanInterests: 0,
-    sales: 0,
-    investments: 0,
-    loans: 0
+    totalSalesRevenue: 0,
+    totalInvestmentEarnings: 0,
+    totalInvestmentAmount: 0,
+    totalAssetsBought: 0,
+    totalAssetsSold: 0,
+    totalDepreciation: 0,
+    loans: 0,
+    cash: 0,
+    netWorth: 50000,
+    ebit: 0,
+    profit: 0,
+    taxes: 0
 }
 
 export const FINANCIALS = {
     cash: 0,
     assets: 0,
     liabilities: 0,
-    history: new Array(historyLength).fill(historyTemplate)
+    history: new Array(historyLength).fill(deepCopyWithUUID(historyTemplate))
 }
 
-// Column-based approach
-/*export const FINANCIALS = {
-    assets: 0,
-    cash: 0,
-    history: {
-        elapsedDaysSinceFirstDayOfMonth: 0,
-        materialCosts: new Array(historyLength).fill(0),
-        salaries: new Array(historyLength).fill(0),
-        loanInterests: new Array(historyLength).fill(0),
-        sales: new Array(historyLength).fill(0),
-        investments: new Array(historyLength).fill(0),
-        loans: new Array(historyLength).fill(0)
-    }
-}*/
+const INVESTMENT_REALESTATE = {
+    name: "Real Estate Fund",
+    expectedDailyReturn: 0.0001596535875, // = (1.06/1)^(1/365) - 1
+    standardDeviation: 0.01046847845, // = 0.2/sqrt(365)
+}
+
+const INVESTMENT_STOCKS = {
+    name: "Stocks (Index Fund)",
+    expectedDailyReturn: 0.0002108743984, // = (1.08/1)^(1/365) - 1
+    standardDeviation: 0.01570271768, // 0.3/sqrt(365)
+}
+
+const INVESTMENT_VENTURECAPITAL = {
+    name: "Venture Capital Fund",
+    expectedDailyReturn: 0.0002611578761, // = (1.1/1)^(1/365) - 1
+    standardDeviation: 0.02617119613, // 0.5/sqrt(365)
+}
+
+export const INVESTMENTS = [
+    INVESTMENT_REALESTATE, INVESTMENT_STOCKS, INVESTMENT_VENTURECAPITAL
+].map(investment => ({...investment, amount: 0, uuid: uuid() }))

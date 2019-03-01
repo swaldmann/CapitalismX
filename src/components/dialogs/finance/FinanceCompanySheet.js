@@ -1,45 +1,48 @@
 import React from 'react'
-import InputNumber from 'rc-input-number'
 
-const FinanceCompanySheet = ({ financials }) => (
+import { dollarString } from '../../../util/Misc'
+import VisibleInvestmentsPopover from '../../../containers/VisibleInvestmentsPopover'
+
+const FinanceCompanySheet = ({ financials, investments }) => (
     <div className="quarter panel">
-        <h2><i className="fas fa-building"></i>Company</h2>
+        <h3>Company</h3>
         <table id="company">
             <tbody>
                 <tr>
-                    <td><b>Cash</b></td>
-                    <td>${financials.cash.toFixed(0)}</td>
+                    <td>Cash</td>
+                    <td>{dollarString(financials.cash)}</td>
                 </tr>
                 <tr>
-                    <td><b>Assets</b></td>
-                    <td>${financials.assets.toFixed(0)}</td>
+                    <td>Assets</td>
+                    <td>{dollarString(financials.assets)}</td>
                 </tr>
                 <tr>
-                    <td><b>Liabilities</b></td>
-                    <td>$0</td>
+                    <td>Liabilities</td>
+                    <td>{dollarString(financials.liabilities)}</td>
                 </tr>
                 <tr className="table-border-top">
-                    <td><b>Net Worth</b></td>
-                    <td>${(financials.cash + financials.assets).toFixed(0)}</td>
+                    <td>Net Worth</td>
+                    <td>{dollarString(financials.netWorth)}</td>
                 </tr>
             </tbody>
         </table>
+
+        <h3>Bank</h3>
+        <div>
+            <span>
+                <b>Current Loan Amount</b><br />
+                {dollarString(0)} at 0% interest<br />
+            </span>
+            <button disabled className="margin-bottom-large">Request Loan</button>
+        </div>
+
         <h3>Investments</h3>
-        <div className="flexbox">
-            <label>Amount</label>
-            <InputNumber
-              defaultValue={1000}
-              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-            />
-        </div>
-        <h3>Products</h3>
-        <div className="flexbox">
-            <label>Price</label>
-            <InputNumber
-              defaultValue={1000}
-              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-            />
-        </div>
+        { investments.map(investment =>
+            <div key={investment.uuid}>
+                <label className="margin-bottom">{investment.name}</label>
+                <VisibleInvestmentsPopover investment={investment} />
+            </div>
+        )}
     </div>
 )
 

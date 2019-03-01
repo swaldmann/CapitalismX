@@ -8,7 +8,7 @@ const PressReleasesList = ({ pressReleases, elapsedDays }) => (
             <ul>
                 {
                     pressReleases.map(pressRelease =>
-                        <li>
+                        <li key={pressRelease.uuid}>
                             <img className="icon" alt="" src={require('../../../static/icons/icons8-microphone2.png')} />{pressRelease.pressReleaseTemplate.name}
                             <div className="detailTitle">{elapsedDays >= pressRelease.startElapsedDays + 2 ? (elapsedDays - pressRelease.startElapsedDays) + " days ago" : "Underway"}</div>
                         </li>

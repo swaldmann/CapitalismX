@@ -40,6 +40,11 @@
     flex: 1 1 auto;
 }
 
+.modal h1.content-size {
+    flex: 0 1 auto;
+    margin-right: 30px;
+}
+
 .content-height {
     flex: 0 1 auto;
 }
@@ -117,7 +122,7 @@
     flex: 0 0 auto;
 }
 
-.modal button+button {
+button:not(:last-child) {
     margin-right: 10px;
 }
 
@@ -242,8 +247,17 @@ legend {
     margin-bottom: 2px;
 }
 
+.margin-bottom-medium {
+    margin-bottom: 10px;
+}
+
+.margin-bottom-large {
+    margin-bottom: 30px;
+}
+
 .destructive {
-    background: rgb(168, 33, 33);
+    color: white !important;
+    background: rgb(168, 33, 33) !important;
 }
 
 .tooltip-container .flexbox button {
@@ -251,6 +265,7 @@ legend {
 }
 
 .tooltip-container button.constructive, .tooltip-container button.constructive:hover {
+    color: white;
     background: green;
 }
 
@@ -259,4 +274,29 @@ legend {
     background: #e5e5e5;
     padding: 8px;
     border-radius: 5px;
+}
+
+.emoji {
+    font-size: 22px;
+    margin-top: 3px;
+}
+
+.tabList {
+    flex: 1 1 auto;
+    margin-top: 9px;
+}
+
+.tabList > a {
+    background: #eee;
+    padding: 12px;
+    line-height: 1em;
+    color: #333;
+    text-decoration: none;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.tabList a.selected {
+    background: $button-blue;
+    color: white;
 }

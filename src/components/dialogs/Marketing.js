@@ -30,8 +30,9 @@ class Marketing extends React.Component {
                 </div>
                 <div className="dialogDetail">
                     <div className="panel">
-                        <h3>Competitors</h3>
-                        <p>Market Share: 92%</p>
+                        <h3>Public Relations</h3>
+                        <VisibleConsultancyPanel />
+                        <VisibleLobbyistPanel />
                     </div>
                     <div className="remaining-size flexbox">
                         <VisibleCampaignList />
@@ -39,9 +40,7 @@ class Marketing extends React.Component {
                         <VisibleMarketResearchesList />
                     </div>
                     <div className="panel">
-                        <h3>Public Relations</h3>
-                        <VisibleLobbyistPanel />
-                        <VisibleConsultancyPanel />
+                        <h3>Statistics</h3>
                     </div>
                 </div>
             </Modal>

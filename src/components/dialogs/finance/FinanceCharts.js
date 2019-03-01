@@ -1,5 +1,6 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
+import {quarterStrings} from '../../../util/Misc'
 
 const data = {
   labels: ['Q1', 'Q2', 'Q3', 'Q4'],
@@ -28,10 +29,11 @@ const data = {
 };
 
 const options = {
+    animation: false,
     scales: {
         yAxes: [{
             ticks: {
-                beginAtZero:true
+                beginAtZero: true
             }
         }]
     },
@@ -50,15 +52,22 @@ const options = {
     }*/
 }
 
-const FinanceCharts = ({ financialHistory, simulationState }) => (
-    <div className="quarter panel">
-        <h3>Statistics</h3>
-        <h4>Sales</h4>
-        <Line height={100} options={options} data={{...data, labels: [...Array(4).keys()].map(i => "Q" + (((simulationState.elapsedDays - 4 + i)%4 + 4)%4 + 1) + "/" + parseInt((simulationState.elapsedDays - 4 + i)/4 + 90)%100), datasets: [{...data.datasets[0], data: financialHistory.map(history => history.sales.toFixed(0))}]}} />
-        <h4>Salaries</h4>
-        <Line height={100} options={options} data={{...data, labels: [...Array(4).keys()].map(i => "Q" + (((simulationState.elapsedDays - 4 + i)%4 + 4)%4 + 1) + "/" + parseInt((simulationState.elapsedDays - 4 + i)/4 + 90)%100), datasets: [{...data.datasets[0], data: financialHistory.map(history => history.salaries.toFixed(0))}]}} />
+class FinanceCharts extends React.Component {
+    render() {
+        const { financialHistory, elapsedDays } = this.props
+        const history = financialHistory.slice(Math.max(financialHistory.length - 4, 1))
 
-    </div>
-)
+        return (
+        <div className="quarter panel">
+            <h3>Statistics</h3>
+            <h4>Sales</h4>
+            <Line height={100} options={options} data={{...data, labels: quarterStrings(elapsedDays), datasets: [{...data.datasets[0], data: history.map(entry => entry.totalSalesRevenue.toFixed(0))}]}} />
+            <h4>Salaries</h4>
+            <Line height={100} options={options} data={{...data, labels: quarterStrings(elapsedDays), datasets: [{...data.datasets[0], data: history.map(entry => entry.salaries.toFixed(0))}]}} />
+            <h4>Loans</h4>
+            <Line height={100} options={options} data={{...data, labels: quarterStrings(elapsedDays), datasets: [{...data.datasets[0], data: history.map(entry => entry.loans.toFixed(0))}]}} />
+        </div>
+    )}
+}
 
 export default FinanceCharts

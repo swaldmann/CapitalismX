@@ -5,21 +5,21 @@ export const CAMPAIGN_MEDIA_TEMPLATES = [
         index: 0,
         name: "Newspaper",
         reach: 1000,
-        detailTitle: "$5000",
+        cost: 5000,
         iconPath: "icons8-news.png"
     },
     {
         index: 1,
         name: "TV",
         reach: 10000,
-        detailTitle: "$50000",
+        cost: 10000,
         iconPath: "icons8-tv.png"
     },
     {
         index: 2,
         name: "Online",
         reach: 50000,
-        detailTitle: "$100000",
+        cost: 100000,
         iconPath: "icons8-globe.png"
     }
 ].map(template => true ? { ...template, uuid: uuid() } : template)
@@ -52,9 +52,6 @@ export const PRESS_RELEASE_TEMPLATES = [
         name: "Privacy and Security Efforts"
     },
     {
-        name: "Affordable Prices"
-    },
-    {
         name: "Guaranteed Delivery Times"
     },
     {
@@ -85,33 +82,38 @@ export const MARKET_RESEARCHES = []
 
 export const MARKETING = {
     consultancyIndex: null,
-    lobbyistIndex: null
+    lobbyistIndex: 4
 }
 
 export const LOBBYIST_TEMPLATES = [
     {
         title: "Senator",
         iconPath: "icons8-man_face.png",
-        cost: 10000,
+        costPerMonth: 10000,
         taxRate: 0.1
     },
     {
         title: "Congressman",
         iconPath: "icons8-valet.png",
-        cost: 5000,
-        taxRate: 0.15
+        costPerMonth: 5000,
+        taxRate: 0.13
     },
     {
         title: "Mayor",
         iconPath: "icons8-old_man.png",
-        cost: 2000,
-        taxRate: 0.2
+        costPerMonth: 2000,
+        taxRate: 0.16
     },
     {
         title: "Worker's Union Leader",
         iconPath: "icons8-gardener.png",
-        cost: 1000,
-        taxRate: 0.25
+        costPerMonth: 1000,
+        taxRate: 0.18
+    }, {
+        title: "None",
+        iconPath: "",
+        costPerMonth: 0,
+        taxRate: 0.2
     }
 ]
 
@@ -119,16 +121,19 @@ export const CONSULTANCY_TEMPLATES = [
     {
         title: "O'Reilly & Company",
         description: "World-famous firm",
-        iconPath: "icons8-identity_disc.png"
+        iconPath: "icons8-identity_disc.png",
+        costPerMonth: 1000
     },
     {
         title: "Sinoido Consulting",
         description: "Local consultancy",
-        iconPath: "icons8-less_than2.png"
+        iconPath: "icons8-less_than2.png",
+        costPerMonth: 300
     },
     {
         title: "Wannabe Consultants",
         description: "Student consultancy",
-        iconPath: "icons8-multi_edit.png"
+        iconPath: "icons8-multi_edit.png",
+        costPerMonth: 100
     }
 ]

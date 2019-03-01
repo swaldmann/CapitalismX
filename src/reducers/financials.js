@@ -1,34 +1,76 @@
 import {
     DAILY_FINANCIAL_UPDATE,
+    DAILY_INVESTMENTS_UPDATE,
+    DAILY_FINANCIAL_HISTORY_ENTRY,
+    QUARTERLY_FINANCIAL_HISTORY_ENTRY,
+    PURCHASE,
+    PURCHASE_ASSET,
+    BUY_FUND,
+    SELL_FUND
 } from '../constants/ActionTypes'
 
-import { FINANCIALS } from '../constants/FinanceConstants'
+import { deepCopyWithUUID } from '../util/Misc'
 
-const initialState = FINANCIALS
+import { FINANCIALS, INVESTMENTS } from '../constants/FinanceConstants'
 
-export default function financials(state = initialState, action) {
+export function financials(state = FINANCIALS, action) {
+    /*if (state.cash < 0) {
+        alert(action.type)
+        alert("Congratulations, you successfully lost. There is no money left. This is why I, a generous developer, give you an additional $50,000.")
+        state.cash += 50000
+        return state
+    }*/
+    const lastIndex = state.history.length - 1
+
     switch (action.type) {
         case DAILY_FINANCIAL_UPDATE:
-            return { ...state, cash: action.historyEntry.netWorth,
-                               history: state.history.concat({
-                                        sales:                           action.historyEntry.sales,
-                                        investments:                     action.historyEntry.investments,
-                                        loans:                           action.historyEntry.loans,
-                                        materialCosts:                   action.historyEntry.materialCosts,
-                                        salaries:                        action.historyEntry.salaries,
-                                        loanInterests:                   action.historyEntry.loanInterests,
-                                        profit:                          action.historyEntry.profit
-                                     }).slice(1),
-                                elapsedDaysSinceFirstDayOfMonth: state.elapsedDaysSinceFirstDayOfMonth + 1,
+            return { ...state,
+                netWorth: action.financials.netWorth,
+                cash: action.financials.cash,
+                assets: action.financials.assets,
+                liabilities: action.financials.liabilities
+            }
+        case DAILY_FINANCIAL_HISTORY_ENTRY:
+            return { ...state, history: state.history.map((entry, i) => {
+                            if (i === lastIndex) {
+                                return Object.assign({}, ...Object.keys(entry).map(k => ({[k]: action.financials[k] + entry[k]})))
+                            }
+                            return entry
+                        })
                     }
-            // Column-based approach
-            /*return { ...state, cash: state.cash - action.costs,
-                                history: { ...state.history,
-                                    elapsedDaysSinceFirstDayOfMonth: state.history.elapsedDaysSinceFirstDayOfMonth + 1,
-                                    salaries: state.history.salaries.length >= 4 ? state.history.salaries.concat(action.costs).slice(1) : state.history.salaries.concat(action.costs)
+        case QUARTERLY_FINANCIAL_HISTORY_ENTRY:
+            return { ...state, history: state.history.concat(deepCopyWithUUID({...action.financials, history: 0}))}
+        case PURCHASE:
+            /*if (state.cash <= action.amount) {
+                alert("This action can't be done. You are bankrupt.")
+                return state
+            }*/
+            return { ...state, cash: state.cash - action.amount }
+        case PURCHASE_ASSET:
+            const key = action.amount >= 0 ? 'totalAssetsBought' : 'totalAssetsSold'
+            return { ...state, cash: state.cash - action.amount,
+                             assets: state.assets + action.amount,
+                             history: state.history.map((entry, i) => {
+                                if (i === lastIndex) {
+                                    return Object.assign({}, ...Object.keys(entry).map(k => k === key ? ({[k]:entry[k] - action.amount}) : ({[k]: entry[k]})))
                                 }
-                            }*/
+                                return entry
+                            })
+                         }
         default:
-        return state
+            return state
+    }
+}
+
+export function investments(state = INVESTMENTS, action) {
+    switch (action.type) {
+        case BUY_FUND:
+            return state.map(investment => investment.uuid === action.uuid ? {...investment, amount: investment.amount + action.amount} : investment)
+        case SELL_FUND:
+            return state.map(investment => investment.uuid === action.uuid ? {...investment, amount: investment.amount - action.amount} : investment)
+        case DAILY_INVESTMENTS_UPDATE:
+            return state.map((investment, i) => ({...investment, amount: investment.amount + action.investmentEarnings[i]}))
+        default:
+            return state
     }
 }

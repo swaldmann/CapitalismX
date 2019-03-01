@@ -1,58 +1,25 @@
-var spareRandom = null;
 
-function normalRandom()
-{
-	var val, u, v, s, mul;
-
-	if(spareRandom !== null)
-	{
-		val = spareRandom;
-		spareRandom = null;
-	}
-	else
-	{
-		do
-		{
-			u = Math.random()*2-1;
-			v = Math.random()*2-1;
-
-			s = u*u+v*v;
-		} while(s === 0 || s >= 1);
-
-		mul = Math.sqrt(-2 * Math.log(s) / s);
-
-		val = u * mul;
-		spareRandom = v * mul;
-	}
-
-	return val / 14;	// 7 standard deviations on either side
-}
-
-function normalRandomInRange(min, max)
-{
-	var val;
-	do
-	{
-		val = normalRandom();
-	} while(val < min || val > max);
-
-	return val;
-}
-
-export function gauss(mean, stddev)
-{
-	var r = normalRandomInRange(-1, 1);
-
-	r = r * stddev + mean;
-
-	return Math.round(r);
-}
-
-export function lnRandomScaled(gmean, gstddev)
-{
-	var r = normalRandomInRange(-1, 1);
-
-	r = r * Math.log(gstddev) + Math.log(gmean);
-
-	return Math.round(Math.exp(r));
+// Marsaglia polar method
+// Slighty modified version of https://stackoverflow.com/a/35599181
+export function gauss(mean, stdev) {
+    var y2;
+    var use_last = false
+    var y1;
+    if (use_last) {
+       y1 = y2;
+       use_last = false
+    }
+    else {
+        var x1, x2, w;
+        do {
+             x1 = 2.0 * Math.random() - 1.0;
+             x2 = 2.0 * Math.random() - 1.0;
+             w  = x1 * x1 + x2 * x2;
+        } while (w >= 1.0)
+        w = Math.sqrt((-2.0 * Math.log(w))/w)
+        y1 = x1 * w
+        y2 = x2 * w
+        use_last = true
+   }
+	return mean + stdev * y1
 }

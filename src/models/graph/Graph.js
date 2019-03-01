@@ -14,8 +14,8 @@ class Graph {
         return this.vertices[key].value
     }
 
-    createCalculatedVertex(key, value, weightFunction, fromKeys) {
-        this.vertices[key] = new Vertex(key, value)
+    createCalculatedVertex(key, weightFunction, fromKeys) {
+        this.vertices[key] = new Vertex(key, undefined)
         this.adjacencyList[key] = { weightFunction: weightFunction, fromKeys: fromKeys, toKey: key}
     }
 

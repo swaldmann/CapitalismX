@@ -114,11 +114,37 @@ div.rc-input-number~label {
     line-height: 70px;
 }
 
-input.rc-input-number-input {
+input[type="text"], .number-input {
     padding: 10px;
     background: #eaeaea;
     border-radius: 10px;
     font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #333;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.number-input {
+    text-align: right;
+}
+
+input.rc-input-number-input {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: right;
+    font-size: 16px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.number-input * {
+    margin-bottom: 5px;
+}
+
+.rc-input-number-input {
     text-align: right;
 }
 
@@ -165,15 +191,7 @@ button[disabled] {
     margin-right: 8px;
 }
 
-.graphicsSettings p {
-    margin-bottom: 10px;
-}
-
-.graphicsSettings {
-    margin-top: 50px;
-}
-
-.graphicsSettings > button:not(:last-child) {
+.buttonSet > button:not(:last-child) {
     margin-right: 10px;
 }
 
@@ -201,6 +219,14 @@ button[disabled] {
 canvas {
     height: 100%;
     width: 100%;
+}
+
+.menu h3 {
+    margin-top: 40px;
+}
+
+.menu .paragraph {
+    color: #777;
 }
 
 .pull-right {
@@ -232,6 +258,7 @@ canvas {
 
 .half {
     flex-basis: 50%;
+    overflow: auto;
 }
 
 .third {
@@ -262,6 +289,10 @@ th, td {
     text-align: right;
 }
 
+#company td:first-child {
+    text-align: left;
+}
+
 .table-border-top {
     border-top: 1px solid #ddd;
 }
@@ -270,8 +301,18 @@ th, td {
     padding-bottom: 10px;
 }*/
 
+.level {
+    background: lightslategray;
+    border-radius: 5px;
+    padding: 2px 6px;
+    line-height: 1em;
+    color: white;
+    height: 1em;
+    margin-top: 5px;
+}
+
 .table-border-top > td {
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 hr {
@@ -283,24 +324,44 @@ hr {
     margin-bottom: 40px;
 }
 
+#company td:first-child {
+    color: black;
+    font-weight: normal;
+}
+
 #company hr {
     border-bottom: 1px solid #ddd;
 }
 
-#expenses td {
+.expenses td:not(:first-child), td.expense {
     color: #a31d0e;
 }
 
-#earnings td {
+.earnings td:not(:first-child), td.earning {
     color: green;
 }
 
+.colorlessLink {
+    color: inherit;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.margin-top-large {
+    margin-top: 40px;
+}
 
 /* fontawesome */
 
 .fa-fw.fa-xs {
     margin-right: 5px;
     vertical-align: 1px;
+}
+
+.fa-grey {
+    color: grey;
 }
 
 .fa-users {
@@ -317,4 +378,9 @@ hr {
 
 .fa-wrench {
     color: #8b96a0;
+}
+
+.fa-circle {
+    color: $button-blue;
+    margin-right: 5px;
 }

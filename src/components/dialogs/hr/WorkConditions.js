@@ -1,47 +1,72 @@
 import React from 'react'
 import { RadioGroup, Radio } from 'react-radio-group'
 import {
-    WORKING_TIME_MODEL_FIXED, WORKING_TIME_MODEL_FLEX, WORKING_TIME_MODEL_TRUST,
-    WORKING_HOURS_6, WORKING_HOURS_8, WORKING_HOURS_10,
-    COMPANY_CAR_SEDAN, COMPANY_CAR_SUBCOMPACT,COMPANY_CAR_NONE,
-    FOOD_BENEFITS_NONE, FOOD_BENEFITS_FREE, FOOD_BENEFITS_PAID,
-    GYM_MEMBERSHIP_NONE, GYM_MEMBERSHIP_SUBSIDIZED, GYM_MEMBERSHIP_FREE
+    WORKING_TIME_MODEL_TEMPLATES,
+    WORKING_HOUR_TEMPLATES,
+    COMPANY_CAR_TEMPLATES,
+    IT_EQUIPMENT_TEMPLATES,
+    FOOD_BENEFITS_TEMPLATES,
+    GYM_MEMBERSHIP_TEMPLATES
  } from '../../../constants/HRConstants'
 
-const WorkConditions = ({ workingTimeModel, workingHours, companyCarPolicy, foodBenefits, gymMembership, actions }) => (
-    <div className="quarter panel">
-        <h3>Work Conditions</h3>
-        <h4>Working Time Model</h4>
-        <RadioGroup selectedValue={workingTimeModel} onChange={value => actions.setWorkingTimeModel(value)}>
-            <Radio value={WORKING_TIME_MODEL_FIXED} />Fixed<div className="subtitle">No changes</div>
-            <Radio value={WORKING_TIME_MODEL_FLEX} />Flex<div className="subtitle">-$30 per employee/month, +15% JS</div>
-            <Radio value={WORKING_TIME_MODEL_TRUST} />Trust-based<div className="subtitle">-$50 per employee/month, +30% JS</div>
-        </RadioGroup>
-        <h4>Working Hours</h4>
-        <RadioGroup selectedValue={workingHours} onChange={value => actions.setWorkingHours(value)}>
-            <Radio value={WORKING_HOURS_6} />10 hours<div className="subtitle">+$50 per employee/month, -20% JS</div>
-            <Radio value={WORKING_HOURS_8} />8 hours<div className="subtitle">No changes</div>
-            <Radio value={WORKING_HOURS_10} />6 hours<div className="subtitle">-$100 per employee/month, +20% JS</div>
-        </RadioGroup>
-        <h4>Company Car</h4>
-        <RadioGroup selectedValue={companyCarPolicy} onChange={value => actions.setCompanyCarPolicy(value)}>
-            <Radio value={COMPANY_CAR_NONE} />None<div className="subtitle">No changes</div>
-            <Radio value={COMPANY_CAR_SUBCOMPACT} />Subcompact<div className="subtitle">-$120 per employee/month, +20% JS</div>
-            <Radio value={COMPANY_CAR_SEDAN} />Sedan<div className="subtitle">-$200 per employee/month, +40% JS</div>
-        </RadioGroup>
-        <h4>Food/Coffee</h4>
-        <RadioGroup selectedValue={foodBenefits} onChange={value => actions.setFoodBenefits(value)}>
-            <Radio value={FOOD_BENEFITS_NONE} />None<div className="subtitle">No changes</div>
-            <Radio value={FOOD_BENEFITS_FREE} />Free<div className="subtitle">-$100 per employee/month, +20% JS</div>
-            <Radio value={FOOD_BENEFITS_PAID} />Paid<div className="subtitle">+$80 per employee/month, -10% JS</div>
-        </RadioGroup>
-        <h4>Gym</h4>
-        <RadioGroup selectedValue={gymMembership} onChange={value => actions.setGymMembership(value)}>
-            <Radio value={GYM_MEMBERSHIP_NONE} />None<div className="subtitle">No changes</div>
-            <Radio value={GYM_MEMBERSHIP_SUBSIDIZED} />Subsidized<div className="subtitle">-$20 per employee/month, +10% JS</div>
-            <Radio value={GYM_MEMBERSHIP_FREE} />Free<div className="subtitle">-$50 per employee/month, +20% JS</div>
-        </RadioGroup>
-    </div>
-)
+import { dollarString } from '../../../util/Misc'
+
+class WorkConditions extends React.Component {
+    render() {
+        const { workingTimeModelIndex, workingHoursIndex, companyCarPolicyIndex, foodBenefitsIndex, itEquipmentPolicyIndex, gymMembershipIndex, actions } = this.props
+        return (
+        <div className="quarter panel">
+            <h3>Work Conditions</h3>
+            <h4>Working Time Model</h4>
+            <RadioGroup selectedValue={workingTimeModelIndex} onChange={value => actions.setWorkingTimeModelIndex(value)}>
+                {
+                    WORKING_TIME_MODEL_TEMPLATES.map(template =>
+                        <span key={template.index}><Radio value={template.index} />{template.description}<div className="subtitle">{dollarString(template.monthlyCostPerEmployee)} per employee/month</div></span>
+                    )
+                }
+            </RadioGroup>
+            <h4>Working Hours</h4>
+            <RadioGroup selectedValue={workingHoursIndex} onChange={value => actions.setWorkingHoursIndex(value)}>
+                {
+                    WORKING_HOUR_TEMPLATES.map(template =>
+                        <span key={template.index}><Radio value={template.index} />{template.description}<div className="subtitle">{dollarString(template.monthlyCostPerEmployee)} per employee/month</div></span>
+                    )
+                }
+            </RadioGroup>
+            <h4>Company Car</h4>
+            <RadioGroup selectedValue={companyCarPolicyIndex} onChange={value => actions.setCompanyCarPolicyIndex(value)}>
+                {
+                    COMPANY_CAR_TEMPLATES.map(template =>
+                        <span key={template.index}><Radio value={template.index} />{template.description}<div className="subtitle">{dollarString(template.monthlyCostPerEmployee)} per employee/month</div></span>
+                    )
+                }
+            </RadioGroup>
+            <h4>IT Equipment</h4>
+            <RadioGroup selectedValue={itEquipmentPolicyIndex} onChange={value => actions.setITEquipmentPolicyIndex(value)}>
+                {
+                    IT_EQUIPMENT_TEMPLATES.map(template =>
+                        <span key={template.index}><Radio value={template.index} />{template.description}<div className="subtitle">{dollarString(template.monthlyCostPerEmployee)} per employee/month</div></span>
+                    )
+                }
+            </RadioGroup>
+            <h4>Food/Coffee</h4>
+            <RadioGroup selectedValue={foodBenefitsIndex} onChange={value => actions.setFoodBenefitsIndex(value)}>
+                {
+                    FOOD_BENEFITS_TEMPLATES.map(template =>
+                        <span key={template.index}><Radio value={template.index} />{template.description}<div className="subtitle">{dollarString(template.monthlyCostPerEmployee)} per employee/month</div></span>
+                    )
+                }
+            </RadioGroup>
+            <h4>Gym</h4>
+            <RadioGroup selectedValue={gymMembershipIndex} onChange={value => actions.setGymMembershipIndex(value)}>
+                {
+                    GYM_MEMBERSHIP_TEMPLATES.map(template =>
+                        <span key={template.index}><Radio value={template.index} />{template.description}<div className="subtitle">{dollarString(template.monthlyCostPerEmployee)} per employee/month</div></span>
+                    )
+                }
+            </RadioGroup>
+        </div>
+    )}
+}
 
 export default WorkConditions

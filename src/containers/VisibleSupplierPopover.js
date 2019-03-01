@@ -6,9 +6,10 @@ import * as Actions from '../actions'
 
 const mapStateToProps = (state, props) => {
     return {
+
+        componentTypeTemplate: props.componentTypeTemplate,
         component: props.component,
         elapsedDays: state.simulationState.elapsedDays,
-        buttonClassName: props.className,
         buttonDisabled: props.diabled
     }
 }
