@@ -13,8 +13,7 @@ import rootReducer from './reducers'
 import SimulationGraph from './models/SimulationGraph'
 import { getTotalSalesRevenue,
          getActualSalesFigures,
-         getDemandPeriodicAmounts,
-         getProductPrices,
+         getTotalProductComponentCosts,
          getTruckValues,
          getWarehouseValues,
          getMachineValues,
@@ -22,13 +21,10 @@ import { getTotalSalesRevenue,
          getTotalTruckCosts,
          getTotalMachineCosts,
          getTotalWarehouseCosts,
-         getAverageMachineTechnology,
-         getProductComponentCosts } from './selectors/products'
-import { getTotalSalespeopleQualityOfWork,
-         getTotalEngineerQualityOfWork,
-         getAllEmployees,
-         getAllHiredEmployees,
-         getTotalSalaries } from './selectors/employees'
+} from './selectors/products'
+import { getAllHiredEmployees,
+         getTotalSalaries
+} from './selectors/employees'
 import { dailyProductUpdate,
          dailyInvestmentsUpdate,
          dailyFinancialUpdate,
@@ -42,10 +38,6 @@ import { dailyProductUpdate,
 import {
     LOBBYIST_TEMPLATES
 } from './constants/MarketingConstants'
-
-import {
-    INVESTMENTS
-} from './constants/FinanceConstants'
 
 import {
     WORKING_TIME_MODEL_TEMPLATES,
@@ -89,9 +81,7 @@ function simulate(dispatch) {
     const state = store.getState()
 
     // Selectors
-    const employees = getAllEmployees(state)
     const hiredEmployees = getAllHiredEmployees(state)
-    const productPrices = getProductPrices(state)
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
 
@@ -99,49 +89,31 @@ function simulate(dispatch) {
     // console.log("Demands")
     // console.log("=======")
 
-    /*console.log(getMaximumTotalQualityForProductTypes(state))
-    console.log(getMaximumMarketQualityForProductTypes(state))
-    console.log(getMaximumProxyQualityForProductTypes(state))
-    console.log(getProductAppeals(state))
-    console.log(getPriceAppeals(state))
-    console.log(getOverallAppeals(state))
-    console.log(getDemandTotalPercentages(state))*/
+    //console.log(getMaximumTotalQualityForProductTypes(state))
+    //console.log(getMaximumMarketQualityForProductTypes(state))
+    //console.log(getMaximumProxyQualityForProductTypes(state))
+    //console.log(getProductAppeals(state))
+    //console.log(getPriceAppeals(state))
+    //console.log(getOverallAppeals(state))
+    //console.log(getDemandTotalPercentages(state))
     //console.log(getDemandPeriodicPercentages(state))
 
-    console.log(getTotalSalesRevenue(state));
-
-    //const proxyQualities = getMaximumProxyQualityForProductTypes(state)
-
-
     // Variables from state which can be asychnronously changed by the user
-    const taxRate = state.marketing.lobbyistIndex !== null ? LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate : 0.3
-
-    // Production
-    const rAndDFactor = 0.8 + 0.1 * (state.rAndDIndex + 1)
-    const systemsSecurityFactor = 0.8 + 0.1 * (state.systemsSecurityIndex + 1)
-    const processAutomationFactor = 0.8 + 0.1 * (state.processAutomationIndex + 1)
-    const productionTechnologyFactor = 0.5 + 0.25 * getAverageMachineTechnology(state)
-    //const maximumProcurementQualityForProductTypes = getMaximumProcurementQualityForProductTypes(state)
-
+    const taxRate = LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate
 
     // Reducers
     const reducedValues = {
         totalSalaries: parseInt(getTotalSalaries(state)/365),
-        totalEngineerQualityOfWork: getTotalEngineerQualityOfWork(state),
-        totalSalespeopleQualityOfWork: getTotalSalespeopleQualityOfWork(state),
-        productComponentCosts: getProductComponentCosts(state),
         totalLogisticsCosts: totalLogisticsCosts,
         totalMachineCosts: getTotalMachineCosts(state),
-        demandPeriodicAmounts: getDemandPeriodicAmounts(state),
+        totalProductComponentCost: getTotalProductComponentCosts(state),
         totalLobbyistCosts: LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].costPerMonth/30,
         totalMarketingCosts: 0,
         propertyAssets: propertyAssets,
         taxRate: taxRate,
-        prices: productPrices,
         totalSalesRevenue: getTotalSalesRevenue(state),
         cash: state.financials.cash || 1000000,
-        investments: state.investments || INVESTMENTS,
-        manufacturingMultiplicator: rAndDFactor * processAutomationFactor * systemsSecurityFactor * productionTechnologyFactor
+        investments: state.investments
     }
 
     simulationGraph.updateVertices(reducedValues)
@@ -175,34 +147,30 @@ function simulate(dispatch) {
             totalAssetsBought: 0,
             totalDepreciation: 0,
             totalSalesRevenue: getTotalSalesRevenue(state),
+            totalLogisticsCosts: reducedValues.totalLogisticsCosts,
+            totalMaterialCosts: reducedValues.totalProductComponentCost,
+            totalMachineCosts: reducedValues.totalMachineCosts,
+            totalLobbyistCosts: reducedValues.totalLobbyistCosts,
+            totalMarketingCosts: reducedValues.totalMarketingCosts,
+            salaries: reducedValues.totalSalaries,
+            loans: 0,
+            loanInterests: 0,
+            taxRate: taxRate,
             totalInvestmentAmount: simulationGraph.getVertexValue("totalInvestmentAmount"),
             totalInvestmentEarnings: simulationGraph.getVertexValue("totalInvestmentEarnings"),
-            totalLogisticsCosts: simulationGraph.getVertexValue("totalLogisticsCosts"),
-            totalMaterialCosts: simulationGraph.getVertexValue("totalProductComponentCost"),
-            totalMachineCosts: simulationGraph.getVertexValue("totalMachineCosts"),
-            totalLobbyistCosts: simulationGraph.getVertexValue("totalLobbyistCosts"),
-            totalMarketingCosts: simulationGraph.getVertexValue("totalMarketingCosts"),
-            salaries: simulationGraph.getVertexValue("totalSalaries"),
-            loans: simulationGraph.getVertexValue("loans"),
-            loanInterests: simulationGraph.getVertexValue("loanInterests"),
             ebit: simulationGraph.getVertexValue("ebit"),
-            taxRate: simulationGraph.getVertexValue("taxRate"),
             taxes: simulationGraph.getVertexValue("taxes"),
-            profit: simulationGraph.getVertexValue("profit"),
+            profit: simulationGraph.getVertexValue("profit"), // Rename to nopat
             cash: simulationGraph.getVertexValue("cash"),
             netWorth: simulationGraph.getVertexValue("netWorth"),
             assets: simulationGraph.getVertexValue("assets"),
             liabilities: 0
         }
 
-        //console.log("Sales");
-        //console.log(getTotalSalesRevenue(state));
-
         const humanResourcesHistoryEntry = {
-            numberOfEmployees: employees.length,
+            numberOfEmployees: hiredEmployees.length,
             jobSatisfactionPercentages: jobSatisfactionPercentages
         }
-
 
         const salesFigures = getActualSalesFigures(state)
         const investmentEarnings = simulationGraph.getVertexValue("investmentEarnings")
@@ -213,14 +181,14 @@ function simulate(dispatch) {
         const currentDate = addDays(startDate, elapsedDays)
         const elapsedMonths = getMonthsBetween(startDate, currentDate, false)
 
+        /* History entries */
+
         // Daily updates
         dispatch(dailyProductUpdate(salesFigures))
         dispatch(dailyInvestmentsUpdate(investmentEarnings))
         dispatch(dailyFinancialUpdate(financials))
         dispatch(dailyFinancialHistoryEntry(financials))
         dispatch(dailyMachineCapacityUpdate(usedMachineCapacities))
-        console.log(humanResourcesHistoryEntry);
-        console.log(jobSatisfactionScore);
         dispatch(monthlyHRHistoryEntry(humanResourcesHistoryEntry, jobSatisfactionScore))
 
         // Monthly updates

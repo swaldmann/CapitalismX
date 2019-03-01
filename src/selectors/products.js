@@ -335,3 +335,14 @@ export const getTotalSalesRevenue = createSelector(
         }, 0)
     }
 )
+
+/* Costs */
+
+export const getTotalProductComponentCosts = createSelector(
+    [getDemandPeriodicAmounts, getProductComponentCosts],
+    (demandPeriodicAmounts, productComponentCosts) =>
+        demandPeriodicAmounts.map((salesFigure, i) =>
+            salesFigure * productComponentCosts[i]).reduce((totalCost, cost) =>
+                totalCost + cost
+            , 0)
+)
