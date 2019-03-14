@@ -20,15 +20,7 @@ import { getTotalSalesRevenue,
          getUsedMachineCapacities,
          getTotalTruckCosts,
          getTotalMachineCosts,
-         getTotalWarehouseCosts,
-         getMaximumTotalQualityForProductTypes,
-         getMaximumMarketQualityForProductTypes,
-         getMaximumProxyQualityForProductTypes,
-         getProductAppeals,
-         getPriceAppeals,
-         getOverallAppeals,
-         getDemandTotalPercentages,
-         getDemandPeriodicPercentages
+         getTotalWarehouseCosts
 } from './selectors/products'
 import { getAllHiredEmployees,
          getTotalSalaries
@@ -92,27 +84,6 @@ function simulate(dispatch) {
     const hiredEmployees = getAllHiredEmployees(state)
     const propertyAssets = getTruckValues(state) + getMachineValues(state) + getWarehouseValues(state)
     const totalLogisticsCosts = getTotalTruckCosts(state) + getTotalWarehouseCosts(state)
-
-    console.log("=======")
-    console.log("Demand")
-    console.log("=======")
-
-    console.log("Maximum total quality for product types")
-    console.log(getMaximumTotalQualityForProductTypes(state))
-    console.log("Maximum market quality for product types")
-    console.log(getMaximumMarketQualityForProductTypes(state))
-    console.log("Maximum proxy quality for product types")
-    console.log(getMaximumProxyQualityForProductTypes(state))
-    console.log("Product Appeals")
-    console.log(getProductAppeals(state))
-    console.log("Price Appeals")
-    console.log(getPriceAppeals(state))
-    console.log("Overall Appeals");
-    console.log(getOverallAppeals(state))
-    console.log("Demand percentage");
-    console.log(getDemandTotalPercentages(state))
-    console.log("Demand periodic percentages");
-    //console.log(getDemandPeriodicPercentages(state))
 
     // Variables from state which can be asychnronously changed by the user
     const taxRate = LOBBYIST_TEMPLATES[state.marketing.lobbyistIndex].taxRate
